@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GREY Development Limited — Realty · Construction · Investment | Abuja</title>
+  <meta name="description" content="GREY Development Limited designs, builds and delivers residential and mixed-use developments of uncompromising structural and material integrity across Abuja, Nigeria. Not just built. But crafted." />
+  <meta property="og:title" content="GREY Development Limited — Not Just Built. But Crafted." />
+  <meta property="og:description" content="Realty · Construction · Investment. Architecturally serious developments in Abuja, Nigeria." />
+  <meta property="og:image" content="assets/GREY_Instagram_1080x1080.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="GREY Development Limited" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="GREY Development Limited — Not Just Built. But Crafted." />
+  <meta name="twitter:description" content="Realty · Construction · Investment. Architecturally serious developments in Abuja, Nigeria." />
+  <meta name="twitter:image" content="assets/GREY_Instagram_1080x1080.png" />
+  <meta name="theme-color" content="#F4F2EC" />
+  <link rel="canonical" href="https://greydevelopment.ng/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%230E0E10'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Archivo,Arial,sans-serif'%20font-size='21'%20font-weight='800'%20fill='%23C7A347'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
+
+  <!-- Structured data: helps search engines understand GREY as a local business -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "RealEstateAgent",
+    "name": "GREY Development Limited",
+    "description": "Realty, construction and investment company delivering architecturally serious residential and mixed-use developments across Abuja, Sokoto and Kaduna, Nigeria.",
+    "slogan": "Not Just Built. But Crafted.",
+    "url": "https://greydevelopment.ng/",
+    "telephone": "+234 807 896 3703",
+    "email": "greydevelopment.ng@gmail.com",
+    "image": "assets/GREY_Instagram_1080x1080.png",
+    "logo": "assets/GREY_Instagram_1080x1080.png",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "No. 2 William F. Kumuyi Street, Kado",
+      "addressLocality": "Abuja",
+      "addressCountry": "NG"
+    },
+    "areaServed": ["Abuja", "Sokoto", "Kaduna", "Nigeria"],
+    "sameAs": [
+      "https://instagram.com/greydevelopment_ng",
+      "https://x.com/greydevelopment_ng"
+    ]
+  }
+  </script>
+
+  <!--
+       GREY DEVELOPMENT LIMITED - single-file marketing site
+       Stack: static HTML + Tailwind (Play CDN)
+       Brand system (from "grey development Brand Guidelines.pdf"):
+         Colours  Matte Black #0E0E10 | Luxury Gold #C7A347 (accent only, large text/icons/rules)
+                  Porcelain #FFFFFF | Graphite #2C2C30 | Slate #6D6F74 | Stone #A8A69E
+                  Champagne #E0CDA0 | Bronze #7A5C2D (pressed) | Satin Gold #E8C874 (hover)
+         Type     Archivo (primary) + Lora Italic (pull-quotes only)
+         Voice    "Not Just Built. But Crafted." — avoid: luxury, world-class, dream home.
+
+       ASSETS IN /assets:
+         GREY_Hero_1920x1080.png ...... hero
+         GREY_Instagram_1080x1080.png . brand image (About / OG)
+         brochures/*.pdf .............. the 3 project brochures + company profile
+
+       PLACEHOLDERS TO REPLACE (search for TODO):
+         * Project card images are stock architecture; swap for real renders
+           (the real renders live inside each brochure PDF).
+         * Testimonials are placeholders.
+         * Stats (7 / 130+ / 96%) come from the brand deck's dashboard mock - confirm.
+  -->
+
+  <!-- Fonts: Archivo (primary) + Lora Italic (pull-quotes) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet" />
+
+  <!-- Enable JS-only scroll animations (kept out of no-JS render) -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink:       '#F4F2EC',
+            ink2:      '#ECEAE1',
+            panel:     '#FFFFFF',
+            line:      '#DCD9CF',
+            porcelain: '#1A1A1C',
+            body:      '#45443F',
+            muted:     '#6B6B66',
+            slate:     '#5E6064',
+            stone:     '#57585B',
+            mist:      '#DFDDD6',
+            champagne: '#E0CDA0',
+            gold:      '#C7A347',
+            satin:     '#E8C874',
+            bronze:    '#7A5C2D',
+          },
+          fontFamily: {
+            sans: ['Archivo', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Archivo', 'ui-sans-serif', 'sans-serif'],
+            mono: ['"IBM Plex Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+            quote: ['Lora', 'Georgia', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root { color-scheme: light; }
+    html, body { background-color: #F4F2EC; }
+    body { font-family: 'Archivo', ui-sans-serif, system-ui, sans-serif; color: #45443F; -webkit-font-smoothing: antialiased; }
+
+    ::selection { background: #C7A347; color: #171512; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #F4F2EC; }
+    ::-webkit-scrollbar-thumb { background: #CFCBBF; border-radius: 20px; border: 2px solid #F4F2EC; }
+    ::-webkit-scrollbar-thumb:hover { background: #C7A347; }
+
+    /* Keyboard focus */
+    a:focus-visible, button:focus-visible, input:focus-visible,
+    select:focus-visible, textarea:focus-visible {
+      outline: 2px solid #E8C874; outline-offset: 2px; border-radius: 4px;
+    }
+
+    .display { font-weight: 800; letter-spacing: -0.015em; line-height: 1.0; }
+    .eyebrow { font-family: 'IBM Plex Mono', ui-monospace, monospace; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 500; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+    .tnum { font-variant-numeric: tabular-nums; }
+    .quote { font-family: 'Lora', Georgia, serif; font-style: italic; }
+
+    /* Accents: solid and restrained — no gradient text (that reads as generic) */
+    .text-bronze-grad { background: none; -webkit-background-clip: border-box; background-clip: border-box; color: inherit; -webkit-text-fill-color: currentColor; }
+    .accent-gold { color: #7A5C2D; -webkit-text-fill-color: #7A5C2D; }
+
+    /* Active nav link (scrollspy) */
+    .nav-active { color: #1A1A1C; position: relative; }
+    .nav-active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: #7A5C2D; }
+
+    /* Transparent nav over the dark hero: light text until scrolled */
+    #siteHeader:not(.scrolled) .display { color: #F5F4F0; }
+    #siteHeader:not(.scrolled) .eyebrow { color: #E8C874; }
+    #siteHeader:not(.scrolled) nav ul a { color: rgba(245,244,240,0.82); }
+    #siteHeader:not(.scrolled) nav ul a:hover,
+    #siteHeader:not(.scrolled) nav ul a.nav-active { color: #FFFFFF; }
+    #siteHeader:not(.scrolled) nav ul a.nav-active::after { background: #E8C874; }
+    #siteHeader:not(.scrolled) #menuBtn { color: #F5F4F0; border-color: rgba(255,255,255,0.25); }
+
+    /* Measured hairline that grows on hover — a nod to engineering tolerance */
+    .measure { height: 1px; width: 2rem; background: #CFCBBF; transition: width .4s cubic-bezier(.4,0,.2,1), background-color .4s ease; }
+    .group:hover .measure { width: 3.5rem; background: #C7A347; }
+
+    /* Panels */
+    .glass { background: rgba(0,0,0,0.025); border: 1px solid rgba(26,26,28,0.09); }
+    .glass-strong { background: rgba(255,255,255,0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(199,163,71,0.28); box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset; }
+    .rule-gold { height: 1px; background: linear-gradient(90deg, transparent, rgba(199,163,71,0.55), transparent); }
+
+    /* Hero image: cover on desktop, contain on phones (matte letterbox blends with bg) */
+    .hero-img { object-fit: cover; object-position: center; }
+    @media (max-width: 640px) { .hero-img { object-fit: contain; } }
+
+    /* Motion tokens: micro 120ms, standard 220ms (brand) */
+    .t-std { transition: all 220ms ease-in-out; }
+    .t-micro { transition: all 120ms ease-out; }
+
+    .zoomable img { transition: transform 600ms cubic-bezier(0.4,0,0.2,1); }
+    .zoomable:hover img { transform: scale(1.05); }
+
+    /* Hero on-load fade + settle */
+    @keyframes heroIn { from { opacity: 0; transform: translateY(20px) scale(.985); } to { opacity: 1; transform: none; } }
+    @keyframes heroImgIn { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: scale(1); } }
+    .js .hero-in { opacity: 0; animation: heroIn .85s cubic-bezier(.4,0,.2,1) both; }
+    .js .hero-in--img { animation: heroImgIn 1.4s cubic-bezier(.4,0,.2,1) both; }
+    @keyframes cueBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+    .cue-bob { animation: cueBob 1.8s ease-in-out infinite; }
+
+    /* Developments — refined, premium image treatment (applies to all cards) */
+    #projects .zoomable { box-shadow: inset 0 0 0 1px rgba(199,163,71,.18); }
+    #projects .zoomable::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+      background: linear-gradient(to top, rgba(12,11,9,.52) 0%, rgba(12,11,9,.12) 42%, transparent 66%);
+      transition: opacity .5s ease; }
+    #projects .zoomable > span { z-index:2; }            /* status badge stays above the scrim */
+    #projects .zoomable img { filter: saturate(1.06) contrast(1.07) brightness(1.0) sepia(.05);
+      transition: transform .9s cubic-bezier(.22,1,.36,1), filter .6s ease; }
+    #projects article:hover .zoomable img { transform: scale(1.07); filter: saturate(1.12) contrast(1.08) brightness(1.03) sepia(.02); }
+    #projects article:hover .zoomable::after { opacity:.62; }
+    #projects article { transition: transform .4s cubic-bezier(.22,1,.36,1), border-color .4s ease, box-shadow .4s ease; }
+    #projects article:hover { transform: translateY(-6px); border-color: rgba(199,163,71,.55);
+      box-shadow: 0 30px 60px -28px rgba(30,22,4,.5), 0 0 0 1px rgba(199,163,71,.12); }
+    @media (prefers-reduced-motion: reduce){
+      #projects article:hover { transform:none; }
+      #projects article:hover .zoomable img { transform:none; }
+    }
+
+    /* Reveal (progressive enhancement) */
+    .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .js .reveal.is-visible { opacity: 1; transform: none; }
+    .reveal[data-delay="1"] { transition-delay: .08s; }
+    .reveal[data-delay="2"] { transition-delay: .16s; }
+    .reveal[data-delay="3"] { transition-delay: .24s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .zoomable img, .zoomable:hover img { transition: none !important; transform: none !important; }
+      .js .hero-in, .js .hero-in--img { opacity: 1 !important; animation: none !important; }
+      .cue-bob, .animate-ping { animation: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-ink text-body">
+
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-4 focus:left-4 focus:bg-gold focus:text-[#171512] focus:px-4 focus:py-2 focus:rounded">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header id="siteHeader" class="fixed top-0 inset-x-0 z-50 t-std">
+    <nav class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- TODO: real logo — replace with <img src="assets/logo.svg" ...> if you export a vector.
+             (The full logo appears in the hero image below.) -->
+        <a href="#home" class="flex flex-col leading-none" aria-label="GREY Development Limited — home">
+          <span class="display text-2xl sm:text-[26px] text-porcelain tracking-[0.12em]">GREY</span>
+          <span class="eyebrow text-[9px] sm:text-[10px] text-bronze mt-1">Development Limited</span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-9 text-sm text-stone">
+          <li><a href="#home" class="t-micro hover:text-porcelain">Home</a></li>
+          <li><a href="#services" class="t-micro hover:text-porcelain">Services</a></li>
+          <li><a href="#projects" class="t-micro hover:text-porcelain">Developments</a></li>
+          <li><a href="#about" class="t-micro hover:text-porcelain">About</a></li>
+          <li><a href="#contact" class="t-micro hover:text-porcelain">Contact</a></li>
+        </ul>
+
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Request a Quote</a>
+          <button id="menuBtn" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-lg glass text-porcelain cursor-pointer" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+            <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div id="mobileMenu" class="lg:hidden hidden glass-strong border-t border-line">
+      <ul class="px-6 py-4 space-y-1 text-base">
+        <li><a href="#home" class="mobile-link block py-3 border-b border-line/60 text-stone hover:text-porcelain">Home</a></li>
+        <li><a href="#services" class="mobile-link block py-3 border-b border-line/60 text-stone hover:text-porcelain">Services</a></li>
+        <li><a href="#projects" class="mobile-link block py-3 border-b border-line/60 text-stone hover:text-porcelain">Developments</a></li>
+        <li><a href="#about" class="mobile-link block py-3 border-b border-line/60 text-stone hover:text-porcelain">About</a></li>
+        <li><a href="#contact" class="mobile-link block py-3 text-stone hover:text-porcelain">Contact</a></li>
+      </ul>
+      <div class="px-6 pb-6">
+        <a href="#contact" class="mobile-link inline-flex w-full justify-center items-center rounded-full bg-gold px-5 py-3 font-semibold text-[#171512] hover:bg-satin">Request a Quote</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section id="home" class="relative min-h-[100svh] flex items-end overflow-hidden bg-ink">
+      <h1 class="sr-only">GREY Development Limited — featured development: The Eden II, a gated community of four-bedroom terrace residences and serviced apartments in Katampe, Abuja.</h1>
+
+      <!-- Featured development: The Eden II render -->
+      <img src="assets/projects/eden-ii-hero.jpg" alt="The Eden II — gated terrace residences and serviced apartments, Katampe, Abuja" class="hero-in--img absolute inset-0 w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/88 via-black/45 to-black/40"></div>
+      <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/55 to-transparent"></div>
+
+      <div class="relative w-full max-w-7xl mx-auto px-5 sm:px-8 pb-16 sm:pb-20">
+        <div class="hero-in flex flex-wrap items-center gap-x-4 gap-y-2 mb-6" style="animation-delay:.04s">
+          <span class="inline-flex items-center gap-2.5 rounded-full border border-gold/60 bg-black/30 backdrop-blur-sm px-4 py-2">
+            <span class="relative flex h-2.5 w-2.5">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-satin opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-satin"></span>
+            </span>
+            <span class="mono text-[11px] uppercase tracking-[0.24em] text-white font-medium">Now Selling</span>
+          </span>
+          <span class="mono text-[13px] sm:text-sm uppercase tracking-[0.24em] text-satin font-medium">GREY Development Limited</span>
+        </div>
+        <p class="hero-in eyebrow text-[11px] text-satin mb-5" style="animation-delay:.1s">Featured Development · Katampe, Abuja</p>
+        <h2 class="hero-in display text-5xl sm:text-7xl lg:text-8xl text-white leading-[0.95]" style="animation-delay:.18s">The Eden <span style="color:#E8C874">II</span></h2>
+        <p class="hero-in text-white/85 text-base sm:text-lg mt-5 max-w-xl leading-relaxed" style="animation-delay:.3s">Four-bedroom terrace residences and serviced apartments, set behind a private gated entrance — crafted for family life, built for lasting value.</p>
+
+        <div class="hero-in flex flex-wrap gap-2.5 mt-7" style="animation-delay:.4s">
+          <span class="mono text-[11px] uppercase tracking-wider text-white/85 border border-white/25 rounded-sm px-3 py-1.5">4-Bed Terraces</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-white/85 border border-white/25 rounded-sm px-3 py-1.5">Serviced Apartments</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-white/85 border border-white/25 rounded-sm px-3 py-1.5">Private Gated Estate</span>
+        </div>
+
+        <div class="hero-in flex flex-col sm:flex-row gap-4 mt-9" style="animation-delay:.5s">
+          <a href="assets/brochures/eden-ii-brochure.pdf" target="_blank" rel="noopener" class="inline-flex justify-center items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
+            Download Brochure
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          </a>
+          <a href="#projects" class="inline-flex justify-center items-center gap-2 rounded-full border border-white/40 px-7 py-3.5 font-semibold text-white t-micro hover:border-gold hover:text-gold cursor-pointer">View All Developments</a>
+        </div>
+      </div>
+
+      <!-- Scroll cue -->
+      <a href="#services" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-gold t-micro" aria-label="Scroll to explore">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 cue-bob" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
+      </a>
+    </section>
+
+    <!-- ============ POSITIONING STRIP ============ -->
+    <section class="border-y border-line bg-ink2">
+      <div class="mx-auto max-w-5xl px-5 sm:px-8 py-16 sm:py-20 text-center">
+        <p class="reveal eyebrow text-[11px] text-bronze mb-6">Realty · Construction · Investment</p>
+        <p class="reveal display text-2xl sm:text-4xl text-porcelain leading-tight" data-delay="1">
+          We treat architectural precision as <span class="text-bronze-grad">non-negotiable</span> — designing, building and delivering developments of uncompromising structural and material integrity.
+        </p>
+        <p class="reveal text-body mt-6 max-w-2xl mx-auto leading-relaxed" data-delay="2">
+          For discerning homeowners, institutional investors and public- and private-sector partners across Nigeria — real estate, construction and development handled as a single discipline, not three handoffs.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section id="services" class="relative py-24 sm:py-32 bg-ink">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="max-w-2xl">
+          <p class="reveal eyebrow text-[11px] text-bronze mb-4">What We Do</p>
+          <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">One discipline,<br/><span class="text-bronze-grad">not three handoffs.</span></h2>
+          <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">From land to legacy, GREY covers the full development lifecycle — so you work with one accountable team held to a single, higher standard.</p>
+        </div>
+
+        <div class="reveal mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-line border border-line rounded-lg overflow-hidden">
+          <article class="group bg-ink p-8 sm:p-9 t-std hover:bg-ink2">
+            <h3 class="display text-lg sm:text-xl text-porcelain group-hover:text-bronze t-micro">Real Estate</h3>
+            <div class="measure my-5"></div>
+            <p class="text-body text-sm leading-relaxed">Considered residential and mixed-use developments in Abuja's most deliberate locations — conceived, financed and delivered end to end.</p>
+          </article>
+
+          <article class="group bg-ink p-8 sm:p-9 t-std hover:bg-ink2">
+            <h3 class="display text-lg sm:text-xl text-porcelain group-hover:text-bronze t-micro">Construction</h3>
+            <div class="measure my-5"></div>
+            <p class="text-body text-sm leading-relaxed">Design-build executed to specification — concrete before cladding, discipline before design — with rigorous QA/QC at every stage.</p>
+          </article>
+
+          <article class="group bg-ink p-8 sm:p-9 t-std hover:bg-ink2">
+            <h3 class="display text-lg sm:text-xl text-porcelain group-hover:text-bronze t-micro">Investment</h3>
+            <div class="measure my-5"></div>
+            <p class="text-body text-sm leading-relaxed">Structured, return-focused opportunities in developments engineered to still perform — and still impress — twenty years after handover.</p>
+          </article>
+
+          <article class="group bg-ink p-8 sm:p-9 t-std hover:bg-ink2">
+            <h3 class="display text-lg sm:text-xl text-porcelain group-hover:text-bronze t-micro">Project &amp; Development Management</h3>
+            <div class="measure my-5"></div>
+            <p class="text-body text-sm leading-relaxed">Transparent budgeting, scheduling and delivery — every tolerance a promise, every milestone on schedule and on specification.</p>
+          </article>
+
+          <article class="group bg-ink p-8 sm:p-9 t-std hover:bg-ink2">
+            <h3 class="display text-lg sm:text-xl text-porcelain group-hover:text-bronze t-micro">Architecture &amp; Design</h3>
+            <div class="measure my-5"></div>
+            <p class="text-body text-sm leading-relaxed">Architecturally serious spaces engineered to a higher tolerance — built the way engineers would build for themselves.</p>
+          </article>
+
+          <article class="group bg-ink p-8 sm:p-9 t-std hover:bg-ink2">
+            <h3 class="display text-lg sm:text-xl text-porcelain group-hover:text-bronze t-micro">Facility Management</h3>
+            <div class="measure my-5"></div>
+            <p class="text-body text-sm leading-relaxed">Enduring performance long after handover — estate and facility management that protects the value we build.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PULL QUOTE ============ -->
+    <section class="relative py-20 sm:py-28 bg-ink2 border-y border-line overflow-hidden">
+      <div class="mx-auto max-w-4xl px-5 sm:px-8 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-bronze/50 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 6C5.02 6 3 8.02 3 10.5S5.02 15 7.5 15c.17 0 .33-.02.5-.04V15c0 1.66-1.34 3-3 3v3c3.31 0 6-2.69 6-6v-3.5C11 8.02 8.98 6 7.5 6Zm9 0C14.02 6 12 8.02 12 10.5S14.02 15 16.5 15c.17 0 .33-.02.5-.04V15c0 1.66-1.34 3-3 3v3c3.31 0 6-2.69 6-6v-3.5C20 8.02 17.98 6 16.5 6Z"/></svg>
+        <blockquote class="reveal quote text-2xl sm:text-4xl text-porcelain leading-snug">
+          We build homes to last for decades — not just to impress on the first viewing.
+        </blockquote>
+        <p class="reveal eyebrow text-[11px] text-bronze mt-8" data-delay="1">The GREY Standard</p>
+      </div>
+    </section>
+
+    <!-- ============ DEVELOPMENTS / PROJECTS ============ -->
+    <section id="projects" class="relative py-24 sm:py-32 bg-ink">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
+          <div class="max-w-2xl">
+            <p class="reveal eyebrow text-[11px] text-bronze mb-4">Developments</p>
+            <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Signature <span class="text-bronze-grad">developments.</span></h2>
+            <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">A selection of GREY residences across Abuja, Sokoto and Kaduna. Download the available brochures for full floor plans, specifications and pricing.</p>
+          </div>
+          <a href="assets/brochures/grey-development-company-profile.pdf" target="_blank" rel="noopener" class="reveal inline-flex items-center gap-2 rounded-full border border-porcelain/25 px-6 py-3 text-sm font-semibold text-porcelain t-micro hover:border-gold hover:text-bronze cursor-pointer" data-delay="1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+            Company Profile (PDF)
+          </a>
+        </div>
+
+        <!-- TODO: replace stock images with real renders (found inside each brochure PDF) -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <!-- Shafa's Residences -->
+          <article class="reveal group rounded-lg overflow-hidden bg-panel border border-line flex flex-col">
+            <div class="zoomable relative aspect-[4/3] overflow-hidden">
+              <img src="assets/projects/shafas-cover.jpg" alt="Shafa's Residences brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-sm bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="display text-xl text-porcelain">Shafa's Residences</h3>
+              <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
+              <p class="text-body text-sm mt-3 leading-relaxed flex-1">An exclusive residential development of considered terraces and flats, minutes from Maitama.</p>
+              <div class="flex items-center gap-3 mt-6">
+                <a href="assets/brochures/shafas-residences-brochure.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                  Brochure
+                </a>
+                <a href="#contact" class="text-sm text-stone hover:text-bronze t-micro">Enquire →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Amrah's Villas -->
+          <article class="reveal group rounded-lg overflow-hidden bg-panel border border-line flex flex-col" data-delay="1">
+            <div class="zoomable relative aspect-[4/3] overflow-hidden">
+              <img src="assets/projects/amrahs-villas-cover.jpg" alt="Amrah's Villas brochure cover — semi-detached duplexes, Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-sm bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="display text-xl text-porcelain">Amrah's Villas</h3>
+              <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
+              <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of semi-detached duplex residences in Katampe — fully serviced with power, water, gas and home automation.</p>
+              <div class="flex items-center gap-3 mt-6">
+                <a href="assets/brochures/amrahs-villas-brochure.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                  Brochure
+                </a>
+                <a href="#contact" class="text-sm text-stone hover:text-bronze t-micro">Enquire →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Eden I -->
+          <article class="reveal group rounded-lg overflow-hidden bg-panel border border-line flex flex-col">
+            <div class="zoomable relative aspect-[4/3] overflow-hidden">
+              <img src="assets/projects/eden-i-cover.jpg" alt="Eden I — The Eden, four-bedroom townhomes, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-sm bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="display text-xl text-porcelain">Eden I</h3>
+              <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Abuja, Nigeria</p>
+              <p class="text-body text-sm mt-3 leading-relaxed flex-1">The first in the EDEN line — a collection of four-bedroom townhomes delivered to the GREY standard.</p>
+              <div class="flex items-center gap-3 mt-6">
+                <a href="assets/brochures/eden-i-brochure.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                  Brochure
+                </a>
+                <a href="#contact" class="text-sm text-stone hover:text-bronze t-micro">Enquire →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- EDEN II -->
+          <article class="reveal group rounded-lg overflow-hidden bg-panel border border-line flex flex-col" data-delay="1">
+            <div class="zoomable relative aspect-[4/3] overflow-hidden">
+              <img src="assets/projects/eden-ii-cover.jpg" alt="EDEN II brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-sm bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="display text-xl text-porcelain">EDEN II</h3>
+              <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
+              <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development continuing the EDEN line — refined living, built to the GREY standard.</p>
+              <div class="flex items-center gap-3 mt-6">
+                <a href="assets/brochures/eden-ii-brochure.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                  Brochure
+                </a>
+                <a href="#contact" class="text-sm text-stone hover:text-bronze t-micro">Enquire →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Grey Oasis -->
+          <article class="reveal group rounded-lg overflow-hidden bg-panel border border-line flex flex-col" data-delay="1">
+            <div class="zoomable relative aspect-[4/3] overflow-hidden">
+              <img src="assets/projects/grey-oasis-cover.jpg" alt="Grey Oasis — luxury townhouses, Kaduna" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-sm bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="display text-xl text-porcelain">Grey Oasis</h3>
+              <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Kaduna, Nigeria</p>
+              <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of luxury townhouses in Kaduna — exclusive living, timeless value.</p>
+              <div class="flex items-center gap-3 mt-6">
+                <a href="assets/brochures/grey-oasis-brochure.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                  Brochure
+                </a>
+                <a href="#contact" class="text-sm text-stone hover:text-bronze t-micro">Enquire →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Grey Altura -->
+          <article class="reveal group rounded-lg overflow-hidden bg-panel border border-line flex flex-col">
+            <div class="zoomable relative aspect-[4/3] overflow-hidden">
+              <img src="assets/projects/grey-altura-cover.jpg" alt="Grey Altura brochure cover — Mabushi, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-sm bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="display text-xl text-porcelain">Grey Altura</h3>
+              <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Mabushi, Abuja</p>
+              <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development in the heart of Mabushi — elevated living, built to the GREY standard.</p>
+              <div class="flex items-center gap-3 mt-6">
+                <a href="assets/brochures/grey-altura-brochure.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+                  Brochure
+                </a>
+                <a href="#contact" class="text-sm text-stone hover:text-bronze t-micro">Enquire →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sokoto Apartments -->
+          <article class="reveal group rounded-lg overflow-hidden bg-panel border border-line flex flex-col" data-delay="1">
+            <div class="zoomable relative aspect-[4/3] overflow-hidden">
+              <img src="assets/projects/sokoto-apartments.jpg" alt="Sokoto Apartments — modern apartment building, Rinjim Sambo, Sokoto" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-sm bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
+            </div>
+            <div class="p-6 flex flex-col flex-1">
+              <h3 class="display text-xl text-porcelain">Sokoto Apartments</h3>
+              <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Rinjim Sambo, Sokoto</p>
+              <p class="text-body text-sm mt-3 leading-relaxed flex-1">Modern serviced apartments bringing considered, well-built urban living to Rinjim Sambo, Sokoto.</p>
+              <div class="flex items-center gap-3 mt-6">
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+                </a>
+                <span class="text-sm text-slate">Brochure on request</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="reveal text-slate text-xs mt-8 max-w-2xl">Images shown are artist's impressions for illustration. Refer to each brochure for full floor plans, specifications and current pricing.</p>
+      </div>
+    </section>
+
+    <!-- ============ THE GREY STANDARD (ABOUT) ============ -->
+    <section id="about" class="relative py-24 sm:py-32 bg-ink2 overflow-hidden">
+      <div class="mx-auto max-w-4xl px-5 sm:px-8">
+        <div>
+          <p class="reveal eyebrow text-[11px] text-bronze mb-4">About Us</p>
+          <h2 class="reveal display text-3xl sm:text-5xl text-porcelain max-w-3xl">Built the way engineers would build <span class="text-bronze-grad">for themselves.</span></h2>
+          <p class="reveal text-body mt-6 leading-relaxed max-w-2xl" data-delay="1">
+            GREY Development Limited is a realty, construction and investment company serving discerning homeowners, institutional investors and public- and private-sector partners across Nigeria. We treat architectural precision as non-negotiable — handling real estate, construction and development as a single discipline, not three handoffs. We do not build to impress at handover; we build to still perform, and still impress, twenty years after handover.
+          </p>
+
+          <!-- Vision & Mission -->
+          <div class="reveal grid sm:grid-cols-2 gap-px bg-line border border-line rounded-lg overflow-hidden mt-12" data-delay="1">
+            <div class="bg-panel p-7 sm:p-8">
+              <p class="eyebrow text-[10px] text-bronze mb-3">Our Vision</p>
+              <p class="text-body leading-relaxed">To be West Africa's clearest reference point for what disciplined, architecturally serious development looks like.</p>
+            </div>
+            <div class="bg-panel p-7 sm:p-8">
+              <p class="eyebrow text-[10px] text-bronze mb-3">Our Mission</p>
+              <p class="text-body leading-relaxed">To design, build and deliver residential and mixed-use developments of uncompromising structural and material integrity — on schedule, on specification, every time.</p>
+            </div>
+          </div>
+
+          <p class="reveal eyebrow text-[11px] text-bronze mt-14 mb-1" data-delay="1">Our Values</p>
+          <ul class="reveal border-t border-line" data-delay="1">
+            <li class="group flex items-center gap-4 border-b border-line py-3.5"><span class="measure !w-6"></span><span class="mono text-sm uppercase tracking-[0.2em] text-porcelain">Precision</span></li>
+            <li class="group flex items-center gap-4 border-b border-line py-3.5"><span class="measure !w-6"></span><span class="mono text-sm uppercase tracking-[0.2em] text-porcelain">Integrity</span></li>
+            <li class="group flex items-center gap-4 border-b border-line py-3.5"><span class="measure !w-6"></span><span class="mono text-sm uppercase tracking-[0.2em] text-porcelain">Craftsmanship</span></li>
+            <li class="group flex items-center gap-4 border-b border-line py-3.5"><span class="measure !w-6"></span><span class="mono text-sm uppercase tracking-[0.2em] text-porcelain">Innovation</span></li>
+            <li class="group flex items-center gap-4 border-b border-line py-3.5"><span class="measure !w-6"></span><span class="mono text-sm uppercase tracking-[0.2em] text-porcelain">Trust</span></li>
+          </ul>
+
+          <div class="flex flex-col sm:flex-row gap-4 mt-10">
+            <a href="#contact" class="reveal inline-flex justify-center items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer" data-delay="3">Work with us</a>
+            <a href="assets/brochures/grey-development-company-profile.pdf" target="_blank" rel="noopener" class="reveal inline-flex justify-center items-center gap-2 rounded-full border border-porcelain/25 px-7 py-3.5 font-semibold text-porcelain t-micro hover:border-gold hover:text-bronze cursor-pointer" data-delay="3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+              Download Company Profile
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section id="testimonials" class="relative py-24 sm:py-32 bg-ink">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="max-w-2xl mb-14">
+          <p class="reveal eyebrow text-[11px] text-bronze mb-4">Client Voices</p>
+          <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Trusted by homeowners <span class="text-bronze-grad">& investors.</span></h2>
+        </div>
+
+        <!-- TODO: replace testimonials with real, attributable client quotes -->
+        <div class="grid md:grid-cols-3 gap-5">
+          <figure class="reveal border border-line rounded-lg p-8 flex flex-col bg-ink2 t-std hover:border-gold/35">
+            <p class="quote text-bronze/80 text-3xl leading-none mb-4">&ldquo;</p>
+            <blockquote class="text-body leading-relaxed flex-1">The finishing was exactly as specified and the handover was on schedule. You feel the discipline in every detail.</blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <span class="w-10 h-10 rounded-full bg-gold/15 border border-gold/25 grid place-items-center display text-bronze">A</span>
+              <span><span class="block text-porcelain text-sm font-semibold">Aisha B.</span><span class="block mono text-slate text-[11px] tracking-wide mt-0.5">Homeowner · Abuja</span></span>
+            </figcaption>
+          </figure>
+
+          <figure class="reveal border border-line rounded-lg p-8 flex flex-col bg-ink2 t-std hover:border-gold/35" data-delay="1">
+            <p class="quote text-bronze/80 text-3xl leading-none mb-4">&ldquo;</p>
+            <blockquote class="text-body leading-relaxed flex-1">Transparent reporting and a return that held up. GREY treats an investment like a twenty-year commitment.</blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <span class="w-10 h-10 rounded-full bg-gold/15 border border-gold/25 grid place-items-center display text-bronze">C</span>
+              <span><span class="block text-porcelain text-sm font-semibold">Chukwuma O.</span><span class="block mono text-slate text-[11px] tracking-wide mt-0.5">Investor · Lagos</span></span>
+            </figcaption>
+          </figure>
+
+          <figure class="reveal border border-line rounded-lg p-8 flex flex-col bg-ink2 t-std hover:border-gold/35" data-delay="2">
+            <p class="quote text-bronze/80 text-3xl leading-none mb-4">&ldquo;</p>
+            <blockquote class="text-body leading-relaxed flex-1">They managed our project end to end and communicated at every milestone. Precision, exactly as promised.</blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <span class="w-10 h-10 rounded-full bg-gold/15 border border-gold/25 grid place-items-center display text-bronze">P</span>
+              <span><span class="block text-porcelain text-sm font-semibold">Phantom Grey Ltd.</span><span class="block mono text-slate text-[11px] tracking-wide mt-0.5">Partner · Abuja</span></span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="relative py-24 sm:py-32 bg-ink2 border-t border-line">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12">
+        <div>
+          <p class="reveal eyebrow text-[11px] text-bronze mb-4">Get in Touch</p>
+          <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Let's build <span class="text-bronze-grad">something enduring.</span></h2>
+          <p class="reveal text-body mt-5 leading-relaxed max-w-md" data-delay="1">Tell us about your project — a home, a development, or an investment. Our team responds within one business day.</p>
+
+          <ul class="mt-10 space-y-6">
+            <li class="reveal flex items-start gap-4" data-delay="1">
+              <span class="w-11 h-11 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-bronze shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg></span>
+              <div><p class="eyebrow text-[10px] text-slate">Office</p><p class="text-porcelain">No. 2 William F. Kumuyi Street, Kado, Abuja</p></div>
+            </li>
+            <li class="reveal flex items-start gap-4" data-delay="2">
+              <span class="w-11 h-11 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-bronze shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg></span>
+              <div><p class="eyebrow text-[10px] text-slate">Phone</p><a href="tel:+2348078963703" class="text-porcelain hover:text-bronze t-micro">0807 896 3703</a></div>
+            </li>
+            <li class="reveal flex items-start gap-4" data-delay="2">
+              <span class="w-11 h-11 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-bronze shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.17 0 4.2.85 5.74 2.38a8.06 8.06 0 0 1 2.38 5.73c0 4.47-3.64 8.11-8.12 8.11a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.12.82.83-3.04-.19-.31a8.07 8.07 0 0 1-1.24-4.29c0-4.47 3.64-8.11 8.11-8.11Zm-4.4 4.6c-.2 0-.53.08-.81.38-.28.3-1.06 1.04-1.06 2.53 0 1.49 1.09 2.93 1.24 3.13.15.2 2.11 3.35 5.2 4.56 2.57 1.01 3.09.81 3.65.76.56-.05 1.81-.74 2.07-1.46.26-.72.26-1.33.18-1.46-.08-.13-.28-.2-.58-.35-.3-.15-1.81-.89-2.09-.99-.28-.1-.48-.15-.68.15-.2.3-.78.99-.96 1.19-.18.2-.35.23-.65.08-.3-.15-1.27-.47-2.42-1.49-.9-.8-1.5-1.79-1.68-2.09-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.65-.93-2.26-.24-.58-.49-.5-.68-.51h-.58Z"/></svg></span>
+              <div><p class="eyebrow text-[10px] text-slate">WhatsApp</p><a href="https://wa.me/2348078963703?text=Hello%20GREY%20Development%2C%20I%27d%20like%20to%20enquire%20about%20your%20developments." target="_blank" rel="noopener" class="text-porcelain hover:text-bronze t-micro">Chat on WhatsApp</a></div>
+            </li>
+            <li class="reveal flex items-start gap-4" data-delay="2">
+              <span class="w-11 h-11 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-bronze shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg></span>
+              <div><p class="eyebrow text-[10px] text-slate">Email</p><a href="mailto:greydevelopment.ng@gmail.com" class="text-porcelain hover:text-bronze t-micro break-all">greydevelopment.ng@gmail.com</a></div>
+            </li>
+          </ul>
+
+          <div class="reveal flex items-center gap-4 mt-10" data-delay="3">
+            <a href="https://instagram.com/greydevelopment_ng" target="_blank" rel="noopener" class="w-11 h-11 rounded-xl glass grid place-items-center text-stone hover:text-bronze t-std hover:border-gold/40" aria-label="GREY Development on Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.9.07s-3.63 0-4.9-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.4 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.75.07-.9.04-1.38.19-1.7.32-.43.16-.74.36-1.06.68-.32.32-.52.63-.68 1.06-.13.32-.28.8-.32 1.7C3.2 8.5 3.2 8.85 3.2 12s0 3.5.07 4.75c.04.9.19 1.38.32 1.7.16.43.36.74.68 1.06.32.32.63.52 1.06.68.32.13.8.28 1.7.32 1.25.07 1.6.07 4.75.07s3.5 0 4.75-.07c.9-.04 1.38-.19 1.7-.32.43-.16.74-.36 1.06-.68.32-.32.52-.63.68-1.06.13-.32.28-.8.32-1.7.07-1.25.07-1.6.07-4.75s0-3.5-.07-4.75c-.04-.9-.19-1.38-.32-1.7a2.85 2.85 0 0 0-.68-1.06 2.85 2.85 0 0 0-1.06-.68c-.32-.13-.8-.28-1.7-.32C15.5 4 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 16.94 4.94 4.94 0 0 1 12 7.06Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.14-.94a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg></a>
+            <a href="https://x.com/greydevelopment_ng" target="_blank" rel="noopener" class="w-11 h-11 rounded-xl glass grid place-items-center text-stone hover:text-bronze t-std hover:border-gold/40" aria-label="GREY Development on X"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.65l-5.214-6.817-5.966 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
+            <span class="text-stone text-sm">@greydevelopment_ng</span>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="reveal glass-strong rounded-lg p-7 sm:p-9" data-delay="1">
+          <!-- NOTE: no backend. On submit this opens the visitor's email app pre-addressed
+               to greydevelopment.ng@gmail.com (mailto fallback). To auto-collect submissions,
+               sign up at https://formspree.io, set <form action="https://formspree.io/f/XXXX" method="POST">
+               and remove the JS submit handler at the bottom of this file. -->
+          <form id="quoteForm" novalidate>
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label for="name" class="block text-sm text-stone mb-2">Full name <span class="text-bronze">*</span></label>
+                <input id="name" name="name" type="text" required autocomplete="name" class="w-full rounded-lg bg-white/70 border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro" placeholder="Your name" />
+              </div>
+              <div>
+                <label for="phone" class="block text-sm text-stone mb-2">Phone <span class="text-bronze">*</span></label>
+                <input id="phone" name="phone" type="tel" required autocomplete="tel" class="w-full rounded-lg bg-white/70 border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro" placeholder="080..." />
+              </div>
+            </div>
+            <div class="mt-5">
+              <label for="email" class="block text-sm text-stone mb-2">Email <span class="text-bronze">*</span></label>
+              <input id="email" name="email" type="email" required autocomplete="email" class="w-full rounded-lg bg-white/70 border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro" placeholder="you@example.com" />
+            </div>
+            <div class="mt-5">
+              <label for="service" class="block text-sm text-stone mb-2">I'm interested in</label>
+              <select id="service" name="service" class="w-full rounded-lg bg-white/70 border border-line px-4 py-3 text-porcelain focus:border-gold outline-none t-micro">
+                <option>Shafa's Residences</option>
+                <option>Amrah's Villas</option>
+                <option>Eden I</option>
+                <option>EDEN II</option>
+                <option>Grey Oasis</option>
+                <option>Grey Altura</option>
+                <option>Sokoto Apartments</option>
+                <option>Real Estate</option>
+                <option>Construction</option>
+                <option>Investment</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="mt-5">
+              <label for="message" class="block text-sm text-stone mb-2">Project details <span class="text-bronze">*</span></label>
+              <textarea id="message" name="message" rows="4" required class="w-full rounded-lg bg-white/70 border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro resize-y" placeholder="Tell us a little about what you'd like to build or invest in..."></textarea>
+            </div>
+            <p id="formError" class="hidden mt-4 text-sm text-red-400" role="alert"></p>
+            <button type="submit" class="mt-6 inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-full bg-gold px-8 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
+              Send Request
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.126A59.768 59.768 0 0 1 21.485 12 59.77 59.77 0 0 1 3.27 20.876L5.999 12Zm0 0h7.5"/></svg>
+            </button>
+            <p id="formSuccess" class="hidden mt-4 text-sm text-bronze" role="status">Thank you — your email app should open with your request ready to send.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA STRIP ============ -->
+    <section class="relative bg-ink border-y border-line">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8 py-14 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+        <h3 class="reveal display text-2xl sm:text-4xl text-porcelain">Not Just Built. <span class="text-bronze-grad">But Crafted.</span></h3>
+        <a href="tel:+2348078963703" class="reveal inline-flex items-center gap-2 rounded-full bg-gold px-7 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer" data-delay="1">Call 0807 896 3703</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-ink pt-16 pb-8">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="grid md:grid-cols-4 gap-10">
+        <div class="max-w-sm">
+          <div class="flex flex-col leading-none mb-5">
+            <span class="display text-3xl text-porcelain tracking-[0.12em]">GREY</span>
+            <span class="eyebrow text-[10px] text-bronze mt-1">Development Limited</span>
+          </div>
+          <p class="text-stone text-sm leading-relaxed">Realty · Construction · Investment. Architecturally serious developments in Abuja — not just built, but crafted.</p>
+        </div>
+
+        <div>
+          <p class="eyebrow text-[11px] text-bronze mb-4">Explore</p>
+          <ul class="space-y-3 text-sm text-stone">
+            <li><a href="#services" class="hover:text-porcelain t-micro">Services</a></li>
+            <li><a href="#projects" class="hover:text-porcelain t-micro">Developments</a></li>
+            <li><a href="#about" class="hover:text-porcelain t-micro">About</a></li>
+            <li><a href="#contact" class="hover:text-porcelain t-micro">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="eyebrow text-[11px] text-bronze mb-4">Downloads</p>
+          <ul class="space-y-3 text-sm text-stone">
+            <li><a href="assets/brochures/grey-development-company-profile.pdf" target="_blank" rel="noopener" class="hover:text-porcelain t-micro">Company Profile</a></li>
+            <li><a href="assets/brochures/shafas-residences-brochure.pdf" target="_blank" rel="noopener" class="hover:text-porcelain t-micro">Shafa's Residences</a></li>
+            <li><a href="assets/brochures/amrahs-villas-brochure.pdf" target="_blank" rel="noopener" class="hover:text-porcelain t-micro">Amrah's Villas</a></li>
+            <li><a href="assets/brochures/eden-i-brochure.pdf" target="_blank" rel="noopener" class="hover:text-porcelain t-micro">Eden I</a></li>
+            <li><a href="assets/brochures/eden-ii-brochure.pdf" target="_blank" rel="noopener" class="hover:text-porcelain t-micro">EDEN II</a></li>
+            <li><a href="assets/brochures/grey-altura-brochure.pdf" target="_blank" rel="noopener" class="hover:text-porcelain t-micro">Grey Altura</a></li>
+            <li><a href="assets/brochures/grey-oasis-brochure.pdf" target="_blank" rel="noopener" class="hover:text-porcelain t-micro">Grey Oasis</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="eyebrow text-[11px] text-bronze mb-4">Contact</p>
+          <ul class="space-y-3 text-sm text-stone">
+            <li>No. 2 William F. Kumuyi Street,<br/>Kado, Abuja</li>
+            <li><a href="tel:+2348078963703" class="hover:text-porcelain t-micro">0807 896 3703</a></li>
+            <li><a href="mailto:greydevelopment.ng@gmail.com" class="hover:text-porcelain t-micro break-all">greydevelopment.ng@gmail.com</a></li>
+            <li class="pt-1"><a href="https://instagram.com/greydevelopment_ng" target="_blank" rel="noopener" class="hover:text-bronze t-micro">@greydevelopment_ng</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="h-px bg-line my-10"></div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 mono text-[11px] tracking-wide text-slate">
+        <p>&copy; <span id="year">2025</span> GREY DEVELOPMENT LIMITED</p>
+        <p class="hidden md:block text-slate/70">ABUJA · NIGERIA — 9.07&deg;N 7.48&deg;E</p>
+        <p class="eyebrow text-[10px]">Realty · Construction · Investment</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ SCRIPTS ============ -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const header = document.getElementById('siteHeader');
+    const onScroll = () => {
+      const s = window.scrollY > 20;
+      header.classList.toggle('scrolled', s);
+      header.classList.toggle('glass-strong', s);
+      header.classList.toggle('shadow-lg', s);
+      header.classList.toggle('shadow-black/20', s);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const openPath = 'M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5';
+    const closePath = 'M6 18 18 6M6 6l12 12';
+    const setMenu = (open) => {
+      mobileMenu.classList.toggle('hidden', !open);
+      menuBtn.setAttribute('aria-expanded', String(open));
+      menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="' + (open ? closePath : openPath) + '" />';
+    };
+    menuBtn.addEventListener('click', () => setMenu(mobileMenu.classList.contains('hidden')));
+    document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+    }
+
+    const form = document.getElementById('quoteForm');
+    const formError = document.getElementById('formError');
+    const formSuccess = document.getElementById('formSuccess');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      formError.classList.add('hidden'); formSuccess.classList.add('hidden');
+      const name = form.name.value.trim(), email = form.email.value.trim(),
+            phone = form.phone.value.trim(), service = form.service.value, message = form.message.value.trim();
+      if (!name || !email || !phone || !message) {
+        formError.textContent = 'Please fill in your name, phone, email and project details.';
+        formError.classList.remove('hidden'); return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        formError.textContent = 'Please enter a valid email address.';
+        formError.classList.remove('hidden'); form.email.focus(); return;
+      }
+      const subject = encodeURIComponent('Enquiry — ' + service + ' (' + name + ')');
+      const body = encodeURIComponent('Name: ' + name + '\nPhone: ' + phone + '\nEmail: ' + email + '\nInterested in: ' + service + '\n\nProject details:\n' + message);
+      window.location.href = 'mailto:greydevelopment.ng@gmail.com?subject=' + subject + '&body=' + body;
+      formSuccess.classList.remove('hidden'); form.reset();
+    });
+
+    // Scrollspy — highlight the current section in the nav
+    const spyLinks = document.querySelectorAll('#siteHeader nav ul a[href^="#"]');
+    const spyMap = new Map();
+    spyLinks.forEach(a => { const t = document.querySelector(a.getAttribute('href')); if (t) spyMap.set(t, a); });
+    if ('IntersectionObserver' in window && spyMap.size) {
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            spyLinks.forEach(a => a.classList.remove('nav-active'));
+            const a = spyMap.get(e.target); if (a) a.classList.add('nav-active');
+          }
+        });
+      }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+      spyMap.forEach((a, t) => spy.observe(t));
+    }
+  </script>
+</body>
+</html>
