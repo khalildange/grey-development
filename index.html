@@ -14,7 +14,7 @@
   <meta name="twitter:title" content="GREY Development Limited — Not Just Built. But Crafted." />
   <meta name="twitter:description" content="Realty · Construction · Investment. Architecturally serious developments in Abuja, Nigeria." />
   <meta name="twitter:image" content="assets/GREY_Instagram_1080x1080.png" />
-  <meta name="theme-color" content="#1C1D21" />
+  <meta name="theme-color" content="#0E0E10" />
   <link rel="canonical" href="https://greydevelopmentng.com/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%230E0E10'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Archivo,Arial,sans-serif'%20font-size='21'%20font-weight='800'%20fill='%23C7A347'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
 
@@ -83,15 +83,15 @@
         extend: {
           colors: {
             /* Manual §05 — Matte Black is the ground of the identity */
-            ink:       '#1C1D21',  /* Graphite — brighter ground (brand neutral) */
-            ink2:      '#222327',  /* alt section ground, subtly lifted */
-            panel:     '#292A2F',  /* card / panel fill — separates from ground */
-            line:      '#3A3B40',  /* Slate — hairline rules on dark ground */
+            ink:       '#0E0E10',  /* Matte Black — ground */
+            ink2:      '#141418',  /* alt section ground, barely lifted */
+            panel:     '#1C1D21',  /* Graphite — panel & card fills */
+            line:      '#2A2B30',  /* hairline rules on dark ground */
             porcelain: '#EDEDEA',  /* Bone — headings / primary light text */
-            body:      '#C8C8C2',  /* brightened running text on dark */
-            muted:     '#9A9B9F',  /* Steel — captions / secondary */
-            slate:     '#9A9B9F',  /* Steel */
-            stone:     '#B2B3AD',  /* readable bone for nav/footer */
+            body:      '#AFAFA8',  /* muted bone — running text on dark */
+            muted:     '#8A8B90',  /* Steel — captions / secondary */
+            slate:     '#8A8B90',  /* Steel */
+            stone:     '#9D9E99',  /* readable muted bone for nav/footer */
             mist:      '#2A2B30',
             champagne: '#E4CE9A',  /* gold at small sizes / eyebrows on dark */
             gold:      '#C7A347',  /* Luxury / Signal Gold — accent, ≤5% */
@@ -111,7 +111,7 @@
 
   <style>
     :root { color-scheme: dark; }
-    html, body { background-color: #1C1D21; }
+    html, body { background-color: #0E0E10; }
     /* Body 17px / 1.65, measure 620px (manual §13) */
     body { font-family: 'Archivo', ui-sans-serif, system-ui, sans-serif; color: #AFAFA8; -webkit-font-smoothing: antialiased; font-size: 17px; line-height: 1.65; font-weight: 400; }
 
@@ -119,8 +119,8 @@
 
     /* Scrollbar */
     ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: #1C1D21; }
-    ::-webkit-scrollbar-thumb { background: #3A3B40; border-radius: 0; border: 2px solid #1C1D21; }
+    ::-webkit-scrollbar-track { background: #0E0E10; }
+    ::-webkit-scrollbar-thumb { background: #2A2B30; border-radius: 0; border: 2px solid #0E0E10; }
     ::-webkit-scrollbar-thumb:hover { background: #C7A347; }
 
     /* Keyboard focus */
@@ -154,7 +154,7 @@
     #siteHeader nav ul a:hover,
     #siteHeader nav ul a.nav-active { color: #FFFFFF; }
     #siteHeader #menuBtn { color: #EDEDEA; border-color: rgba(237,237,234,0.22); }
-    #siteHeader.scrolled { background: rgba(28,29,33,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(237,237,234,0.06); }
+    #siteHeader.scrolled { background: rgba(14,14,16,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(237,237,234,0.06); }
 
     /* Measured hairline that grows on hover — a nod to engineering tolerance */
     .measure { height: 1px; width: 2rem; background: #3A3B40; transition: width .4s cubic-bezier(.4,0,.2,1), background-color .4s ease; }
@@ -162,7 +162,7 @@
 
     /* Panels on dark ground */
     .glass { background: rgba(237,237,234,0.03); border: 1px solid rgba(237,237,234,0.10); }
-    .glass-strong { background: rgba(41,42,47,0.74); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(199,163,71,0.22); }
+    .glass-strong { background: rgba(28,29,33,0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(199,163,71,0.22); }
     .rule-gold { height: 1px; background: linear-gradient(90deg, transparent, rgba(199,163,71,0.55), transparent); }
 
     /* ---- Portfolio filter chips ---- */
