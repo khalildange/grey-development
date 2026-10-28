@@ -72,6 +72,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet" />
 
+  <!-- Preload the LCP hero render so it starts downloading before CSS/JS parse -->
+  <link rel="preload" as="image" href="assets/projects/eden-ii-hero.jpg" fetchpriority="high" />
+
   <!-- Enable JS-only scroll animations (kept out of no-JS render) -->
   <script>document.documentElement.classList.add('js');</script>
 
@@ -229,6 +232,17 @@
     .hero-img { object-fit: cover; object-position: center; }
     @media (max-width: 640px) { .hero-img { object-fit: contain; } }
 
+    /* Hero scrim: layered (bottom + left) + subtle vignette so the headline and tags
+       never wash out on bright photography, while the architecture stays visible on the right. */
+    .hero-scrim-b { background: linear-gradient(to top, rgba(8,8,10,.94) 0%, rgba(8,8,10,.60) 30%, rgba(8,8,10,.12) 60%, transparent 82%); }
+    .hero-scrim-l { background: linear-gradient(to right, rgba(8,8,10,.72) 0%, rgba(8,8,10,.28) 34%, transparent 64%); }
+    .hero-scrim-t { background: linear-gradient(to bottom, rgba(8,8,10,.55) 0%, transparent 100%); }
+    .hero-vignette { box-shadow: inset 0 0 200px 56px rgba(0,0,0,.42); }
+    @media (max-width: 640px) {
+      /* On phones the image letterboxes (contain) — keep text legible with a flat wash top & bottom */
+      .hero-scrim-l { background: linear-gradient(to top, rgba(8,8,10,.92) 0%, rgba(8,8,10,.55) 45%, rgba(8,8,10,.4) 100%); }
+    }
+
     /* Motion tokens (manual §13): micro 160ms, standard 240ms, single easing curve */
     .t-std { transition: all 240ms cubic-bezier(.4,0,.2,1); }
     .t-micro { transition: all 160ms cubic-bezier(.4,0,.2,1); }
@@ -335,8 +349,13 @@
 
       <!-- Featured development: The Eden II render -->
       <img src="assets/projects/eden-ii-hero.jpg" alt="The Eden II — gated terrace residences and serviced apartments, Katampe, Abuja" fetchpriority="high" decoding="async" class="hero-in--img absolute inset-0 w-full h-full object-cover object-center" />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/88 via-black/45 to-black/40"></div>
-      <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/55 to-transparent"></div>
+      <!-- Layered scrim + vignette: bottom-left text stays legible on any photo -->
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div class="absolute inset-0 hero-scrim-b"></div>
+        <div class="absolute inset-0 hero-scrim-l"></div>
+        <div class="absolute inset-x-0 top-0 h-32 hero-scrim-t"></div>
+        <div class="absolute inset-0 hero-vignette"></div>
+      </div>
 
       <div class="relative w-full max-w-7xl mx-auto px-5 sm:px-8 pb-16 sm:pb-20">
         <div class="hero-in flex flex-wrap items-center gap-x-4 gap-y-2 mb-6" style="animation-delay:.04s">
@@ -347,12 +366,12 @@
         </div>
         <p class="hero-in eyebrow text-[11px] text-satin mb-5" style="animation-delay:.1s">Featured Development · Katampe, Abuja</p>
         <h2 class="hero-in display display--hero text-5xl sm:text-7xl lg:text-8xl text-white leading-[0.95]" style="animation-delay:.18s">The Eden <span style="color:#C7A347">II</span></h2>
-        <p class="hero-in text-white/85 text-base sm:text-lg mt-5 max-w-xl leading-relaxed" style="animation-delay:.3s">Four-bedroom terrace residences and serviced apartments, set behind a private gated entrance — crafted for family life, built for lasting value.</p>
+        <p class="hero-in text-white/90 text-base sm:text-lg mt-5 max-w-xl leading-relaxed" style="animation-delay:.3s">Four-bedroom terrace residences and serviced apartments, set behind a private gated entrance — crafted for family life, built for lasting value.</p>
 
         <div class="hero-in flex flex-wrap gap-2.5 mt-7" style="animation-delay:.4s">
-          <span class="mono text-[11px] uppercase tracking-wider text-white/85 border border-white/25 rounded-none px-3 py-1.5">4-Bed Terraces</span>
-          <span class="mono text-[11px] uppercase tracking-wider text-white/85 border border-white/25 rounded-none px-3 py-1.5">Serviced Apartments</span>
-          <span class="mono text-[11px] uppercase tracking-wider text-white/85 border border-white/25 rounded-none px-3 py-1.5">Private Gated Estate</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-white border border-white/35 bg-black/25 backdrop-blur-sm rounded-none px-3 py-1.5">4-Bed Terraces</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-white border border-white/35 bg-black/25 backdrop-blur-sm rounded-none px-3 py-1.5">Serviced Apartments</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-white border border-white/35 bg-black/25 backdrop-blur-sm rounded-none px-3 py-1.5">Private Gated Estate</span>
         </div>
 
         <div class="hero-in flex flex-col sm:flex-row gap-4 mt-9" style="animation-delay:.5s">
