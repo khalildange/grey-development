@@ -181,6 +181,11 @@
       a.bg-gold:hover svg, button.bg-gold:hover svg { transform: none; }
     }
 
+    /* ---- Delivery timeline (verified milestone track on cards) ---- */
+    .tl-seg { height: 3px; flex: 1 1 0; background: #2A2B30; transition: background-color .5s ease; }
+    .tl-seg.is-done { background: #E4CE9A; }
+    .tl-seg.is-active { background: #C7A347; box-shadow: 0 0 0 1px rgba(199,163,71,.35); }
+
     /* ---- Portfolio filter chips ---- */
     .filter-chip { font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #B2B3AD; border: 1px solid #3A3B40; background: transparent; cursor: pointer; transition: color .16s ease, border-color .16s ease, background-color .16s ease; }
     .filter-chip:hover { color: #EDEDEA; border-color: #8A8B90; }
@@ -475,7 +480,7 @@
         <div id="projectGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
           <!-- Shafa's Residences -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="3" data-updated="OCT 2026">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/shafas-cover.jpg" alt="Shafa's Residences brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
@@ -484,6 +489,13 @@
               <h3 class="display text-xl text-porcelain">Shafa's Residences</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">An exclusive residential development of considered terraces and flats, minutes from Maitama.</p>
+              <div class="tl mt-5 pt-4 border-t border-line">
+                <div class="flex items-center justify-between mb-2.5">
+                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
+                </div>
+                <div class="tl-track flex items-center gap-1.5"></div>
+              </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/shafas-residences-brochure.pdf" rel="noopener" data-title="Shafa's Residences" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
@@ -492,7 +504,7 @@
           </article>
 
           <!-- Amrah's Villas -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-delay="1">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="2" data-updated="OCT 2026" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/amrahs-villas-cover.jpg" alt="Amrah's Villas brochure cover — semi-detached duplexes, Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
@@ -501,6 +513,13 @@
               <h3 class="display text-xl text-porcelain">Amrah's Villas</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of semi-detached duplex residences in Katampe — fully serviced with power, water, gas and home automation.</p>
+              <div class="tl mt-5 pt-4 border-t border-line">
+                <div class="flex items-center justify-between mb-2.5">
+                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
+                </div>
+                <div class="tl-track flex items-center gap-1.5"></div>
+              </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/amrahs-villas-brochure.pdf" rel="noopener" data-title="Amrah's Villas" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
@@ -509,7 +528,7 @@
           </article>
 
           <!-- Eden I -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="completed" data-location="abuja">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="completed" data-location="abuja" data-stage="5" data-updated="COMPLETE">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-i-cover.jpg" alt="Eden I — The Eden, four-bedroom townhomes, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
@@ -518,6 +537,13 @@
               <h3 class="display text-xl text-porcelain">Eden I</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Abuja, Nigeria</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">The first in the EDEN line — a collection of four-bedroom townhomes delivered to the GREY standard.</p>
+              <div class="tl mt-5 pt-4 border-t border-line">
+                <div class="flex items-center justify-between mb-2.5">
+                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
+                </div>
+                <div class="tl-track flex items-center gap-1.5"></div>
+              </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/eden-i-brochure.pdf" rel="noopener" data-title="Eden I" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
@@ -526,7 +552,7 @@
           </article>
 
           <!-- EDEN II -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-delay="1">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="2" data-updated="OCT 2026" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-ii-cover.jpg" alt="EDEN II brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
@@ -535,6 +561,13 @@
               <h3 class="display text-xl text-porcelain">EDEN II</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development continuing the EDEN line — refined living, built to the GREY standard.</p>
+              <div class="tl mt-5 pt-4 border-t border-line">
+                <div class="flex items-center justify-between mb-2.5">
+                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
+                </div>
+                <div class="tl-track flex items-center gap-1.5"></div>
+              </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/eden-ii-brochure.pdf" rel="noopener" data-title="EDEN II" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
@@ -543,7 +576,7 @@
           </article>
 
           <!-- Grey Oasis -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="coming" data-location="kaduna" data-delay="1">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="coming" data-location="kaduna" data-stage="0" data-updated="PLANNING" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/grey-oasis-cover.jpg" alt="Grey Oasis — luxury townhouses, Kaduna" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
@@ -552,6 +585,13 @@
               <h3 class="display text-xl text-porcelain">Grey Oasis</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Kaduna, Nigeria</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of luxury townhouses in Kaduna — exclusive living, timeless value.</p>
+              <div class="tl mt-5 pt-4 border-t border-line">
+                <div class="flex items-center justify-between mb-2.5">
+                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
+                </div>
+                <div class="tl-track flex items-center gap-1.5"></div>
+              </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/grey-oasis-brochure.pdf" rel="noopener" data-title="Grey Oasis" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
@@ -560,7 +600,7 @@
           </article>
 
           <!-- Grey Altura -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="mabushi">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="mabushi" data-stage="3" data-updated="OCT 2026">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/grey-altura-cover.jpg" alt="Grey Altura brochure cover — Mabushi, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
@@ -569,6 +609,13 @@
               <h3 class="display text-xl text-porcelain">Grey Altura</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Mabushi, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development in the heart of Mabushi — elevated living, built to the GREY standard.</p>
+              <div class="tl mt-5 pt-4 border-t border-line">
+                <div class="flex items-center justify-between mb-2.5">
+                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
+                </div>
+                <div class="tl-track flex items-center gap-1.5"></div>
+              </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/grey-altura-brochure.pdf" rel="noopener" data-title="Grey Altura" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
@@ -994,6 +1041,29 @@
         apply();
       }));
       apply();
+    })();
+
+    // ---------- Delivery timeline (verified milestone track) ----------
+    (() => {
+      const STAGES = ['Slab', 'Superstructure', 'Roofing', 'Finishing', 'Handover'];
+      document.querySelectorAll('.tl').forEach(tl => {
+        const card = tl.closest('article');
+        let stage = parseInt((card && card.dataset.stage) || '0', 10);
+        if (isNaN(stage)) stage = 0;
+        stage = Math.max(0, Math.min(5, stage));
+        const track = tl.querySelector('.tl-track');
+        let frag = '';
+        for (let i = 0; i < 5; i++) {
+          const cls = i < stage ? 'is-done' : (i === stage ? 'is-active' : '');
+          frag += '<span class="tl-seg ' + cls + '"></span>';
+        }
+        track.innerHTML = frag;
+        const label = stage === 0 ? 'In planning' : (stage >= 5 ? 'Delivered' : STAGES[stage]);
+        tl.querySelector('.tl-stage').textContent = label;
+        tl.querySelector('.tl-updated').textContent = (card && card.dataset.updated) || '';
+        track.setAttribute('role', 'img');
+        track.setAttribute('aria-label', 'Delivery progress: ' + label + ' — ' + stage + ' of 5 stages complete');
+      });
     })();
 
     // ---------- Brochure preview modal ----------
