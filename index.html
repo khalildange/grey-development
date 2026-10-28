@@ -165,6 +165,45 @@
     .glass-strong { background: rgba(41,42,47,0.74); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(199,163,71,0.22); }
     .rule-gold { height: 1px; background: linear-gradient(90deg, transparent, rgba(199,163,71,0.55), transparent); }
 
+    /* ---- Portfolio filter chips ---- */
+    .filter-chip { font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #B2B3AD; border: 1px solid #3A3B40; background: transparent; cursor: pointer; transition: color .16s ease, border-color .16s ease, background-color .16s ease; }
+    .filter-chip:hover { color: #EDEDEA; border-color: #8A8B90; }
+    .filter-chip[aria-pressed="true"] { color: #171512; background: #C7A347; border-color: #C7A347; }
+    /* Card filter transition (manual motion: opacity + 8px translate, scale ≤1.02) */
+    #projectGrid article { transition: opacity .28s ease, transform .28s cubic-bezier(.22,1,.36,1); }
+    #projectGrid article.filtering-out { opacity: 0; transform: translateY(8px) scale(.99); }
+    #projectGrid article.is-filtered-hidden { display: none; }  /* id-scoped: beats Tailwind .flex */
+    .proj-empty { display: none; }
+    .proj-empty.show { display: block; }
+
+    /* ---- Modal (brochure preview) ---- */
+    .modal-root { position: fixed; inset: 0; z-index: 90; display: none; }
+    .modal-root.open { display: block; }
+    .modal-backdrop { position: absolute; inset: 0; background: rgba(8,8,10,.80); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; transition: opacity .24s ease; }
+    .modal-root.open .modal-backdrop { opacity: 1; }
+    .modal-panel { position: absolute; inset: 0; margin: auto; width: min(1000px, calc(100vw - 2rem)); height: min(88vh, calc(100vh - 2rem)); background: #1C1D21; border: 1px solid #3A3B40; display: flex; flex-direction: column; opacity: 0; transform: translateY(10px); transition: opacity .28s ease, transform .28s cubic-bezier(.22,1,.36,1); box-shadow: 0 40px 100px -30px rgba(0,0,0,.7); }
+    .modal-root.open .modal-panel { opacity: 1; transform: none; }
+    @media (max-width: 640px) { .modal-panel { width: 100vw; height: 100dvh; border: 0; } }
+
+    /* ---- Floating quick-contact widget (FAB) ---- */
+    #fab { position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 80; display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; }
+    #fabMenu { display: flex; flex-direction: column; align-items: flex-end; gap: .55rem; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .2s ease, transform .2s cubic-bezier(.22,1,.36,1); }
+    #fab.open #fabMenu { opacity: 1; transform: none; pointer-events: auto; }
+    .fab-item { display: inline-flex; align-items: center; gap: .6rem; padding: .62rem .9rem; background: #292A2F; border: 1px solid #3A3B40; color: #EDEDEA; font-size: .82rem; letter-spacing: .02em; white-space: nowrap; cursor: pointer; transition: border-color .16s ease, color .16s ease; box-shadow: 0 12px 34px -16px rgba(0,0,0,.7); }
+    .fab-item:hover { border-color: #C7A347; color: #FFFFFF; }
+    #fabToggle { width: 3.25rem; height: 3.25rem; display: grid; place-items: center; background: #C7A347; color: #171512; cursor: pointer; box-shadow: 0 14px 38px -12px rgba(199,163,71,.5); transition: background-color .16s ease, color .16s ease; }
+    #fabToggle:hover { background: #E4CE9A; }
+    #fab.open #fabToggle { background: #292A2F; color: #EDEDEA; border: 1px solid #3A3B40; }
+    #fab.fab-hidden { opacity: 0; pointer-events: none; transform: translateY(14px); transition: opacity .3s ease, transform .3s ease; }
+
+    /* ---- Loading spinner ---- */
+    .spinner { width: 1rem; height: 1rem; border: 2px solid rgba(23,21,18,.30); border-top-color: #171512; border-radius: 50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) {
+      #projectGrid article, .modal-panel, .modal-backdrop, #fabMenu, #fab { transition: none !important; }
+      .spinner { animation-duration: 1.4s; }
+    }
+
     /* Hero image: cover on desktop, contain on phones (matte letterbox blends with bg) */
     .hero-img { object-fit: cover; object-position: center; }
     @media (max-width: 640px) { .hero-img { object-fit: contain; } }
@@ -395,11 +434,32 @@
           </div>
         </div>
 
+        <!-- Portfolio filter (CRO) -->
+        <div class="reveal mb-10" data-delay="1">
+          <div class="flex flex-col gap-4 border-t border-line pt-6">
+            <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter developments by status">
+              <span class="eyebrow text-[10px] text-slate w-[4.5rem] shrink-0">Status</span>
+              <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5 rounded-none" data-filter="status" data-value="all" aria-pressed="true">All</button>
+              <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5 rounded-none" data-filter="status" data-value="selling" aria-pressed="false">Now Selling</button>
+              <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5 rounded-none" data-filter="status" data-value="completed" aria-pressed="false">Completed</button>
+              <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5 rounded-none" data-filter="status" data-value="coming" aria-pressed="false">Coming Soon</button>
+            </div>
+            <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Filter developments by location">
+              <span class="eyebrow text-[10px] text-slate w-[4.5rem] shrink-0">Location</span>
+              <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5 rounded-none" data-filter="location" data-value="all" aria-pressed="true">All</button>
+              <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5 rounded-none" data-filter="location" data-value="katampe" aria-pressed="false">Katampe</button>
+              <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5 rounded-none" data-filter="location" data-value="mabushi" aria-pressed="false">Mabushi</button>
+              <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5 rounded-none" data-filter="location" data-value="kaduna" aria-pressed="false">Kaduna</button>
+            </div>
+          </div>
+          <p class="mono text-[11px] text-slate mt-4" id="projCount" aria-live="polite"></p>
+        </div>
+
         <!-- TODO: replace stock images with real renders (found inside each brochure PDF) -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div id="projectGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
 
           <!-- Shafa's Residences -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/shafas-cover.jpg" alt="Shafa's Residences brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
@@ -410,13 +470,13 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">An exclusive residential development of considered terraces and flats, minutes from Maitama.</p>
               <div class="flex items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/shafas-residences-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/shafas-residences-brochure.pdf" rel="noopener" data-title="Shafa's Residences" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
 
           <!-- Amrah's Villas -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-delay="1">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/amrahs-villas-cover.jpg" alt="Amrah's Villas brochure cover — semi-detached duplexes, Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
@@ -427,13 +487,13 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of semi-detached duplex residences in Katampe — fully serviced with power, water, gas and home automation.</p>
               <div class="flex items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/amrahs-villas-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/amrahs-villas-brochure.pdf" rel="noopener" data-title="Amrah's Villas" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
 
           <!-- Eden I -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="completed" data-location="abuja">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-i-cover.jpg" alt="Eden I — The Eden, four-bedroom townhomes, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
@@ -444,13 +504,13 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">The first in the EDEN line — a collection of four-bedroom townhomes delivered to the GREY standard.</p>
               <div class="flex items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/eden-i-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/eden-i-brochure.pdf" rel="noopener" data-title="Eden I" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
 
           <!-- EDEN II -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-delay="1">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-ii-cover.jpg" alt="EDEN II brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
@@ -461,13 +521,13 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development continuing the EDEN line — refined living, built to the GREY standard.</p>
               <div class="flex items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/eden-ii-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/eden-ii-brochure.pdf" rel="noopener" data-title="EDEN II" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
 
           <!-- Grey Oasis -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-delay="1">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="coming" data-location="kaduna" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/grey-oasis-cover.jpg" alt="Grey Oasis — luxury townhouses, Kaduna" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
@@ -478,13 +538,13 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of luxury townhouses in Kaduna — exclusive living, timeless value.</p>
               <div class="flex items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/grey-oasis-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/grey-oasis-brochure.pdf" rel="noopener" data-title="Grey Oasis" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
 
           <!-- Grey Altura -->
-          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col">
+          <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="mabushi">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/grey-altura-cover.jpg" alt="Grey Altura brochure cover — Mabushi, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
@@ -495,11 +555,16 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development in the heart of Mabushi — elevated living, built to the GREY standard.</p>
               <div class="flex items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/grey-altura-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/grey-altura-brochure.pdf" rel="noopener" data-title="Grey Altura" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
 
+        </div>
+
+        <div id="projEmpty" class="proj-empty border border-line rounded-none p-10 text-center mt-2">
+          <p class="display text-xl text-porcelain">No developments match that filter.</p>
+          <p class="text-body text-sm mt-2">Try a different status or location — or <a href="#contact" class="text-champagne hover:text-gold t-micro">talk to our team</a>.</p>
         </div>
 
         <p class="reveal text-slate text-xs mt-8 max-w-2xl">Images shown are artist's impressions for illustration. Refer to each brochure for full floor plans, specifications and current pricing.</p>
@@ -657,11 +722,17 @@
               <textarea id="message" name="message" rows="4" required class="w-full rounded-none bg-white/5 border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro resize-y" placeholder="Tell us a little about what you'd like to build or invest in..."></textarea>
             </div>
             <p id="formError" class="hidden mt-4 text-sm text-red-400" role="alert"></p>
-            <button type="submit" class="mt-6 inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-none bg-gold px-8 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
-              Send Request
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.126A59.768 59.768 0 0 1 21.485 12 59.77 59.77 0 0 1 3.27 20.876L5.999 12Zm0 0h7.5"/></svg>
+            <button id="formSubmit" type="submit" class="mt-6 inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-none bg-gold px-8 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer disabled:opacity-70 disabled:cursor-wait">
+              <span id="formSubmitLabel" class="inline-flex items-center gap-2">
+                Send Request
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.126A59.768 59.768 0 0 1 21.485 12 59.77 59.77 0 0 1 3.27 20.876L5.999 12Zm0 0h7.5"/></svg>
+              </span>
+              <span id="formSubmitSpin" class="hidden items-center gap-2"><span class="spinner" aria-hidden="true"></span> Preparing…</span>
             </button>
-            <p id="formSuccess" class="hidden mt-4 text-sm text-champagne" role="status">Thank you — your email app should open with your request ready to send.</p>
+            <div id="formSuccess" class="hidden mt-5 flex items-start gap-3 border border-gold/40 bg-gold/5 rounded-none p-4" role="status">
+              <svg class="w-5 h-5 text-champagne shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+              <div><p class="text-porcelain text-sm font-semibold">Enquiry ready to send.</p><p class="text-body text-sm mt-1">Your email app is opening with the details filled in. Prefer to chat? <a href="https://wa.me/2348078963703" target="_blank" rel="noopener" class="text-champagne hover:text-gold t-micro">Message us on WhatsApp</a>. We respond within one business day.</p></div>
+            </div>
           </form>
         </div>
       </div>
@@ -720,6 +791,61 @@
     </div>
   </footer>
 
+  <!-- ============ BROCHURE PREVIEW MODAL ============ -->
+  <div id="brochureModal" class="modal-root" role="dialog" aria-modal="true" aria-labelledby="brochureTitle" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel">
+      <div class="flex items-center justify-between gap-4 px-5 sm:px-6 py-4 border-b border-line shrink-0">
+        <div class="min-w-0">
+          <p class="eyebrow text-[10px] text-champagne">Brochure Preview</p>
+          <h3 id="brochureTitle" class="display text-lg text-porcelain truncate">&mdash;</h3>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="brochureDownload" href="#" download class="hidden sm:inline-flex items-center gap-2 rounded-none bg-gold px-4 py-2 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze">
+            Download
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
+          </a>
+          <button type="button" data-close class="w-10 h-10 grid place-items-center rounded-none glass text-porcelain hover:border-gold t-micro" aria-label="Close brochure preview">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="relative flex-1 bg-[#0E0E10]">
+        <iframe id="brochureFrame" title="Brochure preview" class="absolute inset-0 w-full h-full" src="about:blank"></iframe>
+        <!-- Fallback for devices that can't render a PDF inline (most mobiles) -->
+        <div id="brochureFallback" class="hidden absolute inset-0 flex-col items-center justify-center text-center p-8 gap-5">
+          <img id="brochureCover" src="" alt="" class="max-h-[46vh] w-auto border border-line" />
+          <p class="text-body text-sm max-w-xs">Open the full brochure for floor plans, specifications and current pricing.</p>
+          <a id="brochureOpen" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-none bg-gold px-6 py-3 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze">Open full brochure &rarr;</a>
+        </div>
+      </div>
+      <div class="sm:hidden px-5 py-3 border-t border-line shrink-0">
+        <a id="brochureDownloadM" href="#" download class="inline-flex w-full justify-center items-center gap-2 rounded-none bg-gold px-4 py-3 text-sm font-semibold text-[#171512]">Download brochure</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FLOATING QUICK-CONTACT WIDGET ============ -->
+  <div id="fab" class="fab-hidden">
+    <div id="fabMenu" aria-hidden="true">
+      <a href="https://wa.me/2348078963703?text=Hello%20GREY%20Development%2C%20I%27d%20like%20to%20enquire%20about%20your%20developments." target="_blank" rel="noopener" class="fab-item rounded-none" role="menuitem">
+        <svg class="w-4 h-4 text-champagne" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.08c-.24.68-1.42 1.32-1.95 1.36-.5.04-.95.22-3.2-.67-2.7-1.06-4.42-3.8-4.55-3.98-.13-.18-1.1-1.46-1.1-2.78 0-1.32.69-1.97.94-2.24.24-.27.53-.34.71-.34.18 0 .35 0 .51.01.16.01.38-.06.6.46.22.53.76 1.84.83 1.97.07.13.11.29.02.47-.09.18-.13.29-.27.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.54.15.27.67 1.1 1.44 1.78.99.88 1.82 1.16 2.08 1.29.26.13.41.11.56-.07.15-.18.64-.75.81-1.01.17-.26.34-.21.57-.13.23.09 1.47.69 1.72.82.26.13.43.19.49.3.06.1.06.62-.18 1.3Z"/></svg>
+        WhatsApp us
+      </a>
+      <a href="tel:+2348078963703" class="fab-item rounded-none" role="menuitem">
+        <svg class="w-4 h-4 text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
+        Call us
+      </a>
+      <button type="button" id="fabEnquire" class="fab-item rounded-none" role="menuitem">
+        <svg class="w-4 h-4 text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+        Quick enquiry
+      </button>
+    </div>
+    <button type="button" id="fabToggle" class="rounded-none" aria-expanded="false" aria-controls="fabMenu" aria-label="Open quick contact">
+      <svg id="fabIcon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"/></svg>
+    </button>
+  </div>
+
   <!-- ============ SCRIPTS ============ -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -757,27 +883,181 @@
       document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
     }
 
+    // ---------- Enquiry form: validation + loading / success / error states ----------
     const form = document.getElementById('quoteForm');
     const formError = document.getElementById('formError');
     const formSuccess = document.getElementById('formSuccess');
+    const formSubmit = document.getElementById('formSubmit');
+    const formSubmitLabel = document.getElementById('formSubmitLabel');
+    const formSubmitSpin = document.getElementById('formSubmitSpin');
+    const requiredFields = ['name', 'phone', 'email', 'message'];
+    const setLoading = (on) => {
+      formSubmit.disabled = on;
+      formSubmitLabel.classList.toggle('hidden', on);
+      formSubmitSpin.classList.toggle('hidden', !on);
+      formSubmitSpin.classList.toggle('inline-flex', on);
+    };
+    const markInvalid = (el, bad) => {
+      if (!el) return;
+      el.classList.toggle('border-red-400', bad);
+      el.classList.toggle('border-line', !bad);
+      el.setAttribute('aria-invalid', String(bad));
+    };
+    requiredFields.forEach(n => form[n] && form[n].addEventListener('input', () => markInvalid(form[n], false)));
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       formError.classList.add('hidden'); formSuccess.classList.add('hidden');
-      const name = form.name.value.trim(), email = form.email.value.trim(),
-            phone = form.phone.value.trim(), service = form.service.value, message = form.message.value.trim();
-      if (!name || !email || !phone || !message) {
+      const vals = {
+        name: form.name.value.trim(), phone: form.phone.value.trim(),
+        email: form.email.value.trim(), service: form.service.value, message: form.message.value.trim()
+      };
+      let firstBad = null;
+      requiredFields.forEach(n => { const bad = !vals[n]; markInvalid(form[n], bad); if (bad && !firstBad) firstBad = form[n]; });
+      if (firstBad) {
         formError.textContent = 'Please fill in your name, phone, email and project details.';
-        formError.classList.remove('hidden'); return;
+        formError.classList.remove('hidden'); firstBad.focus(); return;
       }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(vals.email)) {
+        markInvalid(form.email, true);
         formError.textContent = 'Please enter a valid email address.';
         formError.classList.remove('hidden'); form.email.focus(); return;
       }
-      const subject = encodeURIComponent('Enquiry — ' + service + ' (' + name + ')');
-      const body = encodeURIComponent('Name: ' + name + '\nPhone: ' + phone + '\nEmail: ' + email + '\nInterested in: ' + service + '\n\nProject details:\n' + message);
-      window.location.href = 'mailto:greydevelopment.ng@gmail.com?subject=' + subject + '&body=' + body;
-      formSuccess.classList.remove('hidden'); form.reset();
+      setLoading(true);
+      const subject = encodeURIComponent('Enquiry — ' + vals.service + ' (' + vals.name + ')');
+      const body = encodeURIComponent('Name: ' + vals.name + '\nPhone: ' + vals.phone + '\nEmail: ' + vals.email + '\nInterested in: ' + vals.service + '\n\nProject details:\n' + vals.message);
+      // Brief, honest "preparing" state, then hand off to the visitor's mail app.
+      setTimeout(() => {
+        try { window.location.href = 'mailto:greydevelopment.ng@gmail.com?subject=' + subject + '&body=' + body; } catch (_) {}
+        setLoading(false);
+        formSuccess.classList.remove('hidden');
+        formSuccess.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
+        form.reset();
+        requiredFields.forEach(n => markInvalid(form[n], false));
+      }, reduce ? 150 : 850);
     });
+
+    // ---------- Portfolio filtering (status + location) ----------
+    (() => {
+      const grid = document.getElementById('projectGrid');
+      if (!grid) return;
+      const cards = Array.from(grid.querySelectorAll('article'));
+      const chips = Array.from(document.querySelectorAll('.filter-chip'));
+      const empty = document.getElementById('projEmpty');
+      const count = document.getElementById('projCount');
+      const state = { status: 'all', location: 'all' };
+      const apply = () => {
+        let shown = 0;
+        cards.forEach(card => {
+          const ok = (state.status === 'all' || card.dataset.status === state.status) &&
+                     (state.location === 'all' || card.dataset.location === state.location);
+          if (ok) {
+            shown++;
+            card.classList.remove('is-filtered-hidden');
+            requestAnimationFrame(() => card.classList.remove('filtering-out'));
+          } else {
+            card.classList.add('filtering-out');
+            setTimeout(() => { if (card.classList.contains('filtering-out')) card.classList.add('is-filtered-hidden'); }, reduce ? 0 : 280);
+          }
+        });
+        if (empty) empty.classList.toggle('show', shown === 0);
+        if (count) count.textContent = shown === cards.length
+          ? cards.length + ' developments'
+          : shown + ' of ' + cards.length + ' developments';
+      };
+      chips.forEach(chip => chip.addEventListener('click', () => {
+        const group = chip.dataset.filter;
+        state[group] = chip.dataset.value;
+        chips.filter(c => c.dataset.filter === group).forEach(c => c.setAttribute('aria-pressed', String(c === chip)));
+        apply();
+      }));
+      apply();
+    })();
+
+    // ---------- Brochure preview modal ----------
+    (() => {
+      const modal = document.getElementById('brochureModal');
+      if (!modal) return;
+      const frame = document.getElementById('brochureFrame');
+      const fallback = document.getElementById('brochureFallback');
+      const cover = document.getElementById('brochureCover');
+      const openLink = document.getElementById('brochureOpen');
+      const titleEl = document.getElementById('brochureTitle');
+      const dl = document.getElementById('brochureDownload');
+      const dlM = document.getElementById('brochureDownloadM');
+      const closeBtn = modal.querySelector('button[data-close]');
+      let lastFocus = null;
+      const open = (href, title, coverSrc) => {
+        lastFocus = document.activeElement;
+        titleEl.textContent = title || 'Brochure';
+        dl.href = href; dlM.href = href; openLink.href = href;
+        // Inline PDF embedding is reliable on wide screens only; mobiles get a clean fallback.
+        if (window.matchMedia('(min-width: 768px)').matches) {
+          frame.src = href + '#view=FitH';
+          frame.classList.remove('hidden');
+          fallback.classList.add('hidden'); fallback.classList.remove('flex');
+        } else {
+          frame.src = 'about:blank'; frame.classList.add('hidden');
+          cover.src = coverSrc || ''; cover.alt = (title || 'Brochure') + ' cover';
+          fallback.classList.remove('hidden'); fallback.classList.add('flex');
+        }
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (closeBtn) closeBtn.focus();
+      };
+      const close = () => {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        setTimeout(() => { frame.src = 'about:blank'; }, 220);
+        if (lastFocus) lastFocus.focus();
+      };
+      document.querySelectorAll('.brochure-trigger').forEach(a => a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = a.closest('article');
+        const img = card ? card.querySelector('img') : null;
+        open(a.getAttribute('href'), a.dataset.title, img ? img.getAttribute('src') : '');
+      }));
+      modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+    })();
+
+    // ---------- Floating quick-contact widget (FAB) ----------
+    (() => {
+      const fab = document.getElementById('fab');
+      if (!fab) return;
+      const toggle = document.getElementById('fabToggle');
+      const icon = document.getElementById('fabIcon');
+      const menu = document.getElementById('fabMenu');
+      const enquire = document.getElementById('fabEnquire');
+      const chatPath = icon.innerHTML;
+      const closePath = '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>';
+      const setOpen = (on) => {
+        fab.classList.toggle('open', on);
+        toggle.setAttribute('aria-expanded', String(on));
+        toggle.setAttribute('aria-label', on ? 'Close quick contact' : 'Open quick contact');
+        menu.setAttribute('aria-hidden', String(!on));
+        icon.innerHTML = on ? closePath : chatPath;
+      };
+      toggle.addEventListener('click', () => setOpen(!fab.classList.contains('open')));
+      document.addEventListener('click', (e) => { if (!fab.contains(e.target) && fab.classList.contains('open')) setOpen(false); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && fab.classList.contains('open')) setOpen(false); });
+      enquire.addEventListener('click', () => {
+        setOpen(false);
+        const c = document.getElementById('contact');
+        if (c) c.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+        setTimeout(() => { const n = document.getElementById('name'); if (n) n.focus({ preventScroll: true }); }, reduce ? 0 : 650);
+      });
+      // Appear after the hero; step aside while the contact section (its own form) is in view.
+      let pastHero = false, contactVisible = false;
+      const refresh = () => fab.classList.toggle('fab-hidden', !pastHero || contactVisible);
+      window.addEventListener('scroll', () => { pastHero = window.scrollY > 600; refresh(); }, { passive: true });
+      const contact = document.getElementById('contact');
+      if (contact && 'IntersectionObserver' in window) {
+        new IntersectionObserver((ents) => { contactVisible = ents[0].isIntersecting; refresh(); }, { threshold: 0.2 }).observe(contact);
+      }
+      pastHero = window.scrollY > 600; refresh();
+    })();
 
     // Scrollspy — highlight the current section in the nav
     const spyLinks = document.querySelectorAll('#siteHeader nav ul a[href^="#"]');
