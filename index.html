@@ -165,6 +165,22 @@
     .glass-strong { background: rgba(28,29,33,0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(199,163,71,0.22); }
     .rule-gold { height: 1px; background: linear-gradient(90deg, transparent, rgba(199,163,71,0.55), transparent); }
 
+    /* ---- Primary gold CTA: sheen sweep + arrow nudge (manual-safe: opacity/translate only) ---- */
+    a.bg-gold, button.bg-gold { position: relative; overflow: hidden; isolation: isolate; }
+    a.bg-gold::after, button.bg-gold::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+      background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,0.42) 50%, transparent 68%);
+      transform: translateX(-130%); transition: transform .6s cubic-bezier(.22,1,.36,1);
+    }
+    a.bg-gold:hover::after, button.bg-gold:hover::after { transform: translateX(130%); }
+    a.bg-gold > *, button.bg-gold > * { position: relative; z-index: 2; }  /* keep label above the sheen */
+    a.bg-gold svg, button.bg-gold svg { transition: transform .24s cubic-bezier(.4,0,.2,1); }
+    a.bg-gold:hover svg, button.bg-gold:hover svg { transform: translateX(4px); }
+    @media (prefers-reduced-motion: reduce) {
+      a.bg-gold::after, button.bg-gold::after { display: none; }
+      a.bg-gold:hover svg, button.bg-gold:hover svg { transform: none; }
+    }
+
     /* ---- Portfolio filter chips ---- */
     .filter-chip { font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #B2B3AD; border: 1px solid #3A3B40; background: transparent; cursor: pointer; transition: color .16s ease, border-color .16s ease, background-color .16s ease; }
     .filter-chip:hover { color: #EDEDEA; border-color: #8A8B90; }
@@ -468,9 +484,9 @@
               <h3 class="display text-xl text-porcelain">Shafa's Residences</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">An exclusive residential development of considered terraces and flats, minutes from Maitama.</p>
-              <div class="flex items-center gap-3 mt-6">
+              <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/shafas-residences-brochure.pdf" rel="noopener" data-title="Shafa's Residences" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/shafas-residences-brochure.pdf" rel="noopener" data-title="Shafa's Residences" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -485,9 +501,9 @@
               <h3 class="display text-xl text-porcelain">Amrah's Villas</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of semi-detached duplex residences in Katampe — fully serviced with power, water, gas and home automation.</p>
-              <div class="flex items-center gap-3 mt-6">
+              <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/amrahs-villas-brochure.pdf" rel="noopener" data-title="Amrah's Villas" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/amrahs-villas-brochure.pdf" rel="noopener" data-title="Amrah's Villas" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -502,9 +518,9 @@
               <h3 class="display text-xl text-porcelain">Eden I</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Abuja, Nigeria</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">The first in the EDEN line — a collection of four-bedroom townhomes delivered to the GREY standard.</p>
-              <div class="flex items-center gap-3 mt-6">
+              <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/eden-i-brochure.pdf" rel="noopener" data-title="Eden I" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/eden-i-brochure.pdf" rel="noopener" data-title="Eden I" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -519,9 +535,9 @@
               <h3 class="display text-xl text-porcelain">EDEN II</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development continuing the EDEN line — refined living, built to the GREY standard.</p>
-              <div class="flex items-center gap-3 mt-6">
+              <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/eden-ii-brochure.pdf" rel="noopener" data-title="EDEN II" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/eden-ii-brochure.pdf" rel="noopener" data-title="EDEN II" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -536,9 +552,9 @@
               <h3 class="display text-xl text-porcelain">Grey Oasis</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Kaduna, Nigeria</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of luxury townhouses in Kaduna — exclusive living, timeless value.</p>
-              <div class="flex items-center gap-3 mt-6">
+              <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/grey-oasis-brochure.pdf" rel="noopener" data-title="Grey Oasis" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/grey-oasis-brochure.pdf" rel="noopener" data-title="Grey Oasis" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -553,9 +569,9 @@
               <h3 class="display text-xl text-porcelain">Grey Altura</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Mabushi, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development in the heart of Mabushi — elevated living, built to the GREY standard.</p>
-              <div class="flex items-center gap-3 mt-6">
+              <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/grey-altura-brochure.pdf" rel="noopener" data-title="Grey Altura" class="brochure-trigger inline-flex items-center gap-1 text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
+                <a href="assets/brochures/grey-altura-brochure.pdf" rel="noopener" data-title="Grey Altura" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -751,8 +767,9 @@
   <!-- ============ FOOTER ============ -->
   <footer class="bg-ink pt-16 pb-8">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">
-      <div class="grid md:grid-cols-3 gap-10">
-        <div class="max-w-sm">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12">
+        <!-- Brand -->
+        <div class="sm:col-span-2 lg:col-span-5 max-w-sm">
           <div class="flex flex-col items-start leading-none mb-5">
             <img src="assets/grey-wordmark-white.png" alt="GREY" width="1100" height="224" class="h-8 w-auto" />
             <span class="eyebrow text-[10px] text-champagne mt-2 tracking-[0.26em]">Development Limited</span>
@@ -760,7 +777,8 @@
           <p class="text-stone text-sm leading-relaxed">Realty · Construction · Investment. Architecturally serious developments in Abuja — not just built, but crafted.</p>
         </div>
 
-        <div>
+        <!-- Explore -->
+        <nav class="lg:col-span-3" aria-label="Footer">
           <p class="eyebrow text-[11px] text-champagne mb-4">Explore</p>
           <ul class="space-y-3 text-sm text-stone">
             <li><a href="#projects" class="hover:text-porcelain t-micro">Projects</a></li>
@@ -768,16 +786,21 @@
             <li><a href="#services" class="hover:text-porcelain t-micro">Invest</a></li>
             <li><a href="#contact" class="hover:text-porcelain t-micro">Contact</a></li>
           </ul>
-        </div>
+        </nav>
 
-        <div>
-          <p class="eyebrow text-[11px] text-champagne mb-4">Contact</p>
+        <!-- Contact + enquiry CTA (anchors the right edge on wide viewports) -->
+        <div class="lg:col-span-4">
+          <p class="eyebrow text-[11px] text-champagne mb-4">Get in touch</p>
           <ul class="space-y-3 text-sm text-stone">
             <li>No. 2 William F. Kumuyi Street,<br/>Kado, Abuja</li>
             <li><a href="tel:+2348078963703" class="hover:text-porcelain t-micro">0807 896 3703</a></li>
             <li><a href="mailto:greydevelopment.ng@gmail.com" class="hover:text-porcelain t-micro break-all">greydevelopment.ng@gmail.com</a></li>
             <li class="pt-1"><a href="https://instagram.com/greydevelopment_ng" target="_blank" rel="noopener" class="hover:text-champagne t-micro">@greydevelopment_ng</a></li>
           </ul>
+          <a href="#contact" class="mt-6 inline-flex items-center gap-2 rounded-none border border-gold/50 px-5 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">
+            Start an enquiry
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+          </a>
         </div>
       </div>
 
