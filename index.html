@@ -93,9 +93,9 @@
             slate:     '#9A9B9F',  /* Steel */
             stone:     '#B2B3AD',  /* readable bone for nav/footer */
             mist:      '#2A2B30',
-            champagne: '#E4CE9A',  /* brighter gold — resting accent (buttons, emphasis) */
-            gold:      '#C7A347',  /* Signal Gold — interactive state (hover/active) */
-            satin:     '#C7A347',  /* hover → Signal Gold (manual §05 interactive) */
+            champagne: '#E4CE9A',  /* gold at small sizes / eyebrows on dark */
+            gold:      '#C7A347',  /* Luxury / Signal Gold — accent, ≤5% */
+            satin:     '#E4CE9A',  /* hover brighten */
             bronze:    '#806534',  /* Bronze — pressed / depth beneath gold */
           },
           fontFamily: {
@@ -219,7 +219,7 @@
 
 <body class="bg-ink text-body">
 
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-4 focus:left-4 focus:bg-champagne focus:text-[#171512] focus:px-4 focus:py-2 focus:rounded-none">Skip to content</a>
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-4 focus:left-4 focus:bg-gold focus:text-[#171512] focus:px-4 focus:py-2 focus:rounded-none">Skip to content</a>
 
   <!-- ============ HEADER ============ -->
   <header id="siteHeader" class="fixed top-0 inset-x-0 z-50 t-std">
@@ -239,7 +239,7 @@
         </ul>
 
         <div class="flex items-center gap-3">
-          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-none bg-champagne px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
+          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
           <button id="menuBtn" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-none glass text-porcelain cursor-pointer" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
             <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
           </button>
@@ -254,7 +254,7 @@
         <li><a href="#services" class="mobile-link block py-3 text-stone hover:text-porcelain uppercase tracking-[0.16em] text-sm">Invest</a></li>
       </ul>
       <div class="px-6 pb-6">
-        <a href="#contact" class="mobile-link inline-flex w-full justify-center items-center rounded-none bg-champagne px-5 py-3 font-semibold text-[#171512] hover:bg-satin">Enquire</a>
+        <a href="#contact" class="mobile-link inline-flex w-full justify-center items-center rounded-none bg-gold px-5 py-3 font-semibold text-[#171512] hover:bg-satin">Enquire</a>
       </div>
     </div>
   </header>
@@ -278,7 +278,7 @@
           </span>
         </div>
         <p class="hero-in eyebrow text-[11px] text-satin mb-5" style="animation-delay:.1s">Featured Development · Katampe, Abuja</p>
-        <h2 class="hero-in display display--hero text-5xl sm:text-7xl lg:text-8xl text-white leading-[0.95]" style="animation-delay:.18s">The Eden <span style="color:#E4CE9A">II</span></h2>
+        <h2 class="hero-in display display--hero text-5xl sm:text-7xl lg:text-8xl text-white leading-[0.95]" style="animation-delay:.18s">The Eden <span style="color:#C7A347">II</span></h2>
         <p class="hero-in text-white/85 text-base sm:text-lg mt-5 max-w-xl leading-relaxed" style="animation-delay:.3s">Four-bedroom terrace residences and serviced apartments, set behind a private gated entrance — crafted for family life, built for lasting value.</p>
 
         <div class="hero-in flex flex-wrap gap-2.5 mt-7" style="animation-delay:.4s">
@@ -288,13 +288,13 @@
         </div>
 
         <div class="hero-in flex flex-col sm:flex-row gap-4 mt-9" style="animation-delay:.5s">
-          <a href="#contact" class="inline-flex justify-center items-center gap-2 rounded-none bg-champagne px-8 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire about The Eden II</a>
-          <a href="#projects" class="inline-flex justify-center items-center gap-2 rounded-none border border-white/40 px-8 py-3.5 font-semibold text-white t-micro hover:border-gold hover:text-champagne cursor-pointer">View All Developments</a>
+          <a href="#contact" class="inline-flex justify-center items-center gap-2 rounded-none bg-gold px-8 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire about The Eden II</a>
+          <a href="#projects" class="inline-flex justify-center items-center gap-2 rounded-none border border-white/40 px-8 py-3.5 font-semibold text-white t-micro hover:border-gold hover:text-gold cursor-pointer">View All Developments</a>
         </div>
       </div>
 
       <!-- Scroll cue -->
-      <a href="#services" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-champagne t-micro" aria-label="Scroll to explore">
+      <a href="#services" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-gold t-micro" aria-label="Scroll to explore">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 cue-bob" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
       </a>
     </section>
@@ -402,14 +402,14 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/shafas-cover.jpg" alt="Shafa's Residences brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-champagne backdrop-blur-sm">Now Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Shafa's Residences</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">An exclusive residential development of considered terraces and flats, minutes from Maitama.</p>
               <div class="flex items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-champagne px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/shafas-residences-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
@@ -419,14 +419,14 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/amrahs-villas-cover.jpg" alt="Amrah's Villas brochure cover — semi-detached duplexes, Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-champagne backdrop-blur-sm">Now Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Amrah's Villas</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of semi-detached duplex residences in Katampe — fully serviced with power, water, gas and home automation.</p>
               <div class="flex items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-champagne px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/amrahs-villas-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
@@ -436,14 +436,14 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-i-cover.jpg" alt="Eden I — The Eden, four-bedroom townhomes, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-champagne backdrop-blur-sm">Completed</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Eden I</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Abuja, Nigeria</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">The first in the EDEN line — a collection of four-bedroom townhomes delivered to the GREY standard.</p>
               <div class="flex items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-champagne px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/eden-i-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
@@ -453,14 +453,14 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-ii-cover.jpg" alt="EDEN II brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-champagne backdrop-blur-sm">Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">EDEN II</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development continuing the EDEN line — refined living, built to the GREY standard.</p>
               <div class="flex items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-champagne px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/eden-ii-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
@@ -470,14 +470,14 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/grey-oasis-cover.jpg" alt="Grey Oasis — luxury townhouses, Kaduna" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-champagne backdrop-blur-sm">Coming Soon</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Grey Oasis</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Kaduna, Nigeria</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of luxury townhouses in Kaduna — exclusive living, timeless value.</p>
               <div class="flex items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-champagne px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/grey-oasis-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
@@ -487,14 +487,14 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/grey-altura-cover.jpg" alt="Grey Altura brochure cover — Mabushi, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-champagne backdrop-blur-sm">Now Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Grey Altura</h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Mabushi, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development in the heart of Mabushi — elevated living, built to the GREY standard.</p>
               <div class="flex items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-champagne px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
+                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
                 <a href="assets/brochures/grey-altura-brochure.pdf" target="_blank" rel="noopener" class="text-sm text-stone hover:text-champagne t-micro">View Brochure &rarr;</a>
               </div>
             </div>
@@ -545,7 +545,7 @@
           </div>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-10">
-            <a href="#contact" class="reveal inline-flex justify-center items-center gap-2 rounded-none bg-champagne px-7 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer" data-delay="3">Work with us</a>
+            <a href="#contact" class="reveal inline-flex justify-center items-center gap-2 rounded-none bg-gold px-7 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer" data-delay="3">Work with us</a>
           </div>
         </div>
       </div>
@@ -657,7 +657,7 @@
               <textarea id="message" name="message" rows="4" required class="w-full rounded-none bg-white/5 border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro resize-y" placeholder="Tell us a little about what you'd like to build or invest in..."></textarea>
             </div>
             <p id="formError" class="hidden mt-4 text-sm text-red-400" role="alert"></p>
-            <button type="submit" class="mt-6 inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-none bg-champagne px-8 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
+            <button type="submit" class="mt-6 inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-none bg-gold px-8 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">
               Send Request
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.126A59.768 59.768 0 0 1 21.485 12 59.77 59.77 0 0 1 3.27 20.876L5.999 12Zm0 0h7.5"/></svg>
             </button>
@@ -671,7 +671,7 @@
     <section class="relative bg-ink border-y border-line">
       <div class="mx-auto max-w-7xl px-5 sm:px-8 py-14 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
         <h3 class="reveal display text-2xl sm:text-4xl text-porcelain">Not Just Built. <span class="gradword">But Crafted.</span></h3>
-        <a href="tel:+2348078963703" class="reveal inline-flex items-center gap-2 rounded-none bg-champagne px-7 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer" data-delay="1">Call 0807 896 3703</a>
+        <a href="tel:+2348078963703" class="reveal inline-flex items-center gap-2 rounded-none bg-gold px-7 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer" data-delay="1">Call 0807 896 3703</a>
       </div>
     </section>
 
