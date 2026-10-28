@@ -233,6 +233,14 @@
     .t-std { transition: all 240ms cubic-bezier(.4,0,.2,1); }
     .t-micro { transition: all 160ms cubic-bezier(.4,0,.2,1); }
 
+    /* Header compacts as the page scrolls (keeps nav + Enquire reachable, less visual weight) */
+    .navbar-inner { transition: height .3s cubic-bezier(.4,0,.2,1); }
+    #siteHeader.scrolled .navbar-inner { height: 3.75rem; }
+    .nav-logo { transition: height .25s ease; }
+    #siteHeader.scrolled .nav-logo { height: 1.25rem; }
+    .nav-desc { max-height: 1rem; overflow: hidden; transition: opacity .2s ease, max-height .3s ease, margin-top .3s ease; }
+    #siteHeader.scrolled .nav-desc { opacity: 0; max-height: 0; margin-top: 0; }
+
     .zoomable img { transition: transform 600ms cubic-bezier(0.4,0,0.2,1); }
     .zoomable:hover img { transform: scale(1.02); }
 
@@ -284,12 +292,12 @@
   <!-- ============ HEADER ============ -->
   <header id="siteHeader" class="fixed top-0 inset-x-0 z-50 t-std">
     <nav class="mx-auto max-w-7xl px-5 sm:px-8">
-      <div class="flex items-center justify-between h-20">
+      <div class="navbar-inner flex items-center justify-between h-20">
         <!-- TODO: real logo — replace with <img src="assets/logo.svg" ...> if you export a vector.
              (The full logo appears in the hero image below.) -->
         <a href="#home" class="flex flex-col items-start leading-none" aria-label="GREY Development Limited — home">
-          <img src="assets/grey-wordmark-white.png" alt="GREY" width="1100" height="224" class="h-6 sm:h-7 w-auto" />
-          <span class="eyebrow text-[9px] sm:text-[10px] text-champagne mt-1.5 tracking-[0.26em]">Development Limited</span>
+          <img src="assets/grey-wordmark-white.png" alt="GREY" width="1100" height="224" class="nav-logo h-6 sm:h-7 w-auto" />
+          <span class="nav-desc eyebrow text-[9px] sm:text-[10px] text-champagne mt-1.5 tracking-[0.26em]">Development Limited</span>
         </a>
 
         <ul class="hidden lg:flex items-center gap-8 text-[13px] uppercase tracking-[0.16em] font-medium text-stone">
@@ -326,7 +334,7 @@
       <h1 class="sr-only">GREY Development Limited — featured development: The Eden II, a gated community of four-bedroom terrace residences and serviced apartments in Katampe, Abuja.</h1>
 
       <!-- Featured development: The Eden II render -->
-      <img src="assets/projects/eden-ii-hero.jpg" alt="The Eden II — gated terrace residences and serviced apartments, Katampe, Abuja" class="hero-in--img absolute inset-0 w-full h-full object-cover object-center" />
+      <img src="assets/projects/eden-ii-hero.jpg" alt="The Eden II — gated terrace residences and serviced apartments, Katampe, Abuja" fetchpriority="high" decoding="async" class="hero-in--img absolute inset-0 w-full h-full object-cover object-center" />
       <div class="absolute inset-0 bg-gradient-to-t from-black/88 via-black/45 to-black/40"></div>
       <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/55 to-transparent"></div>
 
@@ -871,7 +879,11 @@
           <h3 id="brochureTitle" class="display text-lg text-porcelain truncate">&mdash;</h3>
         </div>
         <div class="flex items-center gap-2 shrink-0">
-          <a id="brochureDownload" href="#" download class="hidden sm:inline-flex items-center gap-2 rounded-none bg-gold px-4 py-2 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze">
+          <button id="brochureEnquire" type="button" class="hidden sm:inline-flex items-center gap-2 rounded-none bg-gold px-4 py-2 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze">
+            Enquire
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+          </button>
+          <a id="brochureDownload" href="#" download class="hidden sm:inline-flex items-center gap-2 rounded-none border border-gold/50 px-4 py-2 text-sm font-semibold text-champagne t-micro hover:bg-gold hover:text-[#171512]">
             Download
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
           </a>
@@ -889,8 +901,9 @@
           <a id="brochureOpen" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-none bg-gold px-6 py-3 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze">Open full brochure &rarr;</a>
         </div>
       </div>
-      <div class="sm:hidden px-5 py-3 border-t border-line shrink-0">
-        <a id="brochureDownloadM" href="#" download class="inline-flex w-full justify-center items-center gap-2 rounded-none bg-gold px-4 py-3 text-sm font-semibold text-[#171512]">Download brochure</a>
+      <div class="sm:hidden px-5 py-3 border-t border-line shrink-0 grid grid-cols-2 gap-2">
+        <button id="brochureEnquireM" type="button" class="inline-flex justify-center items-center gap-2 rounded-none bg-gold px-4 py-3 text-sm font-semibold text-[#171512]">Enquire</button>
+        <a id="brochureDownloadM" href="#" download class="inline-flex justify-center items-center gap-2 rounded-none border border-gold/50 px-4 py-3 text-sm font-semibold text-champagne">Download</a>
       </div>
     </div>
   </div>
@@ -1079,8 +1092,10 @@
       const dlM = document.getElementById('brochureDownloadM');
       const closeBtn = modal.querySelector('button[data-close]');
       let lastFocus = null;
+      let currentTitle = '';
       const open = (href, title, coverSrc) => {
         lastFocus = document.activeElement;
+        currentTitle = title || '';
         titleEl.textContent = title || 'Brochure';
         dl.href = href; dlM.href = href; openLink.href = href;
         // Inline PDF embedding is reliable on wide screens only; mobiles get a clean fallback.
@@ -1113,6 +1128,26 @@
       }));
       modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+
+      // Enquire from inside the modal — keep the user in the conversion flow, pre-select the development.
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const enquireFromModal = () => {
+        const title = currentTitle;
+        close();
+        const sel = document.getElementById('service');
+        if (sel && title) {
+          for (const opt of sel.options) { if (opt.value === title || opt.textContent === title) { sel.value = opt.value; break; } }
+        }
+        setTimeout(() => {
+          const c = document.getElementById('contact');
+          if (c) c.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
+          setTimeout(() => { const n = document.getElementById('name'); if (n) n.focus({ preventScroll: true }); }, prefersReduced ? 0 : 650);
+        }, 260);
+      };
+      ['brochureEnquire', 'brochureEnquireM'].forEach(id => {
+        const b = document.getElementById(id);
+        if (b) b.addEventListener('click', enquireFromModal);
+      });
     })();
 
     // ---------- Floating quick-contact widget (FAB) ----------
