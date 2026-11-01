@@ -14,7 +14,7 @@
   <meta name="twitter:title" content="GREY Development Limited — Not Just Built. But Crafted." />
   <meta name="twitter:description" content="Realty · Construction · Investment. Architecturally serious developments in Abuja, Nigeria." />
   <meta name="twitter:image" content="assets/GREY_Instagram_1080x1080.png" />
-  <meta name="theme-color" content="#F8F5F0" />
+  <meta name="theme-color" content="#F4F2EC" />
   <link rel="canonical" href="https://greydevelopmentng.com/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%230E0E10'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Archivo,Arial,sans-serif'%20font-size='21'%20font-weight='800'%20fill='%23C7A347'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
 
@@ -96,16 +96,16 @@
             /* Issue 3.3 §03 — Void Eclipse / Off White / two golds. No greys, no new colours. */
             void:      '#0B0B0B',  /* Void Eclipse — dark bands, header, footer */
             offwhite:  '#F8F5F0',  /* Off White — page ground */
-            ink:       '#F8F5F0',  /* page ground (Off White) */
-            ink2:      '#F8F5F0',  /* rhythm comes from hairlines + Void bands, not grey fills */
-            panel:     '#F8F5F0',  /* cards: Off White + 1px hairline, never a fill */
-            line:      '#D6D4D1',  /* Void 14% hairline */
+            ink:       '#F4F2EC',  /* page ground — warm cream (light theme) */
+            ink2:      '#ECEAE1',  /* alternating sections, a shade deeper */
+            panel:     '#FAF9F5',  /* cards — warm near-white, never pure #FFF */
+            line:      '#DCD9CF',  /* warm hairline */
             porcelain: '#0B0B0B',  /* headings on light ground */
             body:      '#4D4C4B',  /* Void 72% — running text */
             muted:     '#605F5D',  /* Void 64% — caption/label floor (5.9:1) */
             slate:     '#605F5D',
             stone:     '#605F5D',
-            mist:      '#D6D4D1',
+            mist:      '#DFDDD6',
             gold:      '#DAA520',  /* Metallic — rules, lozenge, one highlight. Never fills a button. */
             goldsoft:  '#E6C687',  /* Soft — small gold labels & hover, on Void only */
             satin:     '#E6C687',
@@ -134,10 +134,13 @@
     :root {
       color-scheme: light;
       --void:#0B0B0B; --offwhite:#F8F5F0; --gold:#DAA520; --gold-soft:#E6C687;
-      --void-72:#4D4C4B; --void-64:#605F5D; --void-40:#9A9997; --void-14:#D6D4D1;
+      --void-72:#4D4C4B; --void-64:#605F5D; --void-40:#9A9997; --void-14:#DCD9CF;
+      /* Light theme grounds — warm cream (not pure white). --offwhite stays the bright
+         light used for type and button fills on the Void bands. */
+      --ground:#F4F2EC; --ground-2:#ECEAE1; --panel-bg:#FAF9F5;
       --ow-80:#C8C6C2;  --ow-64:#A2A09D;  --ow-14:rgba(248,245,240,.14);
     }
-    html, body { background-color: var(--offwhite); }
+    html, body { background-color: var(--ground); }
     /* Body — Glacial 16/27 +0.01em */
     body { font-family:'Jost','Glacial Indifference',ui-sans-serif,system-ui,sans-serif;
            color: var(--void-72); -webkit-font-smoothing: antialiased;
@@ -146,8 +149,8 @@
     ::selection { background: var(--gold); color: var(--void); }
 
     ::-webkit-scrollbar { width:10px; }
-    ::-webkit-scrollbar-track { background: var(--offwhite); }
-    ::-webkit-scrollbar-thumb { background: var(--void-14); border-radius:0; border:2px solid var(--offwhite); }
+    ::-webkit-scrollbar-track { background: var(--ground); }
+    ::-webkit-scrollbar-thumb { background: var(--void-14); border-radius:0; border:2px solid var(--ground); }
     ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
     /* Focus — 2px ring: Void on Off White, gold on Void (§10) */
@@ -234,7 +237,7 @@
 
     /* Panels — 1px hairline only, no fills or shadows */
     .glass { background: transparent; border:1px solid var(--void-14); }
-    .glass-strong { background: var(--offwhite); border:1px solid var(--void-14); }
+    .glass-strong { background: var(--panel-bg); border:1px solid var(--void-14); }
     .on-void .glass, .on-void .glass-strong { background: transparent; border-color: var(--ow-14); }
     .rule-gold { height:1px; background: var(--gold); }
 
@@ -330,7 +333,7 @@
     .modal-backdrop { position:absolute; inset:0; background: rgba(11,11,11,.82); opacity:0; transition: opacity .24s ease; }
     .modal-root.open .modal-backdrop { opacity:1; }
     .modal-panel { position:absolute; inset:0; margin:auto; width:min(1000px, calc(100vw - 2rem));
-      height:min(88vh, calc(100vh - 2rem)); background: var(--offwhite); border:1px solid var(--void-14);
+      height:min(88vh, calc(100vh - 2rem)); background: var(--panel-bg); border:1px solid var(--void-14);
       display:flex; flex-direction:column; opacity:0; transform: translateY(8px);
       transition: opacity .28s ease, transform .28s cubic-bezier(.4,0,.2,1); }
     .modal-root.open .modal-panel { opacity:1; transform:none; }
@@ -341,14 +344,14 @@
     #fabMenu { display:flex; flex-direction:column; align-items:flex-end; gap:.55rem; opacity:0; transform: translateY(8px);
       pointer-events:none; transition: opacity .2s ease, transform .2s cubic-bezier(.4,0,.2,1); }
     #fab.open #fabMenu { opacity:1; transform:none; pointer-events:auto; }
-    .fab-item { display:inline-flex; align-items:center; gap:.6rem; padding:.62rem .9rem; background: var(--offwhite);
+    .fab-item { display:inline-flex; align-items:center; gap:.6rem; padding:.62rem .9rem; background: var(--panel-bg);
       border:1px solid var(--void-14); color: var(--void); font-size:.82rem; letter-spacing:.02em; white-space:nowrap;
       cursor:pointer; transition: border-color .16s ease, color .16s ease; }
     .fab-item:hover { border-color: var(--gold); }
     #fabToggle { width:3.25rem; height:3.25rem; display:grid; place-items:center; background: var(--void);
       color: var(--offwhite); cursor:pointer; border:1px solid var(--void); transition: opacity .16s ease; }
     #fabToggle:hover { opacity:.88; }
-    #fab.open #fabToggle { background: var(--offwhite); color: var(--void); border-color: var(--void-14); }
+    #fab.open #fabToggle { background: var(--panel-bg); color: var(--void); border-color: var(--void-14); }
     #fab.fab-hidden { opacity:0; pointer-events:none; transform: translateY(14px); transition: opacity .3s ease, transform .3s ease; }
 
     .spinner { width:1rem; height:1rem; border:2px solid rgba(248,245,240,.35); border-top-color: var(--offwhite);
@@ -1110,6 +1113,12 @@
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+    // Re-sync after the browser applies a deep-link jump or restores scroll on
+    // refresh/bfcache — otherwise the bar can stay transparent over a light
+    // section with the light nav type on it.
+    window.addEventListener('load', onScroll);
+    window.addEventListener('pageshow', onScroll);
+    window.addEventListener('hashchange', onScroll);
 
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
