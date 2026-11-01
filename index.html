@@ -73,12 +73,12 @@
        NOTE: project card images are artist's impressions; real renders live in each brochure PDF.
   -->
 
-  <!-- Type system (Issue 3.3 §04): Anton (headlines, always uppercase) + Glacial Indifference
-       (text/labels/UI). Glacial Indifference is not on Google Fonts and the manual says self-host it;
-       Jost is loaded as the visually compatible substitute until the licensed files are dropped in. -->
+  <!-- Type: Archivo (display/headlines, light weights) + Inter (text, labels, UI).
+       NOTE: this is a deliberate deviation from Issue 3.3 §04, which specifies Anton +
+       Glacial Indifference. Anton read too heavy; these are the "cleaner" replacements. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&display=swap" rel="stylesheet" />
 
   <!-- Preload the LCP hero render so it starts downloading before CSS/JS parse -->
   <link rel="preload" as="image" href="assets/projects/eden-ii-hero.jpg" fetchpriority="high" />
@@ -113,10 +113,10 @@
             champagne: '#605F5D',  /* legacy alias: gold text is banned on Off White */
           },
           fontFamily: {
-            sans: ['Jost', '"Glacial Indifference"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-            display: ['Anton', 'Impact', 'sans-serif'],
-            mono: ['Jost', '"Glacial Indifference"', 'ui-sans-serif', 'sans-serif'],
-            quote: ['Jost', '"Glacial Indifference"', 'ui-sans-serif', 'sans-serif'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Archivo', 'Inter', 'ui-sans-serif', 'sans-serif'],
+            mono: ['Inter', 'ui-sans-serif', 'sans-serif'],
+            quote: ['Inter', 'ui-sans-serif', 'sans-serif'],
           },
         },
       },
@@ -142,9 +142,9 @@
     }
     html, body { background-color: var(--ground); }
     /* Body — Glacial 16/27 +0.01em */
-    body { font-family:'Jost','Glacial Indifference',ui-sans-serif,system-ui,sans-serif;
+    body { font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
            color: var(--void-72); -webkit-font-smoothing: antialiased;
-           font-size:16px; line-height:1.7; letter-spacing:.01em; font-weight:400; }
+           font-size:16px; line-height:1.7; letter-spacing:0; font-weight:400; }
 
     ::selection { background: var(--gold); color: var(--void); }
 
@@ -162,20 +162,20 @@
     #siteHeader a:focus-visible, #siteHeader button:focus-visible { outline-color: var(--gold); }
 
     /* ---- Type (§04) ---- Anton headlines, ALWAYS UPPERCASE. Glacial for all else. */
-    .display { font-family:'Anton',Impact,sans-serif; font-weight:400; text-transform:uppercase;
-               letter-spacing:.02em; line-height:1.05; color: var(--void); }
-    .display--hero { letter-spacing:.01em; line-height:1.0; }
-    .eyebrow { font-weight:500; letter-spacing:.18em; text-transform:uppercase; }
+    .display { font-family:'Archivo','Inter',sans-serif; font-weight:300; text-transform:uppercase;
+               letter-spacing:.015em; line-height:1.12; color: var(--void); }
+    .display--hero { font-weight:300; letter-spacing:.01em; line-height:1.04; }
+    .eyebrow { font-weight:500; letter-spacing:.16em; text-transform:uppercase; }
     .mono { letter-spacing:.04em; font-variant-numeric: tabular-nums; }
     .tnum { font-variant-numeric: tabular-nums; }
     /* Taglines / pull-quotes — Glacial Italic (no serif in this system) */
-    .quote { font-style: italic; font-weight:400; letter-spacing:0; }
+    .quote { font-style: italic; font-weight:300; letter-spacing:-.005em; }
     /* Statement — Glacial 28/38, tracking 0. For sentences too long for Anton's 8-word cap. */
-    .statement { font-weight:400; font-size:clamp(1.25rem,2.2vw,1.75rem); line-height:1.36;
+    .statement { font-weight:300; font-size:clamp(1.25rem,2.2vw,1.75rem); line-height:1.42;
                  letter-spacing:0; color: var(--void); }
     .on-void .statement { color: var(--offwhite); }
     /* H3 — Glacial Bold 14/20 +0.14em. Anton is never used for labels or subheads. */
-    .h3 { font-weight:700; font-size:14px; line-height:1.45; letter-spacing:.14em;
+    .h3 { font-weight:600; font-size:13px; line-height:1.45; letter-spacing:.12em;
           text-transform:uppercase; color: var(--void); }
     .on-void .h3 { color: var(--offwhite); }
     .gradword, .text-bronze-grad { color: inherit; -webkit-text-fill-color: currentColor; }
