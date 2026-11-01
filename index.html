@@ -18,29 +18,112 @@
   <link rel="canonical" href="https://greydevelopmentng.com/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%230E0E10'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Archivo,Arial,sans-serif'%20font-size='21'%20font-weight='800'%20fill='%23C7A347'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
 
-  <!-- Structured data: helps search engines understand GREY as a local business -->
+  <!-- Structured data — only facts stated on the page. No invented prices, units or titles. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    "name": "GREY Development Limited",
-    "description": "Realty, construction and investment company delivering architecturally serious residential and mixed-use developments across Abuja and Kaduna, Nigeria.",
-    "slogan": "Not Just Built. But Crafted.",
-    "url": "https://greydevelopmentng.com/",
-    "telephone": "+234 807 896 3703",
-    "email": "greydevelopment.ng@gmail.com",
-    "image": "assets/GREY_Instagram_1080x1080.png",
-    "logo": "assets/GREY_Instagram_1080x1080.png",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "No. 2 William F. Kumuyi Street, Kado",
-      "addressLocality": "Abuja",
-      "addressCountry": "NG"
-    },
-    "areaServed": ["Abuja", "Kaduna", "Nigeria"],
-    "sameAs": [
-      "https://instagram.com/greydevelopment_ng",
-      "https://x.com/greydevelopment_ng"
+    "@graph": [
+      {
+        "@type": "RealEstateAgent",
+        "@id": "https://greydevelopmentng.com/#org",
+        "name": "GREY Development Limited",
+        "description": "Realty, construction and investment company delivering residential and mixed-use developments across Abuja and Kaduna, Nigeria.",
+        "slogan": "Not Just Built. But Crafted.",
+        "url": "https://greydevelopmentng.com/",
+        "telephone": "+234 807 896 3703",
+        "email": "greydevelopment.ng@gmail.com",
+        "image": "https://greydevelopmentng.com/assets/projects/eden-ii-hero.jpg",
+        "logo": "https://greydevelopmentng.com/assets/grey-wordmark-white.png",
+        "priceRange": "₦₦₦",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "No. 2 William F. Kumuyi Street, Kado",
+          "addressLocality": "Abuja",
+          "addressRegion": "FCT",
+          "addressCountry": "NG"
+        },
+        "areaServed": [
+          { "@type": "Place", "name": "Katampe, Abuja" },
+          { "@type": "Place", "name": "Mabushi, Abuja" },
+          { "@type": "Place", "name": "Abuja, FCT" },
+          { "@type": "Place", "name": "Kaduna" }
+        ],
+        "knowsAbout": ["Real estate development","Construction","Property investment","Project management","Architecture","Facility management"],
+        "sameAs": [
+          "https://instagram.com/greydevelopment_ng",
+          "https://x.com/greydevelopment_ng"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://greydevelopmentng.com/#website",
+        "url": "https://greydevelopmentng.com/",
+        "name": "GREY Development Limited",
+        "publisher": { "@id": "https://greydevelopmentng.com/#org" },
+        "inLanguage": "en-NG"
+      },
+      {
+        "@type": "ItemList",
+        "name": "GREY Developments",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": {
+              "@type": "ApartmentComplex", "name": "The Eden II",
+              "description": "Four-bedroom terrace residences and serviced apartments behind a private gated entrance in Katampe, Abuja.",
+              "url": "https://greydevelopmentng.com/#projects",
+              "image": "https://greydevelopmentng.com/assets/projects/eden-ii-cover.jpg",
+              "numberOfBedrooms": 4,
+              "floorSize": { "@type": "QuantitativeValue", "value": 280, "unitCode": "MTK" },
+              "address": { "@type": "PostalAddress", "addressLocality": "Katampe", "addressRegion": "FCT", "addressCountry": "NG" },
+              "amenityFeature": [
+                { "@type": "LocationFeatureSpecification", "name": "Standby generator", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "CCTV and security", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Central gas system", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Home automation", "value": true },
+                { "@type": "LocationFeatureSpecification", "name": "Fibre-optic internet", "value": true }
+              ],
+              "provider": { "@id": "https://greydevelopmentng.com/#org" } } },
+          { "@type": "ListItem", "position": 2, "item": {
+              "@type": "ApartmentComplex", "name": "Shafa's Residences",
+              "description": "Terrace and flat residences in Katampe, Abuja — five minutes to Maitama, ten to the CBD.",
+              "url": "https://greydevelopmentng.com/#projects",
+              "image": "https://greydevelopmentng.com/assets/projects/shafas-cover.jpg",
+              "numberOfBedrooms": 4,
+              "numberOfAvailableAccommodationUnits": 5,
+              "numberOfAccommodationUnits": 8,
+              "floorSize": { "@type": "QuantitativeValue", "value": 267, "unitCode": "MTK" },
+              "address": { "@type": "PostalAddress", "streetAddress": "Paradise Boulevard, Katampe District", "addressLocality": "Katampe", "addressRegion": "FCT", "addressCountry": "NG" },
+              "offers": { "@type": "Offer", "price": "280000000", "priceCurrency": "NGN", "availability": "https://schema.org/InStock", "url": "https://greydevelopmentng.com/#projects" },
+              "provider": { "@id": "https://greydevelopmentng.com/#org" } } },
+          { "@type": "ListItem", "position": 3, "item": {
+              "@type": "ApartmentComplex", "name": "Amrah's Villas",
+              "description": "Semi-detached duplex residences in Katampe, Abuja — fully serviced with power, water, gas and home automation.",
+              "url": "https://greydevelopmentng.com/#projects",
+              "image": "https://greydevelopmentng.com/assets/projects/amrahs-villas-cover.jpg",
+              "address": { "@type": "PostalAddress", "addressLocality": "Katampe", "addressRegion": "FCT", "addressCountry": "NG" },
+              "provider": { "@id": "https://greydevelopmentng.com/#org" } } },
+          { "@type": "ListItem", "position": 4, "item": {
+              "@type": "ApartmentComplex", "name": "Grey Altura",
+              "description": "A contemporary residential development in Mabushi, Abuja.",
+              "url": "https://greydevelopmentng.com/#projects",
+              "image": "https://greydevelopmentng.com/assets/projects/grey-altura-cover.jpg",
+              "address": { "@type": "PostalAddress", "addressLocality": "Mabushi", "addressRegion": "FCT", "addressCountry": "NG" },
+              "provider": { "@id": "https://greydevelopmentng.com/#org" } } },
+          { "@type": "ListItem", "position": 5, "item": {
+              "@type": "ApartmentComplex", "name": "Grey Oasis",
+              "description": "A collection of townhouses in Kaduna, Nigeria.",
+              "url": "https://greydevelopmentng.com/#projects",
+              "image": "https://greydevelopmentng.com/assets/projects/grey-oasis-cover.jpg",
+              "address": { "@type": "PostalAddress", "addressLocality": "Kaduna", "addressCountry": "NG" },
+              "provider": { "@id": "https://greydevelopmentng.com/#org" } } },
+          { "@type": "ListItem", "position": 6, "item": {
+              "@type": "ApartmentComplex", "name": "Eden I",
+              "description": "The first in the EDEN line — four-bedroom townhomes in Abuja, delivered.",
+              "url": "https://greydevelopmentng.com/#projects",
+              "image": "https://greydevelopmentng.com/assets/projects/eden-i-cover.jpg",
+              "address": { "@type": "PostalAddress", "addressLocality": "Abuja", "addressRegion": "FCT", "addressCountry": "NG" },
+              "provider": { "@id": "https://greydevelopmentng.com/#org" } } }
+        ]
+      }
     ]
   }
   </script>
@@ -314,6 +397,31 @@
     .on-void .pstep::before { background:var(--ow-14); }
     .on-void .pstep-icon, .on-void .pstep-node { color:var(--ow-64); background:var(--ow-64); }
     @media (prefers-reduced-motion: reduce){ .pstep:hover .pstep-icon { transform:none; } }
+
+    /* ---- Unit explorer: tabs + room schedule ---- */
+    .utab { font-weight:500; font-size:12px; letter-spacing:.1em; text-transform:uppercase; cursor:pointer;
+      color:var(--void-64); border:1px solid var(--void-14); background:transparent; padding:.5rem .9rem;
+      transition:color .16s ease, border-color .16s ease, background-color .16s ease; }
+    .utab:hover { color:var(--void); border-color:var(--void-40); }
+    .utab[aria-selected="true"] { color:var(--offwhite); background:var(--void); border-color:var(--void); }
+    .uspec { display:flex; justify-content:space-between; gap:1rem; padding:.55rem 0; border-bottom:1px solid var(--void-14); }
+    .uspec:last-child { border-bottom:0; }
+    .uspec dt { color:var(--void-72); }
+    .uspec dd { color:var(--void); font-variant-numeric:tabular-nums; white-space:nowrap; }
+
+    /* ---- Due-diligence accordion ---- */
+    .dd { border-bottom:1px solid var(--void-14); }
+    .dd-head { width:100%; display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      padding:1.15rem 0; background:transparent; border:0; cursor:pointer; text-align:left; }
+    .dd-ico { width:18px; height:18px; color:var(--void-40); flex:none;
+      transition: transform .24s cubic-bezier(.4,0,.2,1), color .24s ease; }
+    .dd-head:hover .dd-ico, .dd-head[aria-expanded="true"] .dd-ico { color:var(--gold); }
+    .dd-head[aria-expanded="true"] .dd-ico { transform: rotate(45deg); }
+    .dd-body { display:grid; grid-template-rows:0fr; transition: grid-template-rows .3s cubic-bezier(.4,0,.2,1); }
+    .dd-body > * { overflow:hidden; min-height:0; }
+    .dd.is-open .dd-body { grid-template-rows:1fr; }
+    .dd.is-open .dd-body > * { padding-bottom:1.35rem; }
+    @media (prefers-reduced-motion: reduce){ .dd-body { transition:none; } .dd-ico { transition:none; } }
 
     /* Portfolio filter chips */
     .filter-chip { font-weight:500; letter-spacing:.14em; text-transform:uppercase; cursor:pointer;
@@ -592,7 +700,8 @@
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
-                <a href="assets/brochures/shafas-residences-brochure.pdf" rel="noopener" data-title="Shafa's Residences" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
+                <button type="button" class="unit-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm" data-unit="Shafa's Residences">Units &amp; plans</button>
+                <a href="assets/brochures/shafas-residences-brochure.pdf" rel="noopener" data-title="Shafa's Residences" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro">Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -664,7 +773,8 @@
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
-                <a href="assets/brochures/eden-ii-brochure.pdf" rel="noopener" data-title="EDEN II" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
+                <button type="button" class="unit-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm" data-unit="EDEN II">Units &amp; plans</button>
+                <a href="assets/brochures/eden-ii-brochure.pdf" rel="noopener" data-title="EDEN II" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro">Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -874,6 +984,69 @@
           <p class="text-muted text-xs mt-4 max-w-2xl">Stage and target as recorded on each development&rsquo;s programme register and published on the cards above. Targets are programme horizons, not contractual completion dates.</p>
         </div>
 
+        <!-- Due diligence — every item below is sourced from the development brochures -->
+        <div class="reveal mt-16" data-delay="1">
+          <div class="flex flex-wrap items-end justify-between gap-4 mb-5">
+            <h3 class="h3">Due diligence</h3>
+            <p class="mono text-[11px] text-muted tracking-[0.14em]">SOURCE &middot; DEVELOPMENT BROCHURES</p>
+          </div>
+          <div class="border-t border-line" id="ddAccordion">
+
+            <div class="dd">
+              <button type="button" class="dd-head" aria-expanded="false">
+                <span class="h3">Payment structure</span>
+                <svg class="dd-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="square"/></svg>
+              </button>
+              <div class="dd-body">
+                <p class="text-body text-sm leading-relaxed mb-4">An 18-month milestone plan, identical across The Eden II and Shafa&rsquo;s Residences.</p>
+                <dl class="max-w-md">
+                  <div class="uspec text-sm"><dt>Upon subscription</dt><dd>40%</dd></div>
+                  <div class="uspec text-sm"><dt>After 6 months</dt><dd>20%</dd></div>
+                  <div class="uspec text-sm"><dt>After 9 months</dt><dd>20%</dd></div>
+                  <div class="uspec text-sm"><dt>After 18 months</dt><dd>20%</dd></div>
+                  <div class="uspec text-sm"><dt class="text-porcelain font-medium">Total</dt><dd class="font-medium">100%</dd></div>
+                </dl>
+              </div>
+            </div>
+
+            <div class="dd">
+              <button type="button" class="dd-head" aria-expanded="false">
+                <span class="h3">Pricing</span>
+                <svg class="dd-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="square"/></svg>
+              </button>
+              <div class="dd-body">
+                <dl class="max-w-md mb-4">
+                  <div class="uspec text-sm"><dt>Shafa&rsquo;s Residences</dt><dd>From NGN 280,000,000</dd></div>
+                  <div class="uspec text-sm"><dt>The Eden II</dt><dd>On request</dd></div>
+                </dl>
+                <p class="text-body text-sm leading-relaxed">Per-unit-type pricing is released on application. Quoted prices exclude applicable legal fees, agency commission and statutory charges unless stated otherwise.</p>
+              </div>
+            </div>
+
+            <div class="dd">
+              <button type="button" class="dd-head" aria-expanded="false">
+                <span class="h3">Title &amp; documentation</span>
+                <svg class="dd-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="square"/></svg>
+              </button>
+              <div class="dd-body">
+                <p class="text-body text-sm leading-relaxed">Title and documentation are made available for review on inspection &mdash; arrange a site visit with a sales advisor to examine the file before committing. We publish the status rather than a claim: where a document is still in process we say so.</p>
+              </div>
+            </div>
+
+            <div class="dd">
+              <button type="button" class="dd-head" aria-expanded="false">
+                <span class="h3">Availability &amp; handover</span>
+                <svg class="dd-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="square"/></svg>
+              </button>
+              <div class="dd-body">
+                <p class="text-body text-sm leading-relaxed mb-4">Shafa&rsquo;s Residences: 8 units total across both typologies, 5 currently available. Programme stage and target horizon for every development are published in the table above.</p>
+                <p class="text-muted text-xs">Targets are programme horizons, not contractual completion dates. Confirmed handover dates are issued in writing at subscription.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
         <div class="reveal mt-10" data-delay="2">
           <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-7 py-3.5">
             Request the investment memorandum
@@ -1040,6 +1213,32 @@
       </div>
     </div>
   </footer>
+
+  <!-- ============ UNIT / FLOOR PLAN EXPLORER ============ -->
+  <div id="unitModal" class="modal-root" role="dialog" aria-modal="true" aria-labelledby="unitTitle" aria-hidden="true">
+    <div class="modal-backdrop" data-uclose></div>
+    <div class="modal-panel">
+      <div class="flex items-center justify-between gap-4 px-5 sm:px-6 py-4 border-b border-line shrink-0">
+        <div class="min-w-0">
+          <p class="eyebrow text-[10px] text-muted">Units &amp; Floor Plans</p>
+          <h3 id="unitTitle" class="display text-lg truncate">&mdash;</h3>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="unitEnquire" href="#contact" class="hidden sm:inline-flex btn btn-primary items-center gap-2 px-4 py-2 text-sm">Enquire</a>
+          <button type="button" data-uclose class="w-10 h-10 grid place-items-center rounded-none glass text-porcelain hover:border-gold t-micro" aria-label="Close unit explorer">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="px-5 sm:px-6 pt-4 shrink-0 border-b border-line">
+        <div id="unitTabs" class="flex flex-wrap gap-2 pb-4" role="tablist" aria-label="Unit configurations"></div>
+      </div>
+      <div id="unitBody" class="flex-1 overflow-y-auto px-5 sm:px-6 py-6"></div>
+      <div class="sm:hidden px-5 py-3 border-t border-line shrink-0">
+        <a href="#contact" data-uclose class="btn btn-primary inline-flex w-full justify-center items-center px-4 py-3 text-sm">Enquire about this unit</a>
+      </div>
+    </div>
+  </div>
 
   <!-- ============ BROCHURE PREVIEW MODAL ============ -->
   <div id="brochureModal" class="modal-root" role="dialog" aria-modal="true" aria-labelledby="brochureTitle" aria-hidden="true">
@@ -1281,6 +1480,136 @@
       rows.innerHTML = html;
     })();
 
+    // ---------- Due-diligence accordion ----------
+    (() => {
+      document.querySelectorAll('#ddAccordion .dd').forEach(item => {
+        const head = item.querySelector('.dd-head');
+        const body = item.querySelector('.dd-body');
+        if (!head || !body) return;
+        const inner = document.createElement('div');
+        while (body.firstChild) inner.appendChild(body.firstChild);
+        body.appendChild(inner);
+        head.addEventListener('click', () => {
+          const open = item.classList.toggle('is-open');
+          head.setAttribute('aria-expanded', String(open));
+        });
+      });
+    })();
+
+    // ---------- Unit & floor-plan explorer ----------
+    // Specs transcribed from the development brochures in /assets/brochures.
+    // Eden II room areas are the published sheet schedules (A-01..A-04);
+    // Shafa's areas are the brochure's own summed room-schedule figures.
+    const UNIT_DATA = {
+      "EDEN II": {
+        brochure: 'assets/brochures/eden-ii-brochure.pdf',
+        meta: 'Katampe District, Abuja — Iduriaseobo Igba Ave',
+        price: 'Price available on request',
+        features: ['Standby generator','CCTV & security','Central gas system','Home automation','Intercom','Fibre-optic internet'],
+        types: [
+          { name: '4-Bed Terrace', size: '280 m² total developed area',
+            summary: 'Four-bedroom en-suite terrace over three floors, with a self-contained boy’s quarters, two living areas and a gym.',
+            highlights: ['4 bedrooms, all en-suite','2 living areas + mini lounge','Self-contained boy’s quarters','Gym and green relaxation space'],
+            floors: [
+              { name: 'Ground Floor', sheet: 'A-01', rooms: [['Living & Dining','42 m²'],['Kitchen','14 m²'],['Boy’s Quarters','7 m²'],['Visitor’s Toilet','3 m²'],['Bath / WC','2 m²'],['Store','2 m²']] },
+              { name: 'First Floor', sheet: 'A-02', rooms: [['Mini Lounge','32 m²'],['Bedroom','19 m²'],['Bedroom','16 m²'],['Bath / WC','9 m²'],['Closet','8 m²'],['Bath / WC','6 m²'],['Balcony','4 m²']] },
+              { name: 'Second Floor', sheet: 'A-03', rooms: [['Master’s Suite','30 m²'],['Bedroom','21 m²'],['Closet','11 m²'],['Bath / WC','8 m²'],['Balcony','4 m²'],['Safe','1 m²']] }
+            ] },
+          { name: 'Serviced Apartment', size: 'Block of flats',
+            summary: 'A dedicated block of serviced flats within the estate, sharing the same amenities, security and management.',
+            highlights: ['Own living & dining, kitchen and balcony','Shared lobby and stair-hall access','Limited number available'],
+            floors: [ { name: 'Per flat', sheet: 'A-04', rooms: [['Living & Dining','47–65 m²'],['Bedrooms','17–26 m²'],['Kitchen','12 m²'],['Shared Stairhall','20 m²']] } ] }
+        ]
+      },
+      "Shafa's Residences": {
+        brochure: 'assets/brochures/shafas-residences-brochure.pdf',
+        meta: 'Paradise Boulevard, Katampe District — 5 min Maitama, 10 min CBD',
+        price: 'From NGN 280,000,000',
+        availability: '8 units total across both typologies — 5 currently available.',
+        features: ['Standby generator','CCTV surveillance & security','Central gas system','Home automation','Intercom','Fibre-optic connectivity'],
+        types: [
+          { name: '4-Bed Terrace', size: '≈267 m² / ≈2,874 sq ft',
+            summary: 'Four bedrooms plus BQ and ante room, arranged over ground, first and second floors.',
+            highlights: ['All 4 bedrooms en-suite','Private balconies','Stairhall lounge on each upper floor','Boys’ Quarters & visitor’s toilet'], floors: [] },
+          { name: '3-Bed Flat', size: '≈169 m² / ≈1,819 sq ft',
+            summary: 'Three-bedroom single-level flat with a separate visitor’s toilet off the entrance lobby.',
+            highlights: ['All 3 bedrooms en-suite','42 m² living & dining area','Separate store room','Entrance lobby & visitor’s toilet'], floors: [] }
+        ]
+      }
+    };
+
+    (() => {
+      const modal = document.getElementById('unitModal');
+      if (!modal) return;
+      const titleEl = document.getElementById('unitTitle');
+      const tabsEl = document.getElementById('unitTabs');
+      const bodyEl = document.getElementById('unitBody');
+      const closeBtn = modal.querySelector('button[data-uclose]');
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let current = null, lastFocus = null;
+
+      const esc = (t) => String(t).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+      const render = (key, idx) => {
+        const d = UNIT_DATA[key], t = d.types[idx];
+        tabsEl.innerHTML = d.types.map((u, i) =>
+          `<button type="button" role="tab" class="utab rounded-none" aria-selected="${i === idx}" data-idx="${i}">${esc(u.name)}</button>`).join('');
+        let h = `<p class="mono text-[11px] text-muted tracking-[0.14em] mb-5">${esc(d.meta)}</p>`;
+        h += `<div class="grid md:grid-cols-2 gap-8">`;
+        h += `<div><h4 class="display text-xl mb-2">${esc(t.name)}</h4>`;
+        h += `<p class="mono text-sm text-porcelain mb-4">${esc(t.size)}</p>`;
+        h += `<p class="text-body text-sm leading-relaxed mb-5">${esc(t.summary)}</p>`;
+        h += `<ul class="space-y-2 mb-6">` + t.highlights.map(x =>
+          `<li class="flex gap-3 text-sm text-body"><span class="mt-[9px] w-3 h-px bg-gold shrink-0"></span>${esc(x)}</li>`).join('') + `</ul>`;
+        h += `<p class="eyebrow text-[10px] text-muted mb-2">Estate features</p>`;
+        h += `<p class="text-body text-sm leading-relaxed">${d.features.map(esc).join(' · ')}</p>`;
+        if (d.availability) h += `<p class="text-muted text-xs mt-4">${esc(d.availability)}</p>`;
+        h += `</div><div>`;
+        if (t.floors.length) {
+          h += `<p class="eyebrow text-[10px] text-muted mb-3">Room schedule</p>`;
+          t.floors.forEach(f => {
+            h += `<div class="mb-6"><div class="flex items-baseline justify-between mb-2 border-b border-line pb-2">
+                   <span class="h3">${esc(f.name)}</span>
+                   <span class="mono text-[10px] text-muted tracking-[0.14em]">SHEET ${esc(f.sheet)}</span></div><dl>`;
+            f.rooms.forEach(r => { h += `<div class="uspec text-sm"><dt>${esc(r[0])}</dt><dd>${esc(r[1])}</dd></div>`; });
+            h += `</dl></div>`;
+          });
+        } else {
+          h += `<p class="eyebrow text-[10px] text-muted mb-3">Floor plans</p>
+                <p class="text-body text-sm leading-relaxed">Dimensioned floor plans for this unit type are published in the brochure.</p>`;
+        }
+        h += `<p class="text-muted text-xs mt-2">${esc(d.price)}. Areas are from the brochure room schedule; final built-up area is slightly higher once wall thickness and circulation are included.</p>`;
+        h += `<a href="${esc(d.brochure)}" rel="noopener" data-title="${esc(key)}" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm mt-5">View full brochure &rarr;</a>`;
+        h += `</div></div>`;
+        bodyEl.innerHTML = h;
+        bodyEl.scrollTop = 0;
+      };
+
+      const open = (key) => {
+        if (!UNIT_DATA[key]) return;
+        lastFocus = document.activeElement; current = key;
+        titleEl.textContent = key;
+        render(key, 0);
+        modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (closeBtn) closeBtn.focus();
+      };
+      const close = () => {
+        modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (lastFocus) lastFocus.focus();
+      };
+      tabsEl.addEventListener('click', e => {
+        const b = e.target.closest('.utab'); if (!b || !current) return;
+        render(current, +b.dataset.idx);
+      });
+      document.querySelectorAll('.unit-trigger').forEach(a => a.addEventListener('click', e => {
+        e.preventDefault(); open(a.dataset.unit);
+      }));
+      modal.querySelectorAll('[data-uclose]').forEach(el => el.addEventListener('click', close));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
+    })();
+
     // ---------- Brochure preview modal ----------
     (() => {
       const modal = document.getElementById('brochureModal');
@@ -1322,12 +1651,16 @@
         setTimeout(() => { frame.src = 'about:blank'; }, 220);
         if (lastFocus) lastFocus.focus();
       };
-      document.querySelectorAll('.brochure-trigger').forEach(a => a.addEventListener('click', (e) => {
+      // Delegated: the unit explorer renders its own .brochure-trigger after load.
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('.brochure-trigger');
+        if (!a) return;
         e.preventDefault();
         const card = a.closest('article');
         const img = card ? card.querySelector('img') : null;
-        open(a.getAttribute('href'), a.dataset.title, img ? img.getAttribute('src') : '');
-      }));
+        const fallbackCover = (document.querySelector('#projectGrid article img') || {}).src || '';
+        open(a.getAttribute('href'), a.dataset.title, img ? img.getAttribute('src') : fallbackCover);
+      });
       modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', close));
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
 
