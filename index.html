@@ -14,7 +14,7 @@
   <meta name="twitter:title" content="GREY Development Limited — Not Just Built. But Crafted." />
   <meta name="twitter:description" content="Realty · Construction · Investment. Architecturally serious developments in Abuja, Nigeria." />
   <meta name="twitter:image" content="assets/GREY_Instagram_1080x1080.png" />
-  <meta name="theme-color" content="#0E0E10" />
+  <meta name="theme-color" content="#F8F5F0" />
   <link rel="canonical" href="https://greydevelopmentng.com/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%230E0E10'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Archivo,Arial,sans-serif'%20font-size='21'%20font-weight='800'%20fill='%23C7A347'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
 
@@ -48,29 +48,37 @@
   <!--
        GREY DEVELOPMENT LIMITED — single-file marketing site
        Stack: static HTML + Tailwind (Play CDN)
-       Brand system — GREY Brand Identity Guidelines, Vol. One (2026):
-         §05 Colour (ground is Matte Black; proportion 72/16/7/5, gold never > 5%)
-                  Matte Black #0E0E10 (ground) · Graphite #1C1D21 (panels/cards)
-                  Bone #EDEDEA (headings/light text) · Ink #2A2B2F (long-form on reversed)
-                  Steel #8A8B90 (captions) · Slate #3A3B40 (rules on dark)
-                  Luxury/Signal Gold #C7A347 (accent — rules, eyebrows, one point of emphasis)
-                  Champagne #E4CE9A (gold at small sizes) · Bronze #806534 (pressed)
-         §06 Type  Archivo (primary grotesque; Display 300 / H1-H2 400 / H3 500)
-                  Cormorant Garamond ITALIC — pull-quotes only. No third face.
-         §13 Web   Radius 0 · 12-col/1440/80px margin · body 17/1.65, measure 620px
-                  Motion 160/240/400ms cubic-bezier(.4,0,.2,1); permitted: opacity, 8px
-                  translate, border colour. Prohibited: bounce, rotate, parallax, scale>1.02.
-                  Nav 5 max, Archivo Medium 13px +0.16em; active = 1px gold underline offset 6px;
-                  bar → Matte Black 92% + blur after 80px.
-         Voice    "Not Just Built. But Crafted." — avoid: luxury, world-class, dream home.
+       Brand system — GREY Brand Identity Guidelines, Volume One, ISSUE THREE (3.3), 2026:
+         §03 Colour  Void Eclipse #0B0B0B · Off White #F8F5F0 · Metallic Gold #DAA520 · Soft Gold #E6C687
+                     Proportion 70% Void / 25% Off White / 5% max BOTH golds combined.
+                     Tints are Void or Off White at 72/56/40/14% — never new colours.
+                     No grey fills, gradients or shadows. Never pure #000000 or #FFFFFF.
+                     Gold is rules/labels only — on Off White it is RULES ONLY (2.1 fails as text).
+         §04 Type    Anton — headlines & figures, ALWAYS UPPERCASE, 8 words max, never body/labels.
+                     Glacial Indifference — text, labels, interface (self-host per manual).
+                     NOTE: Glacial Indifference is not on Google Fonts and the licensed files are not
+                     in /assets yet, so Jost is loaded as the visually compatible substitute. Drop the
+                     woff2 files in and add an @font-face to switch — the stack already prefers it.
+         §10 Digital Radius 0 · 12 col / 1440 max / 24px gutter · spacing 8/16/24/40/64/104
+                     Shadow: none — 1px hairline only. Motion 160/240/400ms, fade + 8px slide.
+                     Focus 2px ring: gold on Void, Void on Off White.
+                     BUTTONS ARE SQUARE AND GOLD NEVER FILLS A BUTTON.
+         §07 Voice   Lead with the fact. Avoid: bespoke, iconic, world-class, dream home, nestled.
+                     Approved taglines: "Precision, Built." / "The Standard, Delivered." /
+                     "Built to Be Inherited."  (the legacy line is still in the CTA strip + meta)
+
+       Ground: Off White is the page ground; Void is used for the header, the pull-quote band
+       and the footer, per the manual's Void/Off White alternation.
 
        NOTE: project card images are artist's impressions; real renders live in each brochure PDF.
   -->
 
-  <!-- Type system (manual §06): Archivo (primary grotesque) + Cormorant Garamond ITALIC (pull-quotes only) -->
+  <!-- Type system (Issue 3.3 §04): Anton (headlines, always uppercase) + Glacial Indifference
+       (text/labels/UI). Glacial Indifference is not on Google Fonts and the manual says self-host it;
+       Jost is loaded as the visually compatible substitute until the licensed files are dropped in. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Jost:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
 
   <!-- Preload the LCP hero render so it starts downloading before CSS/JS parse -->
   <link rel="preload" as="image" href="assets/projects/eden-ii-hero.jpg" fetchpriority="high" />
@@ -85,27 +93,30 @@
       theme: {
         extend: {
           colors: {
-            /* Manual §05 — Matte Black is the ground of the identity */
-            ink:       '#0E0E10',  /* Matte Black — ground */
-            ink2:      '#141418',  /* alt section ground, barely lifted */
-            panel:     '#1C1D21',  /* Graphite — panel & card fills */
-            line:      '#2A2B30',  /* hairline rules on dark ground */
-            porcelain: '#EDEDEA',  /* Bone — headings / primary light text */
-            body:      '#AFAFA8',  /* muted bone — running text on dark */
-            muted:     '#8A8B90',  /* Steel — captions / secondary */
-            slate:     '#8A8B90',  /* Steel */
-            stone:     '#9D9E99',  /* readable muted bone for nav/footer */
-            mist:      '#2A2B30',
-            champagne: '#E4CE9A',  /* gold at small sizes / eyebrows on dark */
-            gold:      '#C7A347',  /* Luxury / Signal Gold — accent, ≤5% */
-            satin:     '#E4CE9A',  /* hover brighten */
-            bronze:    '#806534',  /* Bronze — pressed / depth beneath gold */
+            /* Issue 3.3 §03 — Void Eclipse / Off White / two golds. No greys, no new colours. */
+            void:      '#0B0B0B',  /* Void Eclipse — dark bands, header, footer */
+            offwhite:  '#F8F5F0',  /* Off White — page ground */
+            ink:       '#F8F5F0',  /* page ground (Off White) */
+            ink2:      '#F8F5F0',  /* rhythm comes from hairlines + Void bands, not grey fills */
+            panel:     '#F8F5F0',  /* cards: Off White + 1px hairline, never a fill */
+            line:      '#D6D4D1',  /* Void 14% hairline */
+            porcelain: '#0B0B0B',  /* headings on light ground */
+            body:      '#4D4C4B',  /* Void 72% — running text */
+            muted:     '#605F5D',  /* Void 64% — caption/label floor (5.9:1) */
+            slate:     '#605F5D',
+            stone:     '#605F5D',
+            mist:      '#D6D4D1',
+            gold:      '#DAA520',  /* Metallic — rules, lozenge, one highlight. Never fills a button. */
+            goldsoft:  '#E6C687',  /* Soft — small gold labels & hover, on Void only */
+            satin:     '#E6C687',
+            bronze:    '#DAA520',
+            champagne: '#605F5D',  /* legacy alias: gold text is banned on Off White */
           },
           fontFamily: {
-            sans: ['Archivo', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-            display: ['Archivo', 'ui-sans-serif', 'sans-serif'],
-            mono: ['Archivo', 'ui-sans-serif', 'sans-serif'],
-            quote: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['Jost', '"Glacial Indifference"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            display: ['Anton', 'Impact', 'sans-serif'],
+            mono: ['Jost', '"Glacial Indifference"', 'ui-sans-serif', 'sans-serif'],
+            quote: ['Jost', '"Glacial Indifference"', 'ui-sans-serif', 'sans-serif'],
           },
         },
       },
@@ -113,195 +124,210 @@
   </script>
 
   <style>
-    :root { color-scheme: dark; }
-    html, body { background-color: #0E0E10; }
-    /* Body 17px / 1.65, measure 620px (manual §13) */
-    body { font-family: 'Archivo', ui-sans-serif, system-ui, sans-serif; color: #AFAFA8; -webkit-font-smoothing: antialiased; font-size: 17px; line-height: 1.65; font-weight: 400; }
+    /* ============================================================
+       GREY — Brand Identity Guidelines, Issue 3.3
+       §03 Colour · §04 Type · §10 Digital
+       Grounds: Void Eclipse #0B0B0B / Off White #F8F5F0 only.
+       No grey fills, no gradients, no shadows. Never pure #000 / #FFF.
+       Gold budget 5% max (both golds share it) and GOLD NEVER FILLS A BUTTON.
+       ============================================================ */
+    :root {
+      color-scheme: light;
+      --void:#0B0B0B; --offwhite:#F8F5F0; --gold:#DAA520; --gold-soft:#E6C687;
+      --void-72:#4D4C4B; --void-64:#605F5D; --void-40:#9A9997; --void-14:#D6D4D1;
+      --ow-80:#C8C6C2;  --ow-64:#A2A09D;  --ow-14:rgba(248,245,240,.14);
+    }
+    html, body { background-color: var(--offwhite); }
+    /* Body — Glacial 16/27 +0.01em */
+    body { font-family:'Jost','Glacial Indifference',ui-sans-serif,system-ui,sans-serif;
+           color: var(--void-72); -webkit-font-smoothing: antialiased;
+           font-size:16px; line-height:1.7; letter-spacing:.01em; font-weight:400; }
 
-    ::selection { background: #C7A347; color: #0E0E10; }
+    ::selection { background: var(--gold); color: var(--void); }
 
-    /* Scrollbar */
-    ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: #0E0E10; }
-    ::-webkit-scrollbar-thumb { background: #2A2B30; border-radius: 0; border: 2px solid #0E0E10; }
-    ::-webkit-scrollbar-thumb:hover { background: #C7A347; }
+    ::-webkit-scrollbar { width:10px; }
+    ::-webkit-scrollbar-track { background: var(--offwhite); }
+    ::-webkit-scrollbar-thumb { background: var(--void-14); border-radius:0; border:2px solid var(--offwhite); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-    /* Keyboard focus */
+    /* Focus — 2px ring: Void on Off White, gold on Void (§10) */
     a:focus-visible, button:focus-visible, input:focus-visible,
     select:focus-visible, textarea:focus-visible {
-      outline: 2px solid #C7A347; outline-offset: 2px; border-radius: 0;
+      outline:2px solid var(--void); outline-offset:2px; border-radius:0;
     }
+    .on-void a:focus-visible, .on-void button:focus-visible,
+    #siteHeader a:focus-visible, #siteHeader button:focus-visible { outline-color: var(--gold); }
 
-    /* Type scale (manual §06): Display 300 +0.04em · H1/H2 400 · H3 500 +0.14em.
-       Headings are light-weight and airy — the "engineer in the room", not the loud agent. */
-    .display { font-weight: 400; letter-spacing: 0.012em; line-height: 1.06; color: #EDEDEA; }
-    .display--hero { font-weight: 300; letter-spacing: 0.02em; }
-    .eyebrow { font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; }
-    .mono { font-feature-settings: "tnum" 1; letter-spacing: 0.04em; }
+    /* ---- Type (§04) ---- Anton headlines, ALWAYS UPPERCASE. Glacial for all else. */
+    .display { font-family:'Anton',Impact,sans-serif; font-weight:400; text-transform:uppercase;
+               letter-spacing:.02em; line-height:1.05; color: var(--void); }
+    .display--hero { letter-spacing:.01em; line-height:1.0; }
+    .eyebrow { font-weight:500; letter-spacing:.18em; text-transform:uppercase; }
+    .mono { letter-spacing:.04em; font-variant-numeric: tabular-nums; }
     .tnum { font-variant-numeric: tabular-nums; }
-    /* Pull-quotes only — Cormorant Garamond, italic only (manual §06 secondary face) */
-    .quote { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 500; letter-spacing: 0.005em; }
+    /* Taglines / pull-quotes — Glacial Italic (no serif in this system) */
+    .quote { font-style: italic; font-weight:400; letter-spacing:0; }
+    /* H3 — Glacial Bold 14/20 +0.14em. Anton is never used for labels or subheads. */
+    .h3 { font-weight:700; font-size:14px; line-height:1.45; letter-spacing:.14em;
+          text-transform:uppercase; color: var(--void); }
+    .on-void .h3 { color: var(--offwhite); }
+    .gradword, .text-bronze-grad { color: inherit; -webkit-text-fill-color: currentColor; }
+    .accent-gold { color: var(--gold); }
 
-    /* Accent words in headings stay monochrome Bone — restraint; gold is rationed to rules/eyebrows */
-    .text-champagne-grad { color: inherit; -webkit-text-fill-color: currentColor; }
-    .accent-gold { color: #C7A347; -webkit-text-fill-color: #C7A347; }
-    .gradword { color: inherit; }
+    /* ---- Void bands (header, pull-quote, footer) ---- */
+    .on-void { background: var(--void); }
+    .on-void .display, .on-void .text-porcelain { color: var(--offwhite); }
+    .on-void .text-body { color: var(--ow-80); }
+    .on-void .text-muted, .on-void .text-slate, .on-void .text-stone { color: var(--ow-64); }
+    .on-void .border-line, .on-void .border-t, .on-void .border-b { border-color: var(--ow-14); }
+    .on-void .bg-line, .on-void .h-px { background-color: var(--ow-14); }
+    .text-goldsoft { color: var(--gold-soft); }
+    .on-void .eyebrow { color: var(--gold-soft); }   /* Soft gold label — Void only (12.0:1) */
+    /* Mobile menu sits inside the Void header */
+    #mobileMenu { background: rgba(11,11,11,.97); border-top-color: var(--ow-14); }
+    #mobileMenu a:not(.btn) { color: rgba(248,245,240,.74); }
+    #mobileMenu a:not(.btn):hover { color: var(--offwhite); }
+    #mobileMenu .border-line { border-color: var(--ow-14); }
 
-    /* Active nav link (manual §13): 1px gold underline offset 6px — never a fill */
-    .nav-active { color: #FFFFFF; position: relative; }
-    .nav-active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px; background: #C7A347; }
+    /* ---- Buttons (§10): square, no radius, GOLD NEVER FILLS ---- */
+    .btn { border-radius:0; font-weight:600; letter-spacing:.02em; cursor:pointer;
+           transition: background-color 240ms cubic-bezier(.4,0,.2,1), color 240ms cubic-bezier(.4,0,.2,1),
+                       border-color 240ms cubic-bezier(.4,0,.2,1), opacity 240ms ease; }
+    .btn-primary   { background: var(--void); color: var(--offwhite); border:1px solid var(--void); }
+    .btn-primary:hover  { background: var(--void-72); border-color: var(--void-72); }
+    .btn-primary:active { opacity:.88; }
+    .btn-secondary { background: transparent; color: var(--void); border:1px solid var(--void-40); }
+    .btn-secondary:hover { background: var(--void); color: var(--offwhite); border-color: var(--void); }
+    /* On Void grounds (hero over photography, footer) */
+    .btn-invert    { background: var(--offwhite); color: var(--void); border:1px solid var(--offwhite); }
+    .btn-invert:hover { opacity:.88; }
+    .btn-invert-secondary { background: transparent; color: var(--offwhite); border:1px solid rgba(248,245,240,.45); }
+    .btn-invert-secondary:hover { border-color: var(--gold); color: var(--gold-soft); }
+    .btn[disabled] { opacity:.6; cursor:wait; }
 
-    /* Nav: light text over the matte-black ground; bar goes Matte Black 92% + blur after 80px (manual §13) */
-    #siteHeader .eyebrow { color: #C7A347; }
-    #siteHeader nav ul a { color: rgba(237,237,234,0.72); }
-    #siteHeader nav ul a:hover,
-    #siteHeader nav ul a.nav-active { color: #FFFFFF; }
-    #siteHeader #menuBtn { color: #EDEDEA; border-color: rgba(237,237,234,0.22); }
-    #siteHeader.scrolled { background: rgba(14,14,16,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(237,237,234,0.06); }
-
-    /* Measured hairline that grows on hover — a nod to engineering tolerance */
-    .measure { height: 1px; width: 2rem; background: #3A3B40; transition: width .4s cubic-bezier(.4,0,.2,1), background-color .4s ease; }
-    .group:hover .measure { width: 3.5rem; background: #C7A347; }
-
-    /* Panels on dark ground */
-    .glass { background: rgba(237,237,234,0.03); border: 1px solid rgba(237,237,234,0.10); }
-    .glass-strong { background: rgba(28,29,33,0.72); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(199,163,71,0.22); }
-    .rule-gold { height: 1px; background: linear-gradient(90deg, transparent, rgba(199,163,71,0.55), transparent); }
-
-    /* ---- Primary gold CTA: sheen sweep + arrow nudge (manual-safe: opacity/translate only) ---- */
-    a.bg-gold, button.bg-gold { position: relative; overflow: hidden; isolation: isolate; }
-    a.bg-gold::after, button.bg-gold::after {
-      content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
-      background: linear-gradient(115deg, transparent 32%, rgba(255,255,255,0.42) 50%, transparent 68%);
-      transform: translateX(-130%); transition: transform .6s cubic-bezier(.22,1,.36,1);
-    }
-    a.bg-gold:hover::after, button.bg-gold:hover::after { transform: translateX(130%); }
-    a.bg-gold > *, button.bg-gold > * { position: relative; z-index: 2; }  /* keep label above the sheen */
-    a.bg-gold svg, button.bg-gold svg { transition: transform .24s cubic-bezier(.4,0,.2,1); }
-    a.bg-gold:hover svg, button.bg-gold:hover svg { transform: translateX(4px); }
-    @media (prefers-reduced-motion: reduce) {
-      a.bg-gold::after, button.bg-gold::after { display: none; }
-      a.bg-gold:hover svg, button.bg-gold:hover svg { transform: none; }
-    }
-
-    /* ---- Delivery timeline (verified milestone track on cards) ---- */
-    .tl-seg { height: 3px; flex: 1 1 0; background: #2A2B30; transition: background-color .5s ease; }
-    .tl-seg.is-done { background: #E4CE9A; }
-    .tl-seg.is-active { background: #C7A347; box-shadow: 0 0 0 1px rgba(199,163,71,.35); }
-
-    /* ---- Portfolio filter chips ---- */
-    .filter-chip { font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #B2B3AD; border: 1px solid #3A3B40; background: transparent; cursor: pointer; transition: color .16s ease, border-color .16s ease, background-color .16s ease; }
-    .filter-chip:hover { color: #EDEDEA; border-color: #8A8B90; }
-    .filter-chip[aria-pressed="true"] { color: #171512; background: #C7A347; border-color: #C7A347; }
-    /* Card filter transition (manual motion: opacity + 8px translate, scale ≤1.02) */
-    #projectGrid article { transition: opacity .28s ease, transform .28s cubic-bezier(.22,1,.36,1); }
-    #projectGrid article.filtering-out { opacity: 0; transform: translateY(8px) scale(.99); }
-    #projectGrid article.is-filtered-hidden { display: none; }  /* id-scoped: beats Tailwind .flex */
-    .proj-empty { display: none; }
-    .proj-empty.show { display: block; }
-
-    /* ---- Modal (brochure preview) ---- */
-    .modal-root { position: fixed; inset: 0; z-index: 90; display: none; }
-    .modal-root.open { display: block; }
-    .modal-backdrop { position: absolute; inset: 0; background: rgba(8,8,10,.80); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); opacity: 0; transition: opacity .24s ease; }
-    .modal-root.open .modal-backdrop { opacity: 1; }
-    .modal-panel { position: absolute; inset: 0; margin: auto; width: min(1000px, calc(100vw - 2rem)); height: min(88vh, calc(100vh - 2rem)); background: #1C1D21; border: 1px solid #3A3B40; display: flex; flex-direction: column; opacity: 0; transform: translateY(10px); transition: opacity .28s ease, transform .28s cubic-bezier(.22,1,.36,1); box-shadow: 0 40px 100px -30px rgba(0,0,0,.7); }
-    .modal-root.open .modal-panel { opacity: 1; transform: none; }
-    @media (max-width: 640px) { .modal-panel { width: 100vw; height: 100dvh; border: 0; } }
-
-    /* ---- Floating quick-contact widget (FAB) ---- */
-    #fab { position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 80; display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; }
-    #fabMenu { display: flex; flex-direction: column; align-items: flex-end; gap: .55rem; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .2s ease, transform .2s cubic-bezier(.22,1,.36,1); }
-    #fab.open #fabMenu { opacity: 1; transform: none; pointer-events: auto; }
-    .fab-item { display: inline-flex; align-items: center; gap: .6rem; padding: .62rem .9rem; background: #292A2F; border: 1px solid #3A3B40; color: #EDEDEA; font-size: .82rem; letter-spacing: .02em; white-space: nowrap; cursor: pointer; transition: border-color .16s ease, color .16s ease; box-shadow: 0 12px 34px -16px rgba(0,0,0,.7); }
-    .fab-item:hover { border-color: #C7A347; color: #FFFFFF; }
-    #fabToggle { width: 3.25rem; height: 3.25rem; display: grid; place-items: center; background: #C7A347; color: #171512; cursor: pointer; box-shadow: 0 14px 38px -12px rgba(199,163,71,.5); transition: background-color .16s ease, color .16s ease; }
-    #fabToggle:hover { background: #E4CE9A; }
-    #fab.open #fabToggle { background: #292A2F; color: #EDEDEA; border: 1px solid #3A3B40; }
-    #fab.fab-hidden { opacity: 0; pointer-events: none; transform: translateY(14px); transition: opacity .3s ease, transform .3s ease; }
-
-    /* ---- Loading spinner ---- */
-    .spinner { width: 1rem; height: 1rem; border: 2px solid rgba(23,21,18,.30); border-top-color: #171512; border-radius: 50%; animation: spin .7s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @media (prefers-reduced-motion: reduce) {
-      #projectGrid article, .modal-panel, .modal-backdrop, #fabMenu, #fab { transition: none !important; }
-      .spinner { animation-duration: 1.4s; }
-    }
-
-    /* Hero image: cover on desktop, contain on phones (matte letterbox blends with bg) */
-    .hero-img { object-fit: cover; object-position: center; }
-    @media (max-width: 640px) { .hero-img { object-fit: contain; } }
-
-    /* Hero scrim: layered (bottom + left) + subtle vignette so the headline and tags
-       never wash out on bright photography, while the architecture stays visible on the right. */
-    .hero-scrim-b { background: linear-gradient(to top, rgba(8,8,10,.94) 0%, rgba(8,8,10,.60) 30%, rgba(8,8,10,.12) 60%, transparent 82%); }
-    .hero-scrim-l { background: linear-gradient(to right, rgba(8,8,10,.72) 0%, rgba(8,8,10,.28) 34%, transparent 64%); }
-    .hero-scrim-t { background: linear-gradient(to bottom, rgba(8,8,10,.55) 0%, transparent 100%); }
-    .hero-vignette { box-shadow: inset 0 0 200px 56px rgba(0,0,0,.42); }
-    @media (max-width: 640px) {
-      /* On phones the image letterboxes (contain) — keep text legible with a flat wash top & bottom */
-      .hero-scrim-l { background: linear-gradient(to top, rgba(8,8,10,.92) 0%, rgba(8,8,10,.55) 45%, rgba(8,8,10,.4) 100%); }
-    }
-
-    /* Motion tokens (manual §13): micro 160ms, standard 240ms, single easing curve */
+    /* Header — Void bar; compacts after 80px (§10 motion: fade + 8px slide) */
     .t-std { transition: all 240ms cubic-bezier(.4,0,.2,1); }
     .t-micro { transition: all 160ms cubic-bezier(.4,0,.2,1); }
-
-    /* Header compacts as the page scrolls (keeps nav + Enquire reachable, less visual weight) */
+    #siteHeader .eyebrow { color: var(--gold-soft); }
+    #siteHeader nav ul a { color: rgba(248,245,240,.74); }
+    #siteHeader nav ul a:hover, #siteHeader nav ul a.nav-active { color: var(--offwhite); }
+    #siteHeader #menuBtn { color: var(--offwhite); border-color: rgba(248,245,240,.22); }
+    #siteHeader.scrolled { background: rgba(11,11,11,.94); backdrop-filter: blur(12px);
+                           -webkit-backdrop-filter: blur(12px); border-bottom:1px solid var(--ow-14); }
+    .nav-active { color: var(--offwhite); position: relative; }
+    .nav-active::after { content:""; position:absolute; left:0; right:0; bottom:-6px; height:1px; background: var(--gold); }
     .navbar-inner { transition: height .3s cubic-bezier(.4,0,.2,1); }
     #siteHeader.scrolled .navbar-inner { height: 3.75rem; }
     .nav-logo { transition: height .25s ease; }
     #siteHeader.scrolled .nav-logo { height: 1.25rem; }
-    .nav-desc { max-height: 1rem; overflow: hidden; transition: opacity .2s ease, max-height .3s ease, margin-top .3s ease; }
-    #siteHeader.scrolled .nav-desc { opacity: 0; max-height: 0; margin-top: 0; }
+    .nav-desc { max-height:1rem; overflow:hidden; transition: opacity .2s ease, max-height .3s ease, margin-top .3s ease; }
+    #siteHeader.scrolled .nav-desc { opacity:0; max-height:0; margin-top:0; }
 
-    .zoomable img { transition: transform 600ms cubic-bezier(0.4,0,0.2,1); }
-    .zoomable:hover img { transform: scale(1.02); }
+    /* Hairline rule that extends on hover — structural, not decorative */
+    .measure { height:1px; width:2rem; background: var(--void-40);
+               transition: width .4s cubic-bezier(.4,0,.2,1), background-color .4s ease; }
+    .group:hover .measure { width:3.5rem; background: var(--gold); }
 
-    /* Hero on-load fade + settle — opacity and a short 8px rise, no scale (manual: content settles, it does not zoom) */
-    @keyframes heroIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-    @keyframes heroImgIn { from { opacity: 0; } to { opacity: 1; } }
-    .js .hero-in { opacity: 0; animation: heroIn .85s cubic-bezier(.4,0,.2,1) both; }
-    .js .hero-in--img { animation: heroImgIn 1.4s cubic-bezier(.4,0,.2,1) both; }
+    /* Panels — 1px hairline only, no fills or shadows */
+    .glass { background: transparent; border:1px solid var(--void-14); }
+    .glass-strong { background: var(--offwhite); border:1px solid var(--void-14); }
+    .on-void .glass, .on-void .glass-strong { background: transparent; border-color: var(--ow-14); }
+    .rule-gold { height:1px; background: var(--gold); }
 
-    /* Developments — refined, premium image treatment (applies to all cards) */
-    #projects .zoomable { box-shadow: inset 0 0 0 1px rgba(199,163,71,.18); }
-    #projects .zoomable::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
-      background: linear-gradient(to top, rgba(12,11,9,.52) 0%, rgba(12,11,9,.12) 42%, transparent 66%);
-      transition: opacity .5s ease; }
-    #projects .zoomable > span { z-index:2; }            /* status badge stays above the scrim */
-    #projects .zoomable img { filter: saturate(1.06) contrast(1.07) brightness(1.0) sepia(.05);
-      transition: transform .9s cubic-bezier(.22,1,.36,1), filter .6s ease; }
-    #projects article:hover .zoomable img { transform: scale(1.02); filter: saturate(1.12) contrast(1.08) brightness(1.03) sepia(.02); }
-    #projects article:hover .zoomable::after { opacity:.62; }
-    #projects article { transition: transform .4s cubic-bezier(.22,1,.36,1), border-color .4s ease, box-shadow .4s ease; }
-    #projects article:hover { transform: translateY(-6px); border-color: rgba(199,163,71,.55);
-      box-shadow: 0 30px 60px -28px rgba(30,22,4,.5), 0 0 0 1px rgba(199,163,71,.12); }
-    @media (prefers-reduced-motion: reduce){
-      #projects article:hover { transform:none; }
-      #projects article:hover .zoomable img { transform:none; }
+    /* Hero — photography with a graded panel so type clears 4.5:1 */
+    .hero-img { object-fit: cover; object-position: center; }
+    @media (max-width:640px){ .hero-img { object-fit: contain; } }
+    .hero-scrim-b { background: linear-gradient(to top, rgba(11,11,11,.94) 0%, rgba(11,11,11,.62) 30%, rgba(11,11,11,.14) 60%, rgba(11,11,11,0) 82%); }
+    .hero-scrim-l { background: linear-gradient(to right, rgba(11,11,11,.74) 0%, rgba(11,11,11,.30) 34%, rgba(11,11,11,0) 64%); }
+    .hero-scrim-t { background: linear-gradient(to bottom, rgba(11,11,11,.60) 0%, rgba(11,11,11,0) 100%); }
+    @media (max-width:640px){
+      .hero-scrim-l { background: linear-gradient(to top, rgba(11,11,11,.93) 0%, rgba(11,11,11,.58) 45%, rgba(11,11,11,.42) 100%); }
     }
 
-    /* Reveal (progressive enhancement) */
-    .js .reveal { opacity: 0; transform: translateY(8px); transition: opacity .7s ease, transform .7s ease; }
-    .js .reveal.is-visible { opacity: 1; transform: none; }
-    .reveal[data-delay="1"] { transition-delay: .08s; }
-    .reveal[data-delay="2"] { transition-delay: .16s; }
-    .reveal[data-delay="3"] { transition-delay: .24s; }
+    /* Motion — fade + 8px slide only (§10). No scale, bounce or parallax. */
+    .zoomable img { transition: opacity 600ms cubic-bezier(.4,0,.2,1); }
+    @keyframes heroIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
+    .js .hero-in { opacity:0; animation: heroIn .7s cubic-bezier(.4,0,.2,1) both; }
+
+    #projects .zoomable { box-shadow: none; }
+    #projects .zoomable::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+      background: linear-gradient(to top, rgba(11,11,11,.52) 0%, rgba(11,11,11,.10) 42%, rgba(11,11,11,0) 66%);
+      transition: opacity .4s ease; }
+    #projects .zoomable > span { z-index:2; }
+    #projects article { transition: border-color .24s ease, transform .24s cubic-bezier(.4,0,.2,1); }
+    #projects article:hover { border-color: var(--gold); transform: translateY(-4px); }
+    @media (prefers-reduced-motion: reduce){ #projects article:hover { transform:none; } }
+
+    /* Reveal */
+    .js .reveal { opacity:0; transform: translateY(8px); transition: opacity .6s ease, transform .6s ease; }
+    .js .reveal.is-visible { opacity:1; transform:none; }
+    .reveal[data-delay="1"]{ transition-delay:.08s; }
+    .reveal[data-delay="2"]{ transition-delay:.16s; }
+    .reveal[data-delay="3"]{ transition-delay:.24s; }
+
+    /* Delivery timeline — gold marks progress as a rule, not a fill */
+    .tl-seg { height:3px; flex:1 1 0; background: var(--void-14); transition: background-color .5s ease; }
+    .tl-seg.is-done { background: var(--gold); }
+    .tl-seg.is-active { background: var(--void); }
+    .on-void .tl-seg { background: var(--ow-14); }
+    .on-void .tl-seg.is-active { background: var(--offwhite); }
+
+    /* Portfolio filter chips */
+    .filter-chip { font-weight:500; letter-spacing:.14em; text-transform:uppercase; cursor:pointer;
+      color: var(--void-64); border:1px solid var(--void-14); background: transparent;
+      transition: color .16s ease, border-color .16s ease, background-color .16s ease; }
+    .filter-chip:hover { color: var(--void); border-color: var(--void-40); }
+    .filter-chip[aria-pressed="true"] { color: var(--offwhite); background: var(--void); border-color: var(--void); }
+    #projectGrid article { transition: opacity .28s ease, transform .28s cubic-bezier(.4,0,.2,1); }
+    #projectGrid article.filtering-out { opacity:0; transform: translateY(8px); }
+    #projectGrid article.is-filtered-hidden { display:none; }
+    .proj-empty { display:none; }
+    .proj-empty.show { display:block; }
+
+    /* Brochure modal — Off White panel, hairline, no shadow */
+    .modal-root { position:fixed; inset:0; z-index:90; display:none; }
+    .modal-root.open { display:block; }
+    .modal-backdrop { position:absolute; inset:0; background: rgba(11,11,11,.82); opacity:0; transition: opacity .24s ease; }
+    .modal-root.open .modal-backdrop { opacity:1; }
+    .modal-panel { position:absolute; inset:0; margin:auto; width:min(1000px, calc(100vw - 2rem));
+      height:min(88vh, calc(100vh - 2rem)); background: var(--offwhite); border:1px solid var(--void-14);
+      display:flex; flex-direction:column; opacity:0; transform: translateY(8px);
+      transition: opacity .28s ease, transform .28s cubic-bezier(.4,0,.2,1); }
+    .modal-root.open .modal-panel { opacity:1; transform:none; }
+    @media (max-width:640px){ .modal-panel { width:100vw; height:100dvh; border:0; } }
+
+    /* Floating quick-contact widget — Void fill, no shadow */
+    #fab { position:fixed; right:1.25rem; bottom:1.25rem; z-index:80; display:flex; flex-direction:column; align-items:flex-end; gap:.6rem; }
+    #fabMenu { display:flex; flex-direction:column; align-items:flex-end; gap:.55rem; opacity:0; transform: translateY(8px);
+      pointer-events:none; transition: opacity .2s ease, transform .2s cubic-bezier(.4,0,.2,1); }
+    #fab.open #fabMenu { opacity:1; transform:none; pointer-events:auto; }
+    .fab-item { display:inline-flex; align-items:center; gap:.6rem; padding:.62rem .9rem; background: var(--offwhite);
+      border:1px solid var(--void-14); color: var(--void); font-size:.82rem; letter-spacing:.02em; white-space:nowrap;
+      cursor:pointer; transition: border-color .16s ease, color .16s ease; }
+    .fab-item:hover { border-color: var(--gold); }
+    #fabToggle { width:3.25rem; height:3.25rem; display:grid; place-items:center; background: var(--void);
+      color: var(--offwhite); cursor:pointer; border:1px solid var(--void); transition: opacity .16s ease; }
+    #fabToggle:hover { opacity:.88; }
+    #fab.open #fabToggle { background: var(--offwhite); color: var(--void); border-color: var(--void-14); }
+    #fab.fab-hidden { opacity:0; pointer-events:none; transform: translateY(14px); transition: opacity .3s ease, transform .3s ease; }
+
+    .spinner { width:1rem; height:1rem; border:2px solid rgba(248,245,240,.35); border-top-color: var(--offwhite);
+      border-radius:50%; animation: spin .7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
-      .zoomable img, .zoomable:hover img { transition: none !important; transform: none !important; }
-      .js .hero-in, .js .hero-in--img { opacity: 1 !important; animation: none !important; }
-      .cue-bob, .animate-ping { animation: none !important; }
+      html { scroll-behavior:auto; }
+      .reveal { opacity:1 !important; transform:none !important; transition:none !important; }
+      .js .hero-in { opacity:1 !important; animation:none !important; }
+      #projectGrid article, .modal-panel, .modal-backdrop, #fabMenu, #fab { transition:none !important; }
+      .spinner { animation-duration:1.4s; }
     }
   </style>
 </head>
 
 <body class="bg-ink text-body">
 
-  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-4 focus:left-4 focus:bg-gold focus:text-[#171512] focus:px-4 focus:py-2 focus:rounded-none">Skip to content</a>
+  <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-4 focus:left-4 focus:bg-void focus:text-offwhite focus:px-4 focus:py-2 focus:rounded-none">Skip to content</a>
 
   <!-- ============ HEADER ============ -->
   <header id="siteHeader" class="fixed top-0 inset-x-0 z-50 t-std">
@@ -311,7 +337,7 @@
              (The full logo appears in the hero image below.) -->
         <a href="#home" class="flex flex-col items-start leading-none" aria-label="GREY Development Limited — home">
           <img src="assets/grey-wordmark-white.png" alt="GREY" width="1100" height="224" class="nav-logo h-6 sm:h-7 w-auto" />
-          <span class="nav-desc eyebrow text-[9px] sm:text-[10px] text-champagne mt-1.5 tracking-[0.26em]">Development Limited</span>
+          <span class="nav-desc eyebrow text-[9px] sm:text-[10px] text-muted mt-1.5 tracking-[0.26em]">Development Limited</span>
         </a>
 
         <ul class="hidden lg:flex items-center gap-8 text-[13px] uppercase tracking-[0.16em] font-medium text-stone">
@@ -321,7 +347,7 @@
         </ul>
 
         <div class="flex items-center gap-3">
-          <a href="#contact" class="hidden sm:inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
+          <a href="#contact" class="hidden sm:inline-flex btn btn-invert items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
           <button id="menuBtn" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-none glass text-porcelain cursor-pointer" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
             <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/></svg>
           </button>
@@ -336,7 +362,7 @@
         <li><a href="#services" class="mobile-link block py-3 text-stone hover:text-porcelain uppercase tracking-[0.16em] text-sm">Invest</a></li>
       </ul>
       <div class="px-6 pb-6">
-        <a href="#contact" class="mobile-link inline-flex w-full justify-center items-center rounded-none bg-gold px-5 py-3 font-semibold text-[#171512] hover:bg-satin">Enquire</a>
+        <a href="#contact" class="mobile-link btn btn-invert inline-flex w-full justify-center items-center px-5 py-3">Enquire</a>
       </div>
     </div>
   </header>
@@ -359,29 +385,29 @@
 
       <div class="relative w-full max-w-7xl mx-auto px-5 sm:px-8 pb-16 sm:pb-20">
         <div class="hero-in flex flex-wrap items-center gap-x-4 gap-y-2 mb-6" style="animation-delay:.04s">
-          <span class="inline-flex items-center gap-2.5 rounded-none border border-gold/60 bg-black/30 backdrop-blur-sm px-4 py-2">
+          <span class="inline-flex items-center gap-2.5 rounded-none border border-gold/60 bg-[#0B0B0B]/45 backdrop-blur-sm px-4 py-2">
             <span class="inline-flex rounded-none h-2 w-2 bg-satin"></span>
-            <span class="mono text-[11px] uppercase tracking-[0.24em] text-white font-medium">Now Selling</span>
+            <span class="mono text-[11px] uppercase tracking-[0.24em] text-offwhite font-medium">Now Selling</span>
           </span>
         </div>
         <p class="hero-in eyebrow text-[11px] text-satin mb-5" style="animation-delay:.1s">Featured Development · Katampe, Abuja</p>
-        <h2 class="hero-in display display--hero text-5xl sm:text-7xl lg:text-8xl text-white leading-[0.95]" style="animation-delay:.18s">The Eden <span style="color:#C7A347">II</span></h2>
-        <p class="hero-in text-white/90 text-base sm:text-lg mt-5 max-w-xl leading-relaxed" style="animation-delay:.3s">Four-bedroom terrace residences and serviced apartments, set behind a private gated entrance — crafted for family life, built for lasting value.</p>
+        <h2 class="hero-in display display--hero text-5xl sm:text-7xl lg:text-8xl text-offwhite leading-[0.95]" style="animation-delay:.18s">The Eden <span style="color:#C7A347">II</span></h2>
+        <p class="hero-in text-offwhite/90 text-base sm:text-lg mt-5 max-w-xl leading-relaxed" style="animation-delay:.3s">Four-bedroom terrace residences and serviced apartments, set behind a private gated entrance — crafted for family life, built for lasting value.</p>
 
         <div class="hero-in flex flex-wrap gap-2.5 mt-7" style="animation-delay:.4s">
-          <span class="mono text-[11px] uppercase tracking-wider text-white border border-white/35 bg-black/25 backdrop-blur-sm rounded-none px-3 py-1.5">4-Bed Terraces</span>
-          <span class="mono text-[11px] uppercase tracking-wider text-white border border-white/35 bg-black/25 backdrop-blur-sm rounded-none px-3 py-1.5">Serviced Apartments</span>
-          <span class="mono text-[11px] uppercase tracking-wider text-white border border-white/35 bg-black/25 backdrop-blur-sm rounded-none px-3 py-1.5">Private Gated Estate</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-offwhite border border-offwhite/35 bg-[#0B0B0B]/30 backdrop-blur-sm rounded-none px-3 py-1.5">4-Bed Terraces</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-offwhite border border-offwhite/35 bg-[#0B0B0B]/30 backdrop-blur-sm rounded-none px-3 py-1.5">Serviced Apartments</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-offwhite border border-offwhite/35 bg-[#0B0B0B]/30 backdrop-blur-sm rounded-none px-3 py-1.5">Private Gated Estate</span>
         </div>
 
         <div class="hero-in flex flex-col sm:flex-row gap-4 mt-9" style="animation-delay:.5s">
-          <a href="#contact" class="inline-flex justify-center items-center gap-2 rounded-none bg-gold px-8 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire about The Eden II</a>
-          <a href="#projects" class="inline-flex justify-center items-center gap-2 rounded-none border border-white/40 px-8 py-3.5 font-semibold text-white t-micro hover:border-gold hover:text-gold cursor-pointer">View All Developments</a>
+          <a href="#contact" class="btn btn-invert inline-flex justify-center items-center gap-2 px-8 py-3.5">Enquire about The Eden II</a>
+          <a href="#projects" class="btn btn-invert-secondary inline-flex justify-center items-center gap-2 px-8 py-3.5">View All Developments</a>
         </div>
       </div>
 
       <!-- Scroll cue -->
-      <a href="#services" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 hover:text-gold t-micro" aria-label="Scroll to explore">
+      <a href="#services" class="absolute bottom-6 left-1/2 -translate-x-1/2 text-offwhite/70 hover:text-gold t-micro" aria-label="Scroll to explore">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 cue-bob" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/></svg>
       </a>
     </section>
@@ -389,7 +415,7 @@
     <!-- ============ POSITIONING STRIP ============ -->
     <section class="border-y border-line bg-ink2">
       <div class="mx-auto max-w-4xl px-5 sm:px-8 py-16 sm:py-20">
-        <p class="reveal eyebrow text-[11px] text-champagne mb-6">Realty · Construction · Investment</p>
+        <p class="reveal eyebrow text-[11px] text-muted mb-6">Realty · Construction · Investment</p>
         <p class="reveal display text-2xl sm:text-3xl text-porcelain leading-snug max-w-3xl" data-delay="1">
           We treat architectural precision as non-negotiable — designing, building and delivering developments of uncompromising structural and material integrity.
         </p>
@@ -403,7 +429,7 @@
     <section id="services" class="relative py-24 sm:py-32 bg-ink">
       <div class="mx-auto max-w-7xl px-5 sm:px-8">
         <div class="max-w-2xl">
-          <p class="reveal eyebrow text-[11px] text-champagne mb-4">What We Do</p>
+          <p class="reveal eyebrow text-[11px] text-muted mb-4">What We Do</p>
           <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">One discipline,<br/><span class="gradword">not three handoffs.</span></h2>
           <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">From land to legacy, GREY covers the full development lifecycle — so you work with one accountable team held to a single, higher standard.</p>
         </div>
@@ -411,48 +437,48 @@
         <div class="reveal mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 border-t border-line pt-12" data-delay="1">
           <article class="group">
             <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-champagne tnum">01</span>
-              <h3 class="display text-lg text-porcelain">Real Estate</h3>
+              <span class="mono text-[10px] text-muted tnum">01</span>
+              <h3 class="h3">Real Estate</h3>
             </div>
             <p class="text-body text-sm leading-relaxed">Considered residential and mixed-use developments in Abuja's most deliberate locations — conceived, financed and delivered end to end.</p>
           </article>
 
           <article class="group">
             <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-champagne tnum">02</span>
-              <h3 class="display text-lg text-porcelain">Construction</h3>
+              <span class="mono text-[10px] text-muted tnum">02</span>
+              <h3 class="h3">Construction</h3>
             </div>
             <p class="text-body text-sm leading-relaxed">Design-build executed to specification — concrete before cladding, discipline before design — with rigorous QA/QC at every stage.</p>
           </article>
 
           <article class="group">
             <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-champagne tnum">03</span>
-              <h3 class="display text-lg text-porcelain">Investment</h3>
+              <span class="mono text-[10px] text-muted tnum">03</span>
+              <h3 class="h3">Investment</h3>
             </div>
             <p class="text-body text-sm leading-relaxed">Structured, return-focused opportunities in developments engineered to still perform — and still impress — twenty years after handover.</p>
           </article>
 
           <article class="group">
             <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-champagne tnum">04</span>
-              <h3 class="display text-lg text-porcelain">Project &amp; Development Management</h3>
+              <span class="mono text-[10px] text-muted tnum">04</span>
+              <h3 class="h3">Project &amp; Development Management</h3>
             </div>
             <p class="text-body text-sm leading-relaxed">Transparent budgeting, scheduling and delivery — every tolerance a promise, every milestone on schedule and on specification.</p>
           </article>
 
           <article class="group">
             <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-champagne tnum">05</span>
-              <h3 class="display text-lg text-porcelain">Architecture &amp; Design</h3>
+              <span class="mono text-[10px] text-muted tnum">05</span>
+              <h3 class="h3">Architecture &amp; Design</h3>
             </div>
             <p class="text-body text-sm leading-relaxed">Architecturally serious spaces engineered to a higher tolerance — built the way engineers would build for themselves.</p>
           </article>
 
           <article class="group">
             <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-champagne tnum">06</span>
-              <h3 class="display text-lg text-porcelain">Facility Management</h3>
+              <span class="mono text-[10px] text-muted tnum">06</span>
+              <h3 class="h3">Facility Management</h3>
             </div>
             <p class="text-body text-sm leading-relaxed">Enduring performance long after handover — estate and facility management that protects the value we build.</p>
           </article>
@@ -461,13 +487,13 @@
     </section>
 
     <!-- ============ PULL QUOTE ============ -->
-    <section class="relative py-20 sm:py-28 bg-ink2 border-y border-line overflow-hidden">
+    <section class="on-void relative py-20 sm:py-28 bg-void border-y border-line overflow-hidden">
       <div class="mx-auto max-w-4xl px-5 sm:px-8 text-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-champagne/50 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 6C5.02 6 3 8.02 3 10.5S5.02 15 7.5 15c.17 0 .33-.02.5-.04V15c0 1.66-1.34 3-3 3v3c3.31 0 6-2.69 6-6v-3.5C11 8.02 8.98 6 7.5 6Zm9 0C14.02 6 12 8.02 12 10.5S14.02 15 16.5 15c.17 0 .33-.02.5-.04V15c0 1.66-1.34 3-3 3v3c3.31 0 6-2.69 6-6v-3.5C20 8.02 17.98 6 16.5 6Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-muted/50 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 6C5.02 6 3 8.02 3 10.5S5.02 15 7.5 15c.17 0 .33-.02.5-.04V15c0 1.66-1.34 3-3 3v3c3.31 0 6-2.69 6-6v-3.5C11 8.02 8.98 6 7.5 6Zm9 0C14.02 6 12 8.02 12 10.5S14.02 15 16.5 15c.17 0 .33-.02.5-.04V15c0 1.66-1.34 3-3 3v3c3.31 0 6-2.69 6-6v-3.5C20 8.02 17.98 6 16.5 6Z"/></svg>
         <blockquote class="reveal quote text-2xl sm:text-4xl text-porcelain leading-snug">
           We build homes to last for decades — not just to impress on the first viewing.
         </blockquote>
-        <p class="reveal eyebrow text-[11px] text-champagne mt-8" data-delay="1">The GREY Standard</p>
+        <p class="reveal eyebrow text-[11px] text-muted mt-8" data-delay="1">The GREY Standard</p>
       </div>
     </section>
 
@@ -476,7 +502,7 @@
       <div class="mx-auto max-w-7xl px-5 sm:px-8">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
           <div class="max-w-2xl">
-            <p class="reveal eyebrow text-[11px] text-champagne mb-4">Developments</p>
+            <p class="reveal eyebrow text-[11px] text-muted mb-4">Developments</p>
             <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Signature <span class="gradword">developments.</span></h2>
             <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">A selection of GREY residences across Abuja and Kaduna. View the available brochures for full floor plans, specifications and pricing.</p>
           </div>
@@ -510,7 +536,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="3" data-updated="FEB 2027">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/shafas-cover.jpg" alt="Shafa's Residences brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Shafa's Residences</h3>
@@ -518,14 +544,14 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">An exclusive residential development of considered terraces and flats, minutes from Maitama.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
                 <div class="flex items-center justify-between mb-2.5">
-                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="eyebrow text-[9px] text-muted">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
                   <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
                 </div>
                 <div class="tl-track flex items-center gap-1.5"></div>
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/shafas-residences-brochure.pdf" rel="noopener" data-title="Shafa's Residences" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
+                <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
+                <a href="assets/brochures/shafas-residences-brochure.pdf" rel="noopener" data-title="Shafa's Residences" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -534,7 +560,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="2" data-updated="OCT 2026" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/amrahs-villas-cover.jpg" alt="Amrah's Villas brochure cover — semi-detached duplexes, Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Amrah's Villas</h3>
@@ -542,14 +568,14 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of semi-detached duplex residences in Katampe — fully serviced with power, water, gas and home automation.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
                 <div class="flex items-center justify-between mb-2.5">
-                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="eyebrow text-[9px] text-muted">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
                   <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
                 </div>
                 <div class="tl-track flex items-center gap-1.5"></div>
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/amrahs-villas-brochure.pdf" rel="noopener" data-title="Amrah's Villas" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
+                <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
+                <a href="assets/brochures/amrahs-villas-brochure.pdf" rel="noopener" data-title="Amrah's Villas" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -558,7 +584,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="completed" data-location="abuja" data-stage="5" data-updated="COMPLETE">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-i-cover.jpg" alt="Eden I — The Eden, four-bedroom townhomes, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Eden I</h3>
@@ -566,14 +592,14 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">The first in the EDEN line — a collection of four-bedroom townhomes delivered to the GREY standard.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
                 <div class="flex items-center justify-between mb-2.5">
-                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="eyebrow text-[9px] text-muted">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
                   <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
                 </div>
                 <div class="tl-track flex items-center gap-1.5"></div>
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/eden-i-brochure.pdf" rel="noopener" data-title="Eden I" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
+                <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
+                <a href="assets/brochures/eden-i-brochure.pdf" rel="noopener" data-title="Eden I" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -582,7 +608,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="2" data-updated="APR 2027" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-ii-cover.jpg" alt="EDEN II brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">EDEN II</h3>
@@ -590,14 +616,14 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development continuing the EDEN line — refined living, built to the GREY standard.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
                 <div class="flex items-center justify-between mb-2.5">
-                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="eyebrow text-[9px] text-muted">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
                   <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
                 </div>
                 <div class="tl-track flex items-center gap-1.5"></div>
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/eden-ii-brochure.pdf" rel="noopener" data-title="EDEN II" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
+                <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
+                <a href="assets/brochures/eden-ii-brochure.pdf" rel="noopener" data-title="EDEN II" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -606,7 +632,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="coming" data-location="kaduna" data-stage="0" data-updated="PLANNING" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/grey-oasis-cover.jpg" alt="Grey Oasis — luxury townhouses, Kaduna" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Grey Oasis</h3>
@@ -614,14 +640,14 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of luxury townhouses in Kaduna — exclusive living, timeless value.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
                 <div class="flex items-center justify-between mb-2.5">
-                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="eyebrow text-[9px] text-muted">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
                   <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
                 </div>
                 <div class="tl-track flex items-center gap-1.5"></div>
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/grey-oasis-brochure.pdf" rel="noopener" data-title="Grey Oasis" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
+                <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
+                <a href="assets/brochures/grey-oasis-brochure.pdf" rel="noopener" data-title="Grey Oasis" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -630,7 +656,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="mabushi" data-stage="0" data-updated="PLANNING">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/grey-altura-cover.jpg" alt="Grey Altura brochure cover — Mabushi, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#141210]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Grey Altura</h3>
@@ -638,14 +664,14 @@
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development in the heart of Mabushi — elevated living, built to the GREY standard.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
                 <div class="flex items-center justify-between mb-2.5">
-                  <span class="eyebrow text-[9px] text-champagne">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
+                  <span class="eyebrow text-[9px] text-muted">Delivery &middot; <span class="tl-stage">&mdash;</span></span>
                   <span class="mono text-[9px] tracking-wider text-slate tl-updated">&mdash;</span>
                 </div>
                 <div class="tl-track flex items-center gap-1.5"></div>
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
-                <a href="#contact" class="inline-flex items-center gap-2 rounded-none bg-gold px-5 py-2.5 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer">Enquire</a>
-                <a href="assets/brochures/grey-altura-brochure.pdf" rel="noopener" data-title="Grey Altura" class="brochure-trigger inline-flex items-center gap-1.5 rounded-none border border-gold/40 px-4 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">View Brochure &rarr;</a>
+                <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
+                <a href="assets/brochures/grey-altura-brochure.pdf" rel="noopener" data-title="Grey Altura" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -654,7 +680,7 @@
 
         <div id="projEmpty" class="proj-empty border border-line rounded-none p-10 text-center mt-2">
           <p class="display text-xl text-porcelain">No developments match that filter.</p>
-          <p class="text-body text-sm mt-2">Try a different status or location — or <a href="#contact" class="text-champagne hover:text-gold t-micro">talk to our team</a>.</p>
+          <p class="text-body text-sm mt-2">Try a different status or location — or <a href="#contact" class="text-muted hover:text-gold t-micro">talk to our team</a>.</p>
         </div>
 
         <p class="reveal text-slate text-xs mt-8 max-w-2xl">Images shown are artist's impressions for illustration. Refer to each brochure for full floor plans, specifications and current pricing.</p>
@@ -665,7 +691,7 @@
     <section id="about" class="relative py-24 sm:py-32 bg-ink2 overflow-hidden">
       <div class="mx-auto max-w-4xl px-5 sm:px-8">
         <div>
-          <p class="reveal eyebrow text-[11px] text-champagne mb-4">About Us</p>
+          <p class="reveal eyebrow text-[11px] text-muted mb-4">About Us</p>
           <h2 class="reveal display text-3xl sm:text-5xl text-porcelain max-w-3xl">The gap between the rendering and the <span class="gradword">reality.</span></h2>
           <div class="reveal max-w-2xl mt-6 text-body leading-relaxed" data-delay="1">
             <p>GREY builds in a market that has learned to distrust promises — where projects are sold on a rendering and delivered on a compromise. What we offer is not square metres, but the confidence that the specification survives contact with the site: the finish schedule signed in the sales office is the one installed on handover, on the date given.</p>
@@ -675,7 +701,7 @@
             <blockquote class="quote text-2xl sm:text-3xl text-porcelain leading-snug">Precision is the only luxury that cannot be counterfeited.</blockquote>
           </figure>
 
-          <p class="reveal eyebrow text-[11px] text-champagne mt-12 mb-2" data-delay="1">Our Commitments</p>
+          <p class="reveal eyebrow text-[11px] text-muted mt-12 mb-2" data-delay="1">Our Commitments</p>
           <p class="reveal text-body leading-relaxed max-w-2xl mb-8" data-delay="1">Three obligations we hold ourselves to on every development — the measure of whether a project was built to the standard, or merely sold at it.</p>
           <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-x-10 gap-y-9 border-t border-line pt-8" data-delay="1">
 
@@ -700,7 +726,7 @@
           </div>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-10">
-            <a href="#contact" class="reveal inline-flex justify-center items-center gap-2 rounded-none bg-gold px-7 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer" data-delay="3">Work with us</a>
+            <a href="#contact" class="reveal btn btn-primary inline-flex justify-center items-center gap-2 px-7 py-3.5" data-delay="3">Work with us</a>
           </div>
         </div>
       </div>
@@ -710,27 +736,27 @@
     <section id="proof" class="relative py-24 sm:py-32 bg-ink">
       <div class="mx-auto max-w-7xl px-5 sm:px-8">
         <div class="max-w-2xl mb-14">
-          <p class="reveal eyebrow text-[11px] text-champagne mb-4">The Proof</p>
+          <p class="reveal eyebrow text-[11px] text-muted mb-4">The Proof</p>
           <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">We would rather be <span class="gradword">verified than believed.</span></h2>
           <p class="reveal text-body mt-5 leading-relaxed" data-delay="1" style="max-width:620px">Confidence has to be visible before it can be verified. These are the three things a buyer, an investor or a ministry can actually hold us to — not claims, but the evidence the organisation measures.</p>
         </div>
 
         <div class="grid md:grid-cols-3 gap-5">
           <article class="reveal border border-line rounded-none p-8 bg-ink2 t-std hover:border-gold/35">
-            <span class="mono text-[11px] text-champagne tracking-[0.2em]">01</span>
-            <h3 class="display text-xl text-porcelain mt-4">Programme adherence</h3>
+            <span class="mono text-[11px] text-muted tracking-[0.2em]">01</span>
+            <h3 class="h3 mt-4">Programme adherence</h3>
             <p class="text-body text-sm mt-3 leading-relaxed">The handover date is a calculation the whole team is accountable to, not a marketing promise. The date we give is the date we deliver.</p>
           </article>
 
           <article class="reveal border border-line rounded-none p-8 bg-ink2 t-std hover:border-gold/35" data-delay="1">
-            <span class="mono text-[11px] text-champagne tracking-[0.2em]">02</span>
-            <h3 class="display text-xl text-porcelain mt-4">Retained equity</h3>
+            <span class="mono text-[11px] text-muted tracking-[0.2em]">02</span>
+            <h3 class="h3 mt-4">Retained equity</h3>
             <p class="text-body text-sm mt-3 leading-relaxed">We design, build and retain an interest in what we deliver — so our incentives survive handover. We are held to the second owner's standard, not the first sale.</p>
           </article>
 
           <article class="reveal border border-line rounded-none p-8 bg-ink2 t-std hover:border-gold/35" data-delay="2">
-            <span class="mono text-[11px] text-champagne tracking-[0.2em]">03</span>
-            <h3 class="display text-xl text-porcelain mt-4">Finish schedules</h3>
+            <span class="mono text-[11px] text-muted tracking-[0.2em]">03</span>
+            <h3 class="h3 mt-4">Finish schedules</h3>
             <p class="text-body text-sm mt-3 leading-relaxed">The finish schedule signed in the sales office is the one installed on handover. Every figure is calculated before it is published; variations are raised early, in writing, with cost attached.</p>
           </article>
         </div>
@@ -741,32 +767,32 @@
     <section id="contact" class="relative py-24 sm:py-32 bg-ink2 border-t border-line">
       <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12">
         <div>
-          <p class="reveal eyebrow text-[11px] text-champagne mb-4">Get in Touch</p>
+          <p class="reveal eyebrow text-[11px] text-muted mb-4">Get in Touch</p>
           <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Let's build <span class="gradword">something enduring.</span></h2>
           <p class="reveal text-body mt-5 leading-relaxed max-w-md" data-delay="1">Tell us about your project — a home, a development, or an investment. Our team responds within one business day.</p>
 
           <ul class="mt-10 space-y-6">
             <li class="reveal flex items-start gap-4" data-delay="1">
-              <span class="w-11 h-11 rounded-none bg-gold/10 border border-gold/25 grid place-items-center text-champagne shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg></span>
+              <span class="w-11 h-11 rounded-none bg-gold/10 border border-gold/25 grid place-items-center text-muted shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg></span>
               <div><p class="eyebrow text-[10px] text-slate">Office</p><p class="text-porcelain">No. 2 William F. Kumuyi Street, Kado, Abuja</p></div>
             </li>
             <li class="reveal flex items-start gap-4" data-delay="2">
-              <span class="w-11 h-11 rounded-none bg-gold/10 border border-gold/25 grid place-items-center text-champagne shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg></span>
-              <div><p class="eyebrow text-[10px] text-slate">Phone</p><a href="tel:+2348078963703" class="text-porcelain hover:text-champagne t-micro">0807 896 3703</a></div>
+              <span class="w-11 h-11 rounded-none bg-gold/10 border border-gold/25 grid place-items-center text-muted shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg></span>
+              <div><p class="eyebrow text-[10px] text-slate">Phone</p><a href="tel:+2348078963703" class="text-porcelain hover:text-muted t-micro">0807 896 3703</a></div>
             </li>
             <li class="reveal flex items-start gap-4" data-delay="2">
-              <span class="w-11 h-11 rounded-none bg-gold/10 border border-gold/25 grid place-items-center text-champagne shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.17 0 4.2.85 5.74 2.38a8.06 8.06 0 0 1 2.38 5.73c0 4.47-3.64 8.11-8.12 8.11a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.12.82.83-3.04-.19-.31a8.07 8.07 0 0 1-1.24-4.29c0-4.47 3.64-8.11 8.11-8.11Zm-4.4 4.6c-.2 0-.53.08-.81.38-.28.3-1.06 1.04-1.06 2.53 0 1.49 1.09 2.93 1.24 3.13.15.2 2.11 3.35 5.2 4.56 2.57 1.01 3.09.81 3.65.76.56-.05 1.81-.74 2.07-1.46.26-.72.26-1.33.18-1.46-.08-.13-.28-.2-.58-.35-.3-.15-1.81-.89-2.09-.99-.28-.1-.48-.15-.68.15-.2.3-.78.99-.96 1.19-.18.2-.35.23-.65.08-.3-.15-1.27-.47-2.42-1.49-.9-.8-1.5-1.79-1.68-2.09-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.65-.93-2.26-.24-.58-.49-.5-.68-.51h-.58Z"/></svg></span>
-              <div><p class="eyebrow text-[10px] text-slate">WhatsApp</p><a href="https://wa.me/2348078963703?text=Hello%20GREY%20Development%2C%20I%27d%20like%20to%20enquire%20about%20your%20developments." target="_blank" rel="noopener" class="text-porcelain hover:text-champagne t-micro">Chat on WhatsApp</a></div>
+              <span class="w-11 h-11 rounded-none bg-gold/10 border border-gold/25 grid place-items-center text-muted shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.17 0 4.2.85 5.74 2.38a8.06 8.06 0 0 1 2.38 5.73c0 4.47-3.64 8.11-8.12 8.11a8.1 8.1 0 0 1-4.13-1.13l-.3-.18-3.12.82.83-3.04-.19-.31a8.07 8.07 0 0 1-1.24-4.29c0-4.47 3.64-8.11 8.11-8.11Zm-4.4 4.6c-.2 0-.53.08-.81.38-.28.3-1.06 1.04-1.06 2.53 0 1.49 1.09 2.93 1.24 3.13.15.2 2.11 3.35 5.2 4.56 2.57 1.01 3.09.81 3.65.76.56-.05 1.81-.74 2.07-1.46.26-.72.26-1.33.18-1.46-.08-.13-.28-.2-.58-.35-.3-.15-1.81-.89-2.09-.99-.28-.1-.48-.15-.68.15-.2.3-.78.99-.96 1.19-.18.2-.35.23-.65.08-.3-.15-1.27-.47-2.42-1.49-.9-.8-1.5-1.79-1.68-2.09-.18-.3-.02-.46.13-.61.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.65-.93-2.26-.24-.58-.49-.5-.68-.51h-.58Z"/></svg></span>
+              <div><p class="eyebrow text-[10px] text-slate">WhatsApp</p><a href="https://wa.me/2348078963703?text=Hello%20GREY%20Development%2C%20I%27d%20like%20to%20enquire%20about%20your%20developments." target="_blank" rel="noopener" class="text-porcelain hover:text-muted t-micro">Chat on WhatsApp</a></div>
             </li>
             <li class="reveal flex items-start gap-4" data-delay="2">
-              <span class="w-11 h-11 rounded-none bg-gold/10 border border-gold/25 grid place-items-center text-champagne shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg></span>
-              <div><p class="eyebrow text-[10px] text-slate">Email</p><a href="mailto:greydevelopment.ng@gmail.com" class="text-porcelain hover:text-champagne t-micro break-all">greydevelopment.ng@gmail.com</a></div>
+              <span class="w-11 h-11 rounded-none bg-gold/10 border border-gold/25 grid place-items-center text-muted shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg></span>
+              <div><p class="eyebrow text-[10px] text-slate">Email</p><a href="mailto:greydevelopment.ng@gmail.com" class="text-porcelain hover:text-muted t-micro break-all">greydevelopment.ng@gmail.com</a></div>
             </li>
           </ul>
 
           <div class="reveal flex items-center gap-4 mt-10" data-delay="3">
-            <a href="https://instagram.com/greydevelopment_ng" target="_blank" rel="noopener" class="w-11 h-11 rounded-none glass grid place-items-center text-stone hover:text-champagne t-std hover:border-gold/40" aria-label="GREY Development on Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.9.07s-3.63 0-4.9-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.4 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.75.07-.9.04-1.38.19-1.7.32-.43.16-.74.36-1.06.68-.32.32-.52.63-.68 1.06-.13.32-.28.8-.32 1.7C3.2 8.5 3.2 8.85 3.2 12s0 3.5.07 4.75c.04.9.19 1.38.32 1.7.16.43.36.74.68 1.06.32.32.63.52 1.06.68.32.13.8.28 1.7.32 1.25.07 1.6.07 4.75.07s3.5 0 4.75-.07c.9-.04 1.38-.19 1.7-.32.43-.16.74-.36 1.06-.68.32-.32.52-.63.68-1.06.13-.32.28-.8.32-1.7.07-1.25.07-1.6.07-4.75s0-3.5-.07-4.75c-.04-.9-.19-1.38-.32-1.7a2.85 2.85 0 0 0-.68-1.06 2.85 2.85 0 0 0-1.06-.68c-.32-.13-.8-.28-1.7-.32C15.5 4 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 16.94 4.94 4.94 0 0 1 12 7.06Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.14-.94a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg></a>
-            <a href="https://x.com/greydevelopment_ng" target="_blank" rel="noopener" class="w-11 h-11 rounded-none glass grid place-items-center text-stone hover:text-champagne t-std hover:border-gold/40" aria-label="GREY Development on X"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.65l-5.214-6.817-5.966 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
+            <a href="https://instagram.com/greydevelopment_ng" target="_blank" rel="noopener" class="w-11 h-11 rounded-none glass grid place-items-center text-stone hover:text-muted t-std hover:border-gold/40" aria-label="GREY Development on Instagram"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.9.07s-3.63 0-4.9-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.4 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.75.07-.9.04-1.38.19-1.7.32-.43.16-.74.36-1.06.68-.32.32-.52.63-.68 1.06-.13.32-.28.8-.32 1.7C3.2 8.5 3.2 8.85 3.2 12s0 3.5.07 4.75c.04.9.19 1.38.32 1.7.16.43.36.74.68 1.06.32.32.63.52 1.06.68.32.13.8.28 1.7.32 1.25.07 1.6.07 4.75.07s3.5 0 4.75-.07c.9-.04 1.38-.19 1.7-.32.43-.16.74-.36 1.06-.68.32-.32.52-.63.68-1.06.13-.32.28-.8.32-1.7.07-1.25.07-1.6.07-4.75s0-3.5-.07-4.75c-.04-.9-.19-1.38-.32-1.7a2.85 2.85 0 0 0-.68-1.06 2.85 2.85 0 0 0-1.06-.68c-.32-.13-.8-.28-1.7-.32C15.5 4 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 16.94 4.94 4.94 0 0 1 12 7.06Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.14-.94a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg></a>
+            <a href="https://x.com/greydevelopment_ng" target="_blank" rel="noopener" class="w-11 h-11 rounded-none glass grid place-items-center text-stone hover:text-muted t-std hover:border-gold/40" aria-label="GREY Development on X"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.65l-5.214-6.817-5.966 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
             <span class="text-stone text-sm">@greydevelopment_ng</span>
           </div>
         </div>
@@ -780,21 +806,21 @@
           <form id="quoteForm" novalidate>
             <div class="grid sm:grid-cols-2 gap-5">
               <div>
-                <label for="name" class="block text-sm text-stone mb-2">Full name <span class="text-champagne">*</span></label>
-                <input id="name" name="name" type="text" required autocomplete="name" class="w-full rounded-none bg-white/5 border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro" placeholder="Your name" />
+                <label for="name" class="block text-sm text-stone mb-2">Full name <span class="text-muted">*</span></label>
+                <input id="name" name="name" type="text" required autocomplete="name" class="w-full rounded-none bg-transparent border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro" placeholder="Your name" />
               </div>
               <div>
-                <label for="phone" class="block text-sm text-stone mb-2">Phone <span class="text-champagne">*</span></label>
-                <input id="phone" name="phone" type="tel" required autocomplete="tel" class="w-full rounded-none bg-white/5 border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro" placeholder="080..." />
+                <label for="phone" class="block text-sm text-stone mb-2">Phone <span class="text-muted">*</span></label>
+                <input id="phone" name="phone" type="tel" required autocomplete="tel" class="w-full rounded-none bg-transparent border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro" placeholder="080..." />
               </div>
             </div>
             <div class="mt-5">
-              <label for="email" class="block text-sm text-stone mb-2">Email <span class="text-champagne">*</span></label>
-              <input id="email" name="email" type="email" required autocomplete="email" class="w-full rounded-none bg-white/5 border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro" placeholder="you@example.com" />
+              <label for="email" class="block text-sm text-stone mb-2">Email <span class="text-muted">*</span></label>
+              <input id="email" name="email" type="email" required autocomplete="email" class="w-full rounded-none bg-transparent border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro" placeholder="you@example.com" />
             </div>
             <div class="mt-5">
               <label for="service" class="block text-sm text-stone mb-2">I'm interested in</label>
-              <select id="service" name="service" class="w-full rounded-none bg-white/5 border border-line px-4 py-3 text-porcelain focus:border-gold outline-none t-micro">
+              <select id="service" name="service" class="w-full rounded-none bg-transparent border border-line px-4 py-3 text-porcelain focus:border-gold outline-none t-micro">
                 <option>Shafa's Residences</option>
                 <option>Amrah's Villas</option>
                 <option>Eden I</option>
@@ -808,11 +834,11 @@
               </select>
             </div>
             <div class="mt-5">
-              <label for="message" class="block text-sm text-stone mb-2">Project details <span class="text-champagne">*</span></label>
-              <textarea id="message" name="message" rows="4" required class="w-full rounded-none bg-white/5 border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro resize-y" placeholder="Tell us a little about what you'd like to build or invest in..."></textarea>
+              <label for="message" class="block text-sm text-stone mb-2">Project details <span class="text-muted">*</span></label>
+              <textarea id="message" name="message" rows="4" required class="w-full rounded-none bg-transparent border border-line px-4 py-3 text-porcelain placeholder-slate focus:border-gold outline-none t-micro resize-y" placeholder="Tell us a little about what you'd like to build or invest in..."></textarea>
             </div>
-            <p id="formError" class="hidden mt-4 text-sm text-red-400" role="alert"></p>
-            <button id="formSubmit" type="submit" class="mt-6 inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-none bg-gold px-8 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer disabled:opacity-70 disabled:cursor-wait">
+            <p id="formError" class="hidden mt-4 text-sm text-red-700" role="alert"></p>
+            <button id="formSubmit" type="submit" class="mt-6 btn btn-primary inline-flex w-full sm:w-auto justify-center items-center gap-2 px-8 py-3.5">
               <span id="formSubmitLabel" class="inline-flex items-center gap-2">
                 Send Request
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.126A59.768 59.768 0 0 1 21.485 12 59.77 59.77 0 0 1 3.27 20.876L5.999 12Zm0 0h7.5"/></svg>
@@ -820,8 +846,8 @@
               <span id="formSubmitSpin" class="hidden items-center gap-2"><span class="spinner" aria-hidden="true"></span> Preparing…</span>
             </button>
             <div id="formSuccess" class="hidden mt-5 flex items-start gap-3 border border-gold/40 bg-gold/5 rounded-none p-4" role="status">
-              <svg class="w-5 h-5 text-champagne shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
-              <div><p class="text-porcelain text-sm font-semibold">Enquiry ready to send.</p><p class="text-body text-sm mt-1">Your email app is opening with the details filled in. Prefer to chat? <a href="https://wa.me/2348078963703" target="_blank" rel="noopener" class="text-champagne hover:text-gold t-micro">Message us on WhatsApp</a>. We respond within one business day.</p></div>
+              <svg class="w-5 h-5 text-muted shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5"/></svg>
+              <div><p class="text-porcelain text-sm font-semibold">Enquiry ready to send.</p><p class="text-body text-sm mt-1">Your email app is opening with the details filled in. Prefer to chat? <a href="https://wa.me/2348078963703" target="_blank" rel="noopener" class="text-muted hover:text-gold t-micro">Message us on WhatsApp</a>. We respond within one business day.</p></div>
             </div>
           </form>
         </div>
@@ -832,28 +858,28 @@
     <section class="relative bg-ink border-y border-line">
       <div class="mx-auto max-w-7xl px-5 sm:px-8 py-14 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
         <h3 class="reveal display text-2xl sm:text-4xl text-porcelain">Not Just Built. <span class="gradword">But Crafted.</span></h3>
-        <a href="tel:+2348078963703" class="reveal inline-flex items-center gap-2 rounded-none bg-gold px-7 py-3.5 font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze cursor-pointer" data-delay="1">Call 0807 896 3703</a>
+        <a href="tel:+2348078963703" class="reveal btn btn-primary inline-flex items-center gap-2 px-7 py-3.5" data-delay="1">Call 0807 896 3703</a>
       </div>
     </section>
 
   </main>
 
   <!-- ============ FOOTER ============ -->
-  <footer class="bg-ink pt-16 pb-8">
+  <footer class="on-void bg-void pt-16 pb-8">
     <div class="mx-auto max-w-7xl px-5 sm:px-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12">
         <!-- Brand -->
         <div class="sm:col-span-2 lg:col-span-5 max-w-sm">
           <div class="flex flex-col items-start leading-none mb-5">
             <img src="assets/grey-wordmark-white.png" alt="GREY" width="1100" height="224" class="h-8 w-auto" />
-            <span class="eyebrow text-[10px] text-champagne mt-2 tracking-[0.26em]">Development Limited</span>
+            <span class="eyebrow text-[10px] text-muted mt-2 tracking-[0.26em]">Development Limited</span>
           </div>
           <p class="text-stone text-sm leading-relaxed">Realty · Construction · Investment. Architecturally serious developments in Abuja — not just built, but crafted.</p>
         </div>
 
         <!-- Explore -->
         <nav class="lg:col-span-3" aria-label="Footer">
-          <p class="eyebrow text-[11px] text-champagne mb-4">Explore</p>
+          <p class="eyebrow text-[11px] text-muted mb-4">Explore</p>
           <ul class="space-y-3 text-sm text-stone">
             <li><a href="#projects" class="hover:text-porcelain t-micro">Projects</a></li>
             <li><a href="#about" class="hover:text-porcelain t-micro">About</a></li>
@@ -864,14 +890,14 @@
 
         <!-- Contact + enquiry CTA (anchors the right edge on wide viewports) -->
         <div class="lg:col-span-4">
-          <p class="eyebrow text-[11px] text-champagne mb-4">Get in touch</p>
+          <p class="eyebrow text-[11px] text-muted mb-4">Get in touch</p>
           <ul class="space-y-3 text-sm text-stone">
             <li>No. 2 William F. Kumuyi Street,<br/>Kado, Abuja</li>
             <li><a href="tel:+2348078963703" class="hover:text-porcelain t-micro">0807 896 3703</a></li>
             <li><a href="mailto:greydevelopment.ng@gmail.com" class="hover:text-porcelain t-micro break-all">greydevelopment.ng@gmail.com</a></li>
-            <li class="pt-1"><a href="https://instagram.com/greydevelopment_ng" target="_blank" rel="noopener" class="hover:text-champagne t-micro">@greydevelopment_ng</a></li>
+            <li class="pt-1"><a href="https://instagram.com/greydevelopment_ng" target="_blank" rel="noopener" class="hover:text-muted t-micro">@greydevelopment_ng</a></li>
           </ul>
-          <a href="#contact" class="mt-6 inline-flex items-center gap-2 rounded-none border border-gold/50 px-5 py-2.5 text-sm font-semibold text-champagne hover:bg-gold hover:text-[#171512] active:bg-bronze t-micro">
+          <a href="#contact" class="mt-6 btn btn-invert-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
             Start an enquiry
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
           </a>
@@ -894,15 +920,15 @@
     <div class="modal-panel">
       <div class="flex items-center justify-between gap-4 px-5 sm:px-6 py-4 border-b border-line shrink-0">
         <div class="min-w-0">
-          <p class="eyebrow text-[10px] text-champagne">Brochure Preview</p>
+          <p class="eyebrow text-[10px] text-muted">Brochure Preview</p>
           <h3 id="brochureTitle" class="display text-lg text-porcelain truncate">&mdash;</h3>
         </div>
         <div class="flex items-center gap-2 shrink-0">
-          <button id="brochureEnquire" type="button" class="hidden sm:inline-flex items-center gap-2 rounded-none bg-gold px-4 py-2 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze">
+          <button id="brochureEnquire" type="button" class="hidden sm:inline-flex btn btn-primary items-center gap-2 px-4 py-2 text-sm">
             Enquire
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
           </button>
-          <a id="brochureDownload" href="#" download class="hidden sm:inline-flex items-center gap-2 rounded-none border border-gold/50 px-4 py-2 text-sm font-semibold text-champagne t-micro hover:bg-gold hover:text-[#171512]">
+          <a id="brochureDownload" href="#" download class="hidden sm:inline-flex btn btn-secondary items-center gap-2 px-4 py-2 text-sm">
             Download
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg>
           </a>
@@ -917,12 +943,12 @@
         <div id="brochureFallback" class="hidden absolute inset-0 flex-col items-center justify-center text-center p-8 gap-5">
           <img id="brochureCover" src="" alt="" class="max-h-[46vh] w-auto border border-line" />
           <p class="text-body text-sm max-w-xs">Open the full brochure for floor plans, specifications and current pricing.</p>
-          <a id="brochureOpen" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-none bg-gold px-6 py-3 text-sm font-semibold text-[#171512] t-micro hover:bg-satin active:bg-bronze">Open full brochure &rarr;</a>
+          <a id="brochureOpen" href="#" target="_blank" rel="noopener" class="btn btn-primary inline-flex items-center gap-2 px-6 py-3 text-sm">Open full brochure &rarr;</a>
         </div>
       </div>
       <div class="sm:hidden px-5 py-3 border-t border-line shrink-0 grid grid-cols-2 gap-2">
-        <button id="brochureEnquireM" type="button" class="inline-flex justify-center items-center gap-2 rounded-none bg-gold px-4 py-3 text-sm font-semibold text-[#171512]">Enquire</button>
-        <a id="brochureDownloadM" href="#" download class="inline-flex justify-center items-center gap-2 rounded-none border border-gold/50 px-4 py-3 text-sm font-semibold text-champagne">Download</a>
+        <button id="brochureEnquireM" type="button" class="btn btn-primary inline-flex justify-center items-center gap-2 px-4 py-3 text-sm">Enquire</button>
+        <a id="brochureDownloadM" href="#" download class="btn btn-secondary inline-flex justify-center items-center gap-2 px-4 py-3 text-sm">Download</a>
       </div>
     </div>
   </div>
@@ -931,15 +957,15 @@
   <div id="fab" class="fab-hidden">
     <div id="fabMenu" aria-hidden="true">
       <a href="https://wa.me/2348078963703?text=Hello%20GREY%20Development%2C%20I%27d%20like%20to%20enquire%20about%20your%20developments." target="_blank" rel="noopener" class="fab-item rounded-none" role="menuitem">
-        <svg class="w-4 h-4 text-champagne" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.08c-.24.68-1.42 1.32-1.95 1.36-.5.04-.95.22-3.2-.67-2.7-1.06-4.42-3.8-4.55-3.98-.13-.18-1.1-1.46-1.1-2.78 0-1.32.69-1.97.94-2.24.24-.27.53-.34.71-.34.18 0 .35 0 .51.01.16.01.38-.06.6.46.22.53.76 1.84.83 1.97.07.13.11.29.02.47-.09.18-.13.29-.27.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.54.15.27.67 1.1 1.44 1.78.99.88 1.82 1.16 2.08 1.29.26.13.41.11.56-.07.15-.18.64-.75.81-1.01.17-.26.34-.21.57-.13.23.09 1.47.69 1.72.82.26.13.43.19.49.3.06.1.06.62-.18 1.3Z"/></svg>
+        <svg class="w-4 h-4 text-muted" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.08c-.24.68-1.42 1.32-1.95 1.36-.5.04-.95.22-3.2-.67-2.7-1.06-4.42-3.8-4.55-3.98-.13-.18-1.1-1.46-1.1-2.78 0-1.32.69-1.97.94-2.24.24-.27.53-.34.71-.34.18 0 .35 0 .51.01.16.01.38-.06.6.46.22.53.76 1.84.83 1.97.07.13.11.29.02.47-.09.18-.13.29-.27.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.54.15.27.67 1.1 1.44 1.78.99.88 1.82 1.16 2.08 1.29.26.13.41.11.56-.07.15-.18.64-.75.81-1.01.17-.26.34-.21.57-.13.23.09 1.47.69 1.72.82.26.13.43.19.49.3.06.1.06.62-.18 1.3Z"/></svg>
         WhatsApp us
       </a>
       <a href="tel:+2348078963703" class="fab-item rounded-none" role="menuitem">
-        <svg class="w-4 h-4 text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
+        <svg class="w-4 h-4 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
         Call us
       </a>
       <button type="button" id="fabEnquire" class="fab-item rounded-none" role="menuitem">
-        <svg class="w-4 h-4 text-champagne" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+        <svg class="w-4 h-4 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
         Quick enquiry
       </button>
     </div>
