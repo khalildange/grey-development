@@ -351,8 +351,10 @@
       background: linear-gradient(to top, rgba(11,11,11,.52) 0%, rgba(11,11,11,.10) 42%, rgba(11,11,11,0) 66%);
       transition: opacity .4s ease; }
     #projects .zoomable > span { z-index:2; }
-    #projects article { transition: border-color .24s ease, transform .24s cubic-bezier(.4,0,.2,1); }
-    #projects article:hover { border-color: var(--gold); transform: translateY(-4px); }
+    #projects article { transition: border-color .28s ease, transform .28s cubic-bezier(.4,0,.2,1); }
+    /* Subtle: the hairline warms to a soft antique gold rather than flashing to full
+       Metallic, and the lift is halved. */
+    #projects article:hover { border-color: rgba(122,92,45,.40); transform: translateY(-2px); }
     @media (prefers-reduced-motion: reduce){ #projects article:hover { transform:none; } }
 
     /* Reveal */
@@ -436,7 +438,7 @@
       transition: color .16s ease, border-color .16s ease, background-color .16s ease; }
     .filter-chip:hover { color: var(--void); border-color: var(--void-40); }
     .filter-chip[aria-pressed="true"] { color: var(--offwhite); background: var(--void); border-color: var(--void); }
-    #projectGrid article { transition: opacity .28s ease, transform .28s cubic-bezier(.4,0,.2,1); }
+    #projectGrid article { transition: opacity .28s ease, transform .28s cubic-bezier(.4,0,.2,1), border-color .28s ease; }
     #projectGrid article.filtering-out { opacity:0; transform: translateY(8px); }
     #projectGrid article.is-filtered-hidden { display:none; }
     .proj-empty { display:none; }
