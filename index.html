@@ -167,6 +167,10 @@
     .tnum { font-variant-numeric: tabular-nums; }
     /* Taglines / pull-quotes — Glacial Italic (no serif in this system) */
     .quote { font-style: italic; font-weight:400; letter-spacing:0; }
+    /* Statement — Glacial 28/38, tracking 0. For sentences too long for Anton's 8-word cap. */
+    .statement { font-weight:400; font-size:clamp(1.25rem,2.2vw,1.75rem); line-height:1.36;
+                 letter-spacing:0; color: var(--void); }
+    .on-void .statement { color: var(--offwhite); }
     /* H3 — Glacial Bold 14/20 +0.14em. Anton is never used for labels or subheads. */
     .h3 { font-weight:700; font-size:14px; line-height:1.45; letter-spacing:.14em;
           text-transform:uppercase; color: var(--void); }
@@ -272,6 +276,27 @@
     .on-void .tl-seg { background: var(--ow-14); }
     .on-void .tl-seg.is-active { background: var(--offwhite); }
 
+    /* ---- Interactive delivery-model flow (§05 icons: 48-unit grid, 2-unit line, square ends;
+       gold marks the ACTIVE icon only) ---- */
+    .pflow { list-style:none; margin:0; padding:0; display:grid; gap:2.5rem; position:relative; }
+    @media (min-width:768px){ .pflow { grid-template-columns:repeat(3,1fr); gap:2rem; } }
+    .pstep { position:relative; padding-top:1.75rem; outline:none; }
+    /* connector rail */
+    .pstep::before { content:""; position:absolute; top:0; left:0; right:0; height:1px; background:var(--void-14);
+                     transition: background-color .24s ease; }
+    .pstep-node { position:absolute; top:-3px; left:0; width:7px; height:7px; background:var(--void-40);
+                  transition: background-color .24s ease, transform .24s ease; }
+    .pstep-icon { width:38px; height:38px; color:var(--void-40); flex:none;
+                  transition: color .24s ease, transform .24s cubic-bezier(.4,0,.2,1); }
+    .pstep:hover::before, .pstep:focus::before, .pstep:focus-visible::before { background:var(--gold); }
+    .pstep:hover .pstep-node, .pstep:focus .pstep-node, .pstep:focus-visible .pstep-node { background:var(--gold); }
+    .pstep:hover .pstep-icon, .pstep:focus .pstep-icon, .pstep:focus-visible .pstep-icon { color:var(--gold); transform:translateY(-2px); }
+    .pstep:hover .h3, .pstep:focus .h3, .pstep:focus-visible .h3 { color:var(--void); }
+    .pstep:focus-visible { outline:2px solid var(--void); outline-offset:8px; }
+    .on-void .pstep::before { background:var(--ow-14); }
+    .on-void .pstep-icon, .on-void .pstep-node { color:var(--ow-64); background:var(--ow-64); }
+    @media (prefers-reduced-motion: reduce){ .pstep:hover .pstep-icon { transform:none; } }
+
     /* Portfolio filter chips */
     .filter-chip { font-weight:500; letter-spacing:.14em; text-transform:uppercase; cursor:pointer;
       color: var(--void-64); border:1px solid var(--void-14); background: transparent;
@@ -333,8 +358,6 @@
   <header id="siteHeader" class="fixed top-0 inset-x-0 z-50 t-std">
     <nav class="mx-auto max-w-7xl px-5 sm:px-8">
       <div class="navbar-inner flex items-center justify-between h-20">
-        <!-- TODO: real logo — replace with <img src="assets/logo.svg" ...> if you export a vector.
-             (The full logo appears in the hero image below.) -->
         <a href="#home" class="flex flex-col items-start leading-none" aria-label="GREY Development Limited — home">
           <img src="assets/grey-wordmark-white.png" alt="GREY" width="1100" height="224" class="nav-logo h-6 sm:h-7 w-auto" />
           <span class="nav-desc eyebrow text-[9px] sm:text-[10px] text-muted mt-1.5 tracking-[0.26em]">Development Limited</span>
@@ -343,7 +366,7 @@
         <ul class="hidden lg:flex items-center gap-8 text-[13px] uppercase tracking-[0.16em] font-medium text-stone">
           <li><a href="#projects" class="t-micro hover:text-porcelain">Projects</a></li>
           <li><a href="#about" class="t-micro hover:text-porcelain">About</a></li>
-          <li><a href="#services" class="t-micro hover:text-porcelain">Invest</a></li>
+          <li><a href="#invest" class="t-micro hover:text-porcelain">Invest</a></li>
         </ul>
 
         <div class="flex items-center gap-3">
@@ -359,7 +382,7 @@
       <ul class="px-6 py-4 space-y-1 text-base">
         <li><a href="#projects" class="mobile-link block py-3 border-b border-line/60 text-stone hover:text-porcelain uppercase tracking-[0.16em] text-sm">Projects</a></li>
         <li><a href="#about" class="mobile-link block py-3 border-b border-line/60 text-stone hover:text-porcelain uppercase tracking-[0.16em] text-sm">About</a></li>
-        <li><a href="#services" class="mobile-link block py-3 text-stone hover:text-porcelain uppercase tracking-[0.16em] text-sm">Invest</a></li>
+        <li><a href="#invest" class="mobile-link block py-3 text-stone hover:text-porcelain uppercase tracking-[0.16em] text-sm">Invest</a></li>
       </ul>
       <div class="px-6 pb-6">
         <a href="#contact" class="mobile-link btn btn-invert inline-flex w-full justify-center items-center px-5 py-3">Enquire</a>
@@ -416,7 +439,7 @@
     <section class="border-y border-line bg-ink2">
       <div class="mx-auto max-w-4xl px-5 sm:px-8 py-16 sm:py-20">
         <p class="reveal eyebrow text-[11px] text-muted mb-6">Realty · Construction · Investment</p>
-        <p class="reveal display text-2xl sm:text-3xl text-porcelain leading-snug max-w-3xl" data-delay="1">
+        <p class="reveal statement max-w-3xl" data-delay="1">
           We treat architectural precision as non-negotiable — designing, building and delivering developments of uncompromising structural and material integrity.
         </p>
         <p class="reveal text-body mt-6 max-w-2xl leading-relaxed" data-delay="2">
@@ -701,29 +724,48 @@
             <blockquote class="quote text-2xl sm:text-3xl text-porcelain leading-snug">Precision is the only luxury that cannot be counterfeited.</blockquote>
           </figure>
 
-          <p class="reveal eyebrow text-[11px] text-muted mt-12 mb-2" data-delay="1">Our Commitments</p>
-          <p class="reveal text-body leading-relaxed max-w-2xl mb-8" data-delay="1">Three obligations we hold ourselves to on every development — the measure of whether a project was built to the standard, or merely sold at it.</p>
-          <div class="reveal grid grid-cols-1 sm:grid-cols-3 gap-x-10 gap-y-9 border-t border-line pt-8" data-delay="1">
+          <p class="reveal eyebrow text-[11px] text-muted mt-12 mb-2" data-delay="1">Our Delivery Model</p>
+          <p class="reveal text-body leading-relaxed max-w-2xl mb-8" data-delay="1">One in-house team carries a development through three stages. Each is an obligation, not a phase we hand off &mdash; the measure of whether a project was built to the standard, or merely sold at it.</p>
 
-            <div class="group">
-              <span class="measure block mb-4"></span>
-              <h3 class="mono text-[12px] uppercase tracking-[0.2em] text-porcelain mb-3">Engineered</h3>
-              <p class="text-body text-sm leading-relaxed">Specified for the second owner. Materials are chosen for how they age, not how they photograph — built to outlast the financing behind them.</p>
-            </div>
-
-            <div class="group">
-              <span class="measure block mb-4"></span>
-              <h3 class="mono text-[12px] uppercase tracking-[0.2em] text-porcelain mb-3">Documented</h3>
-              <p class="text-body text-sm leading-relaxed">Every figure is calculated before it is published, and every variation is raised early — in writing, with the cost attached.</p>
-            </div>
-
-            <div class="group">
-              <span class="measure block mb-4"></span>
-              <h3 class="mono text-[12px] uppercase tracking-[0.2em] text-porcelain mb-3">Delivered</h3>
-              <p class="text-body text-sm leading-relaxed">A programme measured, not hoped for. The handover date is a calculation the whole team is accountable to — not a marketing promise.</p>
-            </div>
-
-          </div>
+          <!-- Interactive process flow — hover or focus a step; gold marks the active one only (§05) -->
+          <ol class="reveal pflow border-t border-line pt-10" data-delay="1">
+            <li class="pstep group relative" tabindex="0" aria-label="Step 1: Engineered">
+              <span class="pstep-node" aria-hidden="true"></span>
+              <div class="pstep-inner">
+                <div class="flex items-center gap-3 mb-4">
+                  <svg class="pstep-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 34V14l12-6 12 6v20" /><path d="M6 34h28" /><path d="M14 34V22h8v12" /></svg>
+                  <span class="mono text-[11px] tracking-[0.2em] text-muted tnum">01</span>
+                </div>
+                <h3 class="h3 mb-3">Engineered</h3>
+                <p class="text-body text-sm leading-relaxed">Specified for the second owner. Materials are chosen for how they age, not how they photograph — built to outlast the financing behind them.</p>
+              </div>
+            </li>
+            <li class="pstep group relative" tabindex="0" aria-label="Step 2: Documented">
+              <span class="pstep-node" aria-hidden="true"></span>
+              <div class="pstep-inner">
+                <div class="flex items-center gap-3 mb-4">
+                  <svg class="pstep-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M10 6h14l8 8v24H10z" /><path d="M24 6v8h8" /><path d="M15 22h14" /><path d="M15 28h14" /></svg>
+                  <span class="mono text-[11px] tracking-[0.2em] text-muted tnum">02</span>
+                </div>
+                <h3 class="h3 mb-3">Documented</h3>
+                <p class="text-body text-sm leading-relaxed">Every figure is calculated before it is published, and every variation is raised early — in writing, with the cost attached.</p>
+              </div>
+            </li>
+            <li class="pstep group relative" tabindex="0" aria-label="Step 3: Delivered">
+              <span class="pstep-node" aria-hidden="true"></span>
+              <div class="pstep-inner">
+                <div class="flex items-center gap-3 mb-4">
+                  <svg class="pstep-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2"
+                       stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="20" cy="20" r="14" /><path d="M20 11v9l6 4" /></svg>
+                  <span class="mono text-[11px] tracking-[0.2em] text-muted tnum">03</span>
+                </div>
+                <h3 class="h3 mb-3">Delivered</h3>
+                <p class="text-body text-sm leading-relaxed">A programme measured, not hoped for. The handover date is a calculation the whole team is accountable to — not a marketing promise.</p>
+              </div>
+            </li>
+          </ol>
 
           <div class="flex flex-col sm:flex-row gap-4 mt-10">
             <a href="#contact" class="reveal btn btn-primary inline-flex justify-center items-center gap-2 px-7 py-3.5" data-delay="3">Work with us</a>
@@ -763,6 +805,66 @@
       </div>
     </section>
 
+    <!-- ============ INVEST ============ -->
+    <section id="invest" class="relative py-24 sm:py-32 bg-ink border-t border-line">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="max-w-2xl mb-14">
+          <p class="reveal eyebrow text-[11px] text-muted mb-4">Invest</p>
+          <h2 class="reveal display text-3xl sm:text-5xl">Built to outlast the financing.</h2>
+          <p class="reveal text-body mt-5 leading-relaxed" data-delay="1" style="max-width:620px">We design, build and retain an interest in what we deliver &mdash; so our incentives survive handover. For institutional and private capital, that is the whole proposition: the programme you are shown is the programme we are held to.</p>
+        </div>
+
+        <!-- Evidenced assurances only -->
+        <div class="reveal grid md:grid-cols-3 gap-5 mb-16" data-delay="1">
+          <article class="border border-line rounded-none p-8">
+            <span class="mono text-[11px] text-muted tracking-[0.2em] tnum">01</span>
+            <h3 class="h3 mt-4 mb-3">Retained interest</h3>
+            <p class="text-body text-sm leading-relaxed">We hold an interest in what we deliver. The standard is set for the second owner, not the first sale, so our exposure does not end at handover.</p>
+          </article>
+          <article class="border border-line rounded-none p-8">
+            <span class="mono text-[11px] text-muted tracking-[0.2em] tnum">02</span>
+            <h3 class="h3 mt-4 mb-3">Documented to survive audit</h3>
+            <p class="text-body text-sm leading-relaxed">Every figure is calculated before it is published and carries its source and date. Variations are raised early, in writing, with the cost attached.</p>
+          </article>
+          <article class="border border-line rounded-none p-8">
+            <span class="mono text-[11px] text-muted tracking-[0.2em] tnum">03</span>
+            <h3 class="h3 mt-4 mb-3">Delivered on the date given</h3>
+            <p class="text-body text-sm leading-relaxed">The handover date is a calculation the whole team is accountable to &mdash; not a forecast. Programme adherence is the figure we are judged on.</p>
+          </article>
+        </div>
+
+        <!-- Delivery horizons — generated from the development cards above (single source of truth) -->
+        <div class="reveal" data-delay="1">
+          <div class="flex flex-wrap items-end justify-between gap-4 mb-5">
+            <h3 class="h3">Portfolio delivery horizons</h3>
+            <p class="mono text-[11px] text-muted tracking-[0.14em]">STAGE &middot; TARGET</p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[300px] border-collapse text-left" id="investTable">
+              <caption class="sr-only">Delivery stage and target horizon for each GREY development</caption>
+              <thead>
+                <tr class="border-y border-line">
+                  <th scope="col" class="eyebrow text-[10px] text-muted py-3 pr-4 font-medium">Development</th>
+                  <th scope="col" class="eyebrow text-[10px] text-muted py-3 pr-4 font-medium hidden sm:table-cell">Location</th>
+                  <th scope="col" class="eyebrow text-[10px] text-muted py-3 pr-4 font-medium">Stage</th>
+                  <th scope="col" class="eyebrow text-[10px] text-muted py-3 font-medium text-right">Target</th>
+                </tr>
+              </thead>
+              <tbody id="investRows"></tbody>
+            </table>
+          </div>
+          <p class="text-muted text-xs mt-4 max-w-2xl">Stage and target as recorded on each development&rsquo;s programme register and published on the cards above. Targets are programme horizons, not contractual completion dates.</p>
+        </div>
+
+        <div class="reveal mt-10" data-delay="2">
+          <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-7 py-3.5">
+            Request the investment memorandum
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ CONTACT ============ -->
     <section id="contact" class="relative py-24 sm:py-32 bg-ink2 border-t border-line">
       <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12">
@@ -774,7 +876,7 @@
           <ul class="mt-10 space-y-6">
             <li class="reveal flex items-start gap-4" data-delay="1">
               <span class="w-11 h-11 rounded-none bg-gold/10 border border-gold/25 grid place-items-center text-muted shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg></span>
-              <div><p class="eyebrow text-[10px] text-slate">Office</p><p class="text-porcelain">No. 2 William F. Kumuyi Street, Kado, Abuja</p></div>
+              <div><p class="eyebrow text-[10px] text-slate">Office</p><a href="https://www.google.com/maps/dir/?api=1&amp;destination=No.%202%20William%20F.%20Kumuyi%20Street%2C%20Kado%2C%20Abuja%2C%20Nigeria" target="_blank" rel="noopener" class="text-porcelain hover:text-muted t-micro">No. 2 William F. Kumuyi Street, Kado, Abuja</a><p class="mono text-[10px] text-muted tracking-[0.14em] mt-1">GET DIRECTIONS &rarr;</p></div>
             </li>
             <li class="reveal flex items-start gap-4" data-delay="2">
               <span class="w-11 h-11 rounded-none bg-gold/10 border border-gold/25 grid place-items-center text-muted shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg></span>
@@ -883,7 +985,7 @@
           <ul class="space-y-3 text-sm text-stone">
             <li><a href="#projects" class="hover:text-porcelain t-micro">Projects</a></li>
             <li><a href="#about" class="hover:text-porcelain t-micro">About</a></li>
-            <li><a href="#services" class="hover:text-porcelain t-micro">Invest</a></li>
+            <li><a href="#invest" class="hover:text-porcelain t-micro">Invest</a></li>
             <li><a href="#contact" class="hover:text-porcelain t-micro">Contact</a></li>
           </ul>
         </nav>
@@ -892,10 +994,17 @@
         <div class="lg:col-span-4">
           <p class="eyebrow text-[11px] text-muted mb-4">Get in touch</p>
           <ul class="space-y-3 text-sm text-stone">
-            <li>No. 2 William F. Kumuyi Street,<br/>Kado, Abuja</li>
+            <li><a href="https://www.google.com/maps/dir/?api=1&amp;destination=No.%202%20William%20F.%20Kumuyi%20Street%2C%20Kado%2C%20Abuja%2C%20Nigeria" target="_blank" rel="noopener" class="hover:text-porcelain t-micro">No. 2 William F. Kumuyi Street,<br/>Kado, Abuja</a></li>
             <li><a href="tel:+2348078963703" class="hover:text-porcelain t-micro">0807 896 3703</a></li>
             <li><a href="mailto:greydevelopment.ng@gmail.com" class="hover:text-porcelain t-micro break-all">greydevelopment.ng@gmail.com</a></li>
-            <li class="pt-1"><a href="https://instagram.com/greydevelopment_ng" target="_blank" rel="noopener" class="hover:text-muted t-micro">@greydevelopment_ng</a></li>
+            <li class="pt-2">
+              <span class="flex items-center gap-2">
+                <a href="https://instagram.com/greydevelopment_ng" target="_blank" rel="noopener" class="w-9 h-9 grid place-items-center border border-line hover:border-gold t-micro" aria-label="GREY Development on Instagram"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.9.07s-3.63 0-4.9-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.4 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.75.07-.9.04-1.38.19-1.7.32-.43.16-.74.36-1.06.68-.32.32-.52.63-.68 1.06-.13.32-.28.8-.32 1.7C3.2 8.5 3.2 8.85 3.2 12s0 3.5.07 4.75c.04.9.19 1.38.32 1.7.16.43.36.74.68 1.06.32.32.63.52 1.06.68.32.13.8.28 1.7.32 1.25.07 1.6.07 4.75.07s3.5 0 4.75-.07c.9-.04 1.38-.19 1.7-.32.43-.16.74-.36 1.06-.68.32-.32.52-.63.68-1.06.13-.32.28-.8.32-1.7.07-1.25.07-1.6.07-4.75s0-3.5-.07-4.75c-.04-.9-.19-1.38-.32-1.7a2.85 2.85 0 0 0-.68-1.06 2.85 2.85 0 0 0-1.06-.68c-.32-.13-.8-.28-1.7-.32C15.5 4 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 16.94 4.94 4.94 0 0 1 12 7.06Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.14-.94a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z"/></svg></a>
+                <a href="https://x.com/greydevelopment_ng" target="_blank" rel="noopener" class="w-9 h-9 grid place-items-center border border-line hover:border-gold t-micro" aria-label="GREY Development on X"><svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.65l-5.214-6.817-5.966 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a>
+                <a href="https://wa.me/2348078963703" target="_blank" rel="noopener" class="w-9 h-9 grid place-items-center border border-line hover:border-gold t-micro" aria-label="GREY Development on WhatsApp"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.08c-.24.68-1.42 1.32-1.95 1.36-.5.04-.95.22-3.2-.67-2.7-1.06-4.42-3.8-4.55-3.98-.13-.18-1.1-1.46-1.1-2.78 0-1.32.69-1.97.94-2.24.24-.27.53-.34.71-.34.18 0 .35 0 .51.01.16.01.38-.06.6.46.22.53.76 1.84.83 1.97.07.13.11.29.02.47-.09.18-.13.29-.27.45-.13.16-.28.35-.4.47-.13.13-.27.28-.12.54.15.27.67 1.1 1.44 1.78.99.88 1.82 1.16 2.08 1.29.26.13.41.11.56-.07.15-.18.64-.75.81-1.01.17-.26.34-.21.57-.13.23.09 1.47.69 1.72.82.26.13.43.19.49.3.06.1.06.62-.18 1.3Z"/></svg></a>
+                <span class="text-muted text-xs ml-1">@greydevelopment_ng</span>
+              </span>
+            </li>
           </ul>
           <a href="#contact" class="mt-6 btn btn-invert-secondary inline-flex items-center gap-2 px-5 py-2.5 text-sm">
             Start an enquiry
@@ -1122,6 +1231,30 @@
         track.setAttribute('role', 'img');
         track.setAttribute('aria-label', 'Delivery progress: ' + label + ' — ' + stage + ' of 5 stages complete');
       });
+    })();
+
+    // ---------- Invest: delivery horizons, generated from the development cards ----------
+    (() => {
+      const rows = document.getElementById('investRows');
+      const cards = document.querySelectorAll('#projectGrid article');
+      if (!rows || !cards.length) return;
+      const STAGES = ['Slab', 'Superstructure', 'Roofing', 'Finishing', 'Handover'];
+      let html = '';
+      cards.forEach(card => {
+        const name = (card.querySelector('h3') || {}).textContent || '';
+        const loc  = (card.querySelector('.mono') || {}).textContent || '';
+        let st = parseInt(card.dataset.stage || '0', 10); if (isNaN(st)) st = 0;
+        st = Math.max(0, Math.min(5, st));
+        const stage = st === 0 ? 'In planning' : (st >= 5 ? 'Delivered' : STAGES[st]);
+        const target = (card.dataset.updated || '').trim() || '—';
+        html += '<tr class="border-b border-line align-top">' +
+          '<td class="py-4 pr-4 text-porcelain font-medium">' + name + '</td>' +
+          '<td class="py-4 pr-4 text-muted text-sm hidden sm:table-cell">' + loc + '</td>' +
+          '<td class="py-4 pr-4 text-body text-sm">' + stage + '</td>' +
+          '<td class="py-4 text-right mono text-sm tnum text-porcelain">' + target + '</td>' +
+          '</tr>';
+      });
+      rows.innerHTML = html;
     })();
 
     // ---------- Brochure preview modal ----------
