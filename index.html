@@ -289,14 +289,15 @@
     .btn { border-radius:0; font-weight:600; letter-spacing:.02em; cursor:pointer;
            transition: background-color 240ms cubic-bezier(.4,0,.2,1), color 240ms cubic-bezier(.4,0,.2,1),
                        border-color 240ms cubic-bezier(.4,0,.2,1), opacity 240ms ease; }
-    .btn-primary   { background: var(--void); color: var(--offwhite); border:1px solid var(--void); }
-    .btn-primary:hover  { background: var(--void-72); border-color: var(--void-72); }
-    .btn-primary:active { opacity:.88; }
+    .btn-primary   { background: var(--gold); color: var(--void); border:1px solid var(--gold-deep); }
+    .btn-primary:hover  { background: var(--gold-soft); border-color: var(--gold-deep); }
+    .btn-primary:active { background: var(--gold-deep); border-color: var(--gold-deep); color: var(--ground); }
     .btn-secondary { background: transparent; color: var(--gold-deep); border:1px solid var(--gold-deep); }
     .btn-secondary:hover { background: var(--gold-deep); color: var(--ground); border-color: var(--gold-deep); }
     /* On Void grounds (hero over photography, footer) */
-    .btn-invert    { background: var(--offwhite); color: var(--void); border:1px solid var(--offwhite); }
-    .btn-invert:hover { opacity:.88; }
+    .btn-invert    { background: var(--gold); color: var(--void); border:1px solid var(--gold); }
+    .btn-invert:hover { background: var(--gold-soft); border-color: var(--gold-soft); }
+    .btn-invert:active { background: var(--gold-deep); border-color: var(--gold-deep); color: var(--ground); }
     .btn-invert-secondary { background: transparent; color: var(--offwhite); border:1px solid rgba(248,245,240,.45); }
     .btn-invert-secondary:hover { border-color: var(--gold); color: var(--gold-soft); }
     .btn[disabled] { opacity:.6; cursor:wait; }
@@ -462,13 +463,14 @@
       border:1px solid var(--void-14); color: var(--void); font-size:.82rem; letter-spacing:.02em; white-space:nowrap;
       cursor:pointer; transition: border-color .16s ease, color .16s ease; }
     .fab-item:hover { border-color: var(--gold); }
-    #fabToggle { width:3.25rem; height:3.25rem; display:grid; place-items:center; background: var(--void);
-      color: var(--offwhite); cursor:pointer; border:1px solid var(--void); transition: opacity .16s ease; }
-    #fabToggle:hover { opacity:.88; }
+    #fabToggle { width:3.25rem; height:3.25rem; display:grid; place-items:center; background: var(--gold);
+      color: var(--void); cursor:pointer; border:1px solid var(--gold-deep);
+      transition: background-color .16s ease, border-color .16s ease; }
+    #fabToggle:hover { background: var(--gold-soft); border-color: var(--gold-deep); }
     #fab.open #fabToggle { background: var(--panel-bg); color: var(--void); border-color: var(--void-14); }
     #fab.fab-hidden { opacity:0; pointer-events:none; transform: translateY(14px); transition: opacity .3s ease, transform .3s ease; }
 
-    .spinner { width:1rem; height:1rem; border:2px solid rgba(248,245,240,.35); border-top-color: var(--offwhite);
+    .spinner { width:1rem; height:1rem; border:2px solid rgba(11,11,11,.28); border-top-color: var(--void);
       border-radius:50%; animation: spin .7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
