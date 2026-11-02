@@ -14,9 +14,9 @@
   <meta name="twitter:title" content="GREY Development Limited — Not Just Built. But Crafted." />
   <meta name="twitter:description" content="Realty · Construction · Investment. Architecturally serious developments in Abuja, Nigeria." />
   <meta name="twitter:image" content="assets/GREY_Instagram_1080x1080.png" />
-  <meta name="theme-color" content="#F4F2EC" />
+  <meta name="theme-color" content="#18191B" />
   <link rel="canonical" href="https://greydevelopmentng.com/" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%230E0E10'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Archivo,Arial,sans-serif'%20font-size='21'%20font-weight='800'%20fill='%23C7A347'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%2318191B'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Oswald,Arial,sans-serif'%20font-size='21'%20font-weight='800'%20fill='%23DAA520'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
 
   <!-- Structured data — only facts stated on the page. No invented prices, units or titles. -->
   <script type="application/ld+json">
@@ -128,37 +128,60 @@
   <!--
        GREY DEVELOPMENT LIMITED — single-file marketing site
        Stack: static HTML + Tailwind (Play CDN)
-       Brand system — GREY Brand Identity Guidelines, Volume One, ISSUE THREE (3.3), 2026:
-         §03 Colour  Void Eclipse #0B0B0B · Off White #F8F5F0 · Metallic Gold #DAA520 · Soft Gold #E6C687
-                     Proportion 70% Void / 25% Off White / 5% max BOTH golds combined.
-                     Tints are Void or Off White at 72/56/40/14% — never new colours.
-                     No grey fills, gradients or shadows. Never pure #000000 or #FFFFFF.
-                     Gold is rules/labels only — on Off White it is RULES ONLY (2.1 fails as text).
-         §04 Type    Anton — headlines & figures, ALWAYS UPPERCASE, 8 words max, never body/labels.
-                     Glacial Indifference — text, labels, interface (self-host per manual).
-                     NOTE: Glacial Indifference is not on Google Fonts and the licensed files are not
-                     in /assets yet, so Jost is loaded as the visually compatible substitute. Drop the
-                     woff2 files in and add an @font-face to switch — the stack already prefers it.
-         §10 Digital Radius 0 · 12 col / 1440 max / 24px gutter · spacing 8/16/24/40/64/104
-                     Shadow: none — 1px hairline only. Motion 160/240/400ms, fade + 8px slide.
-                     Focus 2px ring: gold on Void, Void on Off White.
-                     BUTTONS ARE SQUARE AND GOLD NEVER FILLS A BUTTON.
-         §07 Voice   Lead with the fact. Avoid: bespoke, iconic, world-class, dream home, nestled.
-                     Approved taglines: "Precision, Built." / "The Standard, Delivered." /
-                     "Built to Be Inherited."  (the legacy line is still in the CTA strip + meta)
 
-       Ground: Off White is the page ground; Void is used for the header, the pull-quote band
-       and the footer, per the manual's Void/Off White alternation.
+       Brand system — GREY Brand Identity Guidelines, Volume One, ISSUE 2.0, 2026.
+       Sections 01–04 are binding; 05–12 are the standard new work must meet.
+
+         §03 Colour   FOUR COLOURS and nothing else:
+                      Charcoal #18191B 60% · Grey #878787 25% · Off White #FCFCFC 10% · Gold #DAA520 5%
+                      Authorised tints: Gold 60/30/15 and Grey 30. No others, and no tint
+                      becomes a new brand colour.
+                      Gold never exceeds 5% of any composition. It lives on Charcoal (7.9:1);
+                      on a light ground it appears only as a rule, edge or foil, never as text (2.2:1).
+         §04 Type     Anton (display) + Glacial Indifference (text), deployed through the manual's
+                      own authorised substitutes: Oswald for Anton, Century Gothic then Arial for
+                      Glacial. Display is ALWAYS UPPERCASE, never below 18px, never body.
+                      One display weight — hierarchy comes from size and space, not boldness.
+                      Tracking increases as size decreases; lowercase body text is never tracked.
+                      Scale: Display 72/72 +.01 · H1 48/50 +.02 · H2 32/36 +.03 · H3 caps +.14
+                      Caption 11/17 +.18 · Micro 9/14 +.24 · Tagline Italic Gold 24/30.
+         §10 Digital  Radius 0 everywhere · 12 col / 1440 max / 24px gutter / 80px margin
+                      Spacing 8/16/24/40/64/104 · Breakpoints 1440·1024·768·480
+                      Body 17px/1.65, 620px measure · Motion 160/240/400ms, opacity + 8px
+                      translate + border colour only; the logo never animates.
+                      Nav: five items max, bold caps +0.16em, active takes a 1px gold underline
+                      offset 6px — never a fill. After 80px the bar is Charcoal 92% + blur.
+                      Forms: labels above and always visible, errors in words beneath the field,
+                      a 2px gold focus ring that is never removed, one primary button per view.
+                      Data: Charcoal panels, hairline Grey borders, Gold marks the one figure.
+         §07 Voice    Lead with the fact. Cut the intensifier. Name the constraint. Stop early.
+                      British spelling, GREY in capitals, no emoji, renders captioned.
+                      Avoid: bespoke, iconic, unrivalled, dream home, hurry, world-class,
+                      nestled, prestigious.
+
+       RECORDED DEVIATIONS — owner-directed, not sanctioned by the manual:
+         1. Ground. §03 makes Charcoal the ground of every primary application and §10
+            describes a Charcoal site. This is a hybrid: Charcoal carries the header, hero,
+            pull-quote, portfolio, investment data, CTA strip and footer; a warm light ground
+            carries the reading sections. Proportion is held near 60/25/10/5.
+         2. Light ground tone. The cream (#F7F4ED / #F0EBE0 / #FCFAF5) is not Off White #FCFCFC.
+         3. Gold fills the primary button on Charcoal bands. §02 authorises a gold colourway
+            as ceremonial only; the fill is kept inside the 5% budget and never used on light.
+         4. H3 size. §04 sets 20/26; card labels run at 14px to fit the grid. Face, weight,
+            caps and tracking follow §04 exactly.
+         5. Focus ring. §10 mandates a 2px gold ring. Gold is 2.2:1 on the cream ground, below
+            WCAG 1.4.11, so on light the gold ring carries a 1px Charcoal edge. The gold ring
+            itself is never removed.
 
        NOTE: project card images are artist's impressions; real renders live in each brochure PDF.
   -->
 
-  <!-- Type: Archivo (display/headlines, light weights) + Inter (text, labels, UI).
-       NOTE: this is a deliberate deviation from Issue 3.3 §04, which specifies Anton +
-       Glacial Indifference. Anton read too heavy; these are the "cleaner" replacements. -->
+  <!-- Type (Issue 2.0 §04): Anton + Glacial Indifference, deployed via the manual's own
+       authorised substitutes — Oswald for Anton, Century Gothic (then Arial) for Glacial.
+       Century Gothic is a system face, so only Oswald is fetched. -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,300;1,400;1,500&family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <!-- Preload the LCP hero render so it starts downloading before CSS/JS parse -->
   <link rel="preload" as="image" href="assets/projects/eden-ii-hero.jpg" fetchpriority="high" />
@@ -173,31 +196,37 @@
       theme: {
         extend: {
           colors: {
-            /* Issue 3.3 §03 — Void Eclipse / Off White / two golds. No greys, no new colours. */
-            void:      '#0B0B0B',  /* Void Eclipse — dark bands, header, footer */
-            offwhite:  '#F8F5F0',  /* Off White — page ground */
-            ink:       '#F7F4ED',  /* page ground — warm golden cream */
-            ink2:      '#F0EBE0',  /* alternating sections, a shade deeper */
-            panel:     '#FCFAF5',  /* cards — warm near-white, never pure #FFF */
-            line:      '#E2DCCD',  /* warm hairline */
-            porcelain: '#0B0B0B',  /* headings on light ground */
-            body:      '#4A463E',  /* warm dark — running text */
-            muted:     '#6B6353',  /* warm caption tone */
-            slate:     '#6B6353',
-            stone:     '#6B6353',
-            mist:      '#E2DCCD',
-            gold:      '#DAA520',  /* Metallic — rules, lozenge, one highlight. Never fills a button. */
-            goldsoft:  '#E6C687',  /* Soft — on Void only */
-            golddeep:  '#7A5C2D',  /* antique gold — gold-toned TEXT on light grounds */
-            satin:     '#E6C687',
-            bronze:    '#7A5C2D',
-            champagne: '#605F5D',  /* legacy alias: gold text is banned on Off White */
+            /* Issue 2.0 §03 — FOUR COLOURS. Charcoal / Grey / Off White / Gold.
+               Authorised tints: Gold 60/30/15 and Grey 30. Nothing else. */
+            charcoal:  '#18191B',  /* the ground of the identity — never a flat black */
+            grey:      '#878787',  /* the namesake — captions, labels, hairlines, icons, data */
+            offwhite:  '#FCFCFC',  /* type on Charcoal; paper ground */
+            gold:      '#DAA520',  /* the single accent — max 5% of any composition */
+            /* Warm light ground — a recorded deviation from §03, kept at the owner's
+               direction. Type on it is Charcoal; hierarchy comes from size, weight, caps. */
+            ink:       '#F7F4ED',
+            ink2:      '#F0EBE0',
+            panel:     '#FCFAF5',
+            line:      'rgba(135,135,135,.30)',  /* Grey 30 — the authorised hairline tint */
+            /* Aliases retained so existing markup keeps resolving to the four colours. */
+            void:      '#18191B',
+            porcelain: '#18191B',
+            body:      '#18191B',
+            muted:     '#18191B',
+            slate:     '#18191B',
+            stone:     '#18191B',
+            mist:      'rgba(135,135,135,.30)',
+            goldsoft:  '#DAA520',
+            golddeep:  '#18191B',
+            satin:     '#DAA520',
+            bronze:    '#18191B',
+            champagne: '#18191B',
           },
           fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-            display: ['Archivo', 'Inter', 'ui-sans-serif', 'sans-serif'],
-            mono: ['Inter', 'ui-sans-serif', 'sans-serif'],
-            quote: ['Inter', 'ui-sans-serif', 'sans-serif'],
+            sans: ['Century Gothic', 'URW Gothic', 'Avant Garde', 'Arial', 'sans-serif'],
+            display: ['Oswald', 'Arial Narrow', 'Arial', 'sans-serif'],
+            mono: ['Century Gothic', 'URW Gothic', 'Arial', 'sans-serif'],
+            quote: ['Century Gothic', 'URW Gothic', 'Arial', 'sans-serif'],
           },
         },
       },
@@ -206,30 +235,52 @@
 
   <style>
     /* ============================================================
-       GREY — Brand Identity Guidelines, Issue 3.3
-       §03 Colour · §04 Type · §10 Digital
-       Grounds: Void Eclipse #0B0B0B / Off White #F8F5F0 only.
-       No grey fills, no gradients, no shadows. Never pure #000 / #FFF.
-       Gold budget 5% max (both golds share it) and GOLD NEVER FILLS A BUTTON.
+       GREY — Brand Identity Guidelines, Volume One, Issue 2.0
+       §03 Colour · §04 Typography · §10 Digital · §12 The Seven Tests
+
+       FOUR COLOURS, and nothing else is used:
+         Charcoal #18191B 60%  — the ground of the identity; never a flat black
+         Grey     #878787 25%  — captions, labels, hairlines, icons, data series
+         Off White #FCFCFC 10% — type on Charcoal; paper ground
+         Gold     #DAA520  5%  — one rule, one word, one action. NEVER EXCEEDS 5%.
+       Authorised tints: Gold 60 / 30 / 15 and Grey 30. No others.
+       Gold lives on Charcoal (7.9:1). On light grounds it appears only as a rule,
+       edge or foil — never as text (2.2:1). Radius 0 everywhere. No shadows.
+
+       RECORDED DEVIATIONS (owner-directed, not manual-sanctioned):
+         1. Ground. §03 makes Charcoal the ground of every primary application.
+            This site is a hybrid: Charcoal carries the header, hero, pull-quote,
+            portfolio, investment data, CTA and footer; a warm light ground carries
+            the reading sections. Proportion is held at roughly 60/25/10/5.
+         2. Light ground tone. The warm cream below is not Off White #FCFCFC.
+         3. Type sizes. §04 sets H3 at 20/26; card labels here run smaller to fit
+            the grid. Faces, weights, caps and tracking follow §04 exactly.
        ============================================================ */
     :root {
       color-scheme: light;
-      --void:#0B0B0B; --offwhite:#F8F5F0; --gold:#DAA520; --gold-soft:#E6C687;
-      --void-72:#4A463E; --void-64:#6B6353; --void-40:#A49A86; --void-14:#E2DCCD;
-      /* Light theme — warm golden cream. --offwhite stays the bright light used for
-         type and button fills on the Void bands. */
+      /* The four */
+      --charcoal:#18191B; --grey:#878787; --offwhite:#FCFCFC; --gold:#DAA520;
+      /* Authorised tints */
+      --gold-60:rgba(218,165,32,.60); --gold-30:rgba(218,165,32,.30); --gold-15:rgba(218,165,32,.15);
+      --grey-30:rgba(135,135,135,.30);
+      /* Warm light ground (deviation 2) */
       --ground:#F7F4ED; --ground-2:#F0EBE0; --panel-bg:#FCFAF5;
-      /* Gold that actually reads as TEXT on a light ground. Metallic fails there
-         (2.1:1) and Soft Gold fails badly (1.5:1), so gold-toned type on cream uses
-         this deeper antique tone — 5.7:1 — the Bronze from the earlier palette. */
-      --gold-deep:#7A5C2D;
-      --ow-80:#C8C6C2;  --ow-64:#A2A09D;  --ow-14:rgba(248,245,240,.14);
+      /* Legacy aliases — every one resolves to a colour above */
+      --void:#18191B;
+      --void-72:#18191B; --void-64:#18191B; --void-40:#878787; --void-14:rgba(135,135,135,.30);
+      --gold-soft:#DAA520; --gold-deep:#18191B;
+      --ow-80:rgba(252,252,252,.80); --ow-64:#878787; --ow-14:rgba(135,135,135,.30);
+      /* §10 — 8px base spacing scale */
+      --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:64px; --s6:104px;
     }
     html, body { background-color: var(--ground); }
-    /* Body — Glacial 16/27 +0.01em */
-    body { font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
-           color: var(--void-72); -webkit-font-smoothing: antialiased;
-           font-size:16px; line-height:1.7; letter-spacing:0; font-weight:400; }
+    /* §10 — Body: Glacial 17px / 1.65, 620px measure */
+    body { font-family:'Century Gothic','URW Gothic','Avant Garde',Arial,sans-serif;
+           color: var(--charcoal); -webkit-font-smoothing: antialiased;
+           font-size:17px; line-height:1.65; letter-spacing:.01em; font-weight:400; }
+    /* §04/§10 — measure: body never exceeds 68 characters (620px at 17px).
+       Applied through the layout's own max-w utilities, not a blanket rule on <p>,
+       which would re-anchor centred paragraphs to the left of their 68ch box. */
 
     ::selection { background: var(--gold); color: var(--void); }
 
@@ -241,29 +292,50 @@
     /* Focus — 2px ring: Void on Off White, gold on Void (§10) */
     a:focus-visible, button:focus-visible, input:focus-visible,
     select:focus-visible, textarea:focus-visible {
-      outline:2px solid var(--void); outline-offset:2px; border-radius:0;
+      outline:2px solid var(--gold); outline-offset:2px; border-radius:0;
+      /* Gold is 2.2:1 on the light ground, below WCAG 1.4.11's 3:1 for a UI
+         boundary, so a 1px Charcoal edge carries the contrast the gold cannot.
+         The gold ring itself is never removed. */
+      box-shadow:0 0 0 1px var(--charcoal), 0 0 0 4px var(--charcoal);
     }
     .on-void a:focus-visible, .on-void button:focus-visible,
-    #siteHeader a:focus-visible, #siteHeader button:focus-visible { outline-color: var(--gold); }
+    #siteHeader a:focus-visible, #siteHeader button:focus-visible {
+      outline-color: var(--gold); box-shadow:none;  /* 7.9:1 unaided on Charcoal */
+    }
 
-    /* ---- Type (§04) ---- Anton headlines, ALWAYS UPPERCASE. Glacial for all else. */
-    .display { font-family:'Archivo','Inter',sans-serif; font-weight:300; text-transform:uppercase;
-               letter-spacing:.015em; line-height:1.12; color: var(--void); }
-    .display--hero { font-weight:300; letter-spacing:.01em; line-height:1.04; }
-    .eyebrow { font-weight:500; letter-spacing:.16em; text-transform:uppercase; color: var(--gold-deep); }
-    .on-void .eyebrow, #siteHeader .eyebrow { color: var(--gold-soft); }
+    /* ---- Type (§04) ----
+       Anton -> Oswald for display: ALWAYS UPPERCASE, never below 18px, never body.
+       One weight; hierarchy comes from size and space, not boldness.
+       Glacial -> Century Gothic for everything else.
+       Tracking increases as size decreases — never the reverse. */
+    .display { font-family:'Oswald','Arial Narrow',Arial,sans-serif; font-weight:400;
+               text-transform:uppercase; letter-spacing:.03em; line-height:1.12;
+               color: var(--charcoal); }
+    .display--hero { font-weight:400; letter-spacing:.01em; line-height:1.04; }
+    /* H2 32/36 +0.03em; H1 48/50 +0.02em; Display 72/72 +0.01em */
+    .display.text-xl, .display.text-lg { font-weight:500; letter-spacing:.06em; }
+    /* Caption — Glacial Bold, caps, 11/17 +0.18em. Charcoal on light; Gold on Charcoal. */
+    .eyebrow { font-weight:700; font-size:11px; line-height:1.55; letter-spacing:.18em;
+               text-transform:uppercase; color: var(--charcoal); }
+    .on-void .eyebrow, #siteHeader .eyebrow { color: var(--gold); }
+    /* Micro — Glacial Bold, caps, 9/14 +0.24em.
+       §04: never letterspace lowercase body text, so the micro tracking is applied
+       only where the text is actually set in capitals. */
     .mono { letter-spacing:.04em; font-variant-numeric: tabular-nums; }
+    .mono.uppercase, .mono.tracking-wide, .mono.tracking-wider, .eyebrow.mono { letter-spacing:.24em; }
     .tnum { font-variant-numeric: tabular-nums; }
-    /* Taglines / pull-quotes — Glacial Italic (no serif in this system) */
-    .quote { font-family:'Cormorant Garamond',Georgia,serif; font-style: italic;
-             font-weight:400; letter-spacing:0; }
-    /* Statement — Glacial 28/38, tracking 0. For sentences too long for Anton's 8-word cap. */
-    .statement { font-weight:300; font-size:clamp(1.25rem,2.2vw,1.75rem); line-height:1.42;
-                 letter-spacing:0; color: var(--void); }
+    /* Tagline — Glacial Italic in Gold, 24/30, tracking 0. One per composition,
+       and only on Charcoal, where Gold is legal as type. */
+    .quote { font-family:'Century Gothic','URW Gothic',Arial,sans-serif; font-style: italic;
+             font-weight:400; letter-spacing:0; line-height:1.25; }
+    .on-void .quote { color: var(--gold); }
+    /* Statement — Glacial, for sentences past Anton's 8-word cap. */
+    .statement { font-weight:400; font-size:clamp(1.25rem,2.2vw,1.75rem); line-height:1.42;
+                 letter-spacing:.01em; color: var(--charcoal); }
     .on-void .statement { color: var(--offwhite); }
-    /* H3 — Glacial Bold 14/20 +0.14em. Anton is never used for labels or subheads. */
-    .h3 { font-weight:600; font-size:13px; line-height:1.45; letter-spacing:.12em;
-          text-transform:uppercase; color: var(--void); }
+    /* H3 — Glacial Bold, caps, +0.14em (size reduced from §04's 20/26 to fit the grid) */
+    .h3 { font-weight:700; font-size:14px; line-height:1.45; letter-spacing:.14em;
+          text-transform:uppercase; color: var(--charcoal); }
     .on-void .h3 { color: var(--offwhite); }
     .gradword, .text-bronze-grad { color: inherit; -webkit-text-fill-color: currentColor; }
     .accent-gold { color: var(--gold); }
@@ -271,44 +343,70 @@
     /* ---- Void bands (header, pull-quote, footer) ---- */
     .on-void { background: var(--void); }
     .on-void .display, .on-void .text-porcelain { color: var(--offwhite); }
-    .on-void .text-body { color: var(--ow-80); }
+    .on-void .text-body { color: var(--offwhite); }
     .on-void .text-muted, .on-void .text-slate, .on-void .text-stone { color: var(--ow-64); }
     .on-void .border-line, .on-void .border-t, .on-void .border-b { border-color: var(--ow-14); }
     .on-void .bg-line, .on-void .h-px { background-color: var(--ow-14); }
     .text-goldsoft { color: var(--gold-soft); }
     /* Mobile menu sits inside the Void header */
-    #mobileMenu { background: rgba(11,11,11,.97); border-top-color: var(--ow-14); }
-    #mobileMenu a:not(.btn) { color: rgba(248,245,240,.74); }
+    #mobileMenu { background: rgba(24,25,27,.97); border-top-color: var(--ow-14); }
+    #mobileMenu a:not(.btn) { color: var(--grey); }
     #mobileMenu a:not(.btn):hover { color: var(--offwhite); }
     #mobileMenu .border-line { border-color: var(--ow-14); }
+
+
+    /* ---- Components on a Charcoal ground (§10: Charcoal panels, hairline Grey
+       borders; Gold marks the one figure the user came for, everything else Grey) ---- */
+    .on-void .bg-panel, .on-void .bg-ink, .on-void .bg-ink2 { background: transparent; }
+    .on-void .utab { color: var(--grey); border-color: var(--grey-30); }
+    .on-void .utab:hover { color: var(--offwhite); border-color: var(--grey); }
+    .on-void .utab[aria-selected="true"] { color: var(--charcoal); background: var(--offwhite); border-color: var(--offwhite); }
+    .on-void .filter-chip { color: var(--grey); border-color: var(--grey-30); }
+    .on-void .filter-chip:hover { color: var(--offwhite); border-color: var(--grey); }
+    .on-void .filter-chip[aria-pressed="true"] { color: var(--charcoal); background: var(--offwhite); border-color: var(--offwhite); }
+    .on-void .uspec { border-bottom-color: var(--grey-30); }
+    .on-void .uspec dt { color: var(--grey); }
+    .on-void .uspec dd { color: var(--offwhite); }
+    .on-void .dd { border-bottom-color: var(--grey-30); }
+    .on-void .dd-ico { color: var(--grey); }
+    .on-void .btn-primary { background: var(--offwhite); color: var(--charcoal); border-color: var(--offwhite); }
+    .on-void .btn-primary:hover { background:#E3E3E3; border-color:#E3E3E3; }
+    .on-void .btn-secondary { color: var(--offwhite); border-color: var(--grey); background: transparent; }
+    .on-void .btn-secondary:hover { background: var(--gold-15); color: var(--offwhite); border-color: var(--gold); }
+    .on-void .measure { background: var(--grey); }
+    .on-void .group:hover .measure { background: var(--gold); }
+    .on-void a:not(.btn):not([aria-label]) { color: var(--offwhite); }
 
     /* ---- Buttons (§10): square, no radius, GOLD NEVER FILLS ---- */
     .btn { border-radius:0; font-weight:600; letter-spacing:.02em; cursor:pointer;
            transition: background-color 240ms cubic-bezier(.4,0,.2,1), color 240ms cubic-bezier(.4,0,.2,1),
                        border-color 240ms cubic-bezier(.4,0,.2,1), opacity 240ms ease; }
     .btn-primary   { background: var(--void); color: var(--offwhite); border:1px solid var(--void); }
-    .btn-primary:hover  { background:#242019; border-color:#242019; }
-    .btn-primary:active { background:#332D24; border-color:#332D24; }
+    .btn-primary:hover  { background:#26272A; border-color:#26272A; }
+    .btn-primary:active { background:#34363A; border-color:#34363A; }
     .btn-secondary { background: transparent; color: var(--gold-deep); border:1px solid var(--gold-deep); }
-    .btn-secondary:hover { background: rgba(122,92,45,.08); color: var(--gold-deep); border-color: var(--gold-deep); }
+    .btn-secondary:hover { background: var(--gold-15); color: var(--gold-deep); border-color: var(--gold-deep); }
     /* On Void grounds (hero over photography, footer) */
-    /* Primary CTA on the Void bands — gold is at its strongest here (8.8:1).
-       Light-ground primaries stay Void: gold fill on cream is only 2.04:1. */
-    .btn-invert    { background: var(--gold); color: var(--void); border:1px solid var(--gold); }
-    .btn-invert:hover { background:#E2B243; border-color:#E2B243; }
-    .btn-invert:active { background:#C4941C; border-color:#C4941C; }
-    .btn-invert-secondary { background: transparent; color: var(--offwhite); border:1px solid rgba(248,245,240,.45); }
-    .btn-invert-secondary:hover { border-color: var(--gold); color: var(--gold-soft); }
+    /* Primary CTA on the Charcoal bands. Off White fill, Charcoal type — 17.1:1,
+       the loudest pairing in the palette.
+       It is NOT gold: a filled gold button is 13.7% of a short band at 375px, and
+       §03's 5% ceiling is "the single most important colour rule". Gold stays the
+       accent — the eyebrow, the active-nav underline, the rules, the one figure. */
+    .btn-invert    { background: var(--offwhite); color: var(--charcoal); border:1px solid var(--offwhite); }
+    .btn-invert:hover { background:#E3E3E3; border-color:#E3E3E3; }
+    .btn-invert:active { background:#CFCFCF; border-color:#CFCFCF; }
+    .btn-invert-secondary { background: transparent; color: var(--offwhite); border:1px solid var(--grey); }
+    .btn-invert-secondary:hover { border-color: var(--gold); color: var(--gold); }
     .btn[disabled] { opacity:.6; cursor:wait; }
 
     /* Header — Void bar; compacts after 80px (§10 motion: fade + 8px slide) */
     .t-std { transition: all 240ms cubic-bezier(.4,0,.2,1); }
     .t-micro { transition: all 160ms cubic-bezier(.4,0,.2,1); }
     #siteHeader .eyebrow { color: var(--gold-soft); }
-    #siteHeader nav ul a { color: rgba(248,245,240,.74); }
+    #siteHeader nav ul a { color: var(--grey); }
     #siteHeader nav ul a:hover, #siteHeader nav ul a.nav-active { color: var(--offwhite); }
-    #siteHeader #menuBtn { color: var(--offwhite); border-color: rgba(248,245,240,.22); }
-    #siteHeader.scrolled { background: rgba(11,11,11,.94); backdrop-filter: blur(12px);
+    #siteHeader #menuBtn { color: var(--offwhite); border-color: rgba(252,252,252,.22); }
+    #siteHeader.scrolled { background: rgba(24,25,27,.92); backdrop-filter: blur(12px);
                            -webkit-backdrop-filter: blur(12px); border-bottom:1px solid var(--ow-14); }
     .nav-active { color: var(--offwhite); position: relative; }
     .nav-active::after { content:""; position:absolute; left:0; right:0; bottom:-6px; height:1px; background: var(--gold); }
@@ -333,11 +431,11 @@
     /* Hero — photography with a graded panel so type clears 4.5:1 */
     .hero-img { object-fit: cover; object-position: center; }
     @media (max-width:640px){ .hero-img { object-fit: contain; } }
-    .hero-scrim-b { background: linear-gradient(to top, rgba(11,11,11,.94) 0%, rgba(11,11,11,.62) 30%, rgba(11,11,11,.14) 60%, rgba(11,11,11,0) 82%); }
-    .hero-scrim-l { background: linear-gradient(to right, rgba(11,11,11,.74) 0%, rgba(11,11,11,.30) 34%, rgba(11,11,11,0) 64%); }
-    .hero-scrim-t { background: linear-gradient(to bottom, rgba(11,11,11,.60) 0%, rgba(11,11,11,0) 100%); }
+    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.94) 0%, rgba(24,25,27,.62) 30%, rgba(24,25,27,.14) 60%, rgba(24,25,27,0) 82%); }
+    .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.74) 0%, rgba(24,25,27,.30) 34%, rgba(24,25,27,0) 64%); }
+    .hero-scrim-t { background: linear-gradient(to bottom, rgba(24,25,27,.60) 0%, rgba(24,25,27,0) 100%); }
     @media (max-width:640px){
-      .hero-scrim-l { background: linear-gradient(to top, rgba(11,11,11,.93) 0%, rgba(11,11,11,.58) 45%, rgba(11,11,11,.42) 100%); }
+      .hero-scrim-l { background: linear-gradient(to top, rgba(24,25,27,.93) 0%, rgba(24,25,27,.58) 45%, rgba(24,25,27,.42) 100%); }
     }
 
     /* Motion — fade + 8px slide only (§10). No scale, bounce or parallax. */
@@ -347,13 +445,13 @@
 
     #projects .zoomable { box-shadow: none; }
     #projects .zoomable::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
-      background: linear-gradient(to top, rgba(11,11,11,.52) 0%, rgba(11,11,11,.10) 42%, rgba(11,11,11,0) 66%);
+      background: linear-gradient(to top, rgba(24,25,27,.52) 0%, rgba(24,25,27,.10) 42%, rgba(24,25,27,0) 66%);
       transition: opacity .4s ease; }
     #projects .zoomable > span { z-index:2; }
     #projects article { transition: border-color .28s ease, transform .28s cubic-bezier(.4,0,.2,1); }
     /* Subtle: the hairline warms to a soft antique gold rather than flashing to full
        Metallic, and the lift is halved. */
-    #projects article:hover { border-color: rgba(122,92,45,.40); transform: translateY(-2px); }
+    #projects article:hover { border-color: var(--gold-60); transform: translateY(-2px); }
     @media (prefers-reduced-motion: reduce){ #projects article:hover { transform:none; } }
 
     /* Reveal */
@@ -397,7 +495,7 @@
                   transition: background-color .28s ease; }
     .pstep-icon { width:38px; height:38px; color:var(--void-40); flex:none;
                   transition: color .28s ease; }
-    .pstep:hover::before, .pstep:focus::before, .pstep:focus-visible::before { background:rgba(122,92,45,.45); }
+    .pstep:hover::before, .pstep:focus::before, .pstep:focus-visible::before { background:var(--gold-60); }
     .pstep:hover .pstep-node, .pstep:focus .pstep-node, .pstep:focus-visible .pstep-node { background:var(--gold-deep); }
     .pstep:hover .pstep-icon, .pstep:focus .pstep-icon, .pstep:focus-visible .pstep-icon { color:var(--gold-deep); }
     .pstep:hover .h3, .pstep:focus .h3, .pstep:focus-visible .h3 { color:var(--void); }
@@ -430,6 +528,18 @@
     .dd.is-open .dd-body > * { padding-bottom:1.35rem; }
     @media (prefers-reduced-motion: reduce){ .dd-body { transition:none; } .dd-ico { transition:none; } }
 
+
+    /* §10 / WCAG 1.4.11 — a control's boundary needs 3:1. Grey 30 is a decorative
+       hairline (dividers, panel edges); every interactive edge takes full Grey,
+       which clears 3:1 on the cream ground and 4.9:1 on Charcoal. */
+    .utab, .filter-chip, .fab-item,
+    input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+      border-color: var(--grey) !important;
+    }
+    .on-void .utab, .on-void .filter-chip { border-color: var(--grey) !important; }
+    .utab[aria-selected="true"], .filter-chip[aria-pressed="true"] { border-color: var(--charcoal) !important; }
+    .on-void .utab[aria-selected="true"], .on-void .filter-chip[aria-pressed="true"] { border-color: var(--offwhite) !important; }
+
     /* Portfolio filter chips */
     .filter-chip { font-weight:500; letter-spacing:.14em; text-transform:uppercase; cursor:pointer;
       color: var(--void-64); border:1px solid var(--void-14); background: transparent;
@@ -445,7 +555,7 @@
     /* Brochure modal — Off White panel, hairline, no shadow */
     .modal-root { position:fixed; inset:0; z-index:90; display:none; }
     .modal-root.open { display:block; }
-    .modal-backdrop { position:absolute; inset:0; background: rgba(11,11,11,.82); opacity:0; transition: opacity .24s ease; }
+    .modal-backdrop { position:absolute; inset:0; background: rgba(24,25,27,.82); opacity:0; transition: opacity .24s ease; }
     .modal-root.open .modal-backdrop { opacity:1; }
     .modal-panel { position:absolute; inset:0; margin:auto; width:min(1000px, calc(100vw - 2rem));
       height:min(88vh, calc(100vh - 2rem)); background: var(--panel-bg); border:1px solid var(--void-14);
@@ -466,11 +576,11 @@
     #fabToggle { width:3.25rem; height:3.25rem; display:grid; place-items:center; background: var(--void);
       color: var(--offwhite); cursor:pointer; border:1px solid var(--void);
       transition: background-color .16s ease, border-color .16s ease; }
-    #fabToggle:hover { background:#242019; border-color:#242019; }
+    #fabToggle:hover { background:#26272A; border-color:#26272A; }
     #fab.open #fabToggle { background: var(--panel-bg); color: var(--void); border-color: var(--void-14); }
     #fab.fab-hidden { opacity:0; pointer-events:none; transform: translateY(14px); transition: opacity .3s ease, transform .3s ease; }
 
-    .spinner { width:1rem; height:1rem; border:2px solid rgba(248,245,240,.35); border-top-color: var(--offwhite);
+    .spinner { width:1rem; height:1rem; border:2px solid var(--grey-30); border-top-color: var(--charcoal);
       border-radius:50%; animation: spin .7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -490,14 +600,14 @@
 
   <!-- ============ HEADER ============ -->
   <header id="siteHeader" class="fixed top-0 inset-x-0 z-50 t-std">
-    <nav class="mx-auto max-w-7xl px-5 sm:px-8">
+    <nav class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
       <div class="navbar-inner flex items-center justify-between h-20">
         <a href="#home" class="flex flex-col items-start leading-none" aria-label="GREY Development Limited — home">
           <img src="assets/grey-wordmark-white.png" alt="GREY" width="1100" height="224" class="nav-logo h-6 sm:h-7 w-auto" />
           <span class="nav-desc eyebrow text-[9px] sm:text-[10px] mt-1.5 tracking-[0.26em]">Development Limited</span>
         </a>
 
-        <ul class="hidden lg:flex items-center gap-8 text-[13px] uppercase tracking-[0.16em] font-medium text-stone">
+        <ul class="hidden lg:flex items-center gap-8 text-[13px] uppercase tracking-[0.16em] font-bold text-stone">
           <li><a href="#projects" class="t-micro hover:text-porcelain">Projects</a></li>
           <li><a href="#about" class="t-micro hover:text-porcelain">About</a></li>
           <li><a href="#invest" class="t-micro hover:text-porcelain">Invest</a></li>
@@ -542,7 +652,7 @@
 
       <div class="relative w-full max-w-7xl mx-auto px-5 sm:px-8 pb-16 sm:pb-20">
         <div class="hero-in flex flex-wrap items-center gap-x-4 gap-y-2 mb-6" style="animation-delay:.04s">
-          <span class="inline-flex items-center gap-2.5 rounded-none border border-gold/60 bg-[#0B0B0B]/75 backdrop-blur-sm px-4 py-2">
+          <span class="inline-flex items-center gap-2.5 rounded-none border border-gold/60 bg-[#18191B]/75 backdrop-blur-sm px-4 py-2">
             <span class="inline-flex rounded-none h-2 w-2 bg-satin"></span>
             <span class="mono text-[11px] uppercase tracking-[0.24em] text-offwhite font-medium">Now Selling</span>
           </span>
@@ -552,9 +662,9 @@
         <p class="hero-in text-offwhite/90 text-base sm:text-lg mt-5 max-w-xl leading-relaxed" style="animation-delay:.3s">Four-bedroom terrace residences and serviced apartments, set behind a private gated entrance — crafted for family life, built for lasting value.</p>
 
         <div class="hero-in flex flex-wrap gap-2.5 mt-7" style="animation-delay:.4s">
-          <span class="mono text-[11px] uppercase tracking-wider text-offwhite border border-offwhite/35 bg-[#0B0B0B]/30 backdrop-blur-sm rounded-none px-3 py-1.5">4-Bed Terraces</span>
-          <span class="mono text-[11px] uppercase tracking-wider text-offwhite border border-offwhite/35 bg-[#0B0B0B]/30 backdrop-blur-sm rounded-none px-3 py-1.5">Serviced Apartments</span>
-          <span class="mono text-[11px] uppercase tracking-wider text-offwhite border border-offwhite/35 bg-[#0B0B0B]/30 backdrop-blur-sm rounded-none px-3 py-1.5">Private Gated Estate</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-offwhite border border-offwhite/35 bg-[#18191B]/30 backdrop-blur-sm rounded-none px-3 py-1.5">4-Bed Terraces</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-offwhite border border-offwhite/35 bg-[#18191B]/30 backdrop-blur-sm rounded-none px-3 py-1.5">Serviced Apartments</span>
+          <span class="mono text-[11px] uppercase tracking-wider text-offwhite border border-offwhite/35 bg-[#18191B]/30 backdrop-blur-sm rounded-none px-3 py-1.5">Private Gated Estate</span>
         </div>
 
         <div class="hero-in flex flex-col sm:flex-row gap-4 mt-9" style="animation-delay:.5s">
@@ -584,7 +694,7 @@
 
     <!-- ============ SERVICES ============ -->
     <section id="services" class="relative py-24 sm:py-32 bg-ink">
-      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div class="max-w-2xl">
           <p class="reveal eyebrow text-[11px] mb-4">What We Do</p>
           <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">One discipline,<br/><span class="gradword">not three handoffs.</span></h2>
@@ -655,8 +765,8 @@
     </section>
 
     <!-- ============ DEVELOPMENTS / PROJECTS ============ -->
-    <section id="projects" class="relative py-24 sm:py-32 bg-ink">
-      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <section id="projects" class="on-void relative py-24 sm:py-32 bg-void">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
           <div class="max-w-2xl">
             <p class="reveal eyebrow text-[11px] mb-4">Developments</p>
@@ -693,7 +803,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="3" data-updated="FEB 2027">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/shafas-cover.jpg" alt="Shafa's Residences brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Shafa's Residences</h3>
@@ -718,7 +828,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="2" data-updated="OCT 2026" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/amrahs-villas-cover.jpg" alt="Amrah's Villas brochure cover — semi-detached duplexes, Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Amrah's Villas</h3>
@@ -742,7 +852,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="completed" data-location="abuja" data-stage="5" data-updated="COMPLETE">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-i-cover.jpg" alt="Eden I — The Eden, four-bedroom townhomes, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Eden I</h3>
@@ -766,7 +876,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="2" data-updated="APR 2027" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-ii-cover.jpg" alt="EDEN II brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">EDEN II</h3>
@@ -791,7 +901,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="coming" data-location="kaduna" data-stage="0" data-updated="PLANNING" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/grey-oasis-cover.jpg" alt="Grey Oasis — luxury townhouses, Kaduna" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Grey Oasis</h3>
@@ -815,7 +925,7 @@
           <article class="reveal group rounded-none overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="mabushi" data-stage="0" data-updated="PLANNING">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/grey-altura-cover.jpg" alt="Grey Altura brochure cover — Mabushi, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#0B0B0B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
+              <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-none bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
               <h3 class="display text-xl text-porcelain">Grey Altura</h3>
@@ -911,8 +1021,8 @@
     </section>
 
     <!-- ============ INVEST ============ -->
-    <section id="invest" class="relative py-24 sm:py-32 bg-ink border-t border-line">
-      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <section id="invest" class="on-void relative py-24 sm:py-32 bg-void border-t border-line">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div class="max-w-2xl mb-14">
           <p class="reveal eyebrow text-[11px] mb-4">Invest</p>
           <h2 class="reveal display text-3xl sm:text-5xl">Built to outlast the financing.</h2>
@@ -1032,7 +1142,7 @@
 
     <!-- ============ CONTACT ============ -->
     <section id="contact" class="relative py-24 sm:py-32 bg-ink2 border-t border-line">
-      <div class="mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-2 gap-12">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20 grid lg:grid-cols-2 gap-12">
         <div>
           <p class="reveal eyebrow text-[11px] mb-4">Get in Touch</p>
           <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Let's build <span class="gradword">something enduring.</span></h2>
@@ -1122,8 +1232,8 @@
     </section>
 
     <!-- ============ CTA STRIP ============ -->
-    <section class="relative bg-ink border-y border-line">
-      <div class="mx-auto max-w-7xl px-5 sm:px-8 py-14 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+    <section class="on-void relative bg-void border-y border-line">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20 py-16 sm:py-[104px] flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
         <h3 class="reveal display text-2xl sm:text-4xl text-porcelain">Not Just Built. <span class="gradword">But Crafted.</span></h3>
         <a href="tel:+2348078963703" class="reveal btn btn-primary inline-flex items-center gap-2 px-7 py-3.5" data-delay="1">Call 0807 896 3703</a>
       </div>
@@ -1133,7 +1243,7 @@
 
   <!-- ============ FOOTER ============ -->
   <footer class="on-void bg-void pt-16 pb-8">
-    <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-12">
         <!-- Brand -->
         <div class="sm:col-span-2 lg:col-span-5 max-w-sm">
