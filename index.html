@@ -309,7 +309,23 @@
     .display { font-family:'Century Gothic','URW Gothic','Avant Garde',Arial,sans-serif; font-weight:700;
                text-transform:none; letter-spacing:-.01em; line-height:1.1;
                color: var(--charcoal); }
-    .display--hero { font-weight:700; letter-spacing:-.025em; line-height:1.02; }
+    .display--hero { font-weight:700; letter-spacing:-.025em; line-height:1.02;
+      /* Fluid, so the headline never jumps size at a breakpoint. The stepped
+         text-[2.65rem] sm:text-7xl went 42px -> 72px at 640px, which wrapped to four
+         cramped lines on tablets and large phones in landscape. Tracks ~40px at 375px
+         up to the 88px display size at 1440px and holds there. */
+      font-size: clamp(2.1rem, 1.44rem + 4.5vw, 5.5rem); }
+    /* Short viewports — landscape phones and the 568px-tall iPhone SE. The hero has to
+       seat a fixed 80px header, a two-line headline, a sub-line and the search bar in
+       under 300px of usable height, so the type and the gaps step down. Without this the
+       search bar falls below the fold and the section overflows by 30-60px. */
+    @media (max-height: 620px) {
+      #home { padding-top: 5rem; }
+      #home .display--hero { font-size: clamp(1.75rem, 1rem + 3vw, 2.75rem); line-height: 1.06; }
+      #home .hero-body { padding-top: .5rem; padding-bottom: .5rem; }
+      #home h2 + p { margin-top: .6rem; font-size: .8125rem; line-height: 1.5; }
+      #heroSearch { margin-top: 1rem; }
+    }
     /* Two-tone headline — the de-emphasised half takes Grey. On Charcoal that is
        4.9:1; on the cream ground Grey only clears 3:1, so it is used there at 24px+
        only, which every .display size satisfies. */
@@ -643,7 +659,7 @@
        winning ties against the component classes above (e.g. text-offwhite over
        .display, text-[9px] over .eyebrow) or the hero headline turns Charcoal on a
        Charcoal ground. Verified by diffing computed styles against the CDN build. -->
-  <link rel="stylesheet" href="assets/tailwind.css" />
+  <link rel="stylesheet" href="assets/tailwind.css?v=5cf47b82" />
 </head>
 
 <body class="bg-ink text-body">
@@ -689,7 +705,7 @@
   <main id="main">
 
     <!-- ============ HERO ============ -->
-    <section id="home" class="relative min-h-[100svh] flex flex-col justify-between overflow-hidden bg-void">
+    <section id="home" class="relative min-h-[100svh] flex flex-col justify-center pt-20 overflow-hidden bg-void">
       <h1 class="sr-only">GREY Development Limited — featured development: The Eden II, a gated community of four-bedroom terrace residences and serviced apartments in Katampe, Abuja.</h1>
 
       <!-- Featured development: The Eden II render -->
@@ -713,15 +729,8 @@
         </div>
       </div>
 
-      <div class="relative z-[2] w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 pt-24 sm:pt-28 pb-8 sm:pb-12">
-        <div class="hero-in flex flex-wrap items-center gap-x-4 gap-y-2 mb-7" style="animation-delay:.04s">
-          <span class="inline-flex items-center gap-2.5 rounded-full border border-gold/60 bg-[#18191B]/75 backdrop-blur-sm px-4 py-1.5">
-            <span class="inline-flex rounded-full h-1.5 w-1.5 bg-gold"></span>
-            <span class="mono text-[10px] uppercase tracking-[0.24em] text-offwhite font-medium">Now Selling &mdash; The Eden II</span>
-          </span>
-        </div>
-
-        <h2 class="hero-in display display--hero text-[2.65rem] sm:text-7xl lg:text-[5.5rem] text-offwhite max-w-4xl" style="animation-delay:.18s">Built to the standard <br class="hidden sm:inline"/>you were promised.</h2>
+      <div class="hero-body relative z-[2] w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 py-8">
+        <h2 class="hero-in display display--hero text-offwhite max-w-4xl" style="animation-delay:.18s">Built to the standard <br class="hidden lg:inline"/>you were promised.</h2>
         <p class="hero-in text-offwhite font-semibold text-sm sm:text-base mt-6 max-w-2xl leading-relaxed" style="animation-delay:.3s">Residential and mixed-use developments across Abuja and Kaduna &mdash; designed, built and delivered by one accountable team.</p>
 
         <!-- Quick search: drives the portfolio filters below -->
