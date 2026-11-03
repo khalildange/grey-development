@@ -201,8 +201,7 @@
          than a second filter implementation. Scrims are tuned to the minimum each block needs over the
          actual render pixels (headline 7.96:1 against a 3:1 floor, sub-line 9.19:1, stat
          captions 4.81:1, search label 4.56:1) so the photograph stays visible; a bottom-left
-         corner scrim sinks the estate signage baked into the render, which reads "by Phantom
-         Grey" and would otherwise compete with the stat row.
+         corner scrim carries the text block that sits over that corner.
 
          HERO (SOLEN composition, owner-directed). Recomposed to match SOLEN: the content is
          bottom-anchored rather than centred, with the headline, sub-line and search bar on
@@ -233,7 +232,9 @@
          1000px file. Grey's 3.44:1 on the gallery ground and 3.02:1 on About's clear
          the 3:1 large-text threshold at 48px and 60px, but only just on the darker one.
          The covers carry Phantom Grey branding baked into the artwork, which the gallery
-         shows much larger than the portfolio cards do - see the open question above.
+         shows much larger than the portfolio cards do. This is intended: Phantom Grey is
+         GREY's parent company, and the owner has confirmed the attribution stays. Do not
+         retouch it out of the covers, the project renders or the brochures.
 
        NOTE: project card images are artist's impressions; real renders live in each brochure PDF.
   -->
@@ -522,8 +523,13 @@
        worst-case white pixel, and ~0.50 to hold 3:1 at display sizes. */
     .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.34) 0%, rgba(24,25,27,.20) 38%, rgba(24,25,27,.06) 70%, rgba(24,25,27,0) 88%); }
     .hero-scrim-t { background: linear-gradient(to bottom, rgba(24,25,27,.50) 0%, rgba(24,25,27,.16) 60%, rgba(24,25,27,0) 100%); }
-    /* Bottom-left corner only: sinks the estate signage baked into the render, which
-       reads "by Phantom Grey". Tightened once the stat row was removed, so the rest of
+    /* Bottom-left corner only: carries the sub-line and the search bar, which sit over
+       the brightest part of the lower frame - the search label holds 4.54:1 against a
+       4.5:1 floor on this gradient, so it cannot be weakened. It also dims the estate
+       signage baked into the render, which reads "by Phantom Grey"; that is a side
+       effect, not the purpose. Phantom Grey is the parent company and its attribution
+       is meant to be there - if it should read in the hero, add a line of text rather
+       than thinning this scrim. Tightened once the stat row was removed, so the rest of
        the lower frame opens back up to the photograph. */
     .hero-scrim-corner { background: radial-gradient(85% 30% at 0% 100%, rgba(24,25,27,.55) 0%, rgba(24,25,27,.30) 50%, rgba(24,25,27,0) 100%); }
     @media (max-width:640px){
