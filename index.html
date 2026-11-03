@@ -220,6 +220,21 @@
          reason. The headline is capped at 4.25rem and breaks naturally, because the forced
          break plus the 5.5rem cap wrapped it to four lines once the cards shared the row.
 
+         SECTIONS (SOLEN reference). Three further elements from the reference were
+         applied beyond the hero. The numbered eyebrows take a pipe rather than a slash
+         ("01 | What we do"). The About header is asymmetric: the opening clause and a
+         pill sit in a narrow left column with the headline large on the right, and the
+         two collapse to one column below 1024px with the headline leading. A pale
+         gallery band (04) sits between About and Invest - two large rounded images,
+         generous whitespace, no copy competing with them - which pushed Invest and
+         Get in touch to 05 and 06. Its images are re-exported from the brochure PDFs at
+         1400px, because the 1000px covers used on the portfolio cards are sized for a
+         410px box and the gallery renders them at 615px; srcset keeps phones on the
+         1000px file. Grey's 3.44:1 on the gallery ground and 3.02:1 on About's clear
+         the 3:1 large-text threshold at 48px and 60px, but only just on the darker one.
+         The covers carry Phantom Grey branding baked into the artwork, which the gallery
+         shows much larger than the portfolio cards do - see the open question above.
+
        NOTE: project card images are artist's impressions; real renders live in each brochure PDF.
   -->
 
@@ -675,7 +690,7 @@
        winning ties against the component classes above (e.g. text-offwhite over
        .display, text-[9px] over .eyebrow) or the hero headline turns Charcoal on a
        Charcoal ground. Verified by diffing computed styles against the CDN build. -->
-  <link rel="stylesheet" href="assets/tailwind.css?v=78321e50" />
+  <link rel="stylesheet" href="assets/tailwind.css?v=953f1901" />
 </head>
 
 <body class="bg-ink text-body">
@@ -828,7 +843,7 @@
     <section id="services" class="relative py-24 sm:py-32 bg-ink">
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div class="max-w-2xl">
-          <p class="reveal eyebrow text-[11px] mb-4">01 / What we do</p>
+          <p class="reveal eyebrow text-[11px] mb-4">01 | What we do</p>
           <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">One discipline,<br/><span class="gradword">not three handoffs.</span></h2>
           <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">From land to legacy, GREY covers the full development lifecycle — so you work with one accountable team held to a single, higher standard.</p>
         </div>
@@ -901,7 +916,7 @@
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
           <div class="max-w-2xl">
-            <p class="reveal eyebrow text-[11px] mb-4">02 / Developments</p>
+            <p class="reveal eyebrow text-[11px] mb-4">02 | Developments</p>
             <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Signature <span class="gradword">developments.</span></h2>
             <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">A selection of GREY residences across Abuja and Kaduna. View the available brochures for full floor plans, specifications and pricing.</p>
           </div>
@@ -1091,12 +1106,21 @@
 
     <!-- ============ THE GREY STANDARD (ABOUT) ============ -->
     <section id="about" class="relative py-24 sm:py-32 bg-ink2 overflow-hidden">
-      <div class="mx-auto max-w-4xl px-5 sm:px-8">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div>
-          <p class="reveal eyebrow text-[11px] mb-4">03 / About us</p>
-          <h2 class="reveal display text-3xl sm:text-5xl text-porcelain max-w-3xl">The gap between the rendering and the <span class="gradword">reality.</span></h2>
-          <div class="reveal max-w-2xl mt-6 text-body leading-relaxed" data-delay="1">
-            <p>GREY builds in a market that has learned to distrust promises — where projects are sold on a rendering and delivered on a compromise. What we offer is not square metres, but the confidence that the specification survives contact with the site: the finish schedule signed in the sales office is the one installed on handover, on the date given.</p>
+          <p class="reveal eyebrow text-[11px] mb-8">03 | About us</p>
+          <!-- Asymmetric header (SOLEN reference): the opening clause and its pill sit
+               in a narrow left column, the headline large on the right. The headline
+               leads on mobile, where the two columns collapse into one. -->
+          <div class="grid lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)] gap-8 lg:gap-20 items-start">
+            <div class="reveal order-2 lg:order-1 max-w-xl">
+              <p class="text-body leading-relaxed">GREY builds in a market that has learned to distrust promises — where projects are sold on a rendering and delivered on a compromise.</p>
+              <a href="#projects" class="btn btn-primary inline-flex items-center gap-2 mt-7 px-6 py-3 text-sm">See the developments <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+            <h2 class="reveal order-1 lg:order-2 display text-3xl sm:text-5xl lg:text-6xl text-porcelain">The gap between the rendering and the <span class="gradword">reality.</span></h2>
+          </div>
+          <div class="reveal max-w-2xl mt-12 text-body leading-relaxed" data-delay="1">
+            <p>What we offer is not square metres, but the confidence that the specification survives contact with the site: the finish schedule signed in the sales office is the one installed on handover, on the date given.</p>
           </div>
 
           <figure class="reveal border-l-2 border-gold pl-6 my-10 max-w-2xl" data-delay="1">
@@ -1154,10 +1178,37 @@
     </section>
 
     <!-- ============ INVEST ============ -->
+    <!-- ============ GALLERY ============
+         SOLEN reference: a pale band given over to two large rounded images with
+         generous whitespace and no copy competing with them. The covers are the
+         same artist's impressions used on the portfolio cards, which the caption
+         states - the photographed renders live in each brochure PDF. -->
+    <section id="gallery" class="relative py-24 sm:py-36 bg-panel border-t border-line">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14 sm:mb-20">
+          <div class="max-w-xl">
+            <p class="reveal eyebrow text-[11px] mb-4">04 | The work</p>
+            <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Two of ours, <span class="gradword">in Katampe.</span></h2>
+          </div>
+          <a href="#projects" class="reveal btn btn-primary inline-flex items-center gap-2 px-7 py-3.5 shrink-0" data-delay="1">All developments <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6 lg:gap-10">
+          <figure class="reveal">
+            <img src="assets/projects/shafas-cover-lg.jpg" width="1400" height="989" srcset="assets/projects/shafas-cover.jpg 1000w, assets/projects/shafas-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="Shafa&rsquo;s Residences &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto rounded-[16px]" />
+            <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">Shafa&rsquo;s Residences &middot; Katampe &middot; Artist&rsquo;s impression</figcaption>
+          </figure>
+          <figure class="reveal" data-delay="1">
+            <img src="assets/projects/eden-ii-cover-lg.jpg" width="1400" height="989" srcset="assets/projects/eden-ii-cover.jpg 1000w, assets/projects/eden-ii-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="The Eden II &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto rounded-[16px]" />
+            <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">The Eden II &middot; Katampe &middot; Artist&rsquo;s impression</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section id="invest" class="on-void relative py-24 sm:py-32 bg-void border-t border-line">
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div class="max-w-2xl mb-14">
-          <p class="reveal eyebrow text-[11px] mb-4">04 / Invest</p>
+          <p class="reveal eyebrow text-[11px] mb-4">05 | Invest</p>
           <h2 class="reveal display text-3xl sm:text-5xl">Built to outlast <span class="gradword">the financing.</span></h2>
           <p class="reveal text-body mt-5 leading-relaxed" data-delay="1" style="max-width:620px">We design, build and retain an interest in what we deliver &mdash; so our incentives survive handover. For institutional and private capital, that is the whole proposition: the programme you are shown is the programme we are held to.</p>
         </div>
@@ -1277,7 +1328,7 @@
     <section id="contact" class="relative py-24 sm:py-32 bg-ink2 border-t border-line">
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20 grid lg:grid-cols-2 gap-12">
         <div>
-          <p class="reveal eyebrow text-[11px] mb-4">05 / Get in touch</p>
+          <p class="reveal eyebrow text-[11px] mb-4">06 | Get in touch</p>
           <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Let's build <span class="gradword">something enduring.</span></h2>
           <p class="reveal text-body mt-5 leading-relaxed max-w-md" data-delay="1">Tell us about your project — a home, a development, or an investment. Our team responds within one business day.</p>
 
