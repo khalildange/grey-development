@@ -1626,6 +1626,25 @@
       apply();
     })();
 
+    // ---------- Delivery target: never show a date that has already passed ----------
+    // data-updated carries a target like "FEB 2027". Once that month is behind us and the
+    // development is not yet handed over, the date is no longer a forecast — it is a missed
+    // one, and showing it as a promise misleads a buyer. Rather than quietly ageing, it
+    // degrades to an honest label until someone updates the card. Keep the data current.
+    const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const deliveryTarget = (raw, stage) => {
+      const t = (raw || '').trim();
+      if (!t) return '\u2014';
+      const m = /^([A-Z]{3})\s+(\d{4})$/i.exec(t);
+      if (!m || stage >= 5) return t;
+      const mi = MONTHS.indexOf(m[1].toUpperCase());
+      if (mi < 0) return t;
+      const now = new Date();
+      const target = new Date(+m[2], mi, 1);
+      const thisMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+      return target < thisMonth ? 'Schedule on request' : t;
+    };
+
     // ---------- Delivery timeline (verified milestone track) ----------
     (() => {
       const STAGES = ['Slab', 'Superstructure', 'Roofing', 'Finishing', 'Handover'];
@@ -1643,7 +1662,7 @@
         track.innerHTML = frag;
         const label = stage === 0 ? 'In planning' : (stage >= 5 ? 'Delivered' : STAGES[stage]);
         tl.querySelector('.tl-stage').textContent = label;
-        tl.querySelector('.tl-updated').textContent = (card && card.dataset.updated) || '';
+        tl.querySelector('.tl-updated').textContent = deliveryTarget(card && card.dataset.updated, stage);
         track.setAttribute('role', 'img');
         track.setAttribute('aria-label', 'Delivery progress: ' + label + ' — ' + stage + ' of 5 stages complete');
       });
@@ -1662,7 +1681,7 @@
         let st = parseInt(card.dataset.stage || '0', 10); if (isNaN(st)) st = 0;
         st = Math.max(0, Math.min(5, st));
         const stage = st === 0 ? 'In planning' : (st >= 5 ? 'Delivered' : STAGES[st]);
-        const target = (card.dataset.updated || '').trim() || '—';
+        const target = deliveryTarget(card.dataset.updated, st);
         html += '<tr class="border-b border-line align-top">' +
           '<td class="py-4 pr-4 text-porcelain font-medium">' + name + '</td>' +
           '<td class="py-4 pr-4 text-muted text-sm hidden sm:table-cell">' + loc + '</td>' +
