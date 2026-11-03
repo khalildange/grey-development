@@ -218,49 +218,12 @@
   <!-- Enable JS-only scroll animations (kept out of no-JS render) -->
   <script>document.documentElement.classList.add('js');</script>
 
-  <!-- Tailwind Play CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            /* Issue 2.0 §03 — FOUR COLOURS. Charcoal / Grey / Off White / Gold.
-               Authorised tints: Gold 60/30/15 and Grey 30. Nothing else. */
-            charcoal:  '#18191B',  /* the ground of the identity — never a flat black */
-            grey:      '#878787',  /* the namesake — captions, labels, hairlines, icons, data */
-            offwhite:  '#FCFCFC',  /* type on Charcoal; paper ground */
-            gold:      '#DAA520',  /* the single accent — max 5% of any composition */
-            /* Warm light ground — a recorded deviation from §03, kept at the owner's
-               direction. Type on it is Charcoal; hierarchy comes from size, weight, caps. */
-            ink:       '#F7F4ED',
-            ink2:      '#F0EBE0',
-            panel:     '#FCFAF5',
-            line:      'rgba(135,135,135,.30)',  /* Grey 30 — the authorised hairline tint */
-            /* Aliases retained so existing markup keeps resolving to the four colours. */
-            void:      '#18191B',
-            porcelain: '#18191B',
-            body:      '#18191B',
-            muted:     '#18191B',
-            slate:     '#18191B',
-            stone:     '#18191B',
-            mist:      'rgba(135,135,135,.30)',
-            goldsoft:  '#DAA520',
-            golddeep:  '#18191B',
-            satin:     '#DAA520',
-            bronze:    '#18191B',
-            champagne: '#18191B',
-          },
-          fontFamily: {
-            sans: ['Century Gothic', 'URW Gothic', 'Avant Garde', 'Arial', 'sans-serif'],
-            display: ['Century Gothic', 'URW Gothic', 'Avant Garde', 'Arial', 'sans-serif'],
-            mono: ['Century Gothic', 'URW Gothic', 'Arial', 'sans-serif'],
-            quote: ['Century Gothic', 'URW Gothic', 'Arial', 'sans-serif'],
-          },
-        },
-      },
-    };
-  </script>
+  <!-- Tailwind, compiled to static CSS. The Play CDN (cdn.tailwindcss.com) shipped a
+       ~400KB render-blocking script that compiled the stylesheet in the browser on every
+       visit; Tailwind document it as a development-only tool. This is the same output,
+       built from the same theme, at 20KB. Rebuild with:
+         npx tailwindcss@3.4.17 -c tailwind.config.js -i in.css -o assets/tailwind.css --minify
+       The theme lives in tailwind.config.js at the repo root. -->
 
   <style>
     /* ============================================================
@@ -674,6 +637,13 @@
       .spinner { animation-duration:1.4s; }
     }
   </style>
+
+  <!-- Loaded AFTER the custom styles above, because the Play CDN injected its
+       stylesheet at runtime and so landed last in the cascade. Utilities must keep
+       winning ties against the component classes above (e.g. text-offwhite over
+       .display, text-[9px] over .eyebrow) or the hero headline turns Charcoal on a
+       Charcoal ground. Verified by diffing computed styles against the CDN build. -->
+  <link rel="stylesheet" href="assets/tailwind.css" />
 </head>
 
 <body class="bg-ink text-body">
@@ -685,7 +655,7 @@
     <nav class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
       <div class="navbar-inner flex items-center justify-between h-20">
         <a href="#home" class="flex flex-col items-start leading-none" aria-label="GREY Development Limited — home">
-          <img src="assets/grey-wordmark-white.png" alt="GREY" width="1100" height="224" class="nav-logo h-6 sm:h-7 w-auto" />
+          <img src="assets/grey-wordmark-white.png" alt="GREY" width="400" height="81" class="nav-logo h-6 sm:h-7 w-auto" />
           <span class="nav-desc eyebrow text-[9px] sm:text-[10px] mt-1.5 tracking-[0.26em]">Development Limited</span>
         </a>
 
@@ -723,7 +693,7 @@
       <h1 class="sr-only">GREY Development Limited — featured development: The Eden II, a gated community of four-bedroom terrace residences and serviced apartments in Katampe, Abuja.</h1>
 
       <!-- Featured development: The Eden II render -->
-      <img src="assets/projects/eden-ii-hero.jpg" alt="The Eden II — gated terrace residences and serviced apartments, Katampe, Abuja" fetchpriority="high" decoding="async" class="hero-in--img absolute inset-0 w-full h-full object-cover object-center" />
+      <img src="assets/projects/eden-ii-hero.jpg" width="1600" height="690" alt="The Eden II — gated terrace residences and serviced apartments, Katampe, Abuja" fetchpriority="high" decoding="async" class="hero-in--img absolute inset-0 w-full h-full object-cover object-center" />
       <!-- Layered scrim + vignette: bottom-left text stays legible on any photo -->
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div class="absolute inset-0 hero-scrim-b"></div>
@@ -910,7 +880,7 @@
           <!-- Shafa's Residences -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="3" data-updated="FEB 2027">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/shafas-cover.jpg" alt="Shafa's Residences brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/shafas-cover.jpg" width="1000" height="707" alt="Shafa's Residences brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -935,7 +905,7 @@
           <!-- Amrah's Villas -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="2" data-updated="OCT 2026" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/amrahs-villas-cover.jpg" alt="Amrah's Villas brochure cover — semi-detached duplexes, Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/amrahs-villas-cover.jpg" width="1000" height="707" alt="Amrah's Villas brochure cover — semi-detached duplexes, Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -959,7 +929,7 @@
           <!-- Eden I -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="completed" data-location="abuja" data-stage="5" data-updated="COMPLETE">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/eden-i-cover.jpg" alt="Eden I — The Eden, four-bedroom townhomes, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/eden-i-cover.jpg" width="1000" height="707" alt="Eden I — The Eden, four-bedroom townhomes, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -983,7 +953,7 @@
           <!-- EDEN II -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="2" data-updated="APR 2027" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/eden-ii-cover.jpg" alt="EDEN II brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/eden-ii-cover.jpg" width="1000" height="707" alt="EDEN II brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -1008,7 +978,7 @@
           <!-- Grey Oasis -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="coming" data-location="kaduna" data-stage="0" data-updated="PLANNING" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/grey-oasis-cover.jpg" alt="Grey Oasis — luxury townhouses, Kaduna" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/grey-oasis-cover.jpg" width="1000" height="707" alt="Grey Oasis — luxury townhouses, Kaduna" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -1032,7 +1002,7 @@
           <!-- Grey Altura -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="mabushi" data-stage="0" data-updated="PLANNING">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/grey-altura-cover.jpg" alt="Grey Altura brochure cover — Mabushi, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/grey-altura-cover.jpg" width="1000" height="707" alt="Grey Altura brochure cover — Mabushi, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -1342,7 +1312,7 @@
     <!-- ============ CTA STRIP ============ -->
     <!-- ============ CLOSING STATEMENT ============ -->
     <section class="on-void relative isolate overflow-hidden border-t border-line">
-      <img src="assets/projects/eden-ii-hero.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async"
+      <img src="assets/projects/eden-ii-hero.jpg" width="1600" height="690" alt="" aria-hidden="true" loading="lazy" decoding="async"
            class="absolute inset-0 w-full h-full object-cover object-[center_32%]" />
       <!-- 68% is the floor that keeps Off White above 4.5:1 even over a pure-white
            pixel of the render: 0.32*255 + 0.68*24 = 98, giving 5.8:1. -->
@@ -1367,7 +1337,7 @@
         <!-- Brand -->
         <div class="sm:col-span-2 lg:col-span-5 max-w-sm">
           <div class="flex flex-col items-start leading-none mb-5">
-            <img src="assets/grey-wordmark-white.png" alt="GREY" width="1100" height="224" class="h-8 w-auto" />
+            <img src="assets/grey-wordmark-white.png" alt="GREY" width="400" height="81" class="h-8 w-auto" />
             <span class="eyebrow text-[10px] mt-2 tracking-[0.26em]">Development Limited</span>
           </div>
           <p class="text-stone text-sm leading-relaxed">Realty · Construction · Investment. Architecturally serious developments in Abuja — not just built, but crafted.</p>
