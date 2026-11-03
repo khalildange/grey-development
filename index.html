@@ -16,7 +16,7 @@
   <meta name="twitter:image" content="assets/GREY_Instagram_1080x1080.png" />
   <meta name="theme-color" content="#18191B" />
   <link rel="canonical" href="https://greydevelopmentng.com/" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%2318191B'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Oswald,Arial,sans-serif'%20font-size='21'%20font-weight='800'%20fill='%23DAA520'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%2318191B'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Century%20Gothic,Arial,sans-serif'%20font-size='21'%20font-weight='800'%20fill='%23DAA520'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
 
   <!-- Structured data — only facts stated on the page. No invented prices, units or titles. -->
   <script type="application/ld+json">
@@ -180,6 +180,10 @@
          7. Letter case. §04 states display type is "always uppercase". Headlines are set in
             sentence case. Face, single weight, size-driven hierarchy and the tracking rules
             all still follow §04.
+         8. Display face. The manual's authorised substitute for Anton is Oswald (condensed).
+            Headlines are set in Century Gothic instead, at the owner's direction, to match
+            the reference sites. Display and body now share one family, so hierarchy rests on
+            size, weight (700 vs 400) and capitals rather than on a face change.
          Deviations 6 and 7 were adopted at the owner's direction to match a reference site
          (SOLEN). That reference also drove: a full-bleed hero with the navigation links and
          Enquire pill hidden until 80px of scroll (the menu button stays reachable at every
@@ -190,12 +194,11 @@
          1.7:1.
 
          HERO (Primadona reference, owner-directed). The hero is a full-bleed render with the
-         headline set top-left, a Location/Status search bar, and a stat row along the bottom.
-         The stat figures are COUNTED from the portfolio cards' data-* attributes at runtime,
-         never typed in, so they cannot drift from the projects below. No "happy clients" or
-         price/type cells were added: no such data exists. The search bar offers the two real
-         filter dimensions only, and drives the existing portfolio chips rather than a second
-         filter implementation. Scrims are tuned to the minimum each block needs over the
+         headline set top-left and a Location/Status search bar. The stat row that sat along
+         the bottom was removed at the owner's direction; its figures were counted from the
+         portfolio cards, and the code that computed them went with it. The search bar offers
+         the two real filter dimensions only, and drives the existing portfolio chips rather
+         than a second filter implementation. Scrims are tuned to the minimum each block needs over the
          actual render pixels (headline 7.96:1 against a 3:1 floor, sub-line 9.19:1, stat
          captions 4.81:1, search label 4.56:1) so the photograph stays visible; a bottom-left
          corner scrim sinks the estate signage baked into the render, which reads "by Phantom
@@ -205,11 +208,9 @@
   -->
 
   <!-- Type (Issue 2.0 §04): Anton + Glacial Indifference, deployed via the manual's own
-       authorised substitutes — Oswald for Anton, Century Gothic (then Arial) for Glacial.
-       Century Gothic is a system face, so only Oswald is fetched. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet" />
+       authorised substitutes — Century Gothic (then Arial) for Glacial. Headlines are
+       set in Century Gothic too, at the owner's direction, rather than the condensed
+       Oswald stand-in for Anton. Both are system faces, so no webfont is fetched. -->
 
   <!-- Preload the LCP hero render so it starts downloading before CSS/JS parse -->
   <link rel="preload" as="image" href="assets/projects/eden-ii-hero.jpg" fetchpriority="high" />
@@ -252,7 +253,7 @@
           },
           fontFamily: {
             sans: ['Century Gothic', 'URW Gothic', 'Avant Garde', 'Arial', 'sans-serif'],
-            display: ['Oswald', 'Arial Narrow', 'Arial', 'sans-serif'],
+            display: ['Century Gothic', 'URW Gothic', 'Avant Garde', 'Arial', 'sans-serif'],
             mono: ['Century Gothic', 'URW Gothic', 'Arial', 'sans-serif'],
             quote: ['Century Gothic', 'URW Gothic', 'Arial', 'sans-serif'],
           },
@@ -335,23 +336,23 @@
     }
 
     /* ---- Type (§04) ----
-       Anton -> Oswald for display: ALWAYS UPPERCASE, never below 18px, never body.
+       Anton -> Century Gothic for display (owner-directed; see deviation 8).
        One weight; hierarchy comes from size and space, not boldness.
        Glacial -> Century Gothic for everything else.
        Tracking increases as size decreases — never the reverse. */
     /* DEVIATION from §04 ("always uppercase"): display is set in sentence case to
        match the SOLEN reference. Face, single weight and the size-driven hierarchy
        all still follow §04. */
-    .display { font-family:'Oswald','Arial Narrow',Arial,sans-serif; font-weight:400;
-               text-transform:none; letter-spacing:0; line-height:1.08;
+    .display { font-family:'Century Gothic','URW Gothic','Avant Garde',Arial,sans-serif; font-weight:700;
+               text-transform:none; letter-spacing:-.01em; line-height:1.1;
                color: var(--charcoal); }
-    .display--hero { font-weight:400; letter-spacing:-.005em; line-height:1.0; }
+    .display--hero { font-weight:700; letter-spacing:-.025em; line-height:1.02; }
     /* Two-tone headline — the de-emphasised half takes Grey. On Charcoal that is
        4.9:1; on the cream ground Grey only clears 3:1, so it is used there at 24px+
        only, which every .display size satisfies. */
     .dim { color: var(--grey); }
     /* H2 32/36 +0.03em; H1 48/50 +0.02em; Display 72/72 +0.01em */
-    .display.text-xl, .display.text-lg { font-weight:500; letter-spacing:0; }
+    .display.text-xl, .display.text-lg { font-weight:700; letter-spacing:-.005em; }
     /* Caption — Glacial Bold, caps, 11/17 +0.18em. Charcoal on light; Gold on Charcoal. */
     .eyebrow { font-weight:700; font-size:11px; line-height:1.55; letter-spacing:.18em;
                text-transform:uppercase; color: var(--charcoal); }
@@ -505,15 +506,16 @@
     /* Hero — photography with a graded panel so type clears 4.5:1 */
     .hero-img { object-fit: cover; object-position: center; }
     @media (max-width:640px){ .hero-img { object-fit: contain; } }
-    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.80) 0%, rgba(24,25,27,.45) 30%, rgba(24,25,27,.12) 60%, rgba(24,25,27,0) 82%); }
+    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.65) 0%, rgba(24,25,27,.34) 30%, rgba(24,25,27,.09) 60%, rgba(24,25,27,0) 82%); }
     /* The headline and sub-line now sit top-left, so the left scrim carries most of
        the legibility budget. Off White needs ~0.68 coverage to hold 4.5:1 over a
        worst-case white pixel, and ~0.50 to hold 3:1 at display sizes. */
     .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.72) 0%, rgba(24,25,27,.55) 35%, rgba(24,25,27,.30) 60%, rgba(24,25,27,.08) 82%, rgba(24,25,27,0) 95%); }
     .hero-scrim-t { background: linear-gradient(to bottom, rgba(24,25,27,.55) 0%, rgba(24,25,27,.18) 60%, rgba(24,25,27,0) 100%); }
-    /* Bottom-left corner only: sinks the estate signage baked into the render so it
-       does not compete with the stat row, without flattening the rest of the photo. */
-    .hero-scrim-corner { background: radial-gradient(125% 80% at 0% 100%, rgba(24,25,27,.88) 0%, rgba(24,25,27,.60) 36%, rgba(24,25,27,.22) 58%, rgba(24,25,27,0) 76%); }
+    /* Bottom-left corner only: sinks the estate signage baked into the render, which
+       reads "by Phantom Grey". Tightened once the stat row was removed, so the rest of
+       the lower frame opens back up to the photograph. */
+    .hero-scrim-corner { background: radial-gradient(110% 38% at 0% 100%, rgba(24,25,27,.94) 0%, rgba(24,25,27,.74) 45%, rgba(24,25,27,.30) 75%, rgba(24,25,27,0) 100%); }
     @media (max-width:640px){
       .hero-scrim-l { background: linear-gradient(to top, rgba(24,25,27,.93) 0%, rgba(24,25,27,.58) 45%, rgba(24,25,27,.42) 100%); }
     }
@@ -754,7 +756,7 @@
 
         <!-- Quick search: drives the portfolio filters below -->
         <form id="heroSearch" class="hero-in mt-7 sm:mt-9 max-w-3xl" style="animation-delay:.42s" aria-label="Find a development">
-          <div class="flex flex-col sm:flex-row items-stretch rounded-[14px] overflow-hidden border border-offwhite/25 bg-[#18191B]/82 backdrop-blur-md">
+          <div class="flex flex-col sm:flex-row items-stretch rounded-[14px] overflow-hidden border border-offwhite/25 bg-[#18191B]/90 backdrop-blur-md">
             <div class="flex-1 px-5 py-3.5 border-b sm:border-b-0 sm:border-r border-offwhite/20">
               <label for="heroLocation" class="block mono text-[9px] uppercase tracking-[0.24em] text-grey mb-1">Location</label>
               <select id="heroLocation" class="w-full bg-transparent text-offwhite text-sm outline-none cursor-pointer">
@@ -782,23 +784,6 @@
         </form>
       </div>
 
-      <!-- Stat row — every figure is counted from the portfolio below, never typed in -->
-      <div class="relative z-[2] w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 pb-12 sm:pb-16 mt-auto">
-        <dl class="hero-in flex flex-wrap gap-y-6" style="animation-delay:.54s">
-          <div class="pr-8 sm:pr-12 border-l border-offwhite/25 pl-5 sm:pl-7">
-            <dd class="display text-3xl sm:text-5xl text-offwhite tnum" data-stat="developments">&mdash;</dd>
-            <dt class="mono text-[10px] uppercase tracking-[0.2em] text-grey mt-1">Developments</dt>
-          </div>
-          <div class="pr-8 sm:pr-12 border-l border-offwhite/25 pl-5 sm:pl-7">
-            <dd class="display text-3xl sm:text-5xl text-offwhite tnum" data-stat="locations">&mdash;</dd>
-            <dt class="mono text-[10px] uppercase tracking-[0.2em] text-grey mt-1">Locations</dt>
-          </div>
-          <div class="pr-8 sm:pr-12 border-l border-offwhite/25 pl-5 sm:pl-7">
-            <dd class="display text-3xl sm:text-5xl text-offwhite tnum" data-stat="delivered">&mdash;</dd>
-            <dt class="mono text-[10px] uppercase tracking-[0.2em] text-grey mt-1">Delivered</dt>
-          </div>
-        </dl>
-      </div>
     </section>
 
     <!-- ============ POSITIONING STRIP ============ -->
@@ -1643,14 +1628,6 @@
           ? cards.length + ' developments'
           : shown + ' of ' + cards.length + ' developments';
       };
-      // Hero stat row — counted from the cards, so the figures cannot drift from
-      // the portfolio. No number here is typed in by hand.
-      const setStat = (k, v) => document.querySelectorAll('[data-stat="' + k + '"]')
-        .forEach(el => { el.textContent = String(v); });
-      setStat('developments', cards.length);
-      setStat('locations', new Set(cards.map(c => c.dataset.location)).size);
-      setStat('delivered', cards.filter(c => c.dataset.status === 'completed').length);
-
       // Hero quick search — reuses the chip logic rather than duplicating it, so the
       // chips below stay in sync with whatever the hero submitted.
       const heroSearch = document.getElementById('heroSearch');
