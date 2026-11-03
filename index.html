@@ -204,6 +204,22 @@
          corner scrim sinks the estate signage baked into the render, which reads "by Phantom
          Grey" and would otherwise compete with the stat row.
 
+         HERO (SOLEN composition, owner-directed). Recomposed to match SOLEN: the content is
+         bottom-anchored rather than centred, with the headline, sub-line and search bar on
+         the left and two featured-development cards on the right, sharing one baseline, and
+         a centred SCROLL cue beneath the whole composition. The card specs (m2 / floors /
+         bedrooms) are read from the unit data below, which comes from each brochure's room
+         schedule. Two departures from the reference: SOLEN carries its wordmark here, not a
+         headline, and SOLEN has no search bar - the bar was kept, in the corner where SOLEN
+         puts nothing, because it is the only entry point to the portfolio filters.
+         Scrims were re-tuned for the lower text position so the render stays bright the way
+         SOLEN's does (headline 6.05:1 against a 3:1 floor, sub-line 7.63:1, card names
+         10.11:1, card specs 7.98:1, search label 4.54:1, SCROLL 4.70:1). The card ground is
+         90% Charcoal rather than 80%: at 80% the 10px specs fell to 3.31:1 over the bright
+         part of the render, and they are now Off White at 75% rather than Grey for the same
+         reason. The headline is capped at 4.25rem and breaks naturally, because the forced
+         break plus the 5.5rem cap wrapped it to four lines once the cards shared the row.
+
        NOTE: project card images are artist's impressions; real renders live in each brochure PDF.
   -->
 
@@ -314,7 +330,7 @@
          text-[2.65rem] sm:text-7xl went 42px -> 72px at 640px, which wrapped to four
          cramped lines on tablets and large phones in landscape. Tracks ~40px at 375px
          up to the 88px display size at 1440px and holds there. */
-      font-size: clamp(2.1rem, 1.44rem + 4.5vw, 5.5rem); }
+      font-size: clamp(2rem, 1.2rem + 3.6vw, 4.25rem); }
     /* Short viewports — landscape phones and the 568px-tall iPhone SE. The hero has to
        seat a fixed 80px header, a two-line headline, a sub-line and the search bar in
        under 300px of usable height, so the type and the gaps step down. Without this the
@@ -485,16 +501,16 @@
     /* Hero — photography with a graded panel so type clears 4.5:1 */
     .hero-img { object-fit: cover; object-position: center; }
     @media (max-width:640px){ .hero-img { object-fit: contain; } }
-    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.65) 0%, rgba(24,25,27,.34) 30%, rgba(24,25,27,.09) 60%, rgba(24,25,27,0) 82%); }
+    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.92) 0%, rgba(24,25,27,.80) 22%, rgba(24,25,27,.52) 45%, rgba(24,25,27,.18) 68%, rgba(24,25,27,0) 88%); }
     /* The headline and sub-line now sit top-left, so the left scrim carries most of
        the legibility budget. Off White needs ~0.68 coverage to hold 4.5:1 over a
        worst-case white pixel, and ~0.50 to hold 3:1 at display sizes. */
-    .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.72) 0%, rgba(24,25,27,.55) 35%, rgba(24,25,27,.30) 60%, rgba(24,25,27,.08) 82%, rgba(24,25,27,0) 95%); }
-    .hero-scrim-t { background: linear-gradient(to bottom, rgba(24,25,27,.55) 0%, rgba(24,25,27,.18) 60%, rgba(24,25,27,0) 100%); }
+    .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.34) 0%, rgba(24,25,27,.20) 38%, rgba(24,25,27,.06) 70%, rgba(24,25,27,0) 88%); }
+    .hero-scrim-t { background: linear-gradient(to bottom, rgba(24,25,27,.50) 0%, rgba(24,25,27,.16) 60%, rgba(24,25,27,0) 100%); }
     /* Bottom-left corner only: sinks the estate signage baked into the render, which
        reads "by Phantom Grey". Tightened once the stat row was removed, so the rest of
        the lower frame opens back up to the photograph. */
-    .hero-scrim-corner { background: radial-gradient(110% 38% at 0% 100%, rgba(24,25,27,.94) 0%, rgba(24,25,27,.74) 45%, rgba(24,25,27,.30) 75%, rgba(24,25,27,0) 100%); }
+    .hero-scrim-corner { background: radial-gradient(85% 30% at 0% 100%, rgba(24,25,27,.55) 0%, rgba(24,25,27,.30) 50%, rgba(24,25,27,0) 100%); }
     @media (max-width:640px){
       .hero-scrim-l { background: linear-gradient(to top, rgba(24,25,27,.93) 0%, rgba(24,25,27,.58) 45%, rgba(24,25,27,.42) 100%); }
     }
@@ -659,7 +675,7 @@
        winning ties against the component classes above (e.g. text-offwhite over
        .display, text-[9px] over .eyebrow) or the hero headline turns Charcoal on a
        Charcoal ground. Verified by diffing computed styles against the CDN build. -->
-  <link rel="stylesheet" href="assets/tailwind.css?v=5cf47b82" />
+  <link rel="stylesheet" href="assets/tailwind.css?v=78321e50" />
 </head>
 
 <body class="bg-ink text-body">
@@ -705,7 +721,7 @@
   <main id="main">
 
     <!-- ============ HERO ============ -->
-    <section id="home" class="relative min-h-[100svh] flex flex-col justify-center pt-20 overflow-hidden bg-void">
+    <section id="home" class="relative min-h-[100svh] flex flex-col justify-end pt-20 overflow-hidden bg-void">
       <h1 class="sr-only">GREY Development Limited — featured development: The Eden II, a gated community of four-bedroom terrace residences and serviced apartments in Katampe, Abuja.</h1>
 
       <!-- Featured development: The Eden II render -->
@@ -729,9 +745,12 @@
         </div>
       </div>
 
-      <div class="hero-body relative z-[2] w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 py-8">
-        <h2 class="hero-in display display--hero text-offwhite max-w-4xl" style="animation-delay:.18s">Built to the standard <br class="hidden lg:inline"/>you were promised.</h2>
-        <p class="hero-in text-offwhite font-semibold text-sm sm:text-base mt-6 max-w-2xl leading-relaxed" style="animation-delay:.3s">Residential and mixed-use developments across Abuja and Kaduna &mdash; designed, built and delivered by one accountable team.</p>
+      <div class="hero-body relative z-[2] w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 pb-6 sm:pb-8">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 lg:gap-12">
+
+          <div class="min-w-0 lg:flex-1">
+            <h2 class="hero-in display display--hero text-offwhite" style="animation-delay:.18s">Built to the standard you were promised.</h2>
+            <p class="hero-in text-offwhite/80 text-sm sm:text-base mt-5 max-w-xl leading-relaxed" style="animation-delay:.3s">Residential and mixed-use developments across Abuja and Kaduna &mdash; designed, built and delivered by one accountable team.</p>
 
         <!-- Quick search: drives the portfolio filters below -->
         <form id="heroSearch" class="hero-in mt-7 sm:mt-9 max-w-3xl" style="animation-delay:.42s" aria-label="Find a development">
@@ -761,8 +780,35 @@
             </button>
           </div>
         </form>
+          </div>
+
+          <!-- Featured developments. Specs come from the unit data below, which is taken
+               from each brochure's room schedule - nothing here is typed in by hand. -->
+          <div class="hero-in flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 shrink-0" style="animation-delay:.54s">
+            <a href="#projects" class="hero-card group block w-full sm:w-48 border border-offwhite/20 bg-[#18191B]/90 backdrop-blur-md p-5 hover:border-gold t-std">
+              <span class="display text-lg text-offwhite block">The Eden II</span>
+              <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite/75 block mt-2">280 m&sup2; &middot; 3 floors &middot; 4 bed</span>
+              <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite inline-flex items-center gap-1.5 mt-4 group-hover:text-gold t-std">See full case
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+            <a href="#projects" class="hero-card group block w-full sm:w-48 border border-offwhite/20 bg-[#18191B]/90 backdrop-blur-md p-5 hover:border-gold t-std">
+              <span class="display text-lg text-offwhite block">Shafa&rsquo;s Residences</span>
+              <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite/75 block mt-2">267 m&sup2; &middot; 3 floors &middot; 4 bed</span>
+              <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite inline-flex items-center gap-1.5 mt-4 group-hover:text-gold t-std">See full case
+                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+          </div>
+
+        </div>
       </div>
 
+      <!-- Scroll cue, centred under the whole composition -->
+      <div class="relative z-[2] hero-in scrollcue pb-7 sm:pb-9" style="animation-delay:.66s" aria-hidden="true">
+        <span class="rule"></span>
+        <span class="mono text-[9px] uppercase tracking-[0.3em] text-grey">Scroll</span>
+      </div>
     </section>
 
     <!-- ============ POSITIONING STRIP ============ -->
