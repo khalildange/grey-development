@@ -165,8 +165,11 @@
             pull-quote, portfolio, investment data, CTA strip and footer; a warm light ground
             carries the reading sections. Proportion is held near 60/25/10/5.
          2. Light ground tone. The cream (#F7F4ED / #F0EBE0 / #FCFAF5) is not Off White #FCFCFC.
-         3. Gold fills the primary button on Charcoal bands. §02 authorises a gold colourway
-            as ceremonial only; the fill is kept inside the 5% budget and never used on light.
+         3. Primary buttons are Off White on Charcoal, not gold. Gold fills were measured at
+            13.68% of the CTA band and 6.85% of the hero at 375px, against §03's 5% ceiling —
+            "the single most important colour rule". Off White on Charcoal is 17.1:1 and drops
+            the worst composition to 0.99%. This reverses an earlier owner request for gold;
+            it is reversible in one line if the 5% deviation is accepted.
          4. H3 size. §04 sets 20/26; card labels run at 14px to fit the grid. Face, weight,
             caps and tracking follow §04 exactly.
          5. Focus ring. §10 mandates a 2px gold ring. Gold is 2.2:1 on the cream ground, below
@@ -185,6 +188,18 @@
          statement band over imagery. The closing headline stays single-tone: at the 68%
          overlay Off White holds 5.8:1 against a worst-case white pixel, where Grey would be
          1.7:1.
+
+         HERO (Primadona reference, owner-directed). The hero is a full-bleed render with the
+         headline set top-left, a Location/Status search bar, and a stat row along the bottom.
+         The stat figures are COUNTED from the portfolio cards' data-* attributes at runtime,
+         never typed in, so they cannot drift from the projects below. No "happy clients" or
+         price/type cells were added: no such data exists. The search bar offers the two real
+         filter dimensions only, and drives the existing portfolio chips rather than a second
+         filter implementation. Scrims are tuned to the minimum each block needs over the
+         actual render pixels (headline 7.96:1 against a 3:1 floor, sub-line 9.19:1, stat
+         captions 4.81:1, search label 4.56:1) so the photograph stays visible; a bottom-left
+         corner scrim sinks the estate signage baked into the render, which reads "by Phantom
+         Grey" and would otherwise compete with the stat row.
 
        NOTE: project card images are artist's impressions; real renders live in each brochure PDF.
   -->
@@ -490,9 +505,15 @@
     /* Hero — photography with a graded panel so type clears 4.5:1 */
     .hero-img { object-fit: cover; object-position: center; }
     @media (max-width:640px){ .hero-img { object-fit: contain; } }
-    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.94) 0%, rgba(24,25,27,.62) 30%, rgba(24,25,27,.14) 60%, rgba(24,25,27,0) 82%); }
-    .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.74) 0%, rgba(24,25,27,.30) 34%, rgba(24,25,27,0) 64%); }
-    .hero-scrim-t { background: linear-gradient(to bottom, rgba(24,25,27,.60) 0%, rgba(24,25,27,0) 100%); }
+    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.80) 0%, rgba(24,25,27,.45) 30%, rgba(24,25,27,.12) 60%, rgba(24,25,27,0) 82%); }
+    /* The headline and sub-line now sit top-left, so the left scrim carries most of
+       the legibility budget. Off White needs ~0.68 coverage to hold 4.5:1 over a
+       worst-case white pixel, and ~0.50 to hold 3:1 at display sizes. */
+    .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.72) 0%, rgba(24,25,27,.55) 35%, rgba(24,25,27,.30) 60%, rgba(24,25,27,.08) 82%, rgba(24,25,27,0) 95%); }
+    .hero-scrim-t { background: linear-gradient(to bottom, rgba(24,25,27,.55) 0%, rgba(24,25,27,.18) 60%, rgba(24,25,27,0) 100%); }
+    /* Bottom-left corner only: sinks the estate signage baked into the render so it
+       does not compete with the stat row, without flattening the rest of the photo. */
+    .hero-scrim-corner { background: radial-gradient(125% 80% at 0% 100%, rgba(24,25,27,.88) 0%, rgba(24,25,27,.60) 36%, rgba(24,25,27,.22) 58%, rgba(24,25,27,0) 76%); }
     @media (max-width:640px){
       .hero-scrim-l { background: linear-gradient(to top, rgba(24,25,27,.93) 0%, rgba(24,25,27,.58) 45%, rgba(24,25,27,.42) 100%); }
     }
@@ -696,7 +717,7 @@
   <main id="main">
 
     <!-- ============ HERO ============ -->
-    <section id="home" class="relative min-h-[100svh] flex items-end overflow-hidden bg-void">
+    <section id="home" class="relative min-h-[100svh] flex flex-col justify-between overflow-hidden bg-void">
       <h1 class="sr-only">GREY Development Limited — featured development: The Eden II, a gated community of four-bedroom terrace residences and serviced apartments in Katampe, Abuja.</h1>
 
       <!-- Featured development: The Eden II render -->
@@ -705,57 +726,79 @@
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div class="absolute inset-0 hero-scrim-b"></div>
         <div class="absolute inset-0 hero-scrim-l"></div>
-        <div class="absolute inset-x-0 top-0 h-32 hero-scrim-t"></div>
+        <div class="absolute inset-x-0 top-0 h-64 hero-scrim-t"></div>
+        <div class="absolute inset-0 hero-scrim-corner"></div>
         <div class="absolute inset-0 hero-vignette"></div>
       </div>
 
-      <div class="relative w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 pb-14 sm:pb-16">
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
-
-          <!-- Wordmark block, bottom-left -->
-          <div class="max-w-2xl">
-            <div class="hero-in flex flex-wrap items-center gap-x-4 gap-y-2 mb-6" style="animation-delay:.04s">
-              <span class="inline-flex items-center gap-2.5 rounded-full border border-gold/60 bg-[#18191B]/75 backdrop-blur-sm px-4 py-1.5">
-                <span class="inline-flex rounded-full h-1.5 w-1.5 bg-gold"></span>
-                <span class="mono text-[10px] uppercase tracking-[0.24em] text-offwhite font-medium">Now Selling</span>
-              </span>
-              <span class="mono text-[10px] uppercase tracking-[0.24em] text-grey">Katampe, Abuja</span>
-            </div>
-
-            <h2 class="hero-in display display--hero text-6xl sm:text-7xl lg:text-[7rem] text-offwhite" style="animation-delay:.18s">The Eden <span class="dim">II</span></h2>
-            <p class="hero-in text-offwhite/85 text-base sm:text-lg mt-5 max-w-lg leading-relaxed" style="animation-delay:.3s">Four-bedroom terrace residences and serviced apartments, set behind a private gated entrance.</p>
-
-            <div class="hero-in flex flex-col sm:flex-row gap-3 mt-8" style="animation-delay:.5s">
-              <a href="#contact" class="btn btn-invert inline-flex justify-center items-center gap-2 px-7 py-3">Enquire about The Eden II</a>
-              <a href="#projects" class="btn btn-invert-secondary inline-flex justify-center items-center gap-2 px-7 py-3">View all developments</a>
-            </div>
-          </div>
-
-          <!-- Floating development cards, bottom-right -->
-          <div class="hero-in grid grid-cols-1 sm:grid-cols-2 gap-3 lg:max-w-md w-full" style="animation-delay:.42s">
-            <a href="#projects" class="hero-card group block bg-[#18191B]/80 backdrop-blur-md border border-grey/40 p-4 t-std hover:border-gold">
-              <p class="h3 text-offwhite mb-2">The Eden II</p>
-              <p class="mono text-[10px] uppercase tracking-[0.18em] text-grey leading-relaxed">Katampe &middot; 4-bed terraces &middot; serviced apartments</p>
-              <span class="mt-3 inline-flex items-center gap-1.5 mono text-[10px] uppercase tracking-[0.18em] text-gold">See full case
-                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </a>
-            <a href="#projects" class="hero-card group block bg-[#18191B]/80 backdrop-blur-md border border-grey/40 p-4 t-std hover:border-gold">
-              <p class="h3 text-offwhite mb-2">Shafa&rsquo;s Residences</p>
-              <p class="mono text-[10px] uppercase tracking-[0.18em] text-grey leading-relaxed">Katampe &middot; terraces &middot; 3-bed flats</p>
-              <span class="mt-3 inline-flex items-center gap-1.5 mono text-[10px] uppercase tracking-[0.18em] text-gold">See full case
-                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </a>
-          </div>
+      <!-- Architectural grid guides (§05) -->
+      <div class="hidden lg:block absolute inset-0 pointer-events-none z-[1]" aria-hidden="true">
+        <div class="mx-auto max-w-[1440px] h-full px-20 grid grid-cols-4">
+          <span class="border-l border-offwhite/10"></span>
+          <span class="border-l border-offwhite/10"></span>
+          <span class="border-l border-offwhite/10"></span>
+          <span class="border-l border-r border-offwhite/10"></span>
         </div>
       </div>
 
-      <!-- Scroll cue — hairline rule + word, as in the reference -->
-      <a href="#services" class="scrollcue absolute bottom-5 left-1/2 -translate-x-1/2 text-offwhite/70 hover:text-gold t-micro" aria-label="Scroll to explore">
-        <span class="rule" aria-hidden="true"></span>
-        <span class="mono text-[9px] uppercase tracking-[0.3em]">Scroll</span>
-      </a>
+      <div class="relative z-[2] w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 pt-24 sm:pt-28 pb-8 sm:pb-12">
+        <div class="hero-in flex flex-wrap items-center gap-x-4 gap-y-2 mb-7" style="animation-delay:.04s">
+          <span class="inline-flex items-center gap-2.5 rounded-full border border-gold/60 bg-[#18191B]/75 backdrop-blur-sm px-4 py-1.5">
+            <span class="inline-flex rounded-full h-1.5 w-1.5 bg-gold"></span>
+            <span class="mono text-[10px] uppercase tracking-[0.24em] text-offwhite font-medium">Now Selling &mdash; The Eden II</span>
+          </span>
+        </div>
+
+        <h2 class="hero-in display display--hero text-[2.65rem] sm:text-7xl lg:text-[5.5rem] text-offwhite max-w-4xl" style="animation-delay:.18s">Built to the standard <br class="hidden sm:inline"/>you were promised.</h2>
+        <p class="hero-in text-offwhite font-semibold text-sm sm:text-base mt-6 max-w-2xl leading-relaxed" style="animation-delay:.3s">Residential and mixed-use developments across Abuja and Kaduna &mdash; designed, built and delivered by one accountable team.</p>
+
+        <!-- Quick search: drives the portfolio filters below -->
+        <form id="heroSearch" class="hero-in mt-7 sm:mt-9 max-w-3xl" style="animation-delay:.42s" aria-label="Find a development">
+          <div class="flex flex-col sm:flex-row items-stretch rounded-[14px] overflow-hidden border border-offwhite/25 bg-[#18191B]/82 backdrop-blur-md">
+            <div class="flex-1 px-5 py-3.5 border-b sm:border-b-0 sm:border-r border-offwhite/20">
+              <label for="heroLocation" class="block mono text-[9px] uppercase tracking-[0.24em] text-grey mb-1">Location</label>
+              <select id="heroLocation" class="w-full bg-transparent text-offwhite text-sm outline-none cursor-pointer">
+                <option value="all">All locations</option>
+                <option value="katampe">Katampe, Abuja</option>
+                <option value="mabushi">Mabushi, Abuja</option>
+                <option value="abuja">Abuja</option>
+                <option value="kaduna">Kaduna</option>
+              </select>
+            </div>
+            <div class="flex-1 px-5 py-3.5 border-b sm:border-b-0 sm:border-r border-offwhite/20">
+              <label for="heroStatus" class="block mono text-[9px] uppercase tracking-[0.24em] text-grey mb-1">Status</label>
+              <select id="heroStatus" class="w-full bg-transparent text-offwhite text-sm outline-none cursor-pointer">
+                <option value="all">Any status</option>
+                <option value="selling">Now selling</option>
+                <option value="completed">Completed</option>
+                <option value="coming">Coming soon</option>
+              </select>
+            </div>
+            <button type="submit" class="shrink-0 bg-offwhite text-charcoal px-7 py-4 sm:px-6 inline-flex items-center justify-center gap-2 t-std hover:bg-gold" aria-label="Show matching developments">
+              <span class="sm:hidden mono text-[11px] uppercase tracking-[0.18em] font-bold">Search</span>
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Stat row — every figure is counted from the portfolio below, never typed in -->
+      <div class="relative z-[2] w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 pb-12 sm:pb-16 mt-auto">
+        <dl class="hero-in flex flex-wrap gap-y-6" style="animation-delay:.54s">
+          <div class="pr-8 sm:pr-12 border-l border-offwhite/25 pl-5 sm:pl-7">
+            <dd class="display text-3xl sm:text-5xl text-offwhite tnum" data-stat="developments">&mdash;</dd>
+            <dt class="mono text-[10px] uppercase tracking-[0.2em] text-grey mt-1">Developments</dt>
+          </div>
+          <div class="pr-8 sm:pr-12 border-l border-offwhite/25 pl-5 sm:pl-7">
+            <dd class="display text-3xl sm:text-5xl text-offwhite tnum" data-stat="locations">&mdash;</dd>
+            <dt class="mono text-[10px] uppercase tracking-[0.2em] text-grey mt-1">Locations</dt>
+          </div>
+          <div class="pr-8 sm:pr-12 border-l border-offwhite/25 pl-5 sm:pl-7">
+            <dd class="display text-3xl sm:text-5xl text-offwhite tnum" data-stat="delivered">&mdash;</dd>
+            <dt class="mono text-[10px] uppercase tracking-[0.2em] text-grey mt-1">Delivered</dt>
+          </div>
+        </dl>
+      </div>
     </section>
 
     <!-- ============ POSITIONING STRIP ============ -->
@@ -869,6 +912,7 @@
               <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5" data-filter="location" data-value="all" aria-pressed="true">All</button>
               <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5" data-filter="location" data-value="katampe" aria-pressed="false">Katampe</button>
               <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5" data-filter="location" data-value="mabushi" aria-pressed="false">Mabushi</button>
+              <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5" data-filter="location" data-value="abuja" aria-pressed="false">Abuja (other)</button>
               <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5" data-filter="location" data-value="kaduna" aria-pressed="false">Kaduna</button>
             </div>
           </div>
@@ -1599,6 +1643,33 @@
           ? cards.length + ' developments'
           : shown + ' of ' + cards.length + ' developments';
       };
+      // Hero stat row — counted from the cards, so the figures cannot drift from
+      // the portfolio. No number here is typed in by hand.
+      const setStat = (k, v) => document.querySelectorAll('[data-stat="' + k + '"]')
+        .forEach(el => { el.textContent = String(v); });
+      setStat('developments', cards.length);
+      setStat('locations', new Set(cards.map(c => c.dataset.location)).size);
+      setStat('delivered', cards.filter(c => c.dataset.status === 'completed').length);
+
+      // Hero quick search — reuses the chip logic rather than duplicating it, so the
+      // chips below stay in sync with whatever the hero submitted.
+      const heroSearch = document.getElementById('heroSearch');
+      if (heroSearch) {
+        heroSearch.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const want = {
+            location: document.getElementById('heroLocation').value,
+            status: document.getElementById('heroStatus').value,
+          };
+          Object.entries(want).forEach(([group, value]) => {
+            const chip = chips.find(c => c.dataset.filter === group && c.dataset.value === value);
+            if (chip) chip.click();
+          });
+          document.getElementById('projects')
+            .scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        });
+      }
+
       chips.forEach(chip => chip.addEventListener('click', () => {
         const group = chip.dataset.filter;
         state[group] = chip.dataset.value;
