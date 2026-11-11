@@ -249,6 +249,19 @@
          claims public- and private-sector partners, and the portfolio is entirely
          residential - it was kept as written rather than edited on an assumption.
 
+         SLEEK PASS (owner-directed). Headlines drop from weight 700 to 500 with tighter
+         tracking; card titles, H3s and buttons come down a step with them. The font
+         stacks gain Avenir Next / Avenir / Segoe UI ahead of Arial: Century Gothic only
+         ships with Microsoft Office, so every Apple device without it was rendering the
+         whole site in Arial - measured, the two stacks set identical widths on a Mac.
+         Still system faces only; no webfont is fetched. The scrolled header is glass
+         (74% Charcoal, 22px blur) rather than a near-solid bar; nav text holds 7.29:1
+         over a worst-case white page beneath it. Reveals travel 18px on an ease-out
+         curve over .9s instead of 8px over .6s, and project and gallery images drift
+         to 104% on hover - the one scale on the site, a DEVIATION from §10's "no
+         scale", removed under prefers-reduced-motion. The hero's four grid guide lines
+         were taken out.
+
        NOTE: project card images are artist's impressions; real renders live in each brochure PDF.
   -->
 
@@ -315,7 +328,7 @@
     }
     html, body { background-color: var(--ground); }
     /* §10 — Body: Glacial 17px / 1.65, 620px measure */
-    body { font-family:'Century Gothic','URW Gothic','Avant Garde',Arial,sans-serif;
+    body { font-family:'Century Gothic','URW Gothic','Avant Garde','Avenir Next','Avenir','Segoe UI',Arial,sans-serif;
            color: var(--charcoal); -webkit-font-smoothing: antialiased;
            font-size:17px; line-height:1.65; letter-spacing:.01em; font-weight:400; }
     /* §04/§10 — measure: body never exceeds 68 characters (620px at 17px).
@@ -324,9 +337,9 @@
 
     ::selection { background: var(--gold); color: var(--void); }
 
-    ::-webkit-scrollbar { width:10px; }
+    ::-webkit-scrollbar { width:8px; }
     ::-webkit-scrollbar-track { background: var(--ground); }
-    ::-webkit-scrollbar-thumb { background: var(--void-14); border-radius:0; border:2px solid var(--ground); }
+    ::-webkit-scrollbar-thumb { background: var(--void-14); border-radius:99px; border:2px solid var(--ground); }
     ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
     /* Focus — 2px ring: Void on Off White, gold on Void (§10) */
@@ -351,10 +364,10 @@
     /* DEVIATION from §04 ("always uppercase"): display is set in sentence case to
        match the SOLEN reference. Face, single weight and the size-driven hierarchy
        all still follow §04. */
-    .display { font-family:'Century Gothic','URW Gothic','Avant Garde',Arial,sans-serif; font-weight:700;
-               text-transform:none; letter-spacing:-.01em; line-height:1.1;
+    .display { font-family:'Century Gothic','URW Gothic','Avant Garde','Avenir Next','Avenir','Segoe UI',Arial,sans-serif; font-weight:500;
+               text-transform:none; letter-spacing:-.022em; line-height:1.08;
                color: var(--charcoal); }
-    .display--hero { font-weight:700; letter-spacing:-.025em; line-height:1.02;
+    .display--hero { font-weight:500; letter-spacing:-.03em; line-height:1.02;
       /* Fluid, so the headline never jumps size at a breakpoint. The stepped
          text-[2.65rem] sm:text-7xl went 42px -> 72px at 640px, which wrapped to four
          cramped lines on tablets and large phones in landscape. Tracks ~40px at 375px
@@ -376,7 +389,7 @@
        only, which every .display size satisfies. */
     .dim { color: var(--grey); }
     /* H2 32/36 +0.03em; H1 48/50 +0.02em; Display 72/72 +0.01em */
-    .display.text-xl, .display.text-lg { font-weight:700; letter-spacing:-.005em; }
+    .display.text-xl, .display.text-lg { font-weight:600; letter-spacing:-.012em; }
     /* Caption — Glacial Bold, caps, 11/17 +0.18em. Charcoal on light; Gold on Charcoal. */
     .eyebrow { font-weight:700; font-size:11px; line-height:1.55; letter-spacing:.18em;
                text-transform:uppercase; color: var(--charcoal); }
@@ -389,7 +402,7 @@
     .tnum { font-variant-numeric: tabular-nums; }
     /* Tagline — Glacial Italic in Gold, 24/30, tracking 0. One per composition,
        and only on Charcoal, where Gold is legal as type. */
-    .quote { font-family:'Century Gothic','URW Gothic',Arial,sans-serif; font-style: italic;
+    .quote { font-family:'Century Gothic','URW Gothic','Avenir Next','Avenir','Segoe UI',Arial,sans-serif; font-style: italic;
              font-weight:400; letter-spacing:0; line-height:1.25; }
     .on-void .quote { color: var(--gold); }
     /* Statement — Glacial, for sentences past Anton's 8-word cap. */
@@ -397,7 +410,7 @@
                  letter-spacing:.01em; color: var(--charcoal); }
     .on-void .statement { color: var(--offwhite); }
     /* H3 — Glacial Bold, caps, +0.14em (size reduced from §04's 20/26 to fit the grid) */
-    .h3 { font-weight:700; font-size:14px; line-height:1.45; letter-spacing:.14em;
+    .h3 { font-weight:600; font-size:13px; line-height:1.45; letter-spacing:.14em;
           text-transform:uppercase; color: var(--charcoal); }
     .on-void .h3 { color: var(--offwhite); }
     /* Two-tone headline (SOLEN reference): the second clause drops to Grey.
@@ -450,7 +463,7 @@
     .on-void a:not(.btn):not([aria-label]) { color: var(--offwhite); }
 
     /* ---- Buttons (§10): square, no radius, GOLD NEVER FILLS ---- */
-    .btn { border-radius:0; font-weight:600; letter-spacing:.02em; cursor:pointer;
+    .btn { border-radius:0; font-weight:500; letter-spacing:.03em; cursor:pointer;
            transition: background-color 240ms cubic-bezier(.4,0,.2,1), color 240ms cubic-bezier(.4,0,.2,1),
                        border-color 240ms cubic-bezier(.4,0,.2,1), opacity 240ms ease; }
     .btn-primary   { background: var(--void); color: var(--offwhite); border:1px solid var(--void); }
@@ -505,8 +518,8 @@
     #siteHeader nav ul a:hover { color: var(--gold); }
     #siteHeader nav ul a.nav-active { color: var(--offwhite); }
     #siteHeader #menuBtn { color: var(--offwhite); border-color: rgba(252,252,252,.22); }
-    #siteHeader.scrolled { background: rgba(24,25,27,.92); backdrop-filter: blur(12px);
-                           -webkit-backdrop-filter: blur(12px); border-bottom:1px solid var(--ow-14); }
+    #siteHeader.scrolled { background: rgba(24,25,27,.74); backdrop-filter: blur(22px) saturate(1.5);
+                           -webkit-backdrop-filter: blur(22px) saturate(1.5); border-bottom:1px solid var(--ow-14); }
     .nav-active { color: var(--offwhite); position: relative; }
     .nav-active::after { content:""; position:absolute; left:0; right:0; bottom:-6px; height:1px; background: var(--gold); }
     .navbar-inner { transition: height .3s cubic-bezier(.4,0,.2,1); }
@@ -550,27 +563,33 @@
     }
 
     /* Motion — fade + 8px slide only (§10). No scale, bounce or parallax. */
-    .zoomable img { transition: opacity 600ms cubic-bezier(.4,0,.2,1); }
-    @keyframes heroIn { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
-    .js .hero-in { opacity:0; animation: heroIn .7s cubic-bezier(.4,0,.2,1) both; }
+    .zoomable img { transition: opacity 600ms cubic-bezier(.4,0,.2,1), transform 1.2s cubic-bezier(.16,1,.3,1); }
+    /* Sleek pass (owner-directed): a slow 4% image drift on hover. DEVIATION from §10's
+       "no scale" - it is the one scale on the site, and reduced-motion removes it. */
+    .group:hover .zoomable img, .gal:hover img { transform: scale(1.04); }
+    .gal { overflow:hidden; border-radius: var(--r-img); }
+    .gal img { transition: transform 1.2s cubic-bezier(.16,1,.3,1); }
+    @media (prefers-reduced-motion: reduce){ .group:hover .zoomable img, .gal:hover img { transform:none; } }
+    @keyframes heroIn { from { opacity:0; transform: translateY(18px); } to { opacity:1; transform:none; } }
+    .js .hero-in { opacity:0; animation: heroIn 1.1s cubic-bezier(.16,1,.3,1) both; }
 
     #projects .zoomable { box-shadow: none; }
     #projects .zoomable::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
       background: linear-gradient(to top, rgba(24,25,27,.52) 0%, rgba(24,25,27,.10) 42%, rgba(24,25,27,0) 66%);
       transition: opacity .4s ease; }
     #projects .zoomable > span { z-index:2; }
-    #projects article { transition: border-color .28s ease, transform .28s cubic-bezier(.4,0,.2,1); }
+    #projects article { transition: border-color .4s ease, transform .7s cubic-bezier(.16,1,.3,1), opacity .9s cubic-bezier(.16,1,.3,1); }
     /* Subtle: the hairline warms to a soft antique gold rather than flashing to full
        Metallic, and the lift is halved. */
     #projects article:hover { border-color: var(--gold-60); transform: translateY(-2px); }
     @media (prefers-reduced-motion: reduce){ #projects article:hover { transform:none; } }
 
     /* Reveal */
-    .js .reveal { opacity:0; transform: translateY(8px); transition: opacity .6s ease, transform .6s ease; }
+    .js .reveal { opacity:0; transform: translateY(18px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
     .js .reveal.is-visible { opacity:1; transform:none; }
-    .reveal[data-delay="1"]{ transition-delay:.08s; }
-    .reveal[data-delay="2"]{ transition-delay:.16s; }
-    .reveal[data-delay="3"]{ transition-delay:.24s; }
+    .reveal[data-delay="1"]{ transition-delay:.1s; }
+    .reveal[data-delay="2"]{ transition-delay:.2s; }
+    .reveal[data-delay="3"]{ transition-delay:.3s; }
 
     /* Delivery timeline — gold marks progress as a rule, not a fill */
     .tl-seg { height:3px; flex:1 1 0; background: var(--void-14); transition: background-color .5s ease; }
@@ -709,7 +728,7 @@
        winning ties against the component classes above (e.g. text-offwhite over
        .display, text-[9px] over .eyebrow) or the hero headline turns Charcoal on a
        Charcoal ground. Verified by diffing computed styles against the CDN build. -->
-  <link rel="stylesheet" href="assets/tailwind.css?v=c4d47994" />
+  <link rel="stylesheet" href="assets/tailwind.css?v=2c72e73c" />
 </head>
 
 <body class="bg-ink text-body">
@@ -769,15 +788,6 @@
         <div class="absolute inset-0 hero-vignette"></div>
       </div>
 
-      <!-- Architectural grid guides (§05) -->
-      <div class="hidden lg:block absolute inset-0 pointer-events-none z-[1]" aria-hidden="true">
-        <div class="mx-auto max-w-[1440px] h-full px-20 grid grid-cols-4">
-          <span class="border-l border-offwhite/10"></span>
-          <span class="border-l border-offwhite/10"></span>
-          <span class="border-l border-offwhite/10"></span>
-          <span class="border-l border-r border-offwhite/10"></span>
-        </div>
-      </div>
 
       <div class="hero-body relative z-[2] w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 pb-6 sm:pb-8">
         <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 lg:gap-12">
@@ -1200,11 +1210,11 @@
         </div>
         <div class="grid md:grid-cols-2 gap-6 lg:gap-10">
           <figure class="reveal">
-            <img src="assets/projects/shafas-cover-lg.jpg" width="1400" height="989" srcset="assets/projects/shafas-cover.jpg 1000w, assets/projects/shafas-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="Shafa&rsquo;s Residences &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto rounded-[16px]" />
+            <div class="gal"><img src="assets/projects/shafas-cover-lg.jpg" width="1400" height="989" srcset="assets/projects/shafas-cover.jpg 1000w, assets/projects/shafas-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="Shafa&rsquo;s Residences &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></div>
             <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">Shafa&rsquo;s Residences &middot; Katampe &middot; Artist&rsquo;s impression</figcaption>
           </figure>
           <figure class="reveal" data-delay="1">
-            <img src="assets/projects/eden-ii-cover-lg.jpg" width="1400" height="989" srcset="assets/projects/eden-ii-cover.jpg 1000w, assets/projects/eden-ii-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="The Eden II &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto rounded-[16px]" />
+            <div class="gal"><img src="assets/projects/eden-ii-cover-lg.jpg" width="1400" height="989" srcset="assets/projects/eden-ii-cover.jpg 1000w, assets/projects/eden-ii-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="The Eden II &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></div>
             <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">The Eden II &middot; Katampe &middot; Artist&rsquo;s impression</figcaption>
           </figure>
         </div>
