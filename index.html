@@ -728,7 +728,7 @@
        winning ties against the component classes above (e.g. text-offwhite over
        .display, text-[9px] over .eyebrow) or the hero headline turns Charcoal on a
        Charcoal ground. Verified by diffing computed styles against the CDN build. -->
-  <link rel="stylesheet" href="assets/tailwind.css?v=2c72e73c" />
+  <link rel="stylesheet" href="assets/tailwind.css?v=bb223cde" />
 </head>
 
 <body class="bg-ink text-body">
@@ -805,7 +805,6 @@
                 <option value="all">All locations</option>
                 <option value="katampe">Katampe, Abuja</option>
                 <option value="mabushi">Mabushi, Abuja</option>
-                <option value="abuja">Abuja</option>
                 <option value="kaduna">Kaduna</option>
               </select>
             </div>
@@ -829,14 +828,14 @@
           <!-- Featured developments. Specs come from the unit data below, which is taken
                from each brochure's room schedule - nothing here is typed in by hand. -->
           <div class="hero-in flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 shrink-0" style="animation-delay:.54s">
-            <a href="#projects" class="hero-card group block w-full sm:w-48 border border-offwhite/20 bg-[#18191B]/90 backdrop-blur-md p-5 hover:border-gold t-std">
+            <a href="developments/eden-ii/" class="hero-card group block w-full sm:w-48 border border-offwhite/20 bg-[#18191B]/90 backdrop-blur-md p-5 hover:border-gold t-std">
               <span class="display text-lg text-offwhite block">The Eden II</span>
               <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite/75 block mt-2">280 m&sup2; &middot; 3 floors &middot; 4 bed</span>
               <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite inline-flex items-center gap-1.5 mt-4 group-hover:text-gold t-std">See full case
                 <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </span>
             </a>
-            <a href="#projects" class="hero-card group block w-full sm:w-48 border border-offwhite/20 bg-[#18191B]/90 backdrop-blur-md p-5 hover:border-gold t-std">
+            <a href="developments/shafas-residences/" class="hero-card group block w-full sm:w-48 border border-offwhite/20 bg-[#18191B]/90 backdrop-blur-md p-5 hover:border-gold t-std">
               <span class="display text-lg text-offwhite block">Shafa&rsquo;s Residences</span>
               <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite/75 block mt-2">267 m&sup2; &middot; 3 floors &middot; 4 bed</span>
               <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite inline-flex items-center gap-1.5 mt-4 group-hover:text-gold t-std">See full case
@@ -953,7 +952,6 @@
               <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5" data-filter="location" data-value="all" aria-pressed="true">All</button>
               <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5" data-filter="location" data-value="katampe" aria-pressed="false">Katampe</button>
               <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5" data-filter="location" data-value="mabushi" aria-pressed="false">Mabushi</button>
-              <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5" data-filter="location" data-value="abuja" aria-pressed="false">Abuja (other)</button>
               <button type="button" class="filter-chip text-[11px] px-3.5 py-1.5" data-filter="location" data-value="kaduna" aria-pressed="false">Kaduna</button>
             </div>
           </div>
@@ -970,7 +968,7 @@
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
-              <h3 class="display text-xl text-porcelain">Shafa's Residences</h3>
+              <h3 class="display text-xl text-porcelain"><a href="developments/shafas-residences/" class="hover:underline underline-offset-4 decoration-1">Shafa's Residences</a></h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">An exclusive residential development of considered terraces and flats, minutes from Maitama.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
@@ -995,7 +993,7 @@
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
-              <h3 class="display text-xl text-porcelain">Amrah's Villas</h3>
+              <h3 class="display text-xl text-porcelain"><a href="developments/amrahs-villas/" class="hover:underline underline-offset-4 decoration-1">Amrah's Villas</a></h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of semi-detached duplex residences in Katampe — fully serviced with power, water, gas and home automation.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
@@ -1013,14 +1011,14 @@
           </article>
 
           <!-- Eden I -->
-          <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="completed" data-location="abuja" data-stage="5" data-updated="COMPLETE">
+          <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="completed" data-location="katampe" data-stage="5" data-updated="COMPLETE">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
               <img src="assets/projects/eden-i-cover.jpg" width="1000" height="707" alt="Eden I — The Eden, four-bedroom townhomes, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
-              <h3 class="display text-xl text-porcelain">Eden I</h3>
-              <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Abuja, Nigeria</p>
+              <h3 class="display text-xl text-porcelain"><a href="developments/eden-i/" class="hover:underline underline-offset-4 decoration-1">Eden I</a></h3>
+              <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">The first in the EDEN line — a collection of four-bedroom townhomes delivered to the GREY standard.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
                 <div class="flex items-center justify-between mb-2.5">
@@ -1043,7 +1041,7 @@
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
-              <h3 class="display text-xl text-porcelain">The Eden II</h3>
+              <h3 class="display text-xl text-porcelain"><a href="developments/eden-ii/" class="hover:underline underline-offset-4 decoration-1">The Eden II</a></h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Katampe, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development continuing the EDEN line — refined living, built to the GREY standard.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
@@ -1068,7 +1066,7 @@
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
-              <h3 class="display text-xl text-porcelain">Grey Oasis</h3>
+              <h3 class="display text-xl text-porcelain"><a href="developments/grey-oasis/" class="hover:underline underline-offset-4 decoration-1">Grey Oasis</a></h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Kaduna, Nigeria</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A collection of luxury townhouses in Kaduna — exclusive living, timeless value.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
@@ -1092,7 +1090,7 @@
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
-              <h3 class="display text-xl text-porcelain">Grey Altura</h3>
+              <h3 class="display text-xl text-porcelain"><a href="developments/grey-altura/" class="hover:underline underline-offset-4 decoration-1">Grey Altura</a></h3>
               <p class="mono text-[11px] uppercase tracking-[0.18em] text-slate mt-2">Mabushi, Abuja</p>
               <p class="text-body text-sm mt-3 leading-relaxed flex-1">A contemporary residential development in the heart of Mabushi — elevated living, built to the GREY standard.</p>
               <div class="tl mt-5 pt-4 border-t border-line">
@@ -1210,11 +1208,11 @@
         </div>
         <div class="grid md:grid-cols-2 gap-6 lg:gap-10">
           <figure class="reveal">
-            <div class="gal"><img src="assets/projects/shafas-cover-lg.jpg" width="1400" height="989" srcset="assets/projects/shafas-cover.jpg 1000w, assets/projects/shafas-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="Shafa&rsquo;s Residences &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></div>
+            <a href="developments/shafas-residences/" class="gal block" aria-label="Shafa's Residences — full details"><img src="assets/projects/shafas-cover-lg.jpg" width="1400" height="989" srcset="assets/projects/shafas-cover.jpg 1000w, assets/projects/shafas-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="Shafa&rsquo;s Residences &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></a>
             <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">Shafa&rsquo;s Residences &middot; Katampe &middot; Artist&rsquo;s impression</figcaption>
           </figure>
           <figure class="reveal" data-delay="1">
-            <div class="gal"><img src="assets/projects/eden-ii-cover-lg.jpg" width="1400" height="989" srcset="assets/projects/eden-ii-cover.jpg 1000w, assets/projects/eden-ii-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="The Eden II &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></div>
+            <a href="developments/eden-ii/" class="gal block" aria-label="The Eden II — full details"><img src="assets/projects/eden-ii-cover-lg.jpg" width="1400" height="989" srcset="assets/projects/eden-ii-cover.jpg 1000w, assets/projects/eden-ii-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="The Eden II &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></a>
             <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">The Eden II &middot; Katampe &middot; Artist&rsquo;s impression</figcaption>
           </figure>
         </div>
@@ -1614,6 +1612,15 @@
     window.addEventListener('load', onScroll);
     window.addEventListener('pageshow', onScroll);
     window.addEventListener('hashchange', onScroll);
+
+    // Development pages link here as /?interest=<name>#contact - preselect that option.
+    (() => {
+      const want = new URLSearchParams(location.search).get('interest');
+      const sel = document.getElementById('service');
+      if (!want || !sel) return;
+      const hit = [...sel.options].find(o => o.textContent.trim().toLowerCase() === want.trim().toLowerCase());
+      if (hit) sel.value = hit.value;
+    })();
 
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');

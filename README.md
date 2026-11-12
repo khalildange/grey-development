@@ -2,7 +2,8 @@
 
 Static marketing site for **GREY Development Limited** (Realty · Construction · Investment, Abuja, Nigeria).
 
-- Single page: `index.html` — markup, custom CSS and JS all inline
+- Home page: `index.html` — markup, custom CSS and JS all inline
+- `developments/<slug>/` — one generated page per development (see below)
 - `assets/tailwind.css` — Tailwind, compiled ahead of time (see below)
 - `assets/` — brand images, development renders/covers, downloadable brochures
 - The published site loads **no third-party scripts and no webfonts**
@@ -14,10 +15,27 @@ Open `index.html` in a browser, or serve the folder:
 python3 -m http.server 4599
 ```
 
+## Development pages
+
+Each development has its own page at `developments/<slug>/index.html`. These
+are **generated** by `build_pages.py` - do not edit them by hand. The home page
+is the source: the cards in `#projectGrid` supply name, location, status, stage
+and brochure; `UNIT_DATA` supplies unit types and room schedules; the styles,
+header and footer are copied from `index.html`. Facts for developments without
+a `UNIT_DATA` entry live in the `BROCHURE` table in the script, each with the
+brochure page it was read from.
+
+After changing `index.html`, run one command to regenerate the pages, the
+stylesheet and the sitemap:
+
+```bash
+./build.sh
+```
+
 ## Rebuilding the CSS
 
 `assets/tailwind.css` is generated. Editing it by hand will be overwritten.
-Rebuild it after adding or changing any Tailwind utility class in `index.html`:
+`./build.sh` does this for you. To rebuild only the stylesheet:
 
 ```bash
 npx tailwindcss@3.4.17 -c tailwind.config.js -i in.css -o assets/tailwind.css --minify
