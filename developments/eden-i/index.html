@@ -142,7 +142,7 @@
     .display { font-family:'Century Gothic','URW Gothic','Avant Garde','Avenir Next','Avenir','Segoe UI',Arial,sans-serif; font-weight:500;
                text-transform:none; letter-spacing:-.022em; line-height:1.08;
                color: var(--charcoal); }
-    .display--hero { font-weight:500; letter-spacing:-.03em; line-height:1.02;
+    .display--hero { font-weight:500; letter-spacing:-.03em; line-height:1.02; text-wrap:balance;
       /* Fluid, so the headline never jumps size at a breakpoint. The stepped
          text-[2.65rem] sm:text-7xl went 42px -> 72px at 640px, which wrapped to four
          cramped lines on tablets and large phones in landscape. Tracks ~40px at 375px
@@ -212,7 +212,8 @@
     /* Rounded geometry (SOLEN reference) */
     .zoomable, .zoomable img, .r-img { border-radius: var(--r-img); overflow:hidden; }
     #projectGrid article, #projects article, .glass, .glass-strong,
-    .modal-panel, .fab-item, .hero-card { border-radius: var(--r-card); }
+    .modal-panel, .fab-item, .hero-card, .hero-picks { border-radius: var(--r-card); }
+    .hero-picks { overflow:hidden; }
     .utab, .filter-chip { border-radius: var(--r-pill); }
 
     /* ---- Components on a Charcoal ground (§10: Charcoal panels, hairline Grey
@@ -278,6 +279,32 @@
       #mobileMenu:not(.hidden) { display:block; }
     }
 
+    /* ---- Hero slideshow ----
+       Cross-fade between featured developments, with a slow 6% drift on the visible
+       one. The drift is a transition, not an animation, so a slide leaving does not
+       snap back to scale 1 while it is still fading out. prefers-reduced-motion: no
+       drift, an instant cut, and the show starts paused (see the script). */
+    .hero-slide { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
+                  opacity:0; transform: scale(1); transition: opacity 1.4s ease, transform 9s linear; }
+    .hero-slide.is-active { opacity:1; }
+    #home.is-playing .hero-slide.is-active { transform: scale(1.06); }
+    .hero-pick { position:relative; display:flex; align-items:flex-start; gap:.9rem; padding:.95rem 1.25rem 1.05rem;
+                 border-top:1px solid rgba(252,252,252,.12); transition: background-color .3s ease; }
+    .hero-picks > .hero-pick:first-of-type { border-top:0; }
+    .hero-pick:hover, .hero-pick.is-active { background: rgba(252,252,252,.05); }
+    .hero-pick-bar { position:absolute; left:0; right:0; bottom:0; height:2px; }
+    .hero-pick-bar i { display:block; height:100%; width:0; background: var(--gold); }
+    .hero-pick.is-active .hero-pick-bar i { width:100%; }
+    #home.is-playing .hero-pick.is-active .hero-pick-bar i { animation: pickFill var(--hero-dur, 7s) linear both; }
+    @keyframes pickFill { from { width:0; } to { width:100%; } }
+    #heroPause .ico-play { display:none; }
+    #heroPause[aria-pressed="true"] .ico-play { display:block; }
+    #heroPause[aria-pressed="true"] .ico-pause { display:none; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide { transition:none; }
+      #home.is-playing .hero-slide.is-active { transform:none; }
+    }
+
     /* Scroll cue — a hairline rule and a word, as in the reference */
     .scrollcue { display:flex; flex-direction:column; align-items:center; gap:.65rem; }
     .scrollcue .rule { width:1px; height:40px; background: linear-gradient(to bottom, transparent, var(--offwhite)); }
@@ -318,23 +345,19 @@
     /* Hero — photography with a graded panel so type clears 4.5:1 */
     .hero-img { object-fit: cover; object-position: center; }
     @media (max-width:640px){ .hero-img { object-fit: contain; } }
-    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.92) 0%, rgba(24,25,27,.80) 22%, rgba(24,25,27,.52) 45%, rgba(24,25,27,.18) 68%, rgba(24,25,27,0) 88%); }
+    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.92) 0%, rgba(24,25,27,.82) 22%, rgba(24,25,27,.62) 45%, rgba(24,25,27,.36) 68%, rgba(24,25,27,0) 92%); }
     /* The headline and sub-line now sit top-left, so the left scrim carries most of
        the legibility budget. Off White needs ~0.68 coverage to hold 4.5:1 over a
        worst-case white pixel, and ~0.50 to hold 3:1 at display sizes. */
-    .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.34) 0%, rgba(24,25,27,.20) 38%, rgba(24,25,27,.06) 70%, rgba(24,25,27,0) 88%); }
+    .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.44) 0%, rgba(24,25,27,.30) 38%, rgba(24,25,27,.08) 70%, rgba(24,25,27,0) 88%); }
     .hero-scrim-t { background: linear-gradient(to bottom, rgba(24,25,27,.50) 0%, rgba(24,25,27,.16) 60%, rgba(24,25,27,0) 100%); }
     /* Bottom-left corner only: carries the sub-line and the search bar, which sit over
-       the brightest part of the lower frame - the search label holds 4.54:1 against a
-       4.5:1 floor on this gradient, so it cannot be weakened. It also dims the estate
-       signage baked into the render, which reads "by Phantom Grey"; that is a side
-       effect, not the purpose. Phantom Grey is the parent company and its attribution
-       is meant to be there - if it should read in the hero, add a line of text rather
-       than thinning this scrim. Tightened once the stat row was removed, so the rest of
-       the lower frame opens back up to the photograph. */
+       the brightest part of the lower frame on the daylight slides. */
     .hero-scrim-corner { background: radial-gradient(85% 30% at 0% 100%, rgba(24,25,27,.55) 0%, rgba(24,25,27,.30) 50%, rgba(24,25,27,0) 100%); }
-    @media (max-width:640px){
-      .hero-scrim-l { background: linear-gradient(to top, rgba(24,25,27,.93) 0%, rgba(24,25,27,.58) 45%, rgba(24,25,27,.42) 100%); }
+    /* Below 1024px the hero stacks and the text can fill most of its height, so the
+       side scrim becomes a full-height one. */
+    @media (max-width:1023px){
+      .hero-scrim-l { background: linear-gradient(to top, rgba(24,25,27,.93) 0%, rgba(24,25,27,.80) 72%, rgba(24,25,27,.40) 90%, rgba(24,25,27,.18) 100%); }
     }
 
     /* Motion — fade + 8px slide only (§10). No scale, bounce or parallax. */
@@ -497,7 +520,7 @@
       .spinner { animation-duration:1.4s; }
     }
   </style>
-  <link rel="stylesheet" href="/assets/tailwind.css?v=bb223cde" />
+  <link rel="stylesheet" href="/assets/tailwind.css?v=fa5c076d" />
 </head>
 
 <body class="bg-ink text-body">

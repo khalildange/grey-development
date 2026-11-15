@@ -32,7 +32,7 @@
         "url": "https://greydevelopmentng.com/",
         "telephone": ["+234 807 896 3703", "+234 907 502 4879"],
         "email": "greydevelopment.ng@gmail.com",
-        "image": "https://greydevelopmentng.com/assets/projects/eden-ii-hero.jpg",
+        "image": "https://greydevelopmentng.com/assets/projects/hero-eden-ii-2000.jpg",
         "logo": "https://greydevelopmentng.com/assets/grey-wordmark-white.png",
         "priceRange": "₦₦₦",
         "address": {
@@ -272,6 +272,23 @@
          scale", removed under prefers-reduced-motion. The hero's four grid guide lines
          were taken out.
 
+         HERO AND PAGE ORDER (Nov 2026, owner-directed: "a better landing page and hero").
+         The hero cross-fades between three featured developments - The Eden II, Shafa's
+         Residences, Grey Oasis - using clean renders exported from the brochures, and the
+         two cards became a three-row list that names the render showing and links to its
+         page. It auto-advances every 7s, so there is a pause button (WCAG 2.2.2); hover
+         or focus on a row holds that slide; prefers-reduced-motion starts it paused with
+         no drift. Only the first image loads with the page. Measured over all three
+         slides at twelve sizes from 320x568 to 1920x1080: headline 3.74:1 at worst
+         (3:1 floor), sub-line 6.03:1 at worst (4.5:1 floor). Below 1024px the hero
+         stacks, so the side scrim is swapped for a full-height one there.
+         The page now leads with what visitors come for: Developments (01), About (02),
+         The work (03), What we do (04), Invest (05), Get in touch (06). The home gallery
+         and the closing band use brochure renders instead of cover artwork.
+         Brochure addresses: the owner confirmed No. 2 William F. Kumuyi Street, Kado.
+         The five brochures were rebuilt from their source with that address, and the
+         site serves their screen-resolution editions (1.6-7 MB, down from 8-27 MB).
+
        NOTE: project card images are artist's impressions; real renders live in each brochure PDF.
   -->
 
@@ -281,7 +298,7 @@
        Oswald stand-in for Anton. Both are system faces, so no webfont is fetched. -->
 
   <!-- Preload the LCP hero render so it starts downloading before CSS/JS parse -->
-  <link rel="preload" as="image" href="assets/projects/eden-ii-hero.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/projects/hero-eden-ii-2000.jpg" imagesrcset="assets/projects/hero-eden-ii-1100.jpg 1100w, assets/projects/hero-eden-ii-2000.jpg 2000w" imagesizes="100vw" fetchpriority="high" />
 
   <!-- Enable JS-only scroll animations (kept out of no-JS render) -->
   <script>document.documentElement.classList.add('js');</script>
@@ -377,7 +394,7 @@
     .display { font-family:'Century Gothic','URW Gothic','Avant Garde','Avenir Next','Avenir','Segoe UI',Arial,sans-serif; font-weight:500;
                text-transform:none; letter-spacing:-.022em; line-height:1.08;
                color: var(--charcoal); }
-    .display--hero { font-weight:500; letter-spacing:-.03em; line-height:1.02;
+    .display--hero { font-weight:500; letter-spacing:-.03em; line-height:1.02; text-wrap:balance;
       /* Fluid, so the headline never jumps size at a breakpoint. The stepped
          text-[2.65rem] sm:text-7xl went 42px -> 72px at 640px, which wrapped to four
          cramped lines on tablets and large phones in landscape. Tracks ~40px at 375px
@@ -447,7 +464,8 @@
     /* Rounded geometry (SOLEN reference) */
     .zoomable, .zoomable img, .r-img { border-radius: var(--r-img); overflow:hidden; }
     #projectGrid article, #projects article, .glass, .glass-strong,
-    .modal-panel, .fab-item, .hero-card { border-radius: var(--r-card); }
+    .modal-panel, .fab-item, .hero-card, .hero-picks { border-radius: var(--r-card); }
+    .hero-picks { overflow:hidden; }
     .utab, .filter-chip { border-radius: var(--r-pill); }
 
     /* ---- Components on a Charcoal ground (§10: Charcoal panels, hairline Grey
@@ -513,6 +531,32 @@
       #mobileMenu:not(.hidden) { display:block; }
     }
 
+    /* ---- Hero slideshow ----
+       Cross-fade between featured developments, with a slow 6% drift on the visible
+       one. The drift is a transition, not an animation, so a slide leaving does not
+       snap back to scale 1 while it is still fading out. prefers-reduced-motion: no
+       drift, an instant cut, and the show starts paused (see the script). */
+    .hero-slide { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center;
+                  opacity:0; transform: scale(1); transition: opacity 1.4s ease, transform 9s linear; }
+    .hero-slide.is-active { opacity:1; }
+    #home.is-playing .hero-slide.is-active { transform: scale(1.06); }
+    .hero-pick { position:relative; display:flex; align-items:flex-start; gap:.9rem; padding:.95rem 1.25rem 1.05rem;
+                 border-top:1px solid rgba(252,252,252,.12); transition: background-color .3s ease; }
+    .hero-picks > .hero-pick:first-of-type { border-top:0; }
+    .hero-pick:hover, .hero-pick.is-active { background: rgba(252,252,252,.05); }
+    .hero-pick-bar { position:absolute; left:0; right:0; bottom:0; height:2px; }
+    .hero-pick-bar i { display:block; height:100%; width:0; background: var(--gold); }
+    .hero-pick.is-active .hero-pick-bar i { width:100%; }
+    #home.is-playing .hero-pick.is-active .hero-pick-bar i { animation: pickFill var(--hero-dur, 7s) linear both; }
+    @keyframes pickFill { from { width:0; } to { width:100%; } }
+    #heroPause .ico-play { display:none; }
+    #heroPause[aria-pressed="true"] .ico-play { display:block; }
+    #heroPause[aria-pressed="true"] .ico-pause { display:none; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-slide { transition:none; }
+      #home.is-playing .hero-slide.is-active { transform:none; }
+    }
+
     /* Scroll cue — a hairline rule and a word, as in the reference */
     .scrollcue { display:flex; flex-direction:column; align-items:center; gap:.65rem; }
     .scrollcue .rule { width:1px; height:40px; background: linear-gradient(to bottom, transparent, var(--offwhite)); }
@@ -553,23 +597,19 @@
     /* Hero — photography with a graded panel so type clears 4.5:1 */
     .hero-img { object-fit: cover; object-position: center; }
     @media (max-width:640px){ .hero-img { object-fit: contain; } }
-    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.92) 0%, rgba(24,25,27,.80) 22%, rgba(24,25,27,.52) 45%, rgba(24,25,27,.18) 68%, rgba(24,25,27,0) 88%); }
+    .hero-scrim-b { background: linear-gradient(to top, rgba(24,25,27,.92) 0%, rgba(24,25,27,.82) 22%, rgba(24,25,27,.62) 45%, rgba(24,25,27,.36) 68%, rgba(24,25,27,0) 92%); }
     /* The headline and sub-line now sit top-left, so the left scrim carries most of
        the legibility budget. Off White needs ~0.68 coverage to hold 4.5:1 over a
        worst-case white pixel, and ~0.50 to hold 3:1 at display sizes. */
-    .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.34) 0%, rgba(24,25,27,.20) 38%, rgba(24,25,27,.06) 70%, rgba(24,25,27,0) 88%); }
+    .hero-scrim-l { background: linear-gradient(to right, rgba(24,25,27,.44) 0%, rgba(24,25,27,.30) 38%, rgba(24,25,27,.08) 70%, rgba(24,25,27,0) 88%); }
     .hero-scrim-t { background: linear-gradient(to bottom, rgba(24,25,27,.50) 0%, rgba(24,25,27,.16) 60%, rgba(24,25,27,0) 100%); }
     /* Bottom-left corner only: carries the sub-line and the search bar, which sit over
-       the brightest part of the lower frame - the search label holds 4.54:1 against a
-       4.5:1 floor on this gradient, so it cannot be weakened. It also dims the estate
-       signage baked into the render, which reads "by Phantom Grey"; that is a side
-       effect, not the purpose. Phantom Grey is the parent company and its attribution
-       is meant to be there - if it should read in the hero, add a line of text rather
-       than thinning this scrim. Tightened once the stat row was removed, so the rest of
-       the lower frame opens back up to the photograph. */
+       the brightest part of the lower frame on the daylight slides. */
     .hero-scrim-corner { background: radial-gradient(85% 30% at 0% 100%, rgba(24,25,27,.55) 0%, rgba(24,25,27,.30) 50%, rgba(24,25,27,0) 100%); }
-    @media (max-width:640px){
-      .hero-scrim-l { background: linear-gradient(to top, rgba(24,25,27,.93) 0%, rgba(24,25,27,.58) 45%, rgba(24,25,27,.42) 100%); }
+    /* Below 1024px the hero stacks and the text can fill most of its height, so the
+       side scrim becomes a full-height one. */
+    @media (max-width:1023px){
+      .hero-scrim-l { background: linear-gradient(to top, rgba(24,25,27,.93) 0%, rgba(24,25,27,.80) 72%, rgba(24,25,27,.40) 90%, rgba(24,25,27,.18) 100%); }
     }
 
     /* Motion — fade + 8px slide only (§10). No scale, bounce or parallax. */
@@ -738,7 +778,7 @@
        winning ties against the component classes above (e.g. text-offwhite over
        .display, text-[9px] over .eyebrow) or the hero headline turns Charcoal on a
        Charcoal ground. Verified by diffing computed styles against the CDN build. -->
-  <link rel="stylesheet" href="assets/tailwind.css?v=bb223cde" />
+  <link rel="stylesheet" href="assets/tailwind.css?v=fa5c076d" />
 </head>
 
 <body class="bg-ink text-body">
@@ -784,32 +824,36 @@
   <main id="main">
 
     <!-- ============ HERO ============ -->
-    <section id="home" class="relative min-h-[100svh] flex flex-col justify-end pt-20 overflow-hidden bg-void">
-      <h1 class="sr-only">GREY Development Limited — featured development: The Eden II, a gated community of four-bedroom terrace residences and serviced apartments in Katampe, Abuja.</h1>
+    <section id="home" class="relative min-h-[100svh] flex flex-col justify-end pt-24 overflow-hidden bg-void">
+      <h1 class="sr-only">GREY Development Limited — residential and mixed-use developments in Abuja and Kaduna, Nigeria.</h1>
 
-      <!-- Featured development: The Eden II render -->
-      <img src="assets/projects/eden-ii-hero.jpg" width="1600" height="690" alt="The Eden II — gated terrace residences and serviced apartments, Katampe, Abuja" fetchpriority="high" decoding="async" class="hero-in--img absolute inset-0 w-full h-full object-cover object-center" />
-      <!-- Layered scrim + vignette: bottom-left text stays legible on any photo -->
+      <!-- Featured developments, one render each, cross-fading. Decorative here: the list
+           on the right names whichever is showing. Only the first image loads with the
+           page; the script fetches the others just before they are needed. -->
+      <div class="hero-slides absolute inset-0" aria-hidden="true">
+        <img class="hero-slide is-active" src="assets/projects/hero-eden-ii-2000.jpg" srcset="assets/projects/hero-eden-ii-1100.jpg 1100w, assets/projects/hero-eden-ii-2000.jpg 2000w" sizes="100vw" width="2000" height="1208" alt="" fetchpriority="high" decoding="async" />
+        <img class="hero-slide" data-src="assets/projects/hero-shafas-2000.jpg" data-srcset="assets/projects/hero-shafas-1100.jpg 1100w, assets/projects/hero-shafas-2000.jpg 2000w" sizes="100vw" width="2000" height="1208" alt="" decoding="async" />
+        <img class="hero-slide" data-src="assets/projects/hero-grey-oasis-2000.jpg" data-srcset="assets/projects/hero-grey-oasis-1100.jpg 1100w, assets/projects/hero-grey-oasis-2000.jpg 2000w" sizes="100vw" width="2000" height="1116" alt="" decoding="async" />
+      </div>
+      <!-- Layered scrim: bottom-anchored text stays legible on every slide -->
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div class="absolute inset-0 hero-scrim-b"></div>
         <div class="absolute inset-0 hero-scrim-l"></div>
         <div class="absolute inset-x-0 top-0 h-64 hero-scrim-t"></div>
         <div class="absolute inset-0 hero-scrim-corner"></div>
-        <div class="absolute inset-0 hero-vignette"></div>
       </div>
 
-
-      <div class="hero-body relative z-[2] w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 pb-6 sm:pb-8">
-        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10 lg:gap-12">
+      <div class="hero-body relative z-[2] w-full max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-20 pb-8">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-7 lg:gap-12">
 
           <div class="min-w-0 lg:flex-1">
             <h2 class="hero-in display display--hero text-offwhite" style="animation-delay:.18s">Built to the standard you were promised.</h2>
-            <p class="hero-in text-offwhite/80 text-sm sm:text-base mt-5 max-w-xl leading-relaxed" style="animation-delay:.3s">Residential and mixed-use developments across Abuja and Kaduna &mdash; designed, built and delivered by one accountable team.</p>
+            <p class="hero-in text-offwhite/80 text-sm sm:text-base mt-4 sm:mt-5 max-w-xl leading-relaxed" style="animation-delay:.3s">Residential and mixed-use developments across Abuja and Kaduna &mdash; designed, built and delivered by one accountable team.</p>
 
         <!-- Quick search: drives the portfolio filters below -->
         <form id="heroSearch" class="hero-in mt-7 sm:mt-9 max-w-3xl" style="animation-delay:.42s" aria-label="Find a development">
-          <div class="flex flex-col sm:flex-row items-stretch rounded-[14px] overflow-hidden border border-offwhite/25 bg-[#18191B]/90 backdrop-blur-md">
-            <div class="flex-1 px-5 py-3.5 border-b sm:border-b-0 sm:border-r border-offwhite/20">
+          <div class="grid grid-cols-2 sm:flex sm:flex-row items-stretch rounded-[14px] overflow-hidden border border-offwhite/25 bg-[#18191B]/90 backdrop-blur-md">
+            <div class="sm:flex-1 min-w-0 px-4 sm:px-5 py-3.5 border-b sm:border-b-0 border-r border-offwhite/20">
               <label for="heroLocation" class="block mono text-[9px] uppercase tracking-[0.24em] text-grey mb-1">Location</label>
               <select id="heroLocation" class="w-full bg-transparent text-offwhite text-sm outline-none cursor-pointer">
                 <option value="all">All locations</option>
@@ -818,7 +862,7 @@
                 <option value="kaduna">Kaduna</option>
               </select>
             </div>
-            <div class="flex-1 px-5 py-3.5 border-b sm:border-b-0 sm:border-r border-offwhite/20">
+            <div class="sm:flex-1 min-w-0 px-4 sm:px-5 py-3.5 border-b sm:border-b-0 sm:border-r border-offwhite/20">
               <label for="heroStatus" class="block mono text-[9px] uppercase tracking-[0.24em] text-grey mb-1">Status</label>
               <select id="heroStatus" class="w-full bg-transparent text-offwhite text-sm outline-none cursor-pointer">
                 <option value="all">Any status</option>
@@ -827,7 +871,7 @@
                 <option value="coming">Coming soon</option>
               </select>
             </div>
-            <button type="submit" class="shrink-0 bg-offwhite text-charcoal px-7 py-4 sm:px-6 inline-flex items-center justify-center gap-2 t-std hover:bg-gold" aria-label="Show matching developments">
+            <button type="submit" class="col-span-2 shrink-0 bg-offwhite text-charcoal px-7 py-4 sm:px-6 inline-flex items-center justify-center gap-2 t-std hover:bg-gold" aria-label="Show matching developments">
               <span class="sm:hidden mono text-[11px] uppercase tracking-[0.18em] font-bold">Search</span>
               <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
@@ -835,22 +879,42 @@
         </form>
           </div>
 
-          <!-- Featured developments. Specs come from the unit data below, which is taken
-               from each brochure's room schedule - nothing here is typed in by hand. -->
-          <div class="hero-in flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 shrink-0" style="animation-delay:.54s">
-            <a href="developments/eden-ii/" class="hero-card group block w-full sm:w-48 border border-offwhite/20 bg-[#18191B]/90 backdrop-blur-md p-5 hover:border-gold t-std">
-              <span class="display text-lg text-offwhite block">The Eden II</span>
-              <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite/75 block mt-2">280 m&sup2; &middot; 3 floors &middot; 4 bed</span>
-              <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite inline-flex items-center gap-1.5 mt-4 group-hover:text-gold t-std">See full case
-                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <!-- Featured developments: each row is a link to its page, and names the render
+               behind it. Specs are the brochure figures used on the development pages. -->
+          <div class="hero-in hero-picks w-full lg:w-[19.5rem] shrink-0 border border-offwhite/20 bg-[#18191B]/90 backdrop-blur-md" style="animation-delay:.54s">
+            <div class="flex items-center justify-between pl-5 pr-3 py-2.5 border-b border-offwhite/15">
+              <span class="mono text-[9px] uppercase tracking-[0.24em] text-offwhite/70">Featured developments</span>
+              <button type="button" id="heroPause" class="w-8 h-8 grid place-items-center rounded-full border border-offwhite/25 text-offwhite hover:border-gold hover:text-gold t-std" aria-label="Pause slideshow">
+                <svg class="ico-pause w-3 h-3" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><rect x="2" y="1.5" width="2.6" height="9"/><rect x="7.4" y="1.5" width="2.6" height="9"/></svg>
+                <svg class="ico-play w-3 h-3" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M3 1.5v9l7.5-4.5z"/></svg>
+              </button>
+            </div>
+            <a href="developments/eden-ii/" class="hero-pick group is-active" data-slide="0">
+              <span class="mono text-[10px] text-offwhite/60 tnum pt-1.5">01</span>
+              <span class="min-w-0 flex-1">
+                <span class="display text-lg text-offwhite block">The Eden II</span>
+                <span class="mono text-[10px] uppercase tracking-[0.16em] text-offwhite/75 block mt-1">Katampe &middot; 280 m&sup2; &middot; 4 bed</span>
               </span>
+              <svg class="w-3.5 h-3.5 mt-1.5 shrink-0 text-offwhite/70 group-hover:text-gold t-std" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="hero-pick-bar" aria-hidden="true"><i></i></span>
             </a>
-            <a href="developments/shafas-residences/" class="hero-card group block w-full sm:w-48 border border-offwhite/20 bg-[#18191B]/90 backdrop-blur-md p-5 hover:border-gold t-std">
-              <span class="display text-lg text-offwhite block">Shafa&rsquo;s Residences</span>
-              <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite/75 block mt-2">267 m&sup2; &middot; 3 floors &middot; 4 bed</span>
-              <span class="mono text-[10px] uppercase tracking-[0.18em] text-offwhite inline-flex items-center gap-1.5 mt-4 group-hover:text-gold t-std">See full case
-                <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <a href="developments/shafas-residences/" class="hero-pick group" data-slide="1">
+              <span class="mono text-[10px] text-offwhite/60 tnum pt-1.5">02</span>
+              <span class="min-w-0 flex-1">
+                <span class="display text-lg text-offwhite block">Shafa&rsquo;s Residences</span>
+                <span class="mono text-[10px] uppercase tracking-[0.16em] text-offwhite/75 block mt-1">Katampe &middot; 267 m&sup2; &middot; 4 bed</span>
               </span>
+              <svg class="w-3.5 h-3.5 mt-1.5 shrink-0 text-offwhite/70 group-hover:text-gold t-std" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="hero-pick-bar" aria-hidden="true"><i></i></span>
+            </a>
+            <a href="developments/grey-oasis/" class="hero-pick group" data-slide="2">
+              <span class="mono text-[10px] text-offwhite/60 tnum pt-1.5">03</span>
+              <span class="min-w-0 flex-1">
+                <span class="display text-lg text-offwhite block">Grey Oasis</span>
+                <span class="mono text-[10px] uppercase tracking-[0.16em] text-offwhite/75 block mt-1">Kaduna &middot; 4-bed townhouses</span>
+              </span>
+              <svg class="w-3.5 h-3.5 mt-1.5 shrink-0 text-offwhite/70 group-hover:text-gold t-std" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span class="hero-pick-bar" aria-hidden="true"><i></i></span>
             </a>
           </div>
 
@@ -858,81 +922,9 @@
       </div>
 
       <!-- Scroll cue, centred under the whole composition -->
-      <div class="relative z-[2] hero-in scrollcue pb-7 sm:pb-9" style="animation-delay:.66s" aria-hidden="true">
+      <div class="relative z-[2] hero-in scrollcue hidden sm:flex pb-9" style="animation-delay:.66s" aria-hidden="true">
         <span class="rule"></span>
         <span class="mono text-[9px] uppercase tracking-[0.3em] text-grey">Scroll</span>
-      </div>
-    </section>
-
-    <!-- ============ SERVICES ============ -->
-    <section id="services" class="relative py-24 sm:py-32 bg-ink">
-      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
-        <div class="max-w-2xl">
-          <p class="reveal eyebrow text-[11px] mb-4">01 | What we do</p>
-          <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">One discipline,<br/><span class="gradword">not three handoffs.</span></h2>
-          <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">From land to legacy, GREY covers the full development lifecycle — so you work with one accountable team held to a single, higher standard. For discerning homeowners, institutional investors and public- and private-sector partners.</p>
-        </div>
-
-        <div class="reveal mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 border-t border-line pt-12" data-delay="1">
-          <article class="group">
-            <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-muted tnum">01</span>
-              <h3 class="h3">Real Estate</h3>
-            </div>
-            <p class="text-body text-sm leading-relaxed">Considered residential and mixed-use developments in Abuja's most deliberate locations — conceived, financed and delivered end to end.</p>
-          </article>
-
-          <article class="group">
-            <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-muted tnum">02</span>
-              <h3 class="h3">Construction</h3>
-            </div>
-            <p class="text-body text-sm leading-relaxed">Design-build executed to specification — concrete before cladding, discipline before design — with rigorous QA/QC at every stage.</p>
-          </article>
-
-          <article class="group">
-            <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-muted tnum">03</span>
-              <h3 class="h3">Investment</h3>
-            </div>
-            <p class="text-body text-sm leading-relaxed">Structured, return-focused opportunities in developments engineered to still perform — and still impress — twenty years after handover.</p>
-          </article>
-
-          <article class="group">
-            <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-muted tnum">04</span>
-              <h3 class="h3">Project &amp; Development Management</h3>
-            </div>
-            <p class="text-body text-sm leading-relaxed">Transparent budgeting, scheduling and delivery — every tolerance a promise, every milestone on schedule and on specification.</p>
-          </article>
-
-          <article class="group">
-            <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-muted tnum">05</span>
-              <h3 class="h3">Architecture &amp; Design</h3>
-            </div>
-            <p class="text-body text-sm leading-relaxed">Architecturally serious spaces engineered to a higher tolerance — built the way engineers would build for themselves.</p>
-          </article>
-
-          <article class="group">
-            <div class="flex items-baseline gap-3 mb-3">
-              <span class="mono text-[10px] text-muted tnum">06</span>
-              <h3 class="h3">Facility Management</h3>
-            </div>
-            <p class="text-body text-sm leading-relaxed">Enduring performance long after handover — estate and facility management that protects the value we build.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ PULL QUOTE ============ -->
-    <section class="on-void relative py-20 sm:py-28 bg-void border-y border-line overflow-hidden">
-      <div class="mx-auto max-w-4xl px-5 sm:px-8 text-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-muted/50 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 6C5.02 6 3 8.02 3 10.5S5.02 15 7.5 15c.17 0 .33-.02.5-.04V15c0 1.66-1.34 3-3 3v3c3.31 0 6-2.69 6-6v-3.5C11 8.02 8.98 6 7.5 6Zm9 0C14.02 6 12 8.02 12 10.5S14.02 15 16.5 15c.17 0 .33-.02.5-.04V15c0 1.66-1.34 3-3 3v3c3.31 0 6-2.69 6-6v-3.5C20 8.02 17.98 6 16.5 6Z"/></svg>
-        <blockquote class="reveal quote text-2xl sm:text-4xl text-porcelain leading-snug">
-          We build homes to last for decades — not just to impress on the first viewing.
-        </blockquote>
-        <p class="reveal eyebrow text-[11px] mt-8" data-delay="1">The GREY Standard</p>
       </div>
     </section>
 
@@ -941,7 +933,7 @@
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
           <div class="max-w-2xl">
-            <p class="reveal eyebrow text-[11px] mb-4">02 | Developments</p>
+            <p class="reveal eyebrow text-[11px] mb-4">01 | Developments</p>
             <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Signature <span class="gradword">developments.</span></h2>
             <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">A selection of GREY residences across Abuja and Kaduna. View the available brochures for full floor plans, specifications and pricing.</p>
           </div>
@@ -1132,7 +1124,7 @@
     <section id="about" class="relative py-24 sm:py-32 bg-ink2 overflow-hidden">
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div>
-          <p class="reveal eyebrow text-[11px] mb-8">03 | About us</p>
+          <p class="reveal eyebrow text-[11px] mb-8">02 | About us</p>
           <!-- Asymmetric header (SOLEN reference): the opening clause and its pill sit
                in a narrow left column, the headline large on the right. The headline
                leads on mobile, where the two columns collapse into one. -->
@@ -1201,7 +1193,6 @@
       </div>
     </section>
 
-    <!-- ============ INVEST ============ -->
     <!-- ============ GALLERY ============
          SOLEN reference: a pale band given over to two large rounded images with
          generous whitespace and no copy competing with them. The covers are the
@@ -1211,24 +1202,97 @@
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14 sm:mb-20">
           <div class="max-w-xl">
-            <p class="reveal eyebrow text-[11px] mb-4">04 | The work</p>
+            <p class="reveal eyebrow text-[11px] mb-4">03 | The work</p>
             <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Two of ours, <span class="gradword">in Katampe.</span></h2>
           </div>
           <a href="#projects" class="reveal btn btn-primary inline-flex items-center gap-2 px-7 py-3.5 shrink-0" data-delay="1">All developments <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
         <div class="grid md:grid-cols-2 gap-6 lg:gap-10">
           <figure class="reveal">
-            <a href="developments/shafas-residences/" class="gal block" aria-label="Shafa's Residences — full details"><img src="assets/projects/shafas-cover-lg.jpg" width="1400" height="990" srcset="assets/projects/shafas-cover.jpg 1000w, assets/projects/shafas-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="Shafa&rsquo;s Residences &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></a>
+            <a href="developments/shafas-residences/" class="gal block" aria-label="Shafa's Residences — full details"><img src="assets/projects/view-shafas-2000.jpg" width="2000" height="1208" srcset="assets/projects/view-shafas-1100.jpg 1100w, assets/projects/view-shafas-2000.jpg 2000w" sizes="(min-width:768px) 44vw, 90vw" alt="Shafa&rsquo;s Residences &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></a>
             <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">Shafa&rsquo;s Residences &middot; Katampe &middot; Artist&rsquo;s impression</figcaption>
           </figure>
           <figure class="reveal" data-delay="1">
-            <a href="developments/eden-ii/" class="gal block" aria-label="The Eden II — full details"><img src="assets/projects/eden-ii-cover-lg.jpg" width="1400" height="990" srcset="assets/projects/eden-ii-cover.jpg 1000w, assets/projects/eden-ii-cover-lg.jpg 1400w" sizes="(min-width:768px) 44vw, 90vw" alt="The Eden II &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></a>
+            <a href="developments/eden-ii/" class="gal block" aria-label="The Eden II — full details"><img src="assets/projects/view-eden-ii-2000.jpg" width="2000" height="1208" srcset="assets/projects/view-eden-ii-1100.jpg 1100w, assets/projects/view-eden-ii-2000.jpg 2000w" sizes="(min-width:768px) 44vw, 90vw" alt="The Eden II &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></a>
             <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">The Eden II &middot; Katampe &middot; Artist&rsquo;s impression</figcaption>
           </figure>
         </div>
       </div>
     </section>
 
+    <!-- ============ PULL QUOTE ============ -->
+    <section class="on-void relative py-20 sm:py-28 bg-void border-y border-line overflow-hidden">
+      <div class="mx-auto max-w-4xl px-5 sm:px-8 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-muted/50 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 6C5.02 6 3 8.02 3 10.5S5.02 15 7.5 15c.17 0 .33-.02.5-.04V15c0 1.66-1.34 3-3 3v3c3.31 0 6-2.69 6-6v-3.5C11 8.02 8.98 6 7.5 6Zm9 0C14.02 6 12 8.02 12 10.5S14.02 15 16.5 15c.17 0 .33-.02.5-.04V15c0 1.66-1.34 3-3 3v3c3.31 0 6-2.69 6-6v-3.5C20 8.02 17.98 6 16.5 6Z"/></svg>
+        <blockquote class="reveal quote text-2xl sm:text-4xl text-porcelain leading-snug">
+          We build homes to last for decades — not just to impress on the first viewing.
+        </blockquote>
+        <p class="reveal eyebrow text-[11px] mt-8" data-delay="1">The GREY Standard</p>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section id="services" class="relative py-24 sm:py-32 bg-ink">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
+        <div class="max-w-2xl">
+          <p class="reveal eyebrow text-[11px] mb-4">04 | What we do</p>
+          <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">One discipline,<br/><span class="gradword">not three handoffs.</span></h2>
+          <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">From land to legacy, GREY covers the full development lifecycle — so you work with one accountable team held to a single, higher standard. For discerning homeowners, institutional investors and public- and private-sector partners.</p>
+        </div>
+
+        <div class="reveal mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12 border-t border-line pt-12" data-delay="1">
+          <article class="group">
+            <div class="flex items-baseline gap-3 mb-3">
+              <span class="mono text-[10px] text-muted tnum">01</span>
+              <h3 class="h3">Real Estate</h3>
+            </div>
+            <p class="text-body text-sm leading-relaxed">Considered residential and mixed-use developments in Abuja's most deliberate locations — conceived, financed and delivered end to end.</p>
+          </article>
+
+          <article class="group">
+            <div class="flex items-baseline gap-3 mb-3">
+              <span class="mono text-[10px] text-muted tnum">02</span>
+              <h3 class="h3">Construction</h3>
+            </div>
+            <p class="text-body text-sm leading-relaxed">Design-build executed to specification — concrete before cladding, discipline before design — with rigorous QA/QC at every stage.</p>
+          </article>
+
+          <article class="group">
+            <div class="flex items-baseline gap-3 mb-3">
+              <span class="mono text-[10px] text-muted tnum">03</span>
+              <h3 class="h3">Investment</h3>
+            </div>
+            <p class="text-body text-sm leading-relaxed">Structured, return-focused opportunities in developments engineered to still perform — and still impress — twenty years after handover.</p>
+          </article>
+
+          <article class="group">
+            <div class="flex items-baseline gap-3 mb-3">
+              <span class="mono text-[10px] text-muted tnum">04</span>
+              <h3 class="h3">Project &amp; Development Management</h3>
+            </div>
+            <p class="text-body text-sm leading-relaxed">Transparent budgeting, scheduling and delivery — every tolerance a promise, every milestone on schedule and on specification.</p>
+          </article>
+
+          <article class="group">
+            <div class="flex items-baseline gap-3 mb-3">
+              <span class="mono text-[10px] text-muted tnum">05</span>
+              <h3 class="h3">Architecture &amp; Design</h3>
+            </div>
+            <p class="text-body text-sm leading-relaxed">Architecturally serious spaces engineered to a higher tolerance — built the way engineers would build for themselves.</p>
+          </article>
+
+          <article class="group">
+            <div class="flex items-baseline gap-3 mb-3">
+              <span class="mono text-[10px] text-muted tnum">06</span>
+              <h3 class="h3">Facility Management</h3>
+            </div>
+            <p class="text-body text-sm leading-relaxed">Enduring performance long after handover — estate and facility management that protects the value we build.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INVEST ============ -->
     <section id="invest" class="on-void relative py-24 sm:py-32 bg-void border-t border-line">
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <div class="max-w-2xl mb-14">
@@ -1442,8 +1506,8 @@
     <!-- ============ CTA STRIP ============ -->
     <!-- ============ CLOSING STATEMENT ============ -->
     <section class="on-void relative isolate overflow-hidden border-t border-line">
-      <img src="assets/projects/eden-ii-hero.jpg" width="1600" height="690" alt="" aria-hidden="true" loading="lazy" decoding="async"
-           class="absolute inset-0 w-full h-full object-cover object-[center_32%]" />
+      <img src="assets/projects/hero-grey-oasis-1100.jpg" width="1100" height="614" srcset="assets/projects/hero-grey-oasis-1100.jpg 1100w, assets/projects/hero-grey-oasis-2000.jpg 2000w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async"
+           class="absolute inset-0 w-full h-full object-cover object-center" />
       <!-- 68% is the floor that keeps Off White above 4.5:1 even over a pure-white
            pixel of the render: 0.32*255 + 0.68*24 = 98, giving 5.8:1. -->
       <div class="absolute inset-0 bg-[#18191B]/68" aria-hidden="true"></div>
@@ -1622,6 +1686,53 @@
     window.addEventListener('load', onScroll);
     window.addEventListener('pageshow', onScroll);
     window.addEventListener('hashchange', onScroll);
+
+    // ---------- Hero slideshow ----------
+    (() => {
+      const home = document.getElementById('home');
+      const slides = [...document.querySelectorAll('.hero-slide')];
+      const picks = [...document.querySelectorAll('.hero-pick')];
+      const btn = document.getElementById('heroPause');
+      if (!home || slides.length < 2 || !btn) return;
+      const DUR = 7000;
+      home.style.setProperty('--hero-dur', DUR + 'ms');
+      // Anyone who asks for reduced motion gets a still image until they press play.
+      let paused = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let held = false, i = 0, timer = null;
+      const load = (el) => { if (el.dataset.src) { el.srcset = el.dataset.srcset; el.src = el.dataset.src; delete el.dataset.src; } };
+      const show = (n) => {
+        i = (n + slides.length) % slides.length; load(slides[i]);
+        slides.forEach((el, k) => el.classList.toggle('is-active', k === i));
+        picks.forEach((el, k) => el.classList.toggle('is-active', k === i));
+      };
+      const run = () => {
+        clearTimeout(timer);
+        const playing = !paused && !held && !document.hidden;
+        home.classList.toggle('is-playing', playing);
+        if (!playing) return;
+        const next = slides[(i + 1) % slides.length];
+        timer = setTimeout(() => {
+          load(next);
+          const go = () => { show(i + 1); run(); };
+          // Never fade to an image that has not arrived yet.
+          (next.complete && next.naturalWidth) ? go() : next.addEventListener('load', go, { once: true });
+        }, DUR);
+      };
+      const sync = () => {
+        btn.setAttribute('aria-pressed', String(paused));
+        btn.setAttribute('aria-label', paused ? 'Play slideshow' : 'Pause slideshow');
+      };
+      btn.addEventListener('click', () => { paused = !paused; sync(); run(); });
+      picks.forEach((el, k) => {
+        const hold = () => { held = true; show(k); run(); };
+        el.addEventListener('mouseenter', hold); el.addEventListener('focus', hold);
+        el.addEventListener('mouseleave', () => { held = false; run(); });
+        el.addEventListener('blur', () => { held = false; run(); });
+      });
+      document.addEventListener('visibilitychange', run);
+      window.addEventListener('load', () => load(slides[1]), { once: true });
+      sync(); run();
+    })();
 
     // Development pages link here as /?interest=<name>#contact - preselect that option.
     (() => {

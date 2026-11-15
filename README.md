@@ -71,7 +71,7 @@ Moving the link earlier turns the hero headline Charcoal on a Charcoal ground.
 
 Covers are sized for their render box (~410px CSS, 820px at 2x DPR) and carry
 intrinsic `width`/`height` so the browser reserves space before they load.
-Re-export at 1000px wide; keep the hero at 1600px.
+Re-export at 1000px wide. The hero slides are 2000px, with 1100px copies for phones.
 
 The gallery band renders two covers at ~615px, so those two also have `-lg`
 variants at 1400px, offered through `srcset` (phones still take the 1000px
