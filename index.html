@@ -801,7 +801,7 @@
        winning ties against the component classes above (e.g. text-offwhite over
        .display, text-[9px] over .eyebrow) or the hero headline turns Charcoal on a
        Charcoal ground. Verified by diffing computed styles against the CDN build. -->
-  <link rel="stylesheet" href="assets/tailwind.css?v=ba1e2676" />
+  <link rel="stylesheet" href="assets/tailwind.css?v=d27de5d7" />
 </head>
 
 <body class="bg-ink text-body">
@@ -812,7 +812,7 @@
   <header id="siteHeader" class="fixed top-0 inset-x-0 z-50 t-std">
     <nav class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
       <div class="navbar-inner flex items-center justify-between h-20">
-        <a href="#home" class="flex flex-col items-start leading-none" aria-label="GREY Development Limited — home">
+        <a href="#home" class="flex flex-col items-start justify-center leading-none min-h-[1.75rem]" aria-label="GREY Development Limited — home">
           <img src="assets/grey-wordmark-white.png" alt="GREY" width="400" height="81" class="nav-logo h-6 sm:h-7 w-auto" />
           <span class="nav-desc eyebrow text-[9px] sm:text-[10px] mt-1.5 tracking-[0.26em]">Development Limited</span>
         </a>
@@ -856,7 +856,7 @@
       <div class="hero-slides absolute inset-0" aria-hidden="true">
         <img class="hero-slide is-active" src="assets/projects/hero-eden-ii-2000.jpg" srcset="assets/projects/hero-eden-ii-1100.jpg 1100w, assets/projects/hero-eden-ii-2000.jpg 2000w" sizes="100vw" width="2000" height="1208" alt="" fetchpriority="high" decoding="async" />
         <img class="hero-slide" data-src="assets/projects/hero-shafas-2000.jpg" data-srcset="assets/projects/hero-shafas-1100.jpg 1100w, assets/projects/hero-shafas-2000.jpg 2000w" sizes="100vw" width="2000" height="1208" alt="" decoding="async" />
-        <img class="hero-slide" data-src="assets/projects/hero-grey-oasis-2000.jpg" data-srcset="assets/projects/hero-grey-oasis-1100.jpg 1100w, assets/projects/hero-grey-oasis-2000.jpg 2000w" sizes="100vw" width="2000" height="1116" alt="" decoding="async" />
+        <img class="hero-slide" data-src="assets/projects/hero-grey-oasis-2000.jpg" data-srcset="assets/projects/hero-grey-oasis-1100.jpg 1100w, assets/projects/hero-grey-oasis-2000.jpg 2000w" sizes="100vw" width="2000" height="1124" alt="" decoding="async" />
       </div>
       <!-- Layered scrim: bottom-anchored text stays legible on every slide -->
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -878,7 +878,7 @@
           <div class="grid grid-cols-2 sm:flex sm:flex-row items-stretch rounded-[14px] overflow-hidden border border-offwhite/25 bg-[#18191B]/90 backdrop-blur-md">
             <div class="sm:flex-1 min-w-0 px-4 sm:px-5 py-3.5 border-b sm:border-b-0 border-r border-offwhite/20">
               <label for="heroLocation" class="block mono text-[9px] uppercase tracking-[0.24em] text-grey mb-1">Location</label>
-              <select id="heroLocation" class="w-full bg-transparent text-offwhite text-sm outline-none cursor-pointer">
+              <select id="heroLocation" class="w-full bg-transparent text-offwhite text-sm outline-none cursor-pointer py-0.5">
                 <option value="all">All locations</option>
                 <option value="katampe">Katampe, Abuja</option>
                 <option value="mabushi">Mabushi, Abuja</option>
@@ -887,7 +887,7 @@
             </div>
             <div class="sm:flex-1 min-w-0 px-4 sm:px-5 py-3.5 border-b sm:border-b-0 sm:border-r border-offwhite/20">
               <label for="heroStatus" class="block mono text-[9px] uppercase tracking-[0.24em] text-grey mb-1">Status</label>
-              <select id="heroStatus" class="w-full bg-transparent text-offwhite text-sm outline-none cursor-pointer">
+              <select id="heroStatus" class="w-full bg-transparent text-offwhite text-sm outline-none cursor-pointer py-0.5">
                 <option value="all">Any status</option>
                 <option value="selling">Now selling</option>
                 <option value="completed">Completed</option>
@@ -958,7 +958,7 @@
           <div class="max-w-2xl">
             <p class="reveal eyebrow text-[11px] mb-4">01 | Developments</p>
             <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Signature <span class="gradword">developments.</span></h2>
-            <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">A selection of GREY residences across Abuja and Kaduna. View the available brochures for full floor plans, specifications and pricing.</p>
+            <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">A selection of GREY residences across Abuja and Kaduna. Open any development for its floor plans, room schedule and brochure. Prices are on request.</p>
           </div>
         </div>
 
@@ -989,7 +989,7 @@
           <!-- Shafa's Residences -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="3" data-updated="FEB 2027">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/shafas-cover.jpg" width="1000" height="707" alt="Shafa's Residences brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/view-shafas-1100.jpg" srcset="assets/projects/view-shafas-1100.jpg 1100w, assets/projects/view-shafas-2000.jpg 2000w" sizes="(min-width:1024px) 30vw, (min-width:640px) 46vw, 92vw" width="1100" height="664" alt="Shafa's Residences — the terraces, Katampe, Abuja. Artist's impression." loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -1006,7 +1006,7 @@
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
                 <button type="button" class="unit-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm" data-unit="Shafa's Residences">Units &amp; plans</button>
-                <a href="assets/brochures/shafas-residences-brochure.pdf" rel="noopener" data-title="Shafa's Residences" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro">Brochure &rarr;</a>
+                <a href="assets/brochures/shafas-residences-brochure.pdf" rel="noopener" data-title="Shafa's Residences" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro py-1">Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -1014,7 +1014,7 @@
           <!-- Amrah's Villas -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="2" data-updated="OCT 2026" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/amrahs-villas-cover.jpg" width="1000" height="707" alt="Amrah's Villas brochure cover — semi-detached duplexes, Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/view-amrahs-villas-1100.jpg" srcset="assets/projects/view-amrahs-villas-1100.jpg 1100w, assets/projects/view-amrahs-villas-2000.jpg 2000w" sizes="(min-width:1024px) 30vw, (min-width:640px) 46vw, 92vw" width="1100" height="664" alt="Amrah's Villas — front elevation of the semi-detached duplexes, Katampe, Abuja. Artist's impression." loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Now Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -1031,7 +1031,7 @@
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
                 <button type="button" class="unit-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm" data-unit="Amrah's Villas">Units &amp; plans</button>
-                <a href="assets/brochures/amrahs-villas-brochure.pdf" rel="noopener" data-title="Amrah's Villas" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro">Brochure &rarr;</a>
+                <a href="assets/brochures/amrahs-villas-brochure.pdf" rel="noopener" data-title="Amrah's Villas" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro py-1">Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -1039,7 +1039,7 @@
           <!-- Eden I -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="completed" data-location="katampe" data-stage="5" data-updated="COMPLETE">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/eden-i-cover.jpg" width="1000" height="707" alt="Eden I — The Eden, four-bedroom townhomes, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/view-eden-i-1100.jpg" srcset="assets/projects/view-eden-i-1100.jpg 1100w, assets/projects/view-eden-i-2000.jpg 2000w" sizes="(min-width:1024px) 30vw, (min-width:640px) 46vw, 92vw" width="1100" height="664" alt="Eden I — the terrace homes seen from the estate road, Katampe, Abuja. Artist's impression." loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Completed</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -1056,7 +1056,7 @@
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
                 <button type="button" class="unit-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm" data-unit="Eden I">Units &amp; plans</button>
-                <a href="assets/brochures/eden-i-brochure.pdf" rel="noopener" data-title="Eden I" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro">Brochure &rarr;</a>
+                <a href="assets/brochures/eden-i-brochure.pdf" rel="noopener" data-title="Eden I" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro py-1">Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -1064,7 +1064,7 @@
           <!-- EDEN II -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="selling" data-location="katampe" data-stage="2" data-updated="APR 2027" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/eden-ii-cover.jpg" width="1000" height="707" alt="EDEN II brochure cover — Katampe, Abuja" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/view-eden-ii-1100.jpg" srcset="assets/projects/view-eden-ii-1100.jpg 1100w, assets/projects/view-eden-ii-2000.jpg 2000w" sizes="(min-width:1024px) 30vw, (min-width:640px) 46vw, 92vw" width="1100" height="664" alt="The Eden II — front elevation of the terrace homes, Katampe, Abuja. Artist's impression." loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Selling</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -1081,7 +1081,7 @@
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
                 <button type="button" class="unit-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm" data-unit="EDEN II">Units &amp; plans</button>
-                <a href="assets/brochures/eden-ii-brochure.pdf" rel="noopener" data-title="EDEN II" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro">Brochure &rarr;</a>
+                <a href="assets/brochures/eden-ii-brochure.pdf" rel="noopener" data-title="EDEN II" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro py-1">Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -1089,7 +1089,7 @@
           <!-- Grey Oasis -->
           <article class="reveal group overflow-hidden bg-panel border border-line flex flex-col" data-status="coming" data-location="kaduna" data-stage="0" data-updated="PLANNING" data-delay="1">
             <div class="zoomable relative aspect-[4/3] overflow-hidden">
-              <img src="assets/projects/grey-oasis-cover.jpg" width="1000" height="680" alt="Grey Oasis — luxury townhouses, Kaduna" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <img src="assets/projects/hero-grey-oasis-1100.jpg" srcset="assets/projects/hero-grey-oasis-1100.jpg 1100w, assets/projects/hero-grey-oasis-2000.jpg 2000w" sizes="(min-width:1024px) 30vw, (min-width:640px) 46vw, 92vw" width="1100" height="618" alt="Grey Oasis — luxury townhouses at night, Unguwan Rimi GRA, Kaduna. Artist's impression." loading="lazy" decoding="async" class="w-full h-full object-cover" />
               <span class="absolute top-4 left-4 eyebrow text-[10px] px-3 py-1.5 rounded-full bg-[#18191B]/85 border border-gold/40 text-gold backdrop-blur-sm">Coming Soon</span>
             </div>
             <div class="p-6 flex flex-col flex-1">
@@ -1106,7 +1106,7 @@
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
                 <button type="button" class="unit-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm" data-unit="Grey Oasis">Units &amp; plans</button>
-                <a href="assets/brochures/grey-oasis-brochure.pdf" rel="noopener" data-title="Grey Oasis" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro">Brochure &rarr;</a>
+                <a href="assets/brochures/grey-oasis-brochure.pdf" rel="noopener" data-title="Grey Oasis" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro py-1">Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -1142,7 +1142,7 @@
           <p class="text-body text-sm mt-2">Try a different status or location — or <a href="#contact" class="text-muted hover:text-gold t-micro">talk to our team</a>.</p>
         </div>
 
-        <p class="reveal text-slate text-xs mt-8 max-w-2xl">Images shown are artist's impressions for illustration. Refer to each brochure for full floor plans, specifications and current pricing.</p>
+        <p class="reveal text-slate text-xs mt-8 max-w-2xl">Images shown are artist's impressions for illustration. Refer to each brochure for full floor plans and specifications. Prices are on request.</p>
       </div>
     </section>
 
@@ -1235,18 +1235,18 @@
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14 sm:mb-20">
           <div class="max-w-xl">
             <p class="reveal eyebrow text-[11px] mb-4">03 | The work</p>
-            <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Two of ours, <span class="gradword">in Katampe.</span></h2>
+            <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Inside <span class="gradword">two of ours.</span></h2>
           </div>
           <a href="#projects" class="reveal btn btn-primary inline-flex items-center gap-2 px-7 py-3.5 shrink-0" data-delay="1">All developments <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
         <div class="grid md:grid-cols-2 gap-6 lg:gap-10">
           <figure class="reveal">
-            <a href="developments/shafas-residences/" class="gal block" aria-label="Shafa's Residences — full details"><img src="assets/projects/view-shafas-2000.jpg" width="2000" height="1208" srcset="assets/projects/view-shafas-1100.jpg 1100w, assets/projects/view-shafas-2000.jpg 2000w" sizes="(min-width:768px) 44vw, 90vw" alt="Shafa&rsquo;s Residences &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></a>
-            <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">Shafa&rsquo;s Residences &middot; Katampe &middot; Artist&rsquo;s impression</figcaption>
+            <a href="developments/shafas-residences/" class="gal block" aria-label="Shafa's Residences — full details"><img src="assets/projects/interior-shafas-2000.jpg" width="2000" height="1208" srcset="assets/projects/interior-shafas-1100.jpg 1100w, assets/projects/interior-shafas-2000.jpg 2000w" sizes="(min-width:768px) 44vw, 90vw" alt="Shafa&rsquo;s Residences &mdash; living room. Artist&rsquo;s impression." loading="lazy" decoding="async" class="w-full h-auto block" /></a>
+            <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">Shafa&rsquo;s Residences &middot; Living room &middot; Artist&rsquo;s impression</figcaption>
           </figure>
           <figure class="reveal" data-delay="1">
-            <a href="developments/eden-ii/" class="gal block" aria-label="The Eden II — full details"><img src="assets/projects/view-eden-ii-2000.jpg" width="2000" height="1208" srcset="assets/projects/view-eden-ii-1100.jpg 1100w, assets/projects/view-eden-ii-2000.jpg 2000w" sizes="(min-width:768px) 44vw, 90vw" alt="The Eden II &mdash; artist&rsquo;s impression of the completed development." loading="lazy" decoding="async" class="w-full h-auto block" /></a>
-            <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">The Eden II &middot; Katampe &middot; Artist&rsquo;s impression</figcaption>
+            <a href="developments/eden-ii/" class="gal block" aria-label="The Eden II — full details"><img src="assets/projects/interior-eden-ii-2000.jpg" width="2000" height="1208" srcset="assets/projects/interior-eden-ii-1100.jpg 1100w, assets/projects/interior-eden-ii-2000.jpg 2000w" sizes="(min-width:768px) 44vw, 90vw" alt="The Eden II &mdash; living room. Artist&rsquo;s impression." loading="lazy" decoding="async" class="w-full h-auto block" /></a>
+            <figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-4">The Eden II &middot; Living room &middot; Artist&rsquo;s impression</figcaption>
           </figure>
         </div>
       </div>
@@ -1594,7 +1594,7 @@
     <!-- ============ CTA STRIP ============ -->
     <!-- ============ CLOSING STATEMENT ============ -->
     <section class="on-void relative isolate overflow-hidden border-t border-line">
-      <img src="assets/projects/hero-grey-oasis-1100.jpg" width="1100" height="614" srcset="assets/projects/hero-grey-oasis-1100.jpg 1100w, assets/projects/hero-grey-oasis-2000.jpg 2000w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async"
+      <img src="assets/projects/hero-grey-oasis-1100.jpg" width="1100" height="618" srcset="assets/projects/hero-grey-oasis-1100.jpg 1100w, assets/projects/hero-grey-oasis-2000.jpg 2000w" sizes="100vw" alt="" aria-hidden="true" loading="lazy" decoding="async"
            class="absolute inset-0 w-full h-full object-cover object-center" />
       <!-- 68% is the floor that keeps Off White above 4.5:1 even over a pure-white
            pixel of the render: 0.32*255 + 0.68*24 = 98, giving 5.8:1. -->
@@ -1724,7 +1724,7 @@
         <!-- Fallback for devices that can't render a PDF inline (most mobiles) -->
         <div id="brochureFallback" class="hidden absolute inset-0 flex-col items-center justify-center text-center p-8 gap-5">
           <img id="brochureCover" src="" alt="" class="max-h-[46vh] w-auto border border-line" />
-          <p class="text-body text-sm max-w-xs">Open the full brochure for floor plans, specifications and current pricing.</p>
+          <p class="text-body text-sm max-w-xs">Open the full brochure for floor plans and specifications.</p>
           <a id="brochureOpen" href="#" target="_blank" rel="noopener" class="btn btn-primary inline-flex items-center gap-2 px-6 py-3 text-sm">Open full brochure &rarr;</a>
         </div>
       </div>
@@ -1994,7 +1994,7 @@
         const track = tl.querySelector('.tl-track');
         let frag = '';
         for (let i = 0; i < 5; i++) {
-          const cls = i < stage ? 'is-done' : (i === stage ? 'is-active' : '');
+          const cls = stage >= 5 || (stage > 0 && i < stage) ? 'is-done' : (stage > 0 && i === stage ? 'is-active' : '');
           frag += '<span class="tl-seg ' + cls + '"></span>';
         }
         track.innerHTML = frag;
@@ -2756,7 +2756,9 @@
           }
         });
       }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
-      spyMap.forEach((a, t) => spy.observe(t));
+      // Every section is watched, so the underline clears where no nav link applies
+      // (gallery, services, questions, contact) instead of sticking on the last match.
+      document.querySelectorAll('main > section').forEach(t => spy.observe(t));
     }
   </script>
 </body>

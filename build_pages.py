@@ -32,6 +32,7 @@ FORM_OPTION = {'The Eden II': 'EDEN II'}
 # re-exports them from the PDFs into assets/projects/<slug>/; a normal build only reads them.
 MEDIA = {
     'shafas-residences': {
+        'views': [(13, 'view-shafas'), (12, 'hero-shafas'), (14, 'interior-shafas')],
         'map': [(4, 'Location')],
         'pdf': 'shafas-residences-brochure.pdf',
         'plans': [(6, 'Site plan'), (8, 'Terrace \u2014 ground floor'), (9, 'Terrace \u2014 first floor'),
@@ -39,11 +40,13 @@ MEDIA = {
         'gallery': [(12, 'The estate'), (13, 'The terraces'), (14, 'Living room'), (15, 'Living room'),
                     (16, 'Lounge and kitchen'), (17, 'Bedroom'), (18, 'Living room')]},
     'amrahs-villas': {
+        'views': [(10, 'view-amrahs-villas')],
         'map': [(4, 'Location')],
         'pdf': 'amrahs-villas-brochure.pdf',
         'plans': [(7, 'Ground floor'), (8, 'First floor'), (9, 'Pent floor')],
         'gallery': [(10, 'Front elevation'), (11, 'The villas'), (12, 'Corner view'), (13, 'The balconies')]},
     'eden-ii': {
+        'views': [(12, 'view-eden-ii'), (13, 'hero-eden-ii'), (15, 'interior-eden-ii')],
         'map': [(4, 'Location')],
         'pdf': 'eden-ii-brochure.pdf',
         'plans': [(8, 'Terrace \u2014 ground floor'), (9, 'Terrace \u2014 first floor'),
@@ -51,15 +54,16 @@ MEDIA = {
         'gallery': [(12, 'The terraces'), (13, 'The courtyard'), (14, 'Block of flats'), (15, 'Living room'),
                     (16, 'Kitchen and dining area'), (17, 'Bedroom')]},
     'eden-i': {
+        'views': [(11, 'view-eden-i')],
         'map': [(4, 'Location')],
         'pdf': 'eden-i-brochure.pdf',
         'plans': [(8, 'Ground floor'), (9, 'First floor'), (10, 'Second floor')],
         'gallery': [(11, 'The terraces'), (12, 'The estate'), (13, 'Front elevation'), (14, 'Living room'),
                     (15, 'Kitchen'), (16, 'Dining area'), (17, 'Bedroom')]},
     'grey-oasis': {
+        'views': [(1, 'hero-grey-oasis', (0.18, 0.742))],
         'map': [(3, 'Location')],
         'pdf': 'grey-oasis-brochure.pdf',
-        'cover_band': (0.135, 0.815),
         'plans': [(7, 'Ground floor'), (8, 'First floor')],
         'gallery': [(5, 'Exterior'), (6, 'Exterior'), (9, 'Living room'), (10, 'Family living room'),
                     (11, 'Kitchen'), (12, 'Master bedroom'), (13, 'Master bathroom')]},
@@ -85,22 +89,27 @@ def jpeg_size(path):
 
 
 def render():
-    """Re-export covers, floor plans and gallery pages from the brochure PDFs."""
+    """Re-export clean renders, floor plans, gallery pages and maps from the brochure PDFs."""
     import tempfile
     tool = Path(tempfile.gettempdir()) / 'grey-pdfpage'
     subprocess.run(['swiftc', '-O', str(ROOT / 'tools/pdfpage.swift'), '-o', str(tool)], check=True)
     for slug, m in MEDIA.items():
         pdf = ROOT / 'assets/brochures' / m['pdf']
-        cover = ROOT / 'assets/projects' / m['pdf'].replace('-residences', '').replace('-brochure.pdf', '-cover.jpg')
-        subprocess.run([str(tool), str(pdf), '1', '1000', str(cover), '0.82'], check=True)
-        subprocess.run([str(tool), str(pdf), '1', '1400', str(cover).replace('.jpg', '-lg.jpg'), '0.82'], check=True)
-        if 'cover_band' in m:
-            # A square cover would be sliced through its logo and title by the 4:3 card box,
-            # so keep only the landscape band between them: the render and its strapline.
-            top, bottom = m['cover_band']
-            for f, w in ((str(cover), 1000), (str(cover).replace('.jpg', '-lg.jpg'), 1400)):
-                subprocess.run(['sips', '-c', str(round(w * (bottom - top))), str(w), '--cropOffset',
-                                str(round(w * top)), '0', f], check=True, capture_output=True)
+        # Clean renders for the hero, cards and galleries: a gallery page with its caption
+        # strip cut off (or, for a cover, just the band holding the render), at two widths.
+        for view in m.get('views', []):
+            page_no, name = view[0], view[1]
+            top, bottom = view[2] if len(view) > 2 else (0.0, 0.855)
+            tmp = Path(tempfile.gettempdir()) / 'grey-view.jpg'
+            subprocess.run([str(tool), str(pdf), str(page_no), '2400', str(tmp), '0.92'], check=True)
+            # sips centres the crop when the offset is 0, so the top edge is asked for as row 1.
+            _, ph = jpeg_size(tmp)   # fractions are of the page height, which is not the width
+            subprocess.run(['sips', '-c', str(round(ph * (bottom - top))), '2400', '--cropOffset',
+                            str(max(1, round(ph * top))), '0', str(tmp)], check=True, capture_output=True)
+            for w, q in ((2000, '78'), (1100, '76')):
+                subprocess.run(['sips', '-s', 'format', 'jpeg', '-s', 'formatOptions', q, '--resampleWidth', str(w),
+                                str(tmp), '--out', str(ROOT / 'assets/projects' / f'{name}-{w}.jpg')],
+                               check=True, capture_output=True)
         out = ROOT / 'assets/projects' / slug
         out.mkdir(exist_ok=True)
         for kind in ('plans', 'gallery', 'map'):
@@ -207,9 +216,9 @@ def page(card, cards, units, head, header, footer):
     address = data.get('meta') or data.get('address') or card['loc']
     url = f'{SITE}/developments/{slug}/'
     cover = '/' + card['cover']
-    lg = card['cover'].replace('.jpg', '-lg.jpg')
+    lg = card['cover'].replace('-1100.jpg', '-2000.jpg') if card['cover'].endswith('-1100.jpg') else ''
     cw, ch = jpeg_size(ROOT / card['cover'])
-    if (ROOT / lg).exists():
+    if lg and (ROOT / lg).exists():
         lw, lh = jpeg_size(ROOT / lg)
         img = (f'<img src="/{lg}" width="{lw}" height="{lh}" srcset="{cover} {cw}w, /{lg} {lw}w" '
                f'sizes="(min-width:1024px) 46vw, 92vw" alt="{e(card["alt"])}" fetchpriority="high" decoding="async" class="w-full h-auto block" />')

@@ -41,7 +41,7 @@ links keep working), then:
 ./build.sh render
 ```
 
-`render` re-exports the cover, floor plans and gallery images from the PDFs
+`render` re-exports the clean renders (hero, cards, galleries), floor plans, gallery pages and maps from the PDFs
 (it needs the Xcode command line tools for `swiftc`). Which pages become plans
 and gallery images is set in the `MEDIA` table in `build_pages.py`; if the page
 order of a brochure changes, update it there. Then re-read the room schedules,
