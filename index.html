@@ -7,13 +7,16 @@
   <meta name="description" content="GREY Development Limited designs, builds and delivers residential and mixed-use developments of uncompromising structural and material integrity across Abuja, Nigeria. Not just built. But crafted." />
   <meta property="og:title" content="GREY Development Limited — Not Just Built. But Crafted." />
   <meta property="og:description" content="Realty · Construction · Investment. Architecturally serious developments in Abuja, Nigeria." />
-  <meta property="og:image" content="assets/GREY_Instagram_1080x1080.png" />
+  <meta property="og:image" content="https://greydevelopmentng.com/assets/og-home.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:url" content="https://greydevelopmentng.com/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="GREY Development Limited" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="GREY Development Limited — Not Just Built. But Crafted." />
   <meta name="twitter:description" content="Realty · Construction · Investment. Architecturally serious developments in Abuja, Nigeria." />
-  <meta name="twitter:image" content="assets/GREY_Instagram_1080x1080.png" />
+  <meta name="twitter:image" content="https://greydevelopmentng.com/assets/og-home.jpg" />
   <meta name="theme-color" content="#18191B" />
   <link rel="canonical" href="https://greydevelopmentng.com/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%2318191B'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Century%20Gothic,Arial,sans-serif'%20font-size='21'%20font-weight='800'%20fill='%23DAA520'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
@@ -557,6 +560,26 @@
       #home.is-playing .hero-slide.is-active { transform:none; }
     }
 
+    /* ---- Image viewer (development pages): a native <dialog>, so focus is trapped and
+       Escape closes it without script. Without script the links simply open the image. */
+    .lb { border:0; padding:0; margin:0; background:transparent; color: var(--offwhite);
+          width:100vw; height:100dvh; max-width:none; max-height:none; overflow:hidden; }
+    .lb::backdrop { background: rgba(24,25,27,.95); }
+    .lb figure { margin:0; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+                 gap:1rem; padding:4.5rem 5.5rem 1.5rem; }
+    .lb img { max-width:100%; max-height:calc(100dvh - 9rem); width:auto; height:auto; object-fit:contain; border-radius:10px; }
+    .lb figcaption { display:flex; gap:1.25rem; font-size:11px; letter-spacing:.18em; text-transform:uppercase; }
+    .lb figcaption .n { color: var(--grey); font-variant-numeric: tabular-nums; }
+    .lb button { position:absolute; width:2.75rem; height:2.75rem; border-radius:50%; display:grid; place-items:center;
+                 border:1px solid rgba(252,252,252,.3); background: rgba(24,25,27,.6); color: var(--offwhite); cursor:pointer;
+                 transition: border-color .16s ease, color .16s ease; }
+    .lb button:hover { border-color: var(--gold); color: var(--gold); }
+    .lb .x { top:1rem; right:1rem; } .lb .prev { left:1rem; top:50%; margin-top:-1.375rem; } .lb .next { right:1rem; top:50%; margin-top:-1.375rem; }
+    @media (max-width:640px){
+      .lb figure { padding:4.5rem 1rem 5rem; }
+      .lb .prev, .lb .next { top:auto; bottom:1rem; margin-top:0; }
+    }
+
     /* Scroll cue — a hairline rule and a word, as in the reference */
     .scrollcue { display:flex; flex-direction:column; align-items:center; gap:.65rem; }
     .scrollcue .rule { width:1px; height:40px; background: linear-gradient(to bottom, transparent, var(--offwhite)); }
@@ -778,7 +801,7 @@
        winning ties against the component classes above (e.g. text-offwhite over
        .display, text-[9px] over .eyebrow) or the hero headline turns Charcoal on a
        Charcoal ground. Verified by diffing computed styles against the CDN build. -->
-  <link rel="stylesheet" href="assets/tailwind.css?v=fa5c076d" />
+  <link rel="stylesheet" href="assets/tailwind.css?v=ba1e2676" />
 </head>
 
 <body class="bg-ink text-body">
@@ -1007,7 +1030,8 @@
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
-                <a href="assets/brochures/amrahs-villas-brochure.pdf" rel="noopener" data-title="Amrah's Villas" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
+                <button type="button" class="unit-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm" data-unit="Amrah's Villas">Units &amp; plans</button>
+                <a href="assets/brochures/amrahs-villas-brochure.pdf" rel="noopener" data-title="Amrah's Villas" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro">Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -1031,7 +1055,8 @@
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
-                <a href="assets/brochures/eden-i-brochure.pdf" rel="noopener" data-title="Eden I" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
+                <button type="button" class="unit-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm" data-unit="Eden I">Units &amp; plans</button>
+                <a href="assets/brochures/eden-i-brochure.pdf" rel="noopener" data-title="Eden I" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro">Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -1080,7 +1105,8 @@
               </div>
               <div class="flex flex-wrap items-center gap-3 mt-6">
                 <a href="#contact" class="btn btn-primary inline-flex items-center gap-2 px-5 py-2.5 text-sm">Enquire</a>
-                <a href="assets/brochures/grey-oasis-brochure.pdf" rel="noopener" data-title="Grey Oasis" class="brochure-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm">View Brochure &rarr;</a>
+                <button type="button" class="unit-trigger btn btn-secondary inline-flex items-center gap-1.5 px-4 py-2.5 text-sm" data-unit="Grey Oasis">Units &amp; plans</button>
+                <a href="assets/brochures/grey-oasis-brochure.pdf" rel="noopener" data-title="Grey Oasis" class="brochure-trigger text-sm text-muted hover:text-porcelain t-micro">Brochure &rarr;</a>
               </div>
             </div>
           </article>
@@ -1137,6 +1163,12 @@
           </div>
           <div class="reveal max-w-2xl mt-12 text-body leading-relaxed" data-delay="1">
             <p>What we offer is not square metres, but the confidence that the specification survives contact with the site: the finish schedule signed in the sales office is the one installed on handover, on the date given.</p>
+          </div>
+
+          <!-- Vision and mission, as printed on "The developer" page of each brochure -->
+          <div class="reveal grid sm:grid-cols-2 gap-x-12 gap-y-8 max-w-4xl mt-12 pt-10 border-t border-line" data-delay="1">
+            <div><p class="eyebrow text-[10px] mb-3">Vision</p><p class="display text-xl text-porcelain">The benchmark developer in Nigeria for delivering what was promised.</p></div>
+            <div><p class="eyebrow text-[10px] mb-3">Mission</p><p class="display text-xl text-porcelain">Premium homes and commercial assets, built to last and handed over on the date given.</p></div>
           </div>
 
           <figure class="reveal border-l-2 border-gold pl-6 my-10 max-w-2xl" data-delay="1">
@@ -1412,11 +1444,67 @@
       </div>
     </section>
 
+    <!-- ============ QUESTIONS ============
+         Every answer restates something already published - in a brochure, on a
+         development page or elsewhere on this page. Nothing here is new information. -->
+    <section id="faq" class="relative py-24 sm:py-32 bg-ink border-t border-line">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
+        <div class="grid lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] gap-10 lg:gap-20">
+          <div>
+            <p class="reveal eyebrow text-[11px] mb-4">06 | Questions</p>
+            <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Before <span class="gradword">you ask.</span></h2>
+            <p class="reveal text-body mt-5 leading-relaxed" data-delay="1">The questions buyers raise first, answered from our brochures. For anything else, <a href="#contact" class="underline underline-offset-4 decoration-1">ask the team</a>.</p>
+          </div>
+          <div class="reveal border-t border-line" data-delay="1">
+            <div class="dd">
+              <h3><button type="button" class="dd-head" aria-expanded="false"><span class="h3">Where are the developments?</span><svg class="dd-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="square"/></svg></button></h3>
+              <div class="dd-body">
+                <p class="text-body text-sm leading-relaxed mb-3">Shafa&rsquo;s Residences, Amrah&rsquo;s Villas, Eden I and The Eden II are in Katampe, Abuja &mdash; between three and five minutes&rsquo; drive from Maitama, by the brochures&rsquo; own figures. Grey Altura is in Mabushi, Abuja. Grey Oasis is on Gobir Road in Unguwan Rimi GRA, Kaduna.</p>
+                <p class="text-body text-sm leading-relaxed mb-3">Each <a href="#projects" class="underline underline-offset-4 decoration-1">development page</a> shows its location and drive times.</p>
+              </div>
+            </div>
+            <div class="dd">
+              <h3><button type="button" class="dd-head" aria-expanded="false"><span class="h3">How are payments structured?</span><svg class="dd-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="square"/></svg></button></h3>
+              <div class="dd-body">
+                <p class="text-body text-sm leading-relaxed mb-3">Each development has its own staged plan, published in its brochure. The Eden II: 40% on subscription, then 20% after 6, 9 and 18 months. Amrah&rsquo;s Villas: 40% on subscription, then 30% after 6 and 9 months. Grey Oasis: 50% initial deposit, then 20% after 6 months, 20% after 12 and 10% after 18.</p>
+                <p class="text-body text-sm leading-relaxed mb-3">Terms are confirmed in writing at subscription.</p>
+              </div>
+            </div>
+            <div class="dd">
+              <h3><button type="button" class="dd-head" aria-expanded="false"><span class="h3">What do the homes cost?</span><svg class="dd-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="square"/></svg></button></h3>
+              <div class="dd-body">
+                <p class="text-body text-sm leading-relaxed mb-3">Prices are on request for every development. Current figures for each unit type are released on application &mdash; send an enquiry or call, and a sales advisor will respond within one business day.</p>
+              </div>
+            </div>
+            <div class="dd">
+              <h3><button type="button" class="dd-head" aria-expanded="false"><span class="h3">What comes with the estate?</span><svg class="dd-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="square"/></svg></button></h3>
+              <div class="dd-body">
+                <p class="text-body text-sm leading-relaxed mb-3">The Katampe developments list a standby generator, CCTV surveillance and security, a central gas system, home automation, intercom and fibre-optic connectivity, with 24/7 security personnel, central power and water, and managed common areas. Eden I and The Eden II add a green area and a gym. Grey Oasis is a private gated estate with landscaped green spaces and ample parking.</p>
+                <p class="text-body text-sm leading-relaxed mb-3">The full list for each development is on its page.</p>
+              </div>
+            </div>
+            <div class="dd">
+              <h3><button type="button" class="dd-head" aria-expanded="false"><span class="h3">Can I see floor plans before I enquire?</span><svg class="dd-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="square"/></svg></button></h3>
+              <div class="dd-body">
+                <p class="text-body text-sm leading-relaxed mb-3">Yes. Every development page with a current brochure shows its floor plans and a room-by-room schedule of areas, and the brochure itself can be downloaded from the same page.</p>
+              </div>
+            </div>
+            <div class="dd">
+              <h3><button type="button" class="dd-head" aria-expanded="false"><span class="h3">Are the pictures photographs?</span><svg class="dd-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="square"/></svg></button></h3>
+              <div class="dd-body">
+                <p class="text-body text-sm leading-relaxed mb-3">No. The images on this site are artist&rsquo;s impressions from the brochures, provided for illustration. Finishes, furnishings and landscaping shown may differ from what is delivered, and the brochure is not part of a contract of sale.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ============ CONTACT ============ -->
     <section id="contact" class="relative py-24 sm:py-32 bg-ink2 border-t border-line">
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20 grid lg:grid-cols-2 gap-12">
         <div>
-          <p class="reveal eyebrow text-[11px] mb-4">06 | Get in touch</p>
+          <p class="reveal eyebrow text-[11px] mb-4">07 | Get in touch</p>
           <h2 class="reveal display text-3xl sm:text-5xl text-porcelain">Let's build <span class="gradword">something enduring.</span></h2>
           <p class="reveal text-body mt-5 leading-relaxed max-w-md" data-delay="1">Tell us about your project — a home, a development, or an investment. Our team responds within one business day.</p>
 
@@ -1942,9 +2030,9 @@
       rows.innerHTML = html;
     })();
 
-    // ---------- Due-diligence accordion ----------
+    // ---------- Accordions: due diligence and questions ----------
     (() => {
-      document.querySelectorAll('#ddAccordion .dd').forEach(item => {
+      document.querySelectorAll('.dd').forEach(item => {
         const head = item.querySelector('.dd-head');
         const body = item.querySelector('.dd-body');
         if (!head || !body) return;
@@ -2004,6 +2092,469 @@
             summary: 'Three-bedroom single-level flat, repeated from ground to second floor, with a lounge and a visitor’s toilet off the entrance.',
             highlights: ['3 bedrooms, each with its own bath','42 m² living & dining area','Separate lounge','Store, entrance lobby & visitor’s toilet'],
             floors: [ { name: 'Per flat', note: 'Brochure p. 11', rooms: [['Living & Dining','42 m²'],['Bedroom','24 m²'],['Lounge','23 m²'],['Bedroom','22 m²'],['Bedroom','18 m²'],['Kitchen','13 m²'],['Stairhall','13 m²'],['Bath / WC (×3)','3 m² each'],['Entrance','2 m²'],['Visitor’s Toilet','2 m²'],['Store','1 m²']] } ] }
+        ]
+      },
+      "Amrah's Villas": {
+        "brochure": "assets/brochures/amrahs-villas-brochure.pdf",
+        "meta": "Katampe, Abuja — 3 min Maitama, 5 min CBD",
+        "price": "Price on request",
+        "features": [
+          "Standby generator",
+          "CCTV surveillance & security",
+          "Central gas system",
+          "Home automation",
+          "Intercom",
+          "Fibre-optic connectivity",
+          "24/7 security personnel",
+          "Central power & water",
+          "Managed common areas"
+        ],
+        "travel": [
+          [
+            "Maitama District",
+            "3 min"
+          ],
+          [
+            "Central Business District",
+            "5 min"
+          ]
+        ],
+        "plan": [
+          "12-month payment plan",
+          [
+            [
+              "Upon subscription",
+              "40%"
+            ],
+            [
+              "After 6 months",
+              "30%"
+            ],
+            [
+              "After 9 months",
+              "30%"
+            ]
+          ]
+        ],
+        "types": [
+          {
+            "name": "4-Bed Semi-Detached Duplex",
+            "size": "4 bedrooms over two upper floors",
+            "summary": "A semi-detached duplex with a master and a madam’s bedroom on each of the two upper floors.",
+            "highlights": [
+              "Master bedroom with walk-in closet on each upper floor",
+              "Madam’s bedroom on each upper floor",
+              "Living room, ante-room & kitchen",
+              "BQ and store"
+            ],
+            "floors": [
+              {
+                "name": "Ground Floor",
+                "note": "Brochure p. 7",
+                "rooms": [
+                  [
+                    "Living Room",
+                    "44 m²"
+                  ],
+                  [
+                    "Kitchen",
+                    "17 m²"
+                  ],
+                  [
+                    "Ante-room",
+                    "11 m²"
+                  ],
+                  [
+                    "BQ",
+                    "8 m²"
+                  ],
+                  [
+                    "Store",
+                    "2 m²"
+                  ]
+                ]
+              },
+              {
+                "name": "First Floor",
+                "note": "Brochure p. 8",
+                "rooms": [
+                  [
+                    "Master Bedroom",
+                    "34 m²"
+                  ],
+                  [
+                    "Madam’s Bedroom",
+                    "22 m²"
+                  ],
+                  [
+                    "Walk-in Closet",
+                    "19 m²"
+                  ],
+                  [
+                    "Master Balcony",
+                    "16 m²"
+                  ],
+                  [
+                    "W/C (master)",
+                    "10 m²"
+                  ],
+                  [
+                    "W/C",
+                    "6 m²"
+                  ],
+                  [
+                    "Balcony",
+                    "5 m²"
+                  ]
+                ]
+              },
+              {
+                "name": "Pent Floor",
+                "note": "Brochure p. 9",
+                "rooms": [
+                  [
+                    "Master Bedroom",
+                    "34 m²"
+                  ],
+                  [
+                    "Madam’s Bedroom",
+                    "22 m²"
+                  ],
+                  [
+                    "Walk-in Closet",
+                    "19 m²"
+                  ],
+                  [
+                    "Master Balcony",
+                    "16 m²"
+                  ],
+                  [
+                    "W/C (master)",
+                    "10 m²"
+                  ],
+                  [
+                    "W/C",
+                    "6 m²"
+                  ],
+                  [
+                    "Balcony",
+                    "5 m²"
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "Eden I": {
+        "brochure": "assets/brochures/eden-i-brochure.pdf",
+        "meta": "Katampe, Abuja — 3 min Minister’s Hill, 5 min Maitama",
+        "price": "Price on request",
+        "features": [
+          "Standby generator",
+          "CCTV surveillance & security",
+          "Central gas system",
+          "Home automation",
+          "Intercom",
+          "Fibre-optic connectivity",
+          "24/7 security personnel",
+          "Central power & water",
+          "Managed common areas",
+          "Green area for relaxation",
+          "Gym"
+        ],
+        "travel": [
+          [
+            "Minister’s Hill",
+            "3 min"
+          ],
+          [
+            "Maitama District",
+            "5 min"
+          ]
+        ],
+        "plan": [
+          "12-month payment plan",
+          [
+            [
+              "Upon subscription",
+              "50%"
+            ],
+            [
+              "After 6 months",
+              "20%"
+            ],
+            [
+              "After 9 months",
+              "20%"
+            ],
+            [
+              "After 12 months",
+              "10%"
+            ]
+          ]
+        ],
+        "types": [
+          {
+            "name": "4-Bed Townhome",
+            "size": "360 m² total area",
+            "summary": "Four spacious bedrooms, all en-suite, over three floors, with two living rooms, a lounge and a servant’s quarters.",
+            "highlights": [
+              "4 bedrooms, all en-suite",
+              "2 living rooms and a lounge",
+              "Master’s suite with closet",
+              "Servant’s quarters"
+            ],
+            "floors": [
+              {
+                "name": "Ground Floor",
+                "note": "Brochure p. 8",
+                "rooms": [
+                  [
+                    "Living Room",
+                    "47 m²"
+                  ],
+                  [
+                    "Kitchen",
+                    "12 m²"
+                  ],
+                  [
+                    "BQ",
+                    "8 m²"
+                  ],
+                  [
+                    "Courtyard",
+                    "6 m²"
+                  ],
+                  [
+                    "Visitor’s Toilet",
+                    "3 m²"
+                  ],
+                  [
+                    "Store",
+                    "2 m²"
+                  ],
+                  [
+                    "Bath / WC",
+                    "2 m²"
+                  ]
+                ]
+              },
+              {
+                "name": "First Floor",
+                "note": "Brochure p. 9",
+                "rooms": [
+                  [
+                    "Family Living Room",
+                    "24 m²"
+                  ],
+                  [
+                    "Mini Lounge",
+                    "24 m²"
+                  ],
+                  [
+                    "Bedroom",
+                    "20 m²"
+                  ],
+                  [
+                    "Bedroom",
+                    "19 m²"
+                  ],
+                  [
+                    "Courtyard",
+                    "6 m²"
+                  ],
+                  [
+                    "Balcony",
+                    "6 m²"
+                  ],
+                  [
+                    "Bath / WC",
+                    "5 m²"
+                  ],
+                  [
+                    "Bath / WC",
+                    "5 m²"
+                  ]
+                ]
+              },
+              {
+                "name": "Second Floor",
+                "note": "Brochure p. 10",
+                "rooms": [
+                  [
+                    "Master’s Suite",
+                    "37 m²"
+                  ],
+                  [
+                    "Bedroom",
+                    "19 m²"
+                  ],
+                  [
+                    "Stairhall",
+                    "14 m²"
+                  ],
+                  [
+                    "Closet",
+                    "11 m²"
+                  ],
+                  [
+                    "Bath / WC",
+                    "9 m²"
+                  ],
+                  [
+                    "Courtyard",
+                    "6 m²"
+                  ],
+                  [
+                    "Balcony",
+                    "6 m²"
+                  ],
+                  [
+                    "Bath / WC",
+                    "5 m²"
+                  ],
+                  [
+                    "Safe",
+                    "1 m²"
+                  ]
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "Grey Oasis": {
+        "brochure": "assets/brochures/grey-oasis-brochure.pdf",
+        "meta": "Gobir Road, Unguwan Rimi GRA, Kaduna",
+        "price": "Price on request",
+        "features": [
+          "Private, secure gated estate",
+          "Landscaped green spaces",
+          "Ample parking",
+          "Wide internal driveways"
+        ],
+        "travel": [
+          [
+            "Kaduna Polo Club",
+            "8 min · 3.1 km"
+          ],
+          [
+            "Ahmadu Bello Way",
+            "6 min · 6.5 km"
+          ],
+          [
+            "Murtala Square",
+            "10 min · 5.3 km"
+          ],
+          [
+            "Train station",
+            "12 min · 7.6 km"
+          ],
+          [
+            "Kaduna Airport",
+            "20 min · 23.8 km"
+          ]
+        ],
+        "plan": [
+          "Staged payment plan",
+          [
+            [
+              "Initial deposit",
+              "50%"
+            ],
+            [
+              "After 6 months",
+              "20%"
+            ],
+            [
+              "After 12 months",
+              "20%"
+            ],
+            [
+              "After 18 months",
+              "10%"
+            ]
+          ]
+        ],
+        "types": [
+          {
+            "name": "4-Bed Townhouse",
+            "size": "4 bedrooms over two floors",
+            "summary": "A modern townhouse with a ground-floor bedroom, three bedrooms and a family living room upstairs.",
+            "highlights": [
+              "Master bedroom with its own bathroom",
+              "Ground-floor bedroom",
+              "Family living room on the first floor",
+              "Parking for 3 cars"
+            ],
+            "floors": [
+              {
+                "name": "Ground Floor",
+                "note": "Brochure p. 7",
+                "rooms": [
+                  [
+                    "Living Room",
+                    "46 m²"
+                  ],
+                  [
+                    "Kitchen",
+                    "15 m²"
+                  ],
+                  [
+                    "Bedroom 1",
+                    "12 m²"
+                  ],
+                  [
+                    "Visitor Toilet",
+                    "3 m²"
+                  ],
+                  [
+                    "W/C",
+                    "2 m²"
+                  ],
+                  [
+                    "Store",
+                    "2 m²"
+                  ],
+                  [
+                    "Parking",
+                    "3 cars"
+                  ]
+                ]
+              },
+              {
+                "name": "First Floor",
+                "note": "Brochure p. 8",
+                "rooms": [
+                  [
+                    "Master Bedroom",
+                    "27 m²"
+                  ],
+                  [
+                    "Bedroom 2",
+                    "16 m²"
+                  ],
+                  [
+                    "Bedroom 3",
+                    "16 m²"
+                  ],
+                  [
+                    "Family Living Room",
+                    "16 m²"
+                  ],
+                  [
+                    "Master Bathroom",
+                    "7 m²"
+                  ],
+                  [
+                    "W/C (×2)",
+                    "3 m² each"
+                  ]
+                ]
+              }
+            ]
+          }
         ]
       }
     };

@@ -305,6 +305,26 @@
       #home.is-playing .hero-slide.is-active { transform:none; }
     }
 
+    /* ---- Image viewer (development pages): a native <dialog>, so focus is trapped and
+       Escape closes it without script. Without script the links simply open the image. */
+    .lb { border:0; padding:0; margin:0; background:transparent; color: var(--offwhite);
+          width:100vw; height:100dvh; max-width:none; max-height:none; overflow:hidden; }
+    .lb::backdrop { background: rgba(24,25,27,.95); }
+    .lb figure { margin:0; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;
+                 gap:1rem; padding:4.5rem 5.5rem 1.5rem; }
+    .lb img { max-width:100%; max-height:calc(100dvh - 9rem); width:auto; height:auto; object-fit:contain; border-radius:10px; }
+    .lb figcaption { display:flex; gap:1.25rem; font-size:11px; letter-spacing:.18em; text-transform:uppercase; }
+    .lb figcaption .n { color: var(--grey); font-variant-numeric: tabular-nums; }
+    .lb button { position:absolute; width:2.75rem; height:2.75rem; border-radius:50%; display:grid; place-items:center;
+                 border:1px solid rgba(252,252,252,.3); background: rgba(24,25,27,.6); color: var(--offwhite); cursor:pointer;
+                 transition: border-color .16s ease, color .16s ease; }
+    .lb button:hover { border-color: var(--gold); color: var(--gold); }
+    .lb .x { top:1rem; right:1rem; } .lb .prev { left:1rem; top:50%; margin-top:-1.375rem; } .lb .next { right:1rem; top:50%; margin-top:-1.375rem; }
+    @media (max-width:640px){
+      .lb figure { padding:4.5rem 1rem 5rem; }
+      .lb .prev, .lb .next { top:auto; bottom:1rem; margin-top:0; }
+    }
+
     /* Scroll cue — a hairline rule and a word, as in the reference */
     .scrollcue { display:flex; flex-direction:column; align-items:center; gap:.65rem; }
     .scrollcue .rule { width:1px; height:40px; background: linear-gradient(to bottom, transparent, var(--offwhite)); }
@@ -520,7 +540,7 @@
       .spinner { animation-duration:1.4s; }
     }
   </style>
-  <link rel="stylesheet" href="/assets/tailwind.css?v=fa5c076d" />
+  <link rel="stylesheet" href="/assets/tailwind.css?v=ba1e2676" />
 </head>
 
 <body class="bg-ink text-body">
@@ -682,6 +702,13 @@
     </div>
   </footer>
 
+  <dialog id="lb" class="lb" aria-label="Image viewer">
+    <button type="button" class="x" data-lb-close aria-label="Close viewer"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    <button type="button" class="prev" data-lb-step="-1" aria-label="Previous image"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+    <button type="button" class="next" data-lb-step="1" aria-label="Next image"><svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <figure><img id="lbImg" alt="" /><figcaption><span id="lbCap"></span><span class="n" id="lbN"></span></figcaption></figure>
+  </dialog>
+
   <script>
     (() => {
       const header = document.getElementById('siteHeader');
@@ -702,6 +729,33 @@
         const now = new Date(), mi = MONTHS.indexOf(m[1].toUpperCase());
         const past = mi >= 0 && new Date(+m[2], mi, 1) < new Date(now.getFullYear(), now.getMonth(), 1);
         t.textContent = past ? 'Schedule on request' : m[1].charAt(0) + m[1].slice(1).toLowerCase() + ' ' + m[2];
+      }
+
+      // Image viewer: plans, gallery and map open in a dialog with previous / next.
+      const lb = document.getElementById('lb'), links = [...document.querySelectorAll('a[data-lb]')];
+      if (lb && lb.showModal && links.length) {
+        const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap'), cnt = document.getElementById('lbN');
+        let at = 0;
+        const go = (n) => {
+          at = (n + links.length) % links.length; const a = links[at];
+          img.src = a.href; img.alt = a.querySelector('img').alt;
+          cap.textContent = a.dataset.cap; cnt.textContent = (at + 1) + ' / ' + links.length;
+        };
+        links.forEach((a, n) => a.addEventListener('click', (ev) => {
+          if (ev.metaKey || ev.ctrlKey || ev.shiftKey) return;   // let "open in new tab" through
+          ev.preventDefault(); go(n); lb.showModal();
+        }));
+        lb.querySelectorAll('[data-lb-step]').forEach(b => b.addEventListener('click', () => go(at + (+b.dataset.lbStep))));
+        lb.querySelector('[data-lb-close]').addEventListener('click', () => lb.close());
+        lb.addEventListener('click', (ev) => { if (ev.target === lb || ev.target.tagName === 'FIGURE') lb.close(); });
+        lb.addEventListener('keydown', (ev) => { if (ev.key === 'ArrowRight') go(at + 1); if (ev.key === 'ArrowLeft') go(at - 1); });
+        let x0 = null;
+        lb.addEventListener('touchstart', (ev) => { x0 = ev.touches[0].clientX; }, { passive: true });
+        lb.addEventListener('touchend', (ev) => {
+          if (x0 === null) return; const dx = ev.changedTouches[0].clientX - x0; x0 = null;
+          if (Math.abs(dx) > 50) go(at + (dx < 0 ? 1 : -1));
+        });
+        lb.addEventListener('close', () => { img.removeAttribute('src'); links[at].focus(); });
       }
 
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
