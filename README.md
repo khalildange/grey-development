@@ -32,6 +32,22 @@ stylesheet and the sitemap:
 ./build.sh
 ```
 
+### Replacing a brochure
+
+Copy the new PDF over the old one in `assets/brochures/` (same filename, so
+links keep working), then:
+
+```bash
+./build.sh render
+```
+
+`render` re-exports the cover, floor plans and gallery images from the PDFs
+(it needs the Xcode command line tools for `swiftc`). Which pages become plans
+and gallery images is set in the `MEDIA` table in `build_pages.py`; if the page
+order of a brochure changes, update it there. Then re-read the room schedules,
+features, drive times and payment plan against `UNIT_DATA` in `index.html` and
+the `BROCHURE` table in the script - those are typed in, not extracted.
+
 ## Rebuilding the CSS
 
 `assets/tailwind.css` is generated. Editing it by hand will be overwritten.

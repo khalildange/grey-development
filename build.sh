@@ -4,7 +4,7 @@
 # then stamp the stylesheet's content hash into every page that links it.
 set -e
 cd "$(dirname "$0")"
-python3 build_pages.py
+python3 build_pages.py "$@"   # ./build.sh render  also re-exports images from the brochure PDFs
 npx tailwindcss@3.4.17 -c tailwind.config.js -i in.css -o assets/tailwind.css --minify
 H=$(shasum -a 256 assets/tailwind.css | cut -c1-8)
 for f in index.html developments/*/index.html; do

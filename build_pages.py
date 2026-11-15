@@ -13,7 +13,7 @@ Nothing here is estimated: where a brochure is silent, the page is too.
 Run ./build.sh rather than this file directly - the Tailwind stylesheet has to
 be rebuilt afterwards, because it only contains classes it finds in the HTML.
 """
-import html, json, re, subprocess, sys
+import html, json, re, struct, subprocess, sys
 from pathlib import Path
 from urllib.parse import quote
 
@@ -31,71 +31,177 @@ FORM_OPTION = {'The Eden II': 'EDEN II'}
 
 BROCHURE = {
     "Amrah's Villas": {
-        'features': ['Standby generator', 'CCTV & security', 'Central gas system', 'Home automation',
-                     'Intercom', 'Fibre-optic internet', 'Central power', 'Central water'],      # p.7
-        'travel': [('Maitama District', '3 min'), ('Central Business District', '5 min')],      # p.6
-        'plan': ('12-month payment plan',                                                       # p.16
+        'features': ['Standby generator', 'CCTV surveillance & security', 'Central gas system', 'Home automation',
+                     'Intercom', 'Fibre-optic connectivity', '24/7 security personnel',
+                     'Central power & water', 'Managed common areas'],                           # p.5
+        'travel': [('Maitama District', '3 min'), ('Central Business District', '5 min')],      # p.4
+        'plan': ('12-month payment plan',                                                       # p.14
                  [('Upon subscription', '40%'), ('After 6 months', '30%'), ('After 9 months', '30%')]),
         'types': [{
-            'name': '4-Bed Semi-Detached Duplex', 'size': '4 bedrooms, all en-suite',           # p.9
-            'summary': 'A semi-detached duplex with every bedroom en-suite.',
-            'highlights': ['2 master suites with walk-in closets', '2 further en-suite bedrooms',
-                           'Living room, ante-room & kitchen', 'Servant’s quarters & double carport'],
-            'floors': [                                                                         # pp.10-12
-                {'name': 'Ground Floor', 'note': 'Approx. 82 m²', 'rooms': [
-                    ['Living Room', '44 m²'], ['Kitchen', '17 m²'], ['Ante-room', '11 m²'],
-                    ['BQ', '8 m²'], ['Store', '2 m²']]},
-                {'name': 'First Floor', 'note': 'Approx. 112 m²', 'rooms': [
-                    ['Master Bedroom, en-suite', '34 m²'], ['Madam’s Bedroom, en-suite', '22 m²'],
-                    ['Walk-in Closet', '19 m²'], ['Master Balcony', '16 m²'],
-                    ['Bath / WC (master)', '10 m²'], ['Bath / WC', '6 m²'], ['Balcony', '5 m²']]},
-                {'name': 'Pent Floor', 'note': 'Approx. 112 m²', 'rooms': [
-                    ['Master Bedroom, en-suite', '34 m²'], ['Madam’s Bedroom, en-suite', '22 m²'],
-                    ['Walk-in Closet', '19 m²'], ['Master Balcony', '16 m²'],
-                    ['Bath / WC (master)', '10 m²'], ['Bath / WC', '6 m²'], ['Balcony', '5 m²']]},
+            'name': '4-Bed Semi-Detached Duplex', 'size': '4 bedrooms over two upper floors',
+            'summary': 'A semi-detached duplex with a master and a madam\u2019s bedroom on each of the two upper floors.',
+            'highlights': ['Master bedroom with walk-in closet on each upper floor',
+                           'Madam\u2019s bedroom on each upper floor',
+                           'Living room, ante-room & kitchen', 'BQ and store'],
+            'floors': [                                                                         # pp.7-9
+                {'name': 'Ground Floor', 'note': 'Brochure p. 7', 'rooms': [
+                    ['Living Room', '44 m\u00b2'], ['Kitchen', '17 m\u00b2'], ['Ante-room', '11 m\u00b2'],
+                    ['BQ', '8 m\u00b2'], ['Store', '2 m\u00b2']]},
+                {'name': 'First Floor', 'note': 'Brochure p. 8', 'rooms': [
+                    ['Master Bedroom', '34 m\u00b2'], ['Madam\u2019s Bedroom', '22 m\u00b2'],
+                    ['Walk-in Closet', '19 m\u00b2'], ['Master Balcony', '16 m\u00b2'],
+                    ['W/C (master)', '10 m\u00b2'], ['W/C', '6 m\u00b2'], ['Balcony', '5 m\u00b2']]},
+                {'name': 'Pent Floor', 'note': 'Brochure p. 9', 'rooms': [
+                    ['Master Bedroom', '34 m\u00b2'], ['Madam\u2019s Bedroom', '22 m\u00b2'],
+                    ['Walk-in Closet', '19 m\u00b2'], ['Master Balcony', '16 m\u00b2'],
+                    ['W/C (master)', '10 m\u00b2'], ['W/C', '6 m\u00b2'], ['Balcony', '5 m\u00b2']]},
             ]}],
     },
     'Eden I': {
-        'features': ['Standby generator', 'CCTV & security', 'Central gas system', 'Home automation',
-                     'Intercom', 'Fibre-optic internet', 'Landscaped greens', 'Fitness area'],   # p.6
-        'travel': [('Minister’s Hill', '3 min'), ('Maitama District', '5 min')],            # p.5
+        'features': ['Standby generator', 'CCTV surveillance & security', 'Central gas system', 'Home automation',
+                     'Intercom', 'Fibre-optic connectivity', '24/7 security personnel',
+                     'Central power & water', 'Managed common areas',
+                     'Green area for relaxation', 'Gym'],                                        # p.5
+        'travel': [('Minister\u2019s Hill', '3 min'), ('Maitama District', '5 min')],            # p.4
+        'plan': ('12-month payment plan',                                                        # p.18 (not shown once completed)
+                 [('Upon subscription', '50%'), ('After 6 months', '20%'),
+                  ('After 9 months', '20%'), ('After 12 months', '10%')]),
         'types': [{
-            'name': '4-Bed Townhome', 'size': '360 m²',                                     # p.8
-            'summary': 'A four-bedroom townhome over three floors, with every bedroom en-suite.',
-            'highlights': ['4 bedrooms, all en-suite', '2 living rooms & a mini lounge',
-                           'Master’s suite with walk-in closet', 'Servant’s quarters & double carport'],
-            'floors': [                                                                         # pp.9-11
-                {'name': 'Ground Floor', 'note': 'Approx. 80 m²', 'rooms': [
-                    ['Living Room', '47 m²'], ['Kitchen', '12 m²'], ['BQ', '8 m²'],
-                    ['Courtyard', '6 m²'], ['Visitors’ Toilet', '3 m²'],
-                    ['Store', '2 m²'], ['Bath / WC', '2 m²']]},
-                {'name': 'First Floor', 'note': 'Approx. 89 m²', 'rooms': [
-                    ['Family Living Room', '24 m²'], ['Mini Lounge', '24 m²'],
-                    ['Master Bedroom, en-suite', '20 m²'], ['Bedroom, en-suite', '19 m²'],
-                    ['Bath / WC (×2)', '10 m²'], ['Courtyard', '6 m²'], ['Balcony', '6 m²']]},
-                {'name': 'Second Floor', 'note': 'Approx. 108 m²', 'rooms': [
-                    ['Master’s Suite', '37 m²'], ['Bedroom, en-suite', '19 m²'],
-                    ['Stairhall', '14 m²'], ['Bath / WC (×2)', '14 m²'],
-                    ['Walk-in Closet', '11 m²'], ['Courtyard', '6 m²'],
-                    ['Balcony', '6 m²'], ['Safe Room', '1 m²']]},
+            'name': '4-Bed Townhome', 'size': '360 m\u00b2 total area',                               # p.7
+            'summary': 'Four spacious bedrooms, all en-suite, over three floors, with two living rooms, a lounge and a servant\u2019s quarters.',
+            'highlights': ['4 bedrooms, all en-suite', '2 living rooms and a lounge',
+                           'Master\u2019s suite with closet', 'Servant\u2019s quarters'],
+            'floors': [                                                                         # pp.8-10
+                {'name': 'Ground Floor', 'note': 'Brochure p. 8', 'rooms': [
+                    ['Living Room', '47 m\u00b2'], ['Kitchen', '12 m\u00b2'], ['BQ', '8 m\u00b2'],
+                    ['Courtyard', '6 m\u00b2'], ['Visitor\u2019s Toilet', '3 m\u00b2'],
+                    ['Store', '2 m\u00b2'], ['Bath / WC', '2 m\u00b2']]},
+                {'name': 'First Floor', 'note': 'Brochure p. 9', 'rooms': [
+                    ['Family Living Room', '24 m\u00b2'], ['Mini Lounge', '24 m\u00b2'],
+                    ['Bedroom', '20 m\u00b2'], ['Bedroom', '19 m\u00b2'], ['Courtyard', '6 m\u00b2'],
+                    ['Balcony', '6 m\u00b2'], ['Bath / WC', '5 m\u00b2'], ['Bath / WC', '5 m\u00b2']]},
+                {'name': 'Second Floor', 'note': 'Brochure p. 10', 'rooms': [
+                    ['Master\u2019s Suite', '37 m\u00b2'], ['Bedroom', '19 m\u00b2'],
+                    ['Stairhall', '14 m\u00b2'], ['Closet', '11 m\u00b2'], ['Bath / WC', '9 m\u00b2'],
+                    ['Courtyard', '6 m\u00b2'], ['Balcony', '6 m\u00b2'], ['Bath / WC', '5 m\u00b2'], ['Safe', '1 m\u00b2']]},
             ]}],
     },
     'Grey Oasis': {
         'address': 'Gobir Road, Unguwan Rimi GRA, Kaduna',                                       # p.3
-        'features': ['Gated estate', 'Secure environment', 'Landscaped greens', 'Ample parking'],  # pp.2, 4
-        'travel': [('Kaduna Polo Club', '8 min · 3.1 km'), ('Murtala Square', '10 min · 5.3 km'),
-                   ('Ahmadu Bello Way', '6 min · 6.5 km'), ('Train station', '12 min · 7.6 km'),
-                   ('Kaduna Airport', '20 min · 23.8 km')],                                 # p.3
-        'plan': ('Staged payment plan',                                                          # p.13
-                 [('Upon subscription', '50%'), ('After 6 months', '20%'),
+        'features': ['Private, secure gated estate', 'Landscaped green spaces', 'Ample parking',
+                     'Wide internal driveways'],                                                 # pp.2, 4
+        'travel': [('Kaduna Polo Club', '8 min \u00b7 3.1 km'), ('Ahmadu Bello Way', '6 min \u00b7 6.5 km'),
+                   ('Murtala Square', '10 min \u00b7 5.3 km'), ('Train station', '12 min \u00b7 7.6 km'),
+                   ('Kaduna Airport', '20 min \u00b7 23.8 km')],                                 # p.3
+        'plan': ('Staged payment plan',                                                          # p.14
+                 [('Initial deposit', '50%'), ('After 6 months', '20%'),
                   ('After 12 months', '20%'), ('After 18 months', '10%')]),
-        'types': [],
+        'types': [{
+            'name': '4-Bed Townhouse', 'size': '4 bedrooms over two floors',                     # pp.7-8
+            'summary': 'A modern townhouse with a ground-floor bedroom, three bedrooms and a family living room upstairs.',
+            'highlights': ['Master bedroom with its own bathroom', 'Ground-floor bedroom',
+                           'Family living room on the first floor', 'Parking for 3 cars'],
+            'floors': [
+                {'name': 'Ground Floor', 'note': 'Brochure p. 7', 'rooms': [
+                    ['Living Room', '46 m\u00b2'], ['Kitchen', '15 m\u00b2'], ['Bedroom 1', '12 m\u00b2'],
+                    ['Visitor Toilet', '3 m\u00b2'], ['W/C', '2 m\u00b2'], ['Store', '2 m\u00b2'], ['Parking', '3 cars']]},
+                {'name': 'First Floor', 'note': 'Brochure p. 8', 'rooms': [
+                    ['Master Bedroom', '27 m\u00b2'], ['Bedroom 2', '16 m\u00b2'], ['Bedroom 3', '16 m\u00b2'],
+                    ['Family Living Room', '16 m\u00b2'], ['Master Bathroom', '7 m\u00b2'], ['W/C (\u00d72)', '3 m\u00b2 each']]},
+            ]}],
     },
+}
+
+# Brochure pages shown on each development page, as (page, caption). `./build.sh render`
+# re-exports them from the PDFs into assets/projects/<slug>/; a normal build only reads them.
+MEDIA = {
+    'shafas-residences': {
+        'pdf': 'shafas-residences-brochure.pdf',
+        'plans': [(6, 'Site plan'), (8, 'Terrace \u2014 ground floor'), (9, 'Terrace \u2014 first floor'),
+                  (10, 'Terrace \u2014 second floor'), (11, 'Flats \u2014 ground to second floor')],
+        'gallery': [(12, 'The estate'), (13, 'The terraces'), (14, 'Living room'), (15, 'Living room'),
+                    (16, 'Lounge and kitchen'), (17, 'Bedroom'), (18, 'Living room')]},
+    'amrahs-villas': {
+        'pdf': 'amrahs-villas-brochure.pdf',
+        'plans': [(7, 'Ground floor'), (8, 'First floor'), (9, 'Pent floor')],
+        'gallery': [(10, 'Front elevation'), (11, 'The villas'), (12, 'Corner view'), (13, 'The balconies')]},
+    'eden-ii': {
+        'pdf': 'eden-ii-brochure.pdf',
+        'plans': [(8, 'Terrace \u2014 ground floor'), (9, 'Terrace \u2014 first floor'),
+                  (10, 'Terrace \u2014 second floor'), (11, 'Block of flats')],
+        'gallery': [(12, 'The terraces'), (13, 'The courtyard'), (14, 'Block of flats'), (15, 'Living room'),
+                    (16, 'Kitchen and dining area'), (17, 'Bedroom')]},
+    'eden-i': {
+        'pdf': 'eden-i-brochure.pdf',
+        'plans': [(8, 'Ground floor'), (9, 'First floor'), (10, 'Second floor')],
+        'gallery': [(11, 'The terraces'), (12, 'The estate'), (13, 'Front elevation'), (14, 'Living room'),
+                    (15, 'Kitchen'), (16, 'Dining area'), (17, 'Bedroom')]},
+    'grey-oasis': {
+        'pdf': 'grey-oasis-brochure.pdf',
+        'cover_band': (0.135, 0.815),
+        'plans': [(7, 'Ground floor'), (8, 'First floor')],
+        'gallery': [(5, 'Exterior'), (6, 'Exterior'), (9, 'Living room'), (10, 'Family living room'),
+                    (11, 'Kitchen'), (12, 'Master bedroom'), (13, 'Master bathroom')]},
 }
 
 e = html.escape
 ARROW = ('<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
          'stroke-linecap="square" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>')
+
+
+def jpeg_size(path):
+    """Width and height of a JPEG, read from its frame header."""
+    with open(path, 'rb') as f:
+        f.read(2)
+        while True:
+            marker, = struct.unpack('>H', f.read(2))
+            size, = struct.unpack('>H', f.read(2))
+            if 0xFFC0 <= marker <= 0xFFCF and marker not in (0xFFC4, 0xFFC8, 0xFFCC):
+                f.read(1)
+                h, w = struct.unpack('>HH', f.read(4))
+                return w, h
+            f.read(size - 2)
+
+
+def render():
+    """Re-export covers, floor plans and gallery pages from the brochure PDFs."""
+    import tempfile
+    tool = Path(tempfile.gettempdir()) / 'grey-pdfpage'
+    subprocess.run(['swiftc', '-O', str(ROOT / 'tools/pdfpage.swift'), '-o', str(tool)], check=True)
+    for slug, m in MEDIA.items():
+        pdf = ROOT / 'assets/brochures' / m['pdf']
+        cover = ROOT / 'assets/projects' / m['pdf'].replace('-residences', '').replace('-brochure.pdf', '-cover.jpg')
+        subprocess.run([str(tool), str(pdf), '1', '1000', str(cover), '0.82'], check=True)
+        subprocess.run([str(tool), str(pdf), '1', '1400', str(cover).replace('.jpg', '-lg.jpg'), '0.82'], check=True)
+        if 'cover_band' in m:
+            # A square cover would be sliced through its logo and title by the 4:3 card box,
+            # so keep only the landscape band between them: the render and its strapline.
+            top, bottom = m['cover_band']
+            for f, w in ((str(cover), 1000), (str(cover).replace('.jpg', '-lg.jpg'), 1400)):
+                subprocess.run(['sips', '-c', str(round(w * (bottom - top))), str(w), '--cropOffset',
+                                str(round(w * top)), '0', f], check=True, capture_output=True)
+        out = ROOT / 'assets/projects' / slug
+        out.mkdir(exist_ok=True)
+        for kind in ('plans', 'gallery'):
+            for page_no, _ in m[kind]:
+                subprocess.run([str(tool), str(pdf), str(page_no), '1600',
+                                str(out / f'{kind[:4]}-p{page_no:02d}.jpg'), '0.8'], check=True)
+        print('rendered', slug)
+
+
+def media_figs(slug, kind, name):
+    figs = ''
+    for n, (page_no, cap) in enumerate(MEDIA.get(slug, {}).get(kind, [])):
+        rel = f'assets/projects/{slug}/{kind[:4]}-p{page_no:02d}.jpg'
+        if not (ROOT / rel).exists():
+            continue
+        w, h = jpeg_size(ROOT / rel)
+        what = 'floor plan' if kind == 'plans' else 'artist\u2019s impression'
+        figs += (f'<figure class="reveal"{" data-delay=1" if n % 2 else ""}>'
+                 f'<a href="/{rel}" target="_blank" rel="noopener" class="gal block border border-line" aria-label="{e(cap)} \u2014 open full size">'
+                 f'<img src="/{rel}" width="{w}" height="{h}" alt="{e(name)} \u2014 {e(cap)}, {what}" loading="lazy" decoding="async" class="w-full h-auto block" /></a>'
+                 f'<figcaption class="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-3">{e(cap)}</figcaption></figure>')
+    return figs
 
 
 def between(s, a, b, start=0):
@@ -149,7 +255,7 @@ def type_block(t):
     if t['floors']:
         floors = ''
         for f in t['floors']:
-            note = f.get('note') or ('Sheet ' + f['sheet'] if f.get('sheet') else '')
+            note = f.get('note', '')
             rows = ''.join(f'<div class="uspec text-sm"><dt>{e(r[0])}</dt><dd>{e(r[1])}</dd></div>' for r in f['rooms'])
             floors += (f'<div class="mb-8 last:mb-0"><div class="flex items-baseline justify-between mb-2 border-b border-line pb-2">'
                        f'<h4 class="h3">{e(f["name"])}</h4>'
@@ -181,11 +287,13 @@ def page(card, cards, units, head, header, footer):
     url = f'{SITE}/developments/{slug}/'
     cover = '/' + card['cover']
     lg = card['cover'].replace('.jpg', '-lg.jpg')
+    cw, ch = jpeg_size(ROOT / card['cover'])
     if (ROOT / lg).exists():
-        img = (f'<img src="/{lg}" width="1400" height="989" srcset="{cover} 1000w, /{lg} 1400w" '
+        lw, lh = jpeg_size(ROOT / lg)
+        img = (f'<img src="/{lg}" width="{lw}" height="{lh}" srcset="{cover} {cw}w, /{lg} {lw}w" '
                f'sizes="(min-width:1024px) 46vw, 92vw" alt="{e(card["alt"])}" fetchpriority="high" decoding="async" class="w-full h-auto block" />')
     else:
-        img = (f'<img src="{cover}" width="1000" height="707" alt="{e(card["alt"])}" fetchpriority="high" '
+        img = (f'<img src="{cover}" width="{cw}" height="{ch}" alt="{e(card["alt"])}" fetchpriority="high" '
                f'decoding="async" class="w-full h-auto block" />')
     st = max(0, min(5, card['stage']))
     # Segment i is STAGES[i]; the stage label is STAGES[st], so st is the active segment.
@@ -214,6 +322,29 @@ def page(card, cards, units, head, header, footer):
       </div>
     </section>'''
 
+    plans = media_figs(slug, 'plans', name)
+    if plans:
+        sections += f'''
+    <section class="relative py-20 sm:py-28 bg-panel border-t border-line">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
+        <p class="reveal eyebrow text-[11px] mb-4">{num('Floor plans')}</p>
+        <h2 class="reveal display text-3xl sm:text-5xl text-porcelain mb-12">Drawn before <span class="gradword">it is built.</span></h2>
+        <div class="grid md:grid-cols-2 gap-x-8 gap-y-10">{plans}</div>
+        <p class="reveal text-muted text-xs mt-8 max-w-2xl">Room areas as stated on the architect\u2019s drawings. Plans are for illustration and are not to scale. Select a plan to open it full size.</p>
+      </div>
+    </section>'''
+    gallery = media_figs(slug, 'gallery', name)
+    if gallery:
+        sections += f'''
+    <section class="on-void relative py-20 sm:py-28 bg-void border-t border-line">
+      <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
+        <p class="reveal eyebrow text-[11px] mb-4">{num('Gallery')}</p>
+        <h2 class="reveal display text-3xl sm:text-5xl mb-12">Inside <span class="gradword">and out.</span></h2>
+        <div class="grid md:grid-cols-2 gap-x-8 gap-y-10">{gallery}</div>
+        <p class="reveal text-muted text-xs mt-8 max-w-2xl">All images are artist\u2019s impressions from the brochure.</p>
+      </div>
+    </section>'''
+
     cols = []
     if features:
         items = ''.join(f'<li class="flex gap-3 text-sm text-body py-2.5 border-b border-line"><span class="mt-[11px] w-3 h-px bg-gold shrink-0"></span>{e(x)}</li>' for x in features)
@@ -228,7 +359,7 @@ def page(card, cards, units, head, header, footer):
                     f'<p class="text-muted text-xs mt-4">As published in the brochure. Terms are confirmed in writing at subscription.</p></div>')
     if cols:
         sections += f'''
-    <section class="relative py-20 sm:py-28 bg-panel border-t border-line">
+    <section class="relative py-20 sm:py-28 bg-ink border-t border-line">
       <div class="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-20">
         <p class="reveal eyebrow text-[11px] mb-4">{num('The estate')}</p>
         <h2 class="reveal display text-3xl sm:text-5xl text-porcelain mb-12">What comes <span class="gradword">with the address.</span></h2>
@@ -421,4 +552,6 @@ def main():
 
 
 if __name__ == '__main__':
+    if 'render' in sys.argv[1:]:
+        render()
     sys.exit(main())
